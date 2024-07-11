@@ -1,0 +1,3644 @@
+{
+  "variants": {
+    "efficiency_level=0,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=0,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=0,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=0,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=0,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=0,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=1,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=1,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=1,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=1,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=1,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=2,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=2,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=2,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=2,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=2,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=3,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=3,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=3,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=3,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=3,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=4,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=4,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=4,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=4,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=4,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=5,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=5,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=5,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=5,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=5,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=down,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 180
+    },
+    "efficiency_level=6,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=east,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=north,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90
+    },
+    "efficiency_level=6,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=south,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 180
+    },
+    "efficiency_level=6,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=up,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block"
+    },
+    "efficiency_level=6,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=0,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=0,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=1,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=1,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=2,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=2,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=3,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=3,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=4,silk_touch_level=0,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=false": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    },
+    "efficiency_level=6,facing=west,fortune_level=4,silk_touch_level=1,waterlogged=true": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_drill/block",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
