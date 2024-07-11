@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "package": "io.github.cotrin8672.mixin",
+  "refmap": "createenchantablemachinery.refmap.json",
+  "mixins": [
+    "BlockItemMixin",
+    "CreateBlockEntityBuilderMixin",
+    "ItemMixin",
+    "ItemStackMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -6,6 +6,16 @@ pluginManagement {
             name = "MinecraftForge"
             url = uri("https://maven.minecraftforge.net/")
         }
+        maven {
+            url = uri("https://repo.spongepowered.org/repository/maven-public/")
+        }
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.toString() == "org.spongepowered.mixin") {
+                useModule("org.spongepowered:mixingradle:0.7-SNAPSHOT")
+            }
+        }
     }
 }
 
