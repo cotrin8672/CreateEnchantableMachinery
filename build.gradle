@@ -91,8 +91,6 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    implementation "curse.maven:cei-688768:5331908"
 }
 
 tasks.named('processResources', ProcessResources).configure {
