@@ -5,12 +5,16 @@ import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.Lang
 import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.block.EnchantedItemFactory
-import io.github.cotrin8672.block.EnchantmentProperties
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.ListTag
+import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.EnchantmentHelper
+import net.minecraft.world.item.enchantment.EnchantmentInstance
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
@@ -20,16 +24,22 @@ import net.minecraft.world.phys.Vec3
 class EnchantableDrillBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
-    private val state: BlockState,
-) : DrillBlockEntity(type, pos, state) {
-    private val enchantedItem = EnchantedItemFactory.getPickaxeItemStack(
-        efficiencyLevel = state.getValue(EnchantmentProperties.EFFICIENCY_LEVEL),
-        fortuneLevel = state.getValue(EnchantmentProperties.FORTUNE_LEVEL),
-        silkTouchLevel = state.getValue(EnchantmentProperties.SILK_TOUCH_LEVEL)
-    )
+    state: BlockState,
+) : DrillBlockEntity(type, pos, state), Enchantable {
+    private val enchantedItem: ItemStack
+        get() = EnchantedItemFactory.getPickaxeItemStack(*getEnchantments().toTypedArray())
+
+    private var enchantmentsTag: ListTag? = null
+    private val enchantmentInstances: List<EnchantmentInstance>
+        get() = enchantmentsTag?.let { tag ->
+            EnchantmentHelper.deserializeEnchantments(tag).map {
+                EnchantmentInstance(it.key, it.value)
+            }
+        } ?: listOf()
 
     override fun getBreakSpeed(): Float {
-        return super.getBreakSpeed() * (state.getValue(EnchantmentProperties.EFFICIENCY_LEVEL) + 1)
+        val efficiencyLevel = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+        return super.getBreakSpeed() * (efficiencyLevel + 1)
     }
 
     override fun canBreak(stateToBreak: BlockState, blockHardness: Float): Boolean {
@@ -55,24 +65,31 @@ class EnchantableDrillBlockEntity(
 
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-        val efficiency = state.getValue(EnchantmentProperties.EFFICIENCY_LEVEL)
-        val fortune = state.getValue(EnchantmentProperties.FORTUNE_LEVEL)
-        val silkTouch = state.getValue(EnchantmentProperties.SILK_TOUCH_LEVEL)
-        if (efficiency != 0) {
+        for (instance in enchantmentInstances) {
+            val level = instance.level
             Lang.text(Strings.repeat(' ', 0))
-                .add(Enchantments.BLOCK_EFFICIENCY.getFullname(efficiency).copy())
-                .forGoggles(tooltip)
-        }
-        if (fortune != 0) {
-            Lang.text(Strings.repeat(' ', 0))
-                .add(Enchantments.BLOCK_FORTUNE.getFullname(fortune).copy())
-                .forGoggles(tooltip)
-        }
-        if (silkTouch != 0) {
-            Lang.text(Strings.repeat(' ', 0))
-                .add(Enchantments.SILK_TOUCH.getFullname(silkTouch).copy())
+                .add(instance.enchantment.getFullname(level).copy())
                 .forGoggles(tooltip)
         }
         return true
+    }
+
+    override fun getEnchantments(): List<EnchantmentInstance> {
+        return enchantmentInstances
+    }
+
+    override fun setEnchantment(listTag: ListTag) {
+        enchantmentsTag = listTag
+    }
+
+    override fun read(compound: CompoundTag, clientPacket: Boolean) {
+        enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        super.read(compound, clientPacket)
+    }
+
+    override fun write(compound: CompoundTag, clientPacket: Boolean) {
+        compound.remove(ItemStack.TAG_ENCH)
+        enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
+        super.write(compound, clientPacket)
     }
 }

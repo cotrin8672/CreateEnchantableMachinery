@@ -42,10 +42,9 @@ public abstract class BlockItemMixin extends Item {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (
-                EnchantableBlockMapping.getOriginBlockList().contains(this.getBlock()) &&
-                        EnchantableBlockMapping.getApplicableEnchantments(this.getBlock()).contains(enchantment)
-        ) {
+        boolean hasAlternateBlock = EnchantableBlockMapping.getOriginBlockList().contains(this.getBlock());
+        boolean containsEnchantment = EnchantableBlockMapping.getApplicableEnchantments(this.getBlock()).contains(enchantment);
+        if (hasAlternateBlock && containsEnchantment) {
             return true;
         } else {
             return super.canApplyAtEnchantingTable(stack, enchantment);
