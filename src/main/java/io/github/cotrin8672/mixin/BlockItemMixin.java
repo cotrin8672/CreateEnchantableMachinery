@@ -1,5 +1,6 @@
 package io.github.cotrin8672.mixin;
 
+import io.github.cotrin8672.block.EnchantableBlock;
 import io.github.cotrin8672.util.EnchantableBlockMapping;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -42,10 +43,9 @@ public abstract class BlockItemMixin extends Item {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        boolean hasAlternateBlock = EnchantableBlockMapping.getOriginBlockList().contains(this.getBlock());
-        boolean containsEnchantment = EnchantableBlockMapping.getApplicableEnchantments(this.getBlock()).contains(enchantment);
-        if (hasAlternateBlock && containsEnchantment) {
-            return true;
+        Block alternateBlock = EnchantableBlockMapping.getAlternativeBlock(getBlock());
+        if (alternateBlock instanceof EnchantableBlock) {
+            return ((EnchantableBlock) alternateBlock).canApply(enchantment);
         } else {
             return super.canApplyAtEnchantingTable(stack, enchantment);
         }
