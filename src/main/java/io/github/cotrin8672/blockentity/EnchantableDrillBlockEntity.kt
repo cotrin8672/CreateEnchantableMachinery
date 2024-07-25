@@ -25,7 +25,7 @@ class EnchantableDrillBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-) : DrillBlockEntity(type, pos, state), Enchantable {
+) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity {
     private val enchantedItem: ItemStack
         get() = EnchantedItemFactory.getPickaxeItemStack(*getEnchantments().toTypedArray())
 

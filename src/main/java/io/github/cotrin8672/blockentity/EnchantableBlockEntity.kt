@@ -5,7 +5,7 @@ import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.item.enchantment.EnchantmentInstance
 
 
-interface Enchantable {
+interface EnchantableBlockEntity {
     fun getEnchantments(): List<EnchantmentInstance>
 
     fun setEnchantment(listTag: ListTag)

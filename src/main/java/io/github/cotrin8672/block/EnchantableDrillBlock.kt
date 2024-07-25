@@ -6,7 +6,7 @@ import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
 import com.simibubi.create.foundation.placement.IPlacementHelper
 import com.simibubi.create.foundation.placement.PlacementHelpers
 import com.simibubi.create.foundation.placement.PlacementOffset
-import io.github.cotrin8672.blockentity.Enchantable
+import io.github.cotrin8672.blockentity.EnchantableBlockEntity
 import io.github.cotrin8672.registry.BlockEntityRegistration
 import io.github.cotrin8672.registry.BlockRegistration
 import io.github.cotrin8672.util.EnchantableBlockMapping
@@ -22,6 +22,9 @@ import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.context.BlockPlaceContext
+import net.minecraft.world.item.enchantment.Enchantment
+import net.minecraft.world.item.enchantment.EnchantmentCategory
+import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntityType
@@ -32,7 +35,7 @@ import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import java.util.function.Predicate
 
-class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
+class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), EnchantableBlock {
     companion object {
         private val enchantedPlacementHelperId = PlacementHelpers.register(PlacementHelper())
     }
@@ -49,7 +52,7 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
     override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
         val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
         val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
-        if (blockEntity is Enchantable) {
+        if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
             }
@@ -66,7 +69,7 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
         val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
-        if (blockEntity is Enchantable) {
+        if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
             }
@@ -104,7 +107,7 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
     ) {
         super.setPlacedBy(worldIn, pos, state, placer, stack)
         val blockEntity = worldIn.getBlockEntity(pos)
-        if (blockEntity is Enchantable) {
+        if (blockEntity is EnchantableBlockEntity) {
             blockEntity.setEnchantment(stack.enchantmentTags)
         }
     }
@@ -165,6 +168,15 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
                 )
             }
             return offset
+        }
+    }
+
+    override fun canApply(enchantment: Enchantment): Boolean {
+        return when {
+            enchantment == Enchantments.UNBREAKING -> false
+            enchantment == Enchantments.MENDING -> false
+            enchantment.category == EnchantmentCategory.DIGGER -> true
+            else -> false
         }
     }
 }
