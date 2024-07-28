@@ -5,7 +5,6 @@ import io.github.cotrin8672.registrate.RegistrateKt
 import io.github.cotrin8672.registry.BlockEntityRegistration
 import io.github.cotrin8672.registry.BlockRegistration
 import io.github.cotrin8672.util.EnchantableBlockMapping
-import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
@@ -29,7 +28,6 @@ class CreateEnchantableMachinery {
         EnchantableBlockMapping(
             originBlock = AllBlocks.MECHANICAL_DRILL.get(),
             alternativeBlock = BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL.get(),
-            listOf(Enchantments.BLOCK_EFFICIENCY, Enchantments.BLOCK_FORTUNE, Enchantments.SILK_TOUCH),
         )
     }
 }
