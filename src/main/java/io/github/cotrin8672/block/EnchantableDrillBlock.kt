@@ -21,6 +21,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.item.enchantment.EnchantmentCategory
@@ -112,6 +113,16 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
         }
     }
 
+    override fun canApply(enchantment: Enchantment): Boolean {
+        return when {
+            enchantment == Enchantments.UNBREAKING -> false
+            enchantment == Enchantments.MENDING -> false
+            enchantment.category == EnchantmentCategory.DIGGER -> true
+            enchantment.canEnchant(ItemStack(Items.NETHERITE_PICKAXE)) -> true
+            else -> false
+        }
+    }
+
     private class PlacementHelper : IPlacementHelper {
         override fun getItemPredicate(): Predicate<ItemStack> {
             return Predicate { stack -> AllBlocks.MECHANICAL_DRILL.isIn(stack) }
@@ -168,15 +179,6 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
                 )
             }
             return offset
-        }
-    }
-
-    override fun canApply(enchantment: Enchantment): Boolean {
-        return when {
-            enchantment == Enchantments.UNBREAKING -> false
-            enchantment == Enchantments.MENDING -> false
-            enchantment.category == EnchantmentCategory.DIGGER -> true
-            else -> false
         }
     }
 }
