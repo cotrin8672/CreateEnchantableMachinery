@@ -1,5 +1,6 @@
 package io.github.cotrin8672.blockentity
 
+import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.Lang
@@ -11,6 +12,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
@@ -19,7 +21,10 @@ import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
+import net.minecraftforge.common.util.FakePlayer
+import java.util.*
 
 class EnchantableDrillBlockEntity(
     type: BlockEntityType<*>,
@@ -36,6 +41,31 @@ class EnchantableDrillBlockEntity(
                 EnchantmentInstance(it.key, it.value)
             }
         } ?: listOf()
+    private val fakePlayer by lazy {
+        val nonNullLevel = checkNotNull(this.level)
+        if (nonNullLevel is ServerLevel) {
+            object :
+                FakePlayer(nonNullLevel, GameProfile(UUID.randomUUID(), "fake_player")) {
+                override fun isSpectator(): Boolean {
+                    return false
+                }
+
+                override fun isCreative(): Boolean {
+                    return false
+                }
+
+                override fun getLookAngle(): Vec3 {
+                    return Vec3.atCenterOf(state.getValue(BlockStateProperties.FACING).normal)
+                }
+
+                override fun getMainHandItem(): ItemStack {
+                    return enchantedItem
+                }
+            }.apply {
+                setPos(blockPos.center)
+            }
+        } else null
+    }
 
     override fun getBreakSpeed(): Float {
         val efficiencyLevel = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
@@ -50,7 +80,11 @@ class EnchantableDrillBlockEntity(
         val nonNullLevel = checkNotNull(level)
         val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
         BlockHelper.destroyBlockAs(
-            nonNullLevel, breakingPos, null, enchantedItem, 1f
+            nonNullLevel,
+            breakingPos,
+            fakePlayer,
+            enchantedItem,
+            1f
         ) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
             if (!nonNullLevel.gameRules.getBoolean(GameRules.RULE_DOBLOCKDROPS)) return@destroyBlockAs
