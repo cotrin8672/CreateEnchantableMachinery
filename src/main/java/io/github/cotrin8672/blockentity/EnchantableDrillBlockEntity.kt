@@ -5,7 +5,7 @@ import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.Lang
 import com.simibubi.create.foundation.utility.VecHelper
-import io.github.cotrin8672.block.EnchantedItemFactory
+import io.github.cotrin8672.util.EnchantedItemFactory
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag

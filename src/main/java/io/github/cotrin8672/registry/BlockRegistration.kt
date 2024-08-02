@@ -7,8 +7,8 @@ import com.simibubi.create.foundation.data.SharedProperties
 import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
+import io.github.cotrin8672.behaviour.EnchantableDrillMovementBehaviour
 import io.github.cotrin8672.block.EnchantableDrillBlock
-import io.github.cotrin8672.block.EnchantableDrillMovementBehaviour
 import net.minecraft.world.level.material.MapColor
 
 @Suppress("unused")

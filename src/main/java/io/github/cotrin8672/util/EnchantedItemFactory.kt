@@ -1,4 +1,4 @@
-package io.github.cotrin8672.block
+package io.github.cotrin8672.util
 
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items

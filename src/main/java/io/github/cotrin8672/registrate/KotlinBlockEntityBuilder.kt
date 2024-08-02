@@ -10,7 +10,7 @@ import io.github.cotrin8672.mixin.CreateBlockEntityBuilderMixin
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 
-class CreateBlockEntityBuilderKt<T : BlockEntity, P>
+class KotlinBlockEntityBuilder<T : BlockEntity, P>
 private constructor(
     owner: AbstractRegistrate<*>,
     parent: P,
@@ -26,8 +26,8 @@ private constructor(
             name: String,
             callback: BuilderCallback,
             factory: BlockEntityFactory<T>,
-        ): CreateBlockEntityBuilderKt<T, P> {
-            return CreateBlockEntityBuilderKt(owner, parent, name, callback, factory)
+        ): KotlinBlockEntityBuilder<T, P> {
+            return KotlinBlockEntityBuilder(owner, parent, name, callback, factory)
         }
     }
 

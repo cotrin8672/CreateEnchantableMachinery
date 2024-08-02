@@ -7,10 +7,10 @@ import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraftforge.eventbus.api.IEventBus
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
-class RegistrateKt(modId: String) : CreateRegistrate(modId) {
+class KotlinRegistrate(modId: String) : CreateRegistrate(modId) {
     companion object {
-        fun create(modId: String): RegistrateKt {
-            return RegistrateKt(modId)
+        fun create(modId: String): KotlinRegistrate {
+            return KotlinRegistrate(modId)
         }
     }
 
@@ -21,7 +21,7 @@ class RegistrateKt(modId: String) : CreateRegistrate(modId) {
     override fun <T : BlockEntity> blockEntity(
         name: String,
         factory: BlockEntityBuilder.BlockEntityFactory<T>,
-    ): CreateBlockEntityBuilderKt<T, CreateRegistrate> {
+    ): KotlinBlockEntityBuilder<T, CreateRegistrate> {
         return customBlockEntity(parent = self(), name = name, factory = factory)
     }
 
@@ -29,23 +29,23 @@ class RegistrateKt(modId: String) : CreateRegistrate(modId) {
         parent: P,
         name: String,
         factory: BlockEntityBuilder.BlockEntityFactory<T>,
-    ): CreateBlockEntityBuilderKt<T, P> = customBlockEntity(parent, name, factory)
+    ): KotlinBlockEntityBuilder<T, P> = customBlockEntity(parent, name, factory)
 
     private fun <T : BlockEntity, P> customBlockEntity(
         parent: P,
         name: String,
         factory: BlockEntityBuilder.BlockEntityFactory<T>,
-    ): CreateBlockEntityBuilderKt<T, P> {
+    ): KotlinBlockEntityBuilder<T, P> {
         return entry(
             name
         ) { callback: BuilderCallback ->
-            CreateBlockEntityBuilderKt.createKt(
+            KotlinBlockEntityBuilder.createKt(
                 this,
                 parent,
                 name,
                 callback,
                 factory
             )
-        } as CreateBlockEntityBuilderKt<T, P>
+        } as KotlinBlockEntityBuilder<T, P>
     }
 }

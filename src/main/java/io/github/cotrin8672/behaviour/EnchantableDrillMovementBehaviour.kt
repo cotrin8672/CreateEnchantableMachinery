@@ -1,9 +1,10 @@
-package io.github.cotrin8672.block
+package io.github.cotrin8672.behaviour
 
 import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.kinetics.drill.DrillMovementBehaviour
 import com.simibubi.create.foundation.utility.BlockHelper
+import io.github.cotrin8672.util.EnchantedItemFactory
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack

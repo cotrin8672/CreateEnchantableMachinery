@@ -1,7 +1,7 @@
 package io.github.cotrin8672
 
 import com.simibubi.create.AllBlocks
-import io.github.cotrin8672.registrate.RegistrateKt
+import io.github.cotrin8672.registrate.KotlinRegistrate
 import io.github.cotrin8672.registry.BlockEntityRegistration
 import io.github.cotrin8672.registry.BlockRegistration
 import io.github.cotrin8672.util.EnchantableBlockMapping
@@ -14,7 +14,7 @@ class CreateEnchantableMachinery {
     companion object {
         const val MOD_ID = "createenchantablemachinery"
 
-        val REGISTRATE = RegistrateKt.create(MOD_ID)
+        val REGISTRATE = KotlinRegistrate.create(MOD_ID)
     }
 
     init {
