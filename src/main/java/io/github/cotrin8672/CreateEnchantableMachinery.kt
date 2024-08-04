@@ -25,9 +25,7 @@ class CreateEnchantableMachinery {
     }
 
     private fun registerEnchantableBlockMapping(event: FMLCommonSetupEvent) {
-        EnchantableBlockMapping(
-            originBlock = AllBlocks.MECHANICAL_DRILL.get(),
-            alternativeBlock = BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL.get(),
-        )
+        EnchantableBlockMapping(AllBlocks.MECHANICAL_DRILL to BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
+        EnchantableBlockMapping(AllBlocks.MECHANICAL_SAW to BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
     }
 }

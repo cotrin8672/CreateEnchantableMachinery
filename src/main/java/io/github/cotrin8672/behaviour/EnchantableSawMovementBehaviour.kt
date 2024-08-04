@@ -2,7 +2,7 @@ package io.github.cotrin8672.behaviour
 
 import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
-import com.simibubi.create.content.kinetics.drill.DrillMovementBehaviour
+import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour
 import com.simibubi.create.foundation.utility.BlockHelper
 import io.github.cotrin8672.util.EnchantedItemFactory
 import net.minecraft.core.BlockPos
@@ -15,7 +15,7 @@ import net.minecraft.world.phys.Vec3
 import net.minecraftforge.common.util.FakePlayer
 import java.util.*
 
-class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
+class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
     override fun destroyBlock(context: MovementContext, breakingPos: BlockPos) {
         val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
             tag = context.blockEntityData

@@ -1,6 +1,6 @@
 package io.github.cotrin8672.blockentity
 
-import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import com.simibubi.create.content.kinetics.saw.SawBlockEntity
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.Lang
 import com.simibubi.create.foundation.utility.VecHelper
@@ -23,11 +23,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
 
-class EnchantableDrillBlockEntity(
+class EnchantableSawBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity {
+) : SawBlockEntity(type, pos, state), EnchantableBlockEntity {
     private val enchantedItem: ItemStack
         get() = EnchantedItemFactory.getPickaxeItemStack(*getEnchantments().toTypedArray())
 
@@ -41,7 +41,7 @@ class EnchantableDrillBlockEntity(
     private val fakePlayer by lazy {
         val nonNullLevel = checkNotNull(this.level)
         if (nonNullLevel is ServerLevel)
-            BlockBreaker(nonNullLevel, this@EnchantableDrillBlockEntity)
+            BlockBreaker(nonNullLevel, this@EnchantableSawBlockEntity)
         else null
     }
 
@@ -50,11 +50,7 @@ class EnchantableDrillBlockEntity(
         return super.getBreakSpeed() * (efficiencyLevel + 1)
     }
 
-    override fun canBreak(stateToBreak: BlockState, blockHardness: Float): Boolean {
-        return isBreakable(stateToBreak, blockHardness)
-    }
-
-    override fun onBlockBroken(stateToBreak: BlockState?) {
+    override fun onBlockBroken(stateToBreak: BlockState) {
         val nonNullLevel = checkNotNull(level)
         val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
         BlockHelper.destroyBlockAs(

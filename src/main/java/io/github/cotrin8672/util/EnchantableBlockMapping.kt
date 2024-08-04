@@ -1,5 +1,6 @@
 package io.github.cotrin8672.util
 
+import com.tterrag.registrate.util.entry.BlockEntry
 import net.minecraft.world.level.block.Block
 
 class EnchantableBlockMapping(
@@ -15,8 +16,9 @@ class EnchantableBlockMapping(
         fun getAlternativeBlock(origin: Block): Block? {
             return alternativeBlockMapping[origin]
         }
-
     }
+
+    constructor(pair: Pair<BlockEntry<out Block>, BlockEntry<out Block>>) : this(pair.first.get(), pair.second.get())
 
     init {
         originBlockList.add(originBlock)
