@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.EnchantmentInstance
+import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.phys.Vec3
 import net.minecraftforge.common.util.FakePlayer
 import java.util.*
@@ -50,6 +51,9 @@ class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        return super.getBlockBreakingSpeed(context)
+        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
+            tag = context.blockEntityData
+        })
+        return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
     }
 }
