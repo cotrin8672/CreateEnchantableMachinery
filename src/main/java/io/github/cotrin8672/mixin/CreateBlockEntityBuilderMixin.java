@@ -13,9 +13,9 @@ import java.util.function.BiFunction;
 
 @Mixin(CreateBlockEntityBuilder.class)
 public interface CreateBlockEntityBuilderMixin<T extends BlockEntity> {
-    @Accessor("instanceFactory")
+    @Accessor(value = "instanceFactory", remap = false)
     NonNullSupplier<BiFunction<MaterialManager, T, BlockEntityInstance<? super T>>> getInstanceFactory();
 
-    @Accessor("renderNormally")
+    @Accessor(value = "renderNormally", remap = false)
     NonNullPredicate<T> getRenderNormally();
 }
