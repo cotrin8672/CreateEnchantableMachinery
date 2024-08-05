@@ -10,7 +10,8 @@
     "CustomEnchantmentMixin",
     "EnchantmentMixin",
     "ItemMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "SawBlockEntityMixin"
   ],
   "client": [
   ],

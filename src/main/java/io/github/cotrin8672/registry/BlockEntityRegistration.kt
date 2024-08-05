@@ -5,12 +5,15 @@ import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
 import com.simibubi.create.content.kinetics.drill.DrillInstance
 import com.simibubi.create.content.kinetics.drill.DrillRenderer
+import com.simibubi.create.content.kinetics.saw.SawInstance
+import com.simibubi.create.content.kinetics.saw.SawRenderer
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.blockentity.EnchantableDrillBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableHarvesterBlockEntity
+import io.github.cotrin8672.blockentity.EnchantableSawBlockEntity
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
 
@@ -41,6 +44,19 @@ class BlockEntityRegistration {
                     NonNullFunction(::HarvesterRenderer)
                 }
                 .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MECHANICAL_SAW: BlockEntityEntry<EnchantableSawBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableSawBlockEntity>("enchantable_saw") { type, pos, state ->
+                EnchantableSawBlockEntity(type, pos, state)
+            }
+                .instance(renderNormally = true) {
+                    ::SawInstance
+                }
+                .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
+                .renderer {
+                    NonNullFunction(::SawRenderer)
+                }.register()
 
         @JvmStatic
         fun register() {
