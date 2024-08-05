@@ -97,8 +97,7 @@ dependencies {
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf("curse.maven:wonderful-enchantments-417439:5293997")
-    implementation fg.deobf("curse.maven:majrusz-library-437409:5302100")
+    compileOnly fg.deobf("curse.maven:majrusz-library-437409:5302100")
 }
 
 tasks.named('processResources', ProcessResources).configure {
