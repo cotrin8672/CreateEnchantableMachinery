@@ -26,5 +26,6 @@ class CreateEnchantableMachinery {
 
     private fun registerEnchantableBlockMapping(event: FMLCommonSetupEvent) {
         EnchantableBlockMapping(AllBlocks.MECHANICAL_DRILL to BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
+        EnchantableBlockMapping(AllBlocks.MECHANICAL_HARVESTER to BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
     }
 }

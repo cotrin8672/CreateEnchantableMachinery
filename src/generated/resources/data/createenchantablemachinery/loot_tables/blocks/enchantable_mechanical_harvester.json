@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "create:mechanical_saw"
+          "name": "create:mechanical_harvester"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "createenchantablemachinery:blocks/enchantable_mechanical_saw"
+  "random_sequence": "createenchantablemachinery:blocks/enchantable_mechanical_harvester"
 }
