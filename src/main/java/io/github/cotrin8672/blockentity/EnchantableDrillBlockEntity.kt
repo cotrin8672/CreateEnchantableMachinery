@@ -5,7 +5,6 @@ import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.Lang
 import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.entity.BlockBreaker
-import io.github.cotrin8672.util.EnchantedItemFactory
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
@@ -26,9 +25,6 @@ class EnchantableDrillBlockEntity(
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
 ) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
-    private val enchantedItem: ItemStack
-        get() = EnchantedItemFactory.getPickaxeItemStack(*getEnchantments().toTypedArray())
-
     private val fakePlayer by lazy {
         val nonNullLevel = checkNotNull(this.level)
         if (nonNullLevel is ServerLevel)
@@ -52,7 +48,7 @@ class EnchantableDrillBlockEntity(
             nonNullLevel,
             breakingPos,
             fakePlayer,
-            enchantedItem,
+            fakePlayer?.mainHandItem ?: ItemStack.EMPTY,
             1f
         ) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
