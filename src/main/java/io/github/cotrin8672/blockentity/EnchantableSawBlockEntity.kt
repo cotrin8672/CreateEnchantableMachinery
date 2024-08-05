@@ -1,6 +1,6 @@
 package io.github.cotrin8672.blockentity
 
-import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import com.simibubi.create.content.kinetics.saw.SawBlockEntity
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.Lang
 import com.simibubi.create.foundation.utility.VecHelper
@@ -9,30 +9,39 @@ import io.github.cotrin8672.util.EnchantedItemFactory
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.EnchantmentHelper
+import net.minecraft.world.item.enchantment.EnchantmentInstance
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
 
-class EnchantableDrillBlockEntity(
+class EnchantableSawBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
+) : SawBlockEntity(type, pos, state), EnchantableBlockEntity {
     private val enchantedItem: ItemStack
         get() = EnchantedItemFactory.getPickaxeItemStack(*getEnchantments().toTypedArray())
 
+    private var enchantmentsTag: ListTag? = null
+    private val enchantmentInstances: List<EnchantmentInstance>
+        get() = enchantmentsTag?.let { tag ->
+            EnchantmentHelper.deserializeEnchantments(tag).map {
+                EnchantmentInstance(it.key, it.value)
+            }
+        } ?: listOf()
     private val fakePlayer by lazy {
         val nonNullLevel = checkNotNull(this.level)
         if (nonNullLevel is ServerLevel)
-            BlockBreaker(nonNullLevel, this@EnchantableDrillBlockEntity)
+            BlockBreaker(nonNullLevel, this@EnchantableSawBlockEntity)
         else null
     }
 
@@ -41,11 +50,7 @@ class EnchantableDrillBlockEntity(
         return super.getBreakSpeed() * (efficiencyLevel + 1)
     }
 
-    override fun canBreak(stateToBreak: BlockState, blockHardness: Float): Boolean {
-        return isBreakable(stateToBreak, blockHardness)
-    }
-
-    override fun onBlockBroken(stateToBreak: BlockState?) {
+    override fun onBlockBroken(stateToBreak: BlockState) {
         val nonNullLevel = checkNotNull(level)
         val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
         BlockHelper.destroyBlockAs(
@@ -68,7 +73,7 @@ class EnchantableDrillBlockEntity(
 
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-        for (instance in delegate.enchantmentInstances) {
+        for (instance in enchantmentInstances) {
             val level = instance.level
             Lang.text(Strings.repeat(' ', 0))
                 .add(instance.enchantment.getFullname(level).copy())
@@ -77,14 +82,22 @@ class EnchantableDrillBlockEntity(
         return true
     }
 
+    override fun getEnchantments(): List<EnchantmentInstance> {
+        return enchantmentInstances
+    }
+
+    override fun setEnchantment(listTag: ListTag) {
+        enchantmentsTag = listTag
+    }
+
     override fun read(compound: CompoundTag, clientPacket: Boolean) {
-        delegate.enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
         super.read(compound, clientPacket)
     }
 
     override fun write(compound: CompoundTag, clientPacket: Boolean) {
         compound.remove(ItemStack.TAG_ENCH)
-        delegate.enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
+        enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
         super.write(compound, clientPacket)
     }
 }
