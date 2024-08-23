@@ -19,6 +19,7 @@ class CreateEnchantableMachinery {
 
     init {
         MOD_BUS.addListener(this::registerEnchantableBlockMapping)
+        //MOD_BUS.register(UnloadEvent())
         REGISTRATE.registerEventListeners(MOD_BUS)
         BlockRegistration.register()
         BlockEntityRegistration.register()

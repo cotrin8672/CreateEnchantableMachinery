@@ -16,6 +16,18 @@ class BlockBreaker(
     level: ServerLevel,
     blockEntity: BlockBreakingKineticBlockEntity,
 ) : FakePlayer(level, GameProfile(UUID.randomUUID(), "block_breaker")) {
+    companion object {
+        private val _blockBreakerList = mutableListOf<BlockBreaker>()
+
+        fun unload(level: ServerLevel) {
+            _blockBreakerList.removeIf { it.level() == level }
+        }
+    }
+
+    init {
+        _blockBreakerList.add(this)
+    }
+
     private val facing = level.getBlockState(blockEntity.blockPos).getValue(BlockStateProperties.FACING)
     private val enchantedItemStack = if (blockEntity is EnchantableBlockEntity) {
         EnchantedItemFactory.getPickaxeItemStack(*blockEntity.getEnchantments().toTypedArray())
