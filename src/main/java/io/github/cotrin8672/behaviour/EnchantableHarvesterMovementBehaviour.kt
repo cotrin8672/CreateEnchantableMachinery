@@ -5,7 +5,6 @@ import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.util.EnchantedItemFactory
-import io.github.cotrin8672.util.sameItem
 import net.minecraft.core.BlockPos
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
@@ -23,6 +22,10 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty
 import org.apache.commons.lang3.mutable.MutableBoolean
 
 class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
+    private fun sameItem(stack: ItemStack, otherStack: ItemStack): Boolean {
+        return !otherStack.isEmpty && stack.`is`(otherStack.item)
+    }
+
     override fun visitNewPosition(context: MovementContext, pos: BlockPos) {
         val world = context.world
         val stateVisited = world.getBlockState(pos)
