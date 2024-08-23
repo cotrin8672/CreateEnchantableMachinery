@@ -4,13 +4,13 @@ import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableBlockEntity
 import io.github.cotrin8672.util.EnchantedItemFactory
+import io.github.cotrin8672.util.center
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
 import net.minecraftforge.common.util.FakePlayer
-import thedarkcolour.kotlinforforge.forge.vectorutil.toVec3
 import java.util.*
 
 class BlockBreaker(
@@ -35,7 +35,7 @@ class BlockBreaker(
     } else ItemStack(Items.NETHERITE_PICKAXE)
 
     init {
-        setPos(blockEntity.blockPos.toVec3())
+        setPos(blockEntity.blockPos.center)
     }
 
     override fun isSpectator(): Boolean {
