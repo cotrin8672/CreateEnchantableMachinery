@@ -15,7 +15,7 @@ import io.github.cotrin8672.block.EnchantableDrillBlock
 import io.github.cotrin8672.block.EnchantableHarvesterBlock
 import io.github.cotrin8672.block.EnchantableSawBlock
 import net.minecraft.client.renderer.RenderType
-import net.minecraft.world.level.material.MapColor
+import net.minecraft.world.level.material.MaterialColor
 import java.util.function.Supplier
 
 @Suppress("unused")
@@ -27,7 +27,7 @@ class BlockRegistration {
             ::EnchantableDrillBlock
         )
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.PODZOL) }
+            .properties { it.color(MaterialColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.directionalBlockProvider(true))
             .transform(BlockStressDefaults.setImpact(4.0))
@@ -38,7 +38,7 @@ class BlockRegistration {
         val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntry<EnchantableHarvesterBlock> =
             REGISTRATE.block<EnchantableHarvesterBlock>("enchantable_mechanical_harvester", ::EnchantableHarvesterBlock)
                 .initialProperties(SharedProperties::stone)
-                .properties { it.mapColor(MapColor.METAL).forceSolidOn() }
+                .properties { it.color(MaterialColor.METAL) }
                 .transform(axeOrPickaxe())
                 .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
                 .blockstate(BlockStateGen.horizontalBlockProvider(true))
@@ -50,7 +50,7 @@ class BlockRegistration {
             REGISTRATE.block<EnchantableSawBlock>("enchantable_mechanical_saw", ::EnchantableSawBlock)
                 .initialProperties(SharedProperties::stone)
                 .addLayer { Supplier { RenderType.cutoutMipped() } }
-                .properties { it.mapColor(MapColor.PODZOL) }
+                .properties { it.color(MaterialColor.PODZOL) }
                 .transform(axeOrPickaxe())
                 .blockstate(SawGenerator()::generate)
                 .transform(BlockStressDefaults.setImpact(4.0))

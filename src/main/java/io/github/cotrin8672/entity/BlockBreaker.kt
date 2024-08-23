@@ -10,6 +10,7 @@ import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
 import net.minecraftforge.common.util.FakePlayer
+import thedarkcolour.kotlinforforge.forge.vectorutil.toVec3
 import java.util.*
 
 class BlockBreaker(
@@ -20,7 +21,7 @@ class BlockBreaker(
         private val _blockBreakerList = mutableListOf<BlockBreaker>()
 
         fun unload(level: ServerLevel) {
-            _blockBreakerList.removeIf { it.level() == level }
+            _blockBreakerList.removeIf { it.level == level }
         }
     }
 
@@ -34,7 +35,7 @@ class BlockBreaker(
     } else ItemStack(Items.NETHERITE_PICKAXE)
 
     init {
-        setPos(blockEntity.blockPos.center)
+        setPos(blockEntity.blockPos.toVec3())
     }
 
     override fun isSpectator(): Boolean {

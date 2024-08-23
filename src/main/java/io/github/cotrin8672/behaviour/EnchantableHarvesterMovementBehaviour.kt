@@ -2,10 +2,10 @@ package io.github.cotrin8672.behaviour
 
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
-import com.simibubi.create.foundation.item.ItemHelper
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.util.EnchantedItemFactory
+import io.github.cotrin8672.util.sameItem
 import net.minecraft.core.BlockPos
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
@@ -51,7 +51,7 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             world, pos, null, item, effectChance
         ) { stack: ItemStack ->
             if (AllConfigs.server().kinetics.harvesterReplants.get() && !seedSubtracted.value
-                && ItemHelper.sameItem(stack, ItemStack(stateVisited.block))
+                && sameItem(stack, ItemStack(stateVisited.block))
             ) {
                 stack.shrink(1)
                 seedSubtracted.setTrue()

@@ -124,9 +124,9 @@ class EnchantableSawBlockEntity(
             AllRecipeTypes.CUTTING.getType(),
             CuttingRecipe::class.java
         )
-        if (assemblyRecipe.isPresent && (this@EnchantableSawBlockEntity as SawBlockEntityMixin).filtering.test(
-                assemblyRecipe.get().getResultItem(level!!.registryAccess())
-            )
+        if (
+            assemblyRecipe.isPresent &&
+            (this@EnchantableSawBlockEntity as SawBlockEntityMixin).filtering.test(assemblyRecipe.get().getResultItem())
         ) return ImmutableList.of(assemblyRecipe.get())
 
         val types = RecipeConditions.isOfType(
