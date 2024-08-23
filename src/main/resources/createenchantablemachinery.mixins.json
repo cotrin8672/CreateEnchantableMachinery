@@ -5,6 +5,8 @@
   "package": "io.github.cotrin8672.mixin",
   "refmap": "createenchantablemachinery.refmap.json",
   "mixins": [
+    "BlockBuilderMixin",
+    "BlockEntityBuilderMixin",
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",
     "CustomEnchantmentMixin",

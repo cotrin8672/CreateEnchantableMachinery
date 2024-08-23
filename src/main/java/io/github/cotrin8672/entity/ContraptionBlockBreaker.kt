@@ -19,7 +19,7 @@ class ContraptionBlockBreaker(
         private val _contraptionBlockBreakerList = mutableListOf<ContraptionBlockBreaker>()
 
         fun unload(level: ServerLevel) {
-            _contraptionBlockBreakerList.removeIf { it.level() == level }
+            _contraptionBlockBreakerList.removeIf { it.level == level }
         }
 
         private lateinit var instance: ContraptionBlockBreaker

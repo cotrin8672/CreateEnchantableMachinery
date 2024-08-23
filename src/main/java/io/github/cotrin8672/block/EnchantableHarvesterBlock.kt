@@ -29,14 +29,14 @@ class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(propert
     }
 
     override fun asItem(): Item {
-        return AllBlocks.MECHANICAL_HARVESTER.asItem()
+        return AllBlocks.MECHANICAL_HARVESTER.get().asItem()
     }
 
     override fun getCloneItemStack(
         state: BlockState, target: HitResult, level: BlockGetter, pos: BlockPos, player: Player,
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_HARVESTER)
+        val stack = ItemStack(AllBlocks.MECHANICAL_HARVESTER.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
