@@ -1,51 +1,22 @@
 package io.github.cotrin8672.behaviour
 
-import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.kinetics.drill.DrillMovementBehaviour
 import com.simibubi.create.foundation.utility.BlockHelper
-import io.github.cotrin8672.util.EnchantedItemFactory
+import io.github.cotrin8672.entity.ContraptionBlockBreaker
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
-import net.minecraft.world.item.enchantment.EnchantmentInstance
 import net.minecraft.world.item.enchantment.Enchantments
-import net.minecraft.world.phys.Vec3
-import net.minecraftforge.common.util.FakePlayer
-import java.util.*
 
 class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
-    override fun destroyBlock(context: MovementContext, breakingPos: BlockPos) {
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
-            tag = context.blockEntityData
-        }).map { EnchantmentInstance(it.key, it.value) }
-        val enchantedItem = EnchantedItemFactory.getPickaxeItemStack(*enchantments.toTypedArray())
-        val fakePlayer = if (context.world is ServerLevel) {
-            object : FakePlayer(context.world as ServerLevel, GameProfile(UUID.randomUUID(), "fake_player")) {
-                override fun isSpectator(): Boolean {
-                    return false
-                }
-
-                override fun isCreative(): Boolean {
-                    return false
-                }
-
-                override fun getLookAngle(): Vec3 {
-                    return context.relativeMotion
-                }
-
-                override fun getMainHandItem(): ItemStack {
-                    return enchantedItem
-                }
-
-                override fun tick() {
-                    super.tick()
-                    this.setPos(context.position)
-                }
-            }
+    override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
+        val level = context?.world
+        val fakePlayer = if (level is ServerLevel) {
+            ContraptionBlockBreaker.getBlockBreakerForMovementContext(level, context)
         } else null
-        BlockHelper.destroyBlockAs(context.world, breakingPos, fakePlayer, enchantedItem, 1f) {
+        BlockHelper.destroyBlockAs(context?.world, breakingPos, fakePlayer, fakePlayer?.mainHandItem, 1f) {
             this.dropItem(context, it)
         }
     }
