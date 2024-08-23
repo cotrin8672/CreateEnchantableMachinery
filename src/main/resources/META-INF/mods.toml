@@ -1,5 +1,5 @@
 modLoader = "kotlinforforge"
-loaderVersion = "[3.12,)"
+loaderVersion = "${loader_version_range}"
 license = "MIT"
 
 [[mods]]
