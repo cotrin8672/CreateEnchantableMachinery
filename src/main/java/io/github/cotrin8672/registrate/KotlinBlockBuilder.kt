@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.material.Material
 import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.client.event.ColorHandlerEvent
+import net.minecraftforge.client.event.RegisterColorHandlersEvent
 import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
@@ -70,8 +70,8 @@ private constructor(
 
     override fun registerBlockColor() {
         OneTimeEventReceiver.addModListener(
-            ColorHandlerEvent.Block::class.java
-        ) { e: ColorHandlerEvent.Block ->
+            RegisterColorHandlersEvent.Block::class.java
+        ) { e: RegisterColorHandlersEvent.Block ->
             val colorHandler = (this as BlockBuilderMixin).colorHandler
             if (colorHandler != null) {
                 e.blockColors.register(colorHandler.get().get(), entry)
