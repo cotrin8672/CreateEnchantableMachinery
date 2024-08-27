@@ -133,9 +133,9 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
             ray: BlockHitResult,
         ): PlacementOffset {
             val directions = IPlacementHelper.orderedByDistanceExceptAxis(
-                pos, ray.location,
-                state.getValue(FACING)
-                    .axis
+                pos,
+                ray.location,
+                state.getValue(FACING).axis
             ) { dir: Direction ->
                 world.getBlockState(pos.relative(dir)).canBeReplaced()
             }
