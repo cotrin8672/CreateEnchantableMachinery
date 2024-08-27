@@ -87,30 +87,32 @@ class EnchantableSawBlock(properties: Properties) : SawBlock(properties), Enchan
     @Deprecated("Deprecated in Java")
     override fun use(
         state: BlockState,
-        worldIn: Level,
+        world: Level,
         pos: BlockPos,
         player: Player,
-        handIn: InteractionHand,
-        hit: BlockHitResult,
+        hand: InteractionHand,
+        ray: BlockHitResult,
     ): InteractionResult {
-        val heldItem = player.getItemInHand(handIn)
+        if (!player.getItemInHand(hand).isEnchanted) return super.use(state, world, pos, player, hand, ray)
+
+        val heldItem = player.getItemInHand(hand)
         val placementHelper = PlacementHelpers.get(placementHelperId)
         if (!player.isShiftKeyDown && player.mayBuild()) {
             if (
-                placementHelper.matchesItem(heldItem) && placementHelper.getOffset(player, worldIn, state, pos, hit)
-                    .placeAlternativeBlockInWorld(worldIn, heldItem.item as BlockItem, player, handIn, hit)
+                placementHelper.matchesItem(heldItem) && placementHelper.getOffset(player, world, state, pos, ray)
+                    .placeAlternativeBlockInWorld(world, heldItem.item as BlockItem, player, hand, ray)
                     .consumesAction()
             )
                 return InteractionResult.SUCCESS
         }
 
-        if (player.isSpectator || !player.getItemInHand(handIn).isEmpty) return InteractionResult.PASS
+        if (player.isSpectator || !player.getItemInHand(hand).isEmpty) return InteractionResult.PASS
         if (state.getOptionalValue(FACING).orElse(Direction.WEST) != Direction.UP) return InteractionResult.PASS
 
-        return onBlockEntityUse(worldIn, pos) { be: SawBlockEntity ->
+        return onBlockEntityUse(world, pos) { be: SawBlockEntity ->
             for (i in 0 until be.inventory.slots) {
                 val heldItemStack = be.inventory.getStackInSlot(i)
-                if (!worldIn.isClientSide && !heldItemStack.isEmpty)
+                if (!world.isClientSide && !heldItemStack.isEmpty)
                     player.inventory.placeItemBackInInventory(heldItemStack)
             }
             be.inventory.clear()
