@@ -10,6 +10,7 @@
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",
     "CustomEnchantmentMixin",
+    "DrillBlockMixin",
     "EnchantmentMixin",
     "ItemMixin",
     "ItemStackMixin",
