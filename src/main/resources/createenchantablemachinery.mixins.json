@@ -10,10 +10,12 @@
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",
     "CustomEnchantmentMixin",
+    "DrillBlockMixin",
     "EnchantmentMixin",
     "ItemMixin",
     "ItemStackMixin",
-    "SawBlockEntityMixin"
+    "SawBlockEntityMixin",
+    "SawBlockMixin"
   ],
   "client": [
   ],
