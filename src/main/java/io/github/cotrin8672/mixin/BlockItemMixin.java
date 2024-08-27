@@ -34,7 +34,7 @@ public abstract class BlockItemMixin extends Item {
     )
     public void createenchantablemachinery$getPlacementState(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
         Block alternativeBlock = EnchantableBlockMapping.getAlternativeBlock(this.getBlock());
-        if (alternativeBlock != null) {
+        if (alternativeBlock != null && context.getItemInHand().isEnchanted()) {
             BlockState blockState = alternativeBlock.getStateForPlacement(context);
             BlockState state = blockState != null && this.canPlace(context, blockState) ? blockState : null;
             cir.setReturnValue(state);
