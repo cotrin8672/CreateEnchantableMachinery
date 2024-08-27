@@ -84,6 +84,8 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
         hand: InteractionHand,
         ray: BlockHitResult,
     ): InteractionResult {
+        if (!player.getItemInHand(hand).isEnchanted) return super.use(state, world, pos, player, hand, ray)
+
         val heldItem = player.getItemInHand(hand)
         val placementHelper = PlacementHelpers.get(enchantedPlacementHelperId)
         if (!player.isShiftKeyDown && player.mayBuild()) {

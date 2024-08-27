@@ -93,6 +93,8 @@ class EnchantableSawBlock(properties: Properties) : SawBlock(properties), Enchan
         handIn: InteractionHand,
         hit: BlockHitResult,
     ): InteractionResult {
+        if (!player.getItemInHand(handIn).isEnchanted) return super.use(state, worldIn, pos, player, handIn, hit)
+
         val heldItem = player.getItemInHand(handIn)
         val placementHelper = PlacementHelpers.get(placementHelperId)
         if (!player.isShiftKeyDown && player.mayBuild()) {
