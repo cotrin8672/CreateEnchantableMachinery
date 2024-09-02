@@ -17,7 +17,8 @@ class EnchantableHarvesterBlockEntity(
     pos: BlockPos,
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : HarvesterBlockEntity(type, pos, state), IHaveGoggleInformation,
+) : HarvesterBlockEntity(type, pos, state),
+    IHaveGoggleInformation,
     EnchantableBlockEntity by delegate {
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)

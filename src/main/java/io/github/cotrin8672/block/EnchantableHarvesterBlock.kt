@@ -17,6 +17,8 @@ import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.HitResult
 
 class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(properties), EnchantableBlock {
@@ -26,6 +28,18 @@ class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(propert
 
     override fun getBlockEntityType(): BlockEntityType<out HarvesterBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_HARVESTER.get()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
+        val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
+        val stack = ItemStack(AllBlocks.MECHANICAL_HARVESTER)
+        if (blockEntity is EnchantableBlockEntity) {
+            blockEntity.getEnchantments().forEach {
+                stack.enchant(it.enchantment, it.level)
+            }
+        }
+        return mutableListOf(stack)
     }
 
     override fun asItem(): Item {
