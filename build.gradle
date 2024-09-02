@@ -158,7 +158,7 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ", Locale.UK).format(ZonedDateTime.now(ZoneId.of("Asia/Tokyo")))
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 
