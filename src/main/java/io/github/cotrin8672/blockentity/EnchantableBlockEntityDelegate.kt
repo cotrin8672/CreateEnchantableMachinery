@@ -19,5 +19,6 @@ class EnchantableBlockEntityDelegate : EnchantableBlockEntity {
 
     override fun setEnchantment(listTag: ListTag) {
         enchantmentsTag = listTag
+        println(listTag.toString())
     }
 }
