@@ -91,7 +91,7 @@ class EnchantableSawBlockEntity(
 
         val recipes = getRecipes()
         val valid = recipes.isNotEmpty()
-        var time = 50 * (1 / (getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY).toDouble().pow(2.0) + 1))
+        var time = 50.0 * (1 / (getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) + 1))
 
         if (recipes.isEmpty()) {
             inventory.recipeDuration = 10f
