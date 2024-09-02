@@ -1,7 +1,9 @@
 {
+  "replace": false,
   "values": [
     "createenchantablemachinery:enchantable_mechanical_drill",
     "createenchantablemachinery:enchantable_mechanical_harvester",
-    "createenchantablemachinery:enchantable_mechanical_saw"
+    "createenchantablemachinery:enchantable_mechanical_saw",
+    "createenchantablemachinery:enchantable_mechanical_plough"
   ]
 }

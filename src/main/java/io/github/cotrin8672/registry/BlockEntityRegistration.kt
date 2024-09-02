@@ -13,6 +13,7 @@ import com.tterrag.registrate.util.nullness.NonNullFunction
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.blockentity.EnchantableDrillBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableHarvesterBlockEntity
+import io.github.cotrin8672.blockentity.EnchantablePloughBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableSawBlockEntity
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
@@ -57,6 +58,14 @@ class BlockEntityRegistration {
                 .renderer {
                     NonNullFunction(::SawRenderer)
                 }.register()
+
+        @JvmStatic
+        val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntityEntry<EnchantablePloughBlockEntity> =
+            REGISTRATE.blockEntity<EnchantablePloughBlockEntity>("enchantable_plough") { type, pos, state ->
+                EnchantablePloughBlockEntity(type, pos, state)
+            }
+                .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
+                .register()
 
         @JvmStatic
         fun register() {
