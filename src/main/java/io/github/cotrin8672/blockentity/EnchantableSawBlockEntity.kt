@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
 import java.util.stream.Collectors
 import kotlin.math.max
-import kotlin.math.pow
 
 class EnchantableSawBlockEntity(
     type: BlockEntityType<*>,
@@ -91,7 +90,7 @@ class EnchantableSawBlockEntity(
 
         val recipes = getRecipes()
         val valid = recipes.isNotEmpty()
-        var time = 50.0 * (1 / (getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) + 1))
+        var time = 50.0 - getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) * 5
 
         if (recipes.isEmpty()) {
             inventory.recipeDuration = 10f
@@ -108,8 +107,7 @@ class EnchantableSawBlockEntity(
 
         val recipe = recipes[(this@EnchantableSawBlockEntity as SawBlockEntityMixin).recipeIndex]
         if (recipe is CuttingRecipe) {
-            time = recipe.processingDuration * (1 / (getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY).toDouble()
-                .pow(2.0) + 1))
+            time = recipe.processingDuration - getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) * 5.0
         }
 
         inventory.remainingTime = (time * max(1.0, (inserted.count / 5).toDouble())).toFloat()
