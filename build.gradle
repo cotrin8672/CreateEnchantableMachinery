@@ -106,15 +106,15 @@ dependencies {
 
 publisher {
     apiKeys {
-        curseforge(System.getenv("CURSE_FORGE_API_KEY)"))
+        curseforge(System.getenv("CURSE_FORGE_API_KEY"))
         modrinth(System.getenv("MODRINTH_API_KEY"))
     }
     curseID.set("1061749")
     modrinthID.set("eqrvp4NK")
     versionType.set("release")
     changelog.set(file("changelog.md"))
-    version.set(mod_id)
-    displayName.set(mod_name)
+    version.set(mod_version)
+    displayName.set("${mod_name} ${minecraft_version}-${mod_version}")
     setGameVersions(minecraft_version)
     setLoaders(ModLoader.FORGE)
     setCurseEnvironment(CurseEnvironment.BOTH)
