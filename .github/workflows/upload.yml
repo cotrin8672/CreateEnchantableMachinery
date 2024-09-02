@@ -27,7 +27,9 @@ jobs:
         run: |
           chmod +x ./gradlew
           ./gradlew clean
+          ./gradlew addMixinsToJar
           ./gradlew build
+      
       - name: Upload to CurseForge
         run: ./gradlew publishCurseforge
 
