@@ -7,6 +7,9 @@ on:
 jobs:
   upload:
     runs-on: ubuntu-latest
+    env:
+      CURSE_FORGE_API_KEY: ${{ secrets.CURSE_FORGE_API_KEY }}
+      MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
