@@ -1,7 +1,7 @@
 package io.github.cotrin8672.blockentity
 
-import com.simibubi.create.content.contraptions.actors.harvester.HarvesterBlockEntity
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation
+import com.simibubi.create.foundation.blockEntity.SyncedBlockEntity
 import com.simibubi.create.foundation.utility.Lang
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
@@ -12,12 +12,12 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 
-class EnchantableHarvesterBlockEntity(
+class EnchantablePloughBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : HarvesterBlockEntity(type, pos, state),
+) : SyncedBlockEntity(type, pos, state),
     IHaveGoggleInformation,
     EnchantableBlockEntity by delegate {
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {

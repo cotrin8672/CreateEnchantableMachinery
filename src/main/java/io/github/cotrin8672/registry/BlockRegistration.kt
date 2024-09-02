@@ -10,9 +10,11 @@ import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.behaviour.EnchantableDrillMovementBehaviour
 import io.github.cotrin8672.behaviour.EnchantableHarvesterMovementBehaviour
+import io.github.cotrin8672.behaviour.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.behaviour.EnchantableSawMovementBehaviour
 import io.github.cotrin8672.block.EnchantableDrillBlock
 import io.github.cotrin8672.block.EnchantableHarvesterBlock
+import io.github.cotrin8672.block.EnchantablePloughBlock
 import io.github.cotrin8672.block.EnchantableSawBlock
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.material.MapColor
@@ -55,6 +57,16 @@ class BlockRegistration {
                 .blockstate(SawGenerator()::generate)
                 .transform(BlockStressDefaults.setImpact(4.0))
                 .onRegister(movementBehaviour(EnchantableSawMovementBehaviour()))
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntry<EnchantablePloughBlock> =
+            REGISTRATE.block<EnchantablePloughBlock>("enchantable_mechanical_plough", ::EnchantablePloughBlock)
+                .initialProperties(SharedProperties::stone)
+                .properties { it.mapColor(MapColor.COLOR_GRAY).forceSolidOn() }
+                .transform(axeOrPickaxe())
+                .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
+                .blockstate(BlockStateGen.horizontalBlockProvider(false))
                 .register()
 
         @JvmStatic

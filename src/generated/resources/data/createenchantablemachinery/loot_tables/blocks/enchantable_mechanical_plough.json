@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "create:mechanical_saw"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "createenchantablemachinery:blocks/enchantable_mechanical_saw"
+  "random_sequence": "createenchantablemachinery:blocks/enchantable_mechanical_plough"
 }
