@@ -14,6 +14,11 @@ import java.util.*
 class ContraptionBlockBreaker(
     level: ServerLevel,
     private var context: MovementContext?,
+    private val heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(
+        *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context?.blockEntityData })
+            .map { EnchantmentInstance(it.key, it.value) }
+            .toTypedArray()
+    ),
 ) : FakePlayer(level, GameProfile(UUID.randomUUID(), "contraption_block_breaker")) {
     companion object {
         private val _contraptionBlockBreakerList = mutableListOf<ContraptionBlockBreaker>()
@@ -24,9 +29,17 @@ class ContraptionBlockBreaker(
 
         private lateinit var instance: ContraptionBlockBreaker
 
-        fun getBlockBreakerForMovementContext(level: ServerLevel, context: MovementContext): ContraptionBlockBreaker {
+        fun getBlockBreakerForMovementContext(
+            level: ServerLevel,
+            context: MovementContext,
+            heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(
+                *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context.blockEntityData })
+                    .map { EnchantmentInstance(it.key, it.value) }
+                    .toTypedArray()
+            ),
+        ): ContraptionBlockBreaker {
             if (!::instance.isInitialized) {
-                instance = ContraptionBlockBreaker(level, context)
+                instance = ContraptionBlockBreaker(level, context, heldItem)
             } else {
                 instance.setMovementContext(context)
             }
@@ -39,13 +52,6 @@ class ContraptionBlockBreaker(
         _contraptionBlockBreakerList.add(this)
         this.lookAngle
     }
-
-    private val enchantments: List<EnchantmentInstance>
-        get() = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
-            tag = context?.blockEntityData
-        }).map { EnchantmentInstance(it.key, it.value) }
-    private val enchantedItem: ItemStack
-        get() = EnchantedItemFactory.getPickaxeItemStack(*enchantments.toTypedArray())
 
     override fun isSpectator(): Boolean {
         return false
@@ -60,7 +66,7 @@ class ContraptionBlockBreaker(
     }
 
     override fun getMainHandItem(): ItemStack {
-        return enchantedItem
+        return heldItem
     }
 
     private fun setMovementContext(context: MovementContext) {
