@@ -26,6 +26,7 @@ jobs:
       - name: Build jar
         run: |
           chmod +x ./gradlew
+          ./gradlew clean
           ./gradlew build
 
       - name: Upload to CurseForge
