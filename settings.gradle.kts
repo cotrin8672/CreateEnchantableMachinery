@@ -6,9 +6,8 @@ pluginManagement {
             name = "MinecraftForge"
             url = uri("https://maven.minecraftforge.net/")
         }
-        maven {
-            url = uri("https://repo.spongepowered.org/repository/maven-public/")
-        }
+        maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
+        maven { url = uri("https://maven.firstdark.dev/releases") }
     }
     resolutionStrategy {
         eachPlugin {

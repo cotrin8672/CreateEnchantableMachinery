@@ -1,15 +1,15 @@
 package io.github.cotrin8672.block
 
 import com.simibubi.create.AllBlocks
-import com.simibubi.create.content.contraptions.actors.harvester.HarvesterBlock
-import com.simibubi.create.content.contraptions.actors.harvester.HarvesterBlockEntity
+import com.simibubi.create.content.contraptions.actors.plough.PloughBlock
+import com.simibubi.create.foundation.block.IBE
 import io.github.cotrin8672.blockentity.EnchantableBlockEntity
+import io.github.cotrin8672.blockentity.EnchantablePloughBlockEntity
 import io.github.cotrin8672.registry.BlockEntityRegistration
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantment
 import net.minecraft.world.item.enchantment.Enchantments
@@ -21,13 +21,20 @@ import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.HitResult
 
-class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(properties), EnchantableBlock {
+class EnchantablePloughBlock(properties: Properties) :
+    PloughBlock(properties),
+    EnchantableBlock,
+    IBE<EnchantablePloughBlockEntity> {
     override fun getName(): MutableComponent {
-        return AllBlocks.MECHANICAL_HARVESTER.get().name
+        return AllBlocks.MECHANICAL_PLOUGH.get().name
     }
 
-    override fun getBlockEntityType(): BlockEntityType<out HarvesterBlockEntity> {
-        return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_HARVESTER.get()
+    override fun getBlockEntityClass(): Class<EnchantablePloughBlockEntity> {
+        return EnchantablePloughBlockEntity::class.java
+    }
+
+    override fun getBlockEntityType(): BlockEntityType<out EnchantablePloughBlockEntity> {
+        return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_PLOUGH.get()
     }
 
     @Deprecated("Deprecated in Java")
@@ -42,15 +49,11 @@ class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(propert
         return mutableListOf(stack)
     }
 
-    override fun asItem(): Item {
-        return AllBlocks.MECHANICAL_HARVESTER.get().asItem()
-    }
-
     override fun getCloneItemStack(
         state: BlockState, target: HitResult, level: BlockGetter, pos: BlockPos, player: Player,
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_HARVESTER.get())
+        val stack = ItemStack(AllBlocks.MECHANICAL_PLOUGH.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
@@ -60,7 +63,7 @@ class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(propert
     }
 
     override fun canApply(enchantment: Enchantment): Boolean {
-        return enchantment == Enchantments.BLOCK_FORTUNE
+        return enchantment == Enchantments.BLOCK_EFFICIENCY
     }
 
     override fun setPlacedBy(
