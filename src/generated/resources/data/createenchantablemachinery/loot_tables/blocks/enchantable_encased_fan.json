@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "create:mechanical_drill"
+          "name": "create:encased_fan"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "createenchantablemachinery:blocks/enchantable_mechanical_drill"
+  "random_sequence": "createenchantablemachinery:blocks/enchantable_encased_fan"
 }

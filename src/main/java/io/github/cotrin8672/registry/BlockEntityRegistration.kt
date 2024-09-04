@@ -5,6 +5,8 @@ import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
 import com.simibubi.create.content.kinetics.drill.DrillInstance
 import com.simibubi.create.content.kinetics.drill.DrillRenderer
+import com.simibubi.create.content.kinetics.fan.EncasedFanRenderer
+import com.simibubi.create.content.kinetics.fan.FanInstance
 import com.simibubi.create.content.kinetics.saw.SawInstance
 import com.simibubi.create.content.kinetics.saw.SawRenderer
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
@@ -15,6 +17,7 @@ import io.github.cotrin8672.blockentity.EnchantableDrillBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableHarvesterBlockEntity
 import io.github.cotrin8672.blockentity.EnchantablePloughBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableSawBlockEntity
+import io.github.cotrin8672.blockentity.`fun`.EnchantableEncasedFanBlockEntity
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
 
@@ -65,6 +68,20 @@ class BlockEntityRegistration {
                 EnchantablePloughBlockEntity(type, pos, state)
             }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_ENCASED_FAN: BlockEntityEntry<EnchantableEncasedFanBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableEncasedFanBlockEntity>("enchantable_encase_fan") { type, pos, state ->
+                EnchantableEncasedFanBlockEntity(type, pos, state)
+            }
+                .instance(renderNormally = false) {
+                    ::FanInstance
+                }
+                .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
+                .renderer {
+                    NonNullFunction(::EncasedFanRenderer)
+                }
                 .register()
 
         @JvmStatic
