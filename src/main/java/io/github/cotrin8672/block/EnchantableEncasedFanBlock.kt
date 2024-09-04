@@ -12,7 +12,6 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantment
-import net.minecraft.world.item.enchantment.EnchantmentCategory
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
@@ -75,11 +74,6 @@ class EnchantableEncasedFanBlock(properties: Properties) : EncasedFanBlock(prope
     }
 
     override fun canApply(enchantment: Enchantment): Boolean {
-        return when {
-            enchantment == Enchantments.UNBREAKING -> false
-            enchantment == Enchantments.MENDING -> false
-            enchantment.category == EnchantmentCategory.DIGGER -> true
-            else -> false
-        }
+        return enchantment == Enchantments.BLOCK_EFFICIENCY
     }
 }
