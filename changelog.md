@@ -1,6 +1,6 @@
 ### Added
 
-- Enchantment support for Mechanical Plough Block.
+- Enchantment support for Encased Fan Block.
 
 ### Fixed
 

@@ -14,7 +14,8 @@
     "EnchantmentMixin",
     "ItemMixin",
     "ItemStackMixin",
-    "SawBlockEntityMixin"
+    "SawBlockEntityMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "client": [
   ],
