@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createenchantablemachinery:block/enchantable_encased_fan/block",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "createenchantablemachinery:block/enchantable_encased_fan/block"
+    },
+    "facing=north": {
+      "model": "createenchantablemachinery:block/enchantable_encased_fan/block",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "createenchantablemachinery:block/enchantable_encased_fan/block",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "createenchantablemachinery:block/enchantable_encased_fan/block",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "createenchantablemachinery:block/enchantable_encased_fan/block",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
