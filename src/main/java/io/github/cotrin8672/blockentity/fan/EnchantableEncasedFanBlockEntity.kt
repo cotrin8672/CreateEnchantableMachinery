@@ -1,4 +1,4 @@
-package io.github.cotrin8672.blockentity.`fun`
+package io.github.cotrin8672.blockentity.fan
 
 import com.simibubi.create.content.kinetics.fan.EncasedFanBlockEntity
 import com.simibubi.create.foundation.utility.Lang

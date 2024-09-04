@@ -17,7 +17,7 @@ import io.github.cotrin8672.blockentity.EnchantableDrillBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableHarvesterBlockEntity
 import io.github.cotrin8672.blockentity.EnchantablePloughBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableSawBlockEntity
-import io.github.cotrin8672.blockentity.`fun`.EnchantableEncasedFanBlockEntity
+import io.github.cotrin8672.blockentity.fan.EnchantableEncasedFanBlockEntity
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
 

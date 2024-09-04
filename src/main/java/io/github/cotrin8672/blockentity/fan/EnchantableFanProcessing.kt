@@ -1,4 +1,4 @@
-package io.github.cotrin8672.blockentity.`fun`
+package io.github.cotrin8672.blockentity.fan
 
 import com.simibubi.create.content.kinetics.belt.behaviour.TransportedItemStackHandlerBehaviour.TransportedResult
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack
