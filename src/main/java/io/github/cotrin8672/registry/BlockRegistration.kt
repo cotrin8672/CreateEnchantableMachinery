@@ -12,10 +12,7 @@ import io.github.cotrin8672.behaviour.EnchantableDrillMovementBehaviour
 import io.github.cotrin8672.behaviour.EnchantableHarvesterMovementBehaviour
 import io.github.cotrin8672.behaviour.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.behaviour.EnchantableSawMovementBehaviour
-import io.github.cotrin8672.block.EnchantableDrillBlock
-import io.github.cotrin8672.block.EnchantableHarvesterBlock
-import io.github.cotrin8672.block.EnchantablePloughBlock
-import io.github.cotrin8672.block.EnchantableSawBlock
+import io.github.cotrin8672.block.*
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.material.MapColor
 import java.util.function.Supplier
@@ -67,6 +64,17 @@ class BlockRegistration {
                 .transform(axeOrPickaxe())
                 .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
                 .blockstate(BlockStateGen.horizontalBlockProvider(false))
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_ENCASED_FAN: BlockEntry<EnchantableEncasedFanBlock> =
+            REGISTRATE.block<EnchantableEncasedFanBlock>("enchantable_encased_fan", ::EnchantableEncasedFanBlock)
+                .initialProperties(SharedProperties::stone)
+                .properties { it.mapColor(MapColor.PODZOL) }
+                .blockstate(BlockStateGen.directionalBlockProvider(true))
+                .addLayer { Supplier { RenderType.cutoutMipped() } }
+                .transform(axeOrPickaxe())
+                .transform(BlockStressDefaults.setImpact(2.0))
                 .register()
 
         @JvmStatic

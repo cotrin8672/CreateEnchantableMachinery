@@ -13,7 +13,8 @@
     "ItemMixin",
     "ItemStackMixin",
     "SawBlockEntityMixin",
-    "SawBlockMixin"
+    "SawBlockMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "client": [
   ],
