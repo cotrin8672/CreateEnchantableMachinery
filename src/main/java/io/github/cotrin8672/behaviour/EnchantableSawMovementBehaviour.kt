@@ -1,10 +1,13 @@
 package io.github.cotrin8672.behaviour
 
+import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
+import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.TreeCutter
 import io.github.cotrin8672.entity.ContraptionBlockBreaker
+import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
@@ -49,5 +52,18 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
             tag = context.blockEntityData
         })
         return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
+    }
+
+    override fun renderAsNormalBlockEntity(): Boolean {
+        return true
+    }
+
+    override fun renderInContraption(
+        context: MovementContext,
+        renderWorld: VirtualRenderWorld,
+        matrices: ContraptionMatrices,
+        buffer: MultiBufferSource,
+    ) {
+        super.renderInContraption(context, renderWorld, matrices, buffer)
     }
 }

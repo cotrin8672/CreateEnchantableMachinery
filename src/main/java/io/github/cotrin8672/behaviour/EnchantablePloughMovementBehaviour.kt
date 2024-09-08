@@ -1,10 +1,15 @@
 package io.github.cotrin8672.behaviour
 
+import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.actors.plough.PloughMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
+import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.utility.BlockHelper
+import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.entity.ContraptionBlockBreaker
+import io.github.cotrin8672.renderer.EnchantablePloughRenderer
 import io.github.cotrin8672.util.EnchantedItemFactory
+import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
@@ -33,5 +38,16 @@ class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
             tag = context?.blockEntityData
         })
         return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
+    }
+
+    override fun renderInContraption(
+        context: MovementContext,
+        renderWorld: VirtualRenderWorld,
+        matrices: ContraptionMatrices,
+        buffer: MultiBufferSource,
+    ) {
+        super.renderInContraption(context, renderWorld, matrices, buffer)
+        if (Config.renderGlint.get())
+            EnchantablePloughRenderer.renderInContraption(context, matrices, buffer)
     }
 }
