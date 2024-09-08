@@ -2,13 +2,9 @@ package io.github.cotrin8672.registry
 
 import com.jozufozu.flywheel.api.MaterialManager
 import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
-import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
 import com.simibubi.create.content.kinetics.drill.DrillInstance
-import com.simibubi.create.content.kinetics.drill.DrillRenderer
-import com.simibubi.create.content.kinetics.fan.EncasedFanRenderer
 import com.simibubi.create.content.kinetics.fan.FanInstance
 import com.simibubi.create.content.kinetics.saw.SawInstance
-import com.simibubi.create.content.kinetics.saw.SawRenderer
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
@@ -18,6 +14,7 @@ import io.github.cotrin8672.blockentity.EnchantableHarvesterBlockEntity
 import io.github.cotrin8672.blockentity.EnchantablePloughBlockEntity
 import io.github.cotrin8672.blockentity.EnchantableSawBlockEntity
 import io.github.cotrin8672.blockentity.fan.EnchantableEncasedFanBlockEntity
+import io.github.cotrin8672.renderer.*
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
 
@@ -29,9 +26,9 @@ class BlockEntityRegistration {
             REGISTRATE.blockEntity<EnchantableDrillBlockEntity>("enchantable_drill") { type, pos, state ->
                 EnchantableDrillBlockEntity(type, pos, state)
             }
-                .instance(renderNormally = false) { ::DrillInstance }
+                .instance(renderNormally = true) { ::DrillInstance }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
-                .renderer { NonNullFunction(::DrillRenderer) }
+                .renderer { NonNullFunction(::EnchantableDrillRenderer) }
                 .register()
 
         @JvmStatic
@@ -40,7 +37,7 @@ class BlockEntityRegistration {
                 EnchantableHarvesterBlockEntity(type, pos, state)
             }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
-                .renderer { NonNullFunction(::HarvesterRenderer) }
+                .renderer { NonNullFunction(::EnchantableHarvesterRenderer) }
                 .register()
 
         @JvmStatic
@@ -50,7 +47,7 @@ class BlockEntityRegistration {
             }
                 .instance(renderNormally = true) { ::SawInstance }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
-                .renderer { NonNullFunction(::SawRenderer) }
+                .renderer { NonNullFunction(::EnchantableSawRenderer) }
                 .register()
 
         @JvmStatic
@@ -59,6 +56,7 @@ class BlockEntityRegistration {
                 EnchantablePloughBlockEntity(type, pos, state)
             }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
+                .renderer { NonNullFunction(::EnchantablePloughRenderer) }
                 .register()
 
         @JvmStatic
@@ -66,9 +64,9 @@ class BlockEntityRegistration {
             REGISTRATE.blockEntity<EnchantableEncasedFanBlockEntity>("enchantable_encased_fan") { type, pos, state ->
                 EnchantableEncasedFanBlockEntity(type, pos, state)
             }
-                .instance(renderNormally = false) { ::FanInstance }
+                .instance(renderNormally = true) { ::FanInstance }
                 .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
-                .renderer { NonNullFunction(::EncasedFanRenderer) }
+                .renderer { NonNullFunction(::EnchantableEncasedFanRenderer) }
                 .register()
 
         @JvmStatic
