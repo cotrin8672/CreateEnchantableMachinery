@@ -1,10 +1,15 @@
 package io.github.cotrin8672.behaviour
 
+import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
+import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
+import io.github.cotrin8672.config.Config
+import io.github.cotrin8672.renderer.EnchantableHarvesterRenderer
 import io.github.cotrin8672.util.EnchantedItemFactory
+import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
@@ -50,10 +55,9 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
         }
 
         val seedSubtracted = MutableBoolean(notCropButCuttable)
-        BlockHelper.destroyBlockAs(
-            world, pos, null, item, effectChance
-        ) { stack: ItemStack ->
-            if (AllConfigs.server().kinetics.harvesterReplants.get() && !seedSubtracted.value
+        BlockHelper.destroyBlockAs(world, pos, null, item, effectChance) { stack: ItemStack ->
+            if (
+                AllConfigs.server().kinetics.harvesterReplants.get() && !seedSubtracted.value
                 && sameItem(stack, ItemStack(stateVisited.block))
             ) {
                 stack.shrink(1)
@@ -68,11 +72,8 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
 
     private fun cutCrop(world: Level, pos: BlockPos, state: BlockState): BlockState {
         if (!AllConfigs.server().kinetics.harvesterReplants.get()) {
-            if (state.fluidState
-                    .isEmpty
-            ) return Blocks.AIR.defaultBlockState()
-            return state.fluidState
-                .createLegacyBlock()
+            if (state.fluidState.isEmpty) return Blocks.AIR.defaultBlockState()
+            return state.fluidState.createLegacyBlock()
         }
 
         val block = state.block
@@ -83,15 +84,10 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             return state.setValue(BlockStateProperties.AGE_3, 1)
         }
         if (block === Blocks.SUGAR_CANE || block is GrowingPlantBlock) {
-            if (state.fluidState
-                    .isEmpty
-            ) return Blocks.AIR.defaultBlockState()
-            return state.fluidState
-                .createLegacyBlock()
+            if (state.fluidState.isEmpty) return Blocks.AIR.defaultBlockState()
+            return state.fluidState.createLegacyBlock()
         }
-        if (state.getCollisionShape(world, pos)
-                .isEmpty || block is CocoaBlock
-        ) {
+        if (state.getCollisionShape(world, pos).isEmpty || block is CocoaBlock) {
             for (property in state.properties) {
                 if (property !is IntegerProperty) continue
                 if (property.getName() != BlockStateProperties.AGE_1.name) continue
@@ -99,10 +95,18 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             }
         }
 
-        if (state.fluidState
-                .isEmpty
-        ) return Blocks.AIR.defaultBlockState()
-        return state.fluidState
-            .createLegacyBlock()
+        if (state.fluidState.isEmpty) return Blocks.AIR.defaultBlockState()
+        return state.fluidState.createLegacyBlock()
+    }
+
+    override fun renderInContraption(
+        context: MovementContext,
+        renderWorld: VirtualRenderWorld,
+        matrices: ContraptionMatrices,
+        buffers: MultiBufferSource,
+    ) {
+        super.renderInContraption(context, renderWorld, matrices, buffers)
+        if (Config.renderGlint.get())
+            EnchantableHarvesterRenderer.renderInContraption(context, renderWorld, matrices, buffers)
     }
 }
