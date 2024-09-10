@@ -12,7 +12,6 @@ import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
@@ -26,16 +25,12 @@ class CreateEnchantableMachinery {
 
     init {
         MOD_BUS.addListener(this::registerEnchantableBlockMapping)
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT) {
-            Runnable {
-                PartialModelRegistration.init()
-            }
-        }
         //MOD_BUS.register(UnloadEvent())
         REGISTRATE.registerEventListeners(MOD_BUS)
         BlockRegistration.register()
         BlockEntityRegistration.register()
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec, "$MOD_ID-client.toml")
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT) { Runnable { PartialModelRegistration.init() } }
     }
 
     private fun registerEnchantableBlockMapping(event: FMLCommonSetupEvent) {
@@ -44,9 +39,5 @@ class CreateEnchantableMachinery {
         EnchantableBlockMapping(AllBlocks.MECHANICAL_SAW to BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
         EnchantableBlockMapping(AllBlocks.MECHANICAL_PLOUGH to BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
         EnchantableBlockMapping(AllBlocks.ENCASED_FAN to BlockRegistration.ENCHANTABLE_ENCASED_FAN)
-    }
-
-    private fun clientInit(event: FMLClientSetupEvent) {
-        PartialModelRegistration.init()
     }
 }

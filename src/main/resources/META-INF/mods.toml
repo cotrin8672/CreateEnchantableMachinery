@@ -14,5 +14,5 @@ description = '''This mod allows you to enchant various blocks added with Create
 modId = "create"
 mandatory = true
 versionRange = "[0.5.1.f,)"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
