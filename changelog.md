@@ -1,3 +1,3 @@
-### Added
+### Fixed
 
-- Add enchantment glint to placed blocks.
+- Improve compatibility with ModernFix dynamic resource
