@@ -16,6 +16,7 @@ class PartialModelRegistration {
 
         @JvmStatic
         fun init() {
+            ENCHANTABLE_HARVESTER_BLADE
         }
     }
 }
