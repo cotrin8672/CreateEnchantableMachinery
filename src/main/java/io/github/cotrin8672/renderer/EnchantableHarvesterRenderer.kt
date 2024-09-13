@@ -30,14 +30,14 @@ class EnchantableHarvesterRenderer(
     private val context: BlockEntityRendererProvider.Context,
 ) : SafeBlockEntityRenderer<EnchantableHarvesterBlockEntity>() {
     override fun renderSafe(
-        be: EnchantableHarvesterBlockEntity?,
+        be: EnchantableHarvesterBlockEntity,
         partialTicks: Float,
         ms: PoseStack,
         buffer: MultiBufferSource,
         light: Int,
         overlay: Int,
     ) {
-        val blockState = be!!.blockState
+        val blockState = be.blockState
         val superBuffer = CachedBufferer.partial(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE, blockState)
         val consumer = SheetedDecalTextureGenerator(
             buffer.getBuffer(EnchantedRenderType.GLINT),

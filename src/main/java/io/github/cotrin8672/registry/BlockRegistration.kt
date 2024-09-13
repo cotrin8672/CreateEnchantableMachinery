@@ -3,9 +3,11 @@ package io.github.cotrin8672.registry
 import com.simibubi.create.AllMovementBehaviours.movementBehaviour
 import com.simibubi.create.content.kinetics.BlockStressDefaults
 import com.simibubi.create.content.kinetics.saw.SawGenerator
+import com.simibubi.create.foundation.data.AssetLookup
 import com.simibubi.create.foundation.data.BlockStateGen
 import com.simibubi.create.foundation.data.SharedProperties
 import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
+import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.behaviour.EnchantableDrillMovementBehaviour
@@ -75,6 +77,16 @@ class BlockRegistration {
                 .addLayer { Supplier { RenderType.cutoutMipped() } }
                 .transform(axeOrPickaxe())
                 .transform(BlockStressDefaults.setImpact(2.0))
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MILLSTONE: BlockEntry<EnchantableMillstoneBlock> =
+            REGISTRATE.block<EnchantableMillstoneBlock>("enchantable_millstone", ::EnchantableMillstoneBlock)
+                .initialProperties(SharedProperties::stone)
+                .properties { it.mapColor(MapColor.METAL) }
+                .transform(pickaxeOnly())
+                .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+                .transform(BlockStressDefaults.setImpact(4.0))
                 .register()
 
         @JvmStatic
