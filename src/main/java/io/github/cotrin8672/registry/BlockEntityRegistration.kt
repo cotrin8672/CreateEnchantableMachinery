@@ -4,15 +4,13 @@ import com.jozufozu.flywheel.api.MaterialManager
 import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
 import com.simibubi.create.content.kinetics.drill.DrillInstance
 import com.simibubi.create.content.kinetics.fan.FanInstance
+import com.simibubi.create.content.kinetics.millstone.MillstoneCogInstance
 import com.simibubi.create.content.kinetics.saw.SawInstance
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
-import io.github.cotrin8672.blockentity.EnchantableDrillBlockEntity
-import io.github.cotrin8672.blockentity.EnchantableHarvesterBlockEntity
-import io.github.cotrin8672.blockentity.EnchantablePloughBlockEntity
-import io.github.cotrin8672.blockentity.EnchantableSawBlockEntity
+import io.github.cotrin8672.blockentity.*
 import io.github.cotrin8672.blockentity.fan.EnchantableEncasedFanBlockEntity
 import io.github.cotrin8672.renderer.*
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -67,6 +65,16 @@ class BlockEntityRegistration {
                 .instance(renderNormally = true) { ::FanInstance }
                 .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
                 .renderer { NonNullFunction(::EnchantableEncasedFanRenderer) }
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MILLSTONE: BlockEntityEntry<EnchantableMillstoneBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableMillstoneBlockEntity>("enchantable_millstone") { type, pos, state ->
+                EnchantableMillstoneBlockEntity(type, pos, state)
+            }
+                .instance(renderNormally = true) { ::MillstoneCogInstance }
+                .validBlocks(BlockRegistration.ENCHANTABLE_MILLSTONE)
+                .renderer { NonNullFunction(::EnchantableMillstoneRenderer) }
                 .register()
 
         @JvmStatic

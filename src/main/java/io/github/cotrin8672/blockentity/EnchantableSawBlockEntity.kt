@@ -92,7 +92,7 @@ class EnchantableSawBlockEntity(
         val recipes = getRecipes()
         val valid = recipes.isNotEmpty()
         val efficiencyLevel = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
-        val efficiencyLevelModifier = if (efficiencyLevel == 0) 1.0 else efficiencyLevel.toDouble().pow(1.5)
+        val efficiencyLevelModifier = 1.3.pow(efficiencyLevel)
         var time = 50 / efficiencyLevelModifier
 
         if (recipes.isEmpty()) {

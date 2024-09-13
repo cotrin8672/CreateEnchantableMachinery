@@ -1,3 +1,7 @@
+### Added
+
+- Add Enchantable Millstone Block
+
 ### Fixed
 
-- Improve compatibility with ModernFix dynamic resource
+- Fix efficiency enchantment effect for Mechanical Saw
