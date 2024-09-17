@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "createenchantablemachinery:block/enchantable_crushing_wheel/block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "createenchantablemachinery:block/enchantable_crushing_wheel/block"
+    },
+    "axis=z": {
+      "model": "createenchantablemachinery:block/enchantable_crushing_wheel/block",
+      "x": 90,
+      "y": 180
+    }
+  }
+}
