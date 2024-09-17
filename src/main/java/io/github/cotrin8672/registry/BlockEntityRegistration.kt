@@ -2,6 +2,7 @@ package io.github.cotrin8672.registry
 
 import com.jozufozu.flywheel.api.MaterialManager
 import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
+import com.simibubi.create.content.kinetics.base.CutoutRotatingInstance
 import com.simibubi.create.content.kinetics.drill.DrillInstance
 import com.simibubi.create.content.kinetics.fan.FanInstance
 import com.simibubi.create.content.kinetics.millstone.MillstoneCogInstance
@@ -75,6 +76,26 @@ class BlockEntityRegistration {
                 .instance(renderNormally = true) { ::MillstoneCogInstance }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MILLSTONE)
                 .renderer { NonNullFunction(::EnchantableMillstoneRenderer) }
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER: BlockEntityEntry<EnchantableCrushingWheelControllerBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableCrushingWheelControllerBlockEntity>(
+                "enchantable_crushing_wheel_controller"
+            ) { type, pos, state ->
+                EnchantableCrushingWheelControllerBlockEntity(type, pos, state)
+            }
+                .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER)
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_CRUSHING_WHEEL: BlockEntityEntry<EnchantableCrushingWheelBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableCrushingWheelBlockEntity>("enchantable_crushing_wheel") { type, pos, state ->
+                EnchantableCrushingWheelBlockEntity(type, pos, state)
+            }
+                .instance(renderNormally = true) { ::CutoutRotatingInstance }
+                .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
+                .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
                 .register()
 
         @JvmStatic

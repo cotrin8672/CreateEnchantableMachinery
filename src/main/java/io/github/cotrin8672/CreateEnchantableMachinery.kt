@@ -40,5 +40,6 @@ class CreateEnchantableMachinery {
         EnchantableBlockMapping(AllBlocks.MECHANICAL_PLOUGH to BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
         EnchantableBlockMapping(AllBlocks.ENCASED_FAN to BlockRegistration.ENCHANTABLE_ENCASED_FAN)
         EnchantableBlockMapping(AllBlocks.MILLSTONE to BlockRegistration.ENCHANTABLE_MILLSTONE)
+        EnchantableBlockMapping(AllBlocks.CRUSHING_WHEEL to BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
     }
 }
