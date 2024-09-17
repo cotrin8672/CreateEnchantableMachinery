@@ -9,6 +9,7 @@
     "BlockEntityBuilderMixin",
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",
+    "CrushingWheelControllerBlockEntityMixin",
     "CustomEnchantmentMixin",
     "DrillBlockMixin",
     "EnchantmentMixin",
