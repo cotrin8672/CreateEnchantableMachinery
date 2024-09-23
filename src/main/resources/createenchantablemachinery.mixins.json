@@ -6,6 +6,7 @@
   "refmap": "createenchantablemachinery.refmap.json",
   "mixins": [
     "BlockBuilderMixin",
+    "BlockEntityBehaviourMixin",
     "BlockEntityBuilderMixin",
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",

@@ -1,3 +1,3 @@
 ### Added
 
-- Add Enchantable Crushing Wheel
+- Add Enchantable Mechanical Press
