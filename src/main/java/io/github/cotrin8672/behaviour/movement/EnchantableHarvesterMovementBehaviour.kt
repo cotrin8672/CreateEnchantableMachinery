@@ -1,4 +1,4 @@
-package io.github.cotrin8672.behaviour
+package io.github.cotrin8672.behaviour.movement
 
 import com.jozufozu.flywheel.api.MaterialManager
 import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
