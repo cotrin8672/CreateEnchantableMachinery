@@ -11,10 +11,10 @@ import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
 import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
-import io.github.cotrin8672.behaviour.EnchantableDrillMovementBehaviour
-import io.github.cotrin8672.behaviour.EnchantableHarvesterMovementBehaviour
-import io.github.cotrin8672.behaviour.EnchantablePloughMovementBehaviour
-import io.github.cotrin8672.behaviour.EnchantableSawMovementBehaviour
+import io.github.cotrin8672.behaviour.movement.EnchantableDrillMovementBehaviour
+import io.github.cotrin8672.behaviour.movement.EnchantableHarvesterMovementBehaviour
+import io.github.cotrin8672.behaviour.movement.EnchantablePloughMovementBehaviour
+import io.github.cotrin8672.behaviour.movement.EnchantableSawMovementBehaviour
 import io.github.cotrin8672.block.*
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.state.BlockBehaviour
@@ -126,6 +126,19 @@ class BlockRegistration {
                 .transform(pickaxeOnly())
                 .blockstate { c, p -> BlockStateGen.axisBlock(c, p) { AssetLookup.partialBaseModel(c, p) } }
                 .addLayer { Supplier { RenderType.cutoutMipped() } }
+                .transform(BlockStressDefaults.setImpact(8.0))
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> =
+            REGISTRATE.block<EnchantableMechanicalPressBlock>(
+                "enchantable_mechanical_press",
+                ::EnchantableMechanicalPressBlock
+            )
+                .initialProperties(SharedProperties::stone)
+                .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
+                .transform(axeOrPickaxe())
+                .blockstate(BlockStateGen.horizontalBlockProvider(true))
                 .transform(BlockStressDefaults.setImpact(8.0))
                 .register()
 

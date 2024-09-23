@@ -5,6 +5,7 @@
   "package": "io.github.cotrin8672.mixin",
   "refmap": "createenchantablemachinery.refmap.json",
   "mixins": [
+    "BlockEntityBehaviourMixin",
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",
     "CrushingWheelControllerBlockEntityMixin",
