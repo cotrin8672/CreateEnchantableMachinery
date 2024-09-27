@@ -6,6 +6,7 @@ import com.simibubi.create.content.kinetics.base.CutoutRotatingInstance
 import com.simibubi.create.content.kinetics.drill.DrillInstance
 import com.simibubi.create.content.kinetics.fan.FanInstance
 import com.simibubi.create.content.kinetics.millstone.MillstoneCogInstance
+import com.simibubi.create.content.kinetics.mixer.MixerInstance
 import com.simibubi.create.content.kinetics.press.PressInstance
 import com.simibubi.create.content.kinetics.saw.SawInstance
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
@@ -107,6 +108,16 @@ class BlockEntityRegistration {
                 .instance(renderNormally = true) { ::PressInstance }
                 .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
                 .renderer { NonNullFunction(::EnchantableMechanicalPressRenderer) }
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MECHANICAL_MIXER: BlockEntityEntry<EnchantableMechanicalMixerBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableMechanicalMixerBlockEntity>("enchantable_mechanical_mixer") { type, pos, state ->
+                EnchantableMechanicalMixerBlockEntity(type, pos, state)
+            }
+                .instance(renderNormally = true) { ::MixerInstance }
+                .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
+                .renderer { NonNullFunction(::EnchantableMechanicalMixerRenderer) }
                 .register()
 
         @JvmStatic
