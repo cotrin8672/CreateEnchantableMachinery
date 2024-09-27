@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createenchantablemachinery:block/enchantable_mechanical_mixer/block"
+    }
+  }
+}

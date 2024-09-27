@@ -140,6 +140,20 @@ class BlockRegistration {
                 .register()
 
         @JvmStatic
+        val ENCHANTABLE_MECHANICAL_MIXER: BlockEntry<EnchantableMechanicalMixerBlock> =
+            REGISTRATE.block<EnchantableMechanicalMixerBlock>(
+                "enchantable_mechanical_mixer",
+                ::EnchantableMechanicalMixerBlock
+            )
+                .initialProperties(SharedProperties::stone)
+                .properties { it.noOcclusion().color(MaterialColor.STONE) }
+                .transform(axeOrPickaxe())
+                .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+                .addLayer { Supplier { RenderType.cutoutMipped() } }
+                .transform(BlockStressDefaults.setImpact(4.0))
+                .register()
+
+        @JvmStatic
         fun register() {
         }
     }

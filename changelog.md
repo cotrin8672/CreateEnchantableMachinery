@@ -1,3 +1,3 @@
 ### Added
 
-- Add Enchantable Mechanical Press
+- Add Enchantable Mechanical Mixer
