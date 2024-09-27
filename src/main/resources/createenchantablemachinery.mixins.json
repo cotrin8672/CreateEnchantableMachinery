@@ -5,6 +5,7 @@
   "package": "io.github.cotrin8672.mixin",
   "refmap": "createenchantablemachinery.refmap.json",
   "mixins": [
+    "BasinOperatingBlockEntityMixin",
     "BlockBuilderMixin",
     "BlockEntityBehaviourMixin",
     "BlockEntityBuilderMixin",
@@ -16,9 +17,11 @@
     "EnchantmentMixin",
     "ItemMixin",
     "ItemStackMixin",
+    "KineticBlockEntityMixin",
     "SawBlockEntityMixin",
     "SawBlockMixin",
-    "ServerGamePacketListenerImplMixin"
+    "ServerGamePacketListenerImplMixin",
+    "SmartBlockEntityMixin"
   ],
   "client": [
   ],
