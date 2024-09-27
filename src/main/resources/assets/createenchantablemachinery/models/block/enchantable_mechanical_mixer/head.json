@@ -1,3 +1,793 @@
 {
-  "parent": "create:block/mechanical_mixer/head"
+  "credit": "Made with Blockbench",
+  "parent": "block/block",
+  "ambientocclusion": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "6": "create:block/mixer_head"
+  },
+  "elements": [
+    {
+      "name": "MixerCenter",
+      "from": [
+        7,
+        -4,
+        7
+      ],
+      "to": [
+        9,
+        8,
+        9
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          7,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            12,
+            0,
+            14,
+            12
+          ],
+          "texture": "#6"
+        },
+        "east": {
+          "uv": [
+            12,
+            0,
+            14,
+            12
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            12,
+            0,
+            14,
+            12
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            12,
+            0,
+            14,
+            12
+          ],
+          "texture": "#6"
+        },
+        "down": {
+          "uv": [
+            12,
+            12,
+            14,
+            14
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part1",
+      "from": [
+        2.5,
+        -3,
+        8
+      ],
+      "to": [
+        3.5,
+        5,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          1,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            10,
+            1,
+            11,
+            9
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            10,
+            1,
+            11,
+            9
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part5",
+      "from": [
+        12.5,
+        -3,
+        8
+      ],
+      "to": [
+        13.5,
+        5,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          10,
+          1,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            1,
+            1,
+            9
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            0,
+            1,
+            1,
+            9
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part2",
+      "from": [
+        3.5,
+        -4,
+        8
+      ],
+      "to": [
+        4.5,
+        6,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          1,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            9,
+            0,
+            10,
+            10
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            9,
+            0,
+            10,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part6",
+      "from": [
+        11.5,
+        -4,
+        8
+      ],
+      "to": [
+        12.5,
+        6,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          9,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            0,
+            2,
+            10
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            1,
+            0,
+            2,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part3",
+      "from": [
+        4.5,
+        4,
+        8
+      ],
+      "to": [
+        7.5,
+        6,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          2,
+          8,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            0,
+            9,
+            2
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            6,
+            0,
+            9,
+            2
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part7",
+      "from": [
+        8.5,
+        4,
+        8
+      ],
+      "to": [
+        11.5,
+        6,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          6,
+          8,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            0,
+            5,
+            2
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            2,
+            0,
+            5,
+            2
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part4",
+      "from": [
+        4.5,
+        -4,
+        8
+      ],
+      "to": [
+        7.5,
+        -2,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          2,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            8,
+            9,
+            10
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            6,
+            8,
+            9,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part8",
+      "from": [
+        8.5,
+        -4,
+        8
+      ],
+      "to": [
+        11.5,
+        -2,
+        8
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          6,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            8,
+            5,
+            10
+          ],
+          "texture": "#6"
+        },
+        "south": {
+          "uv": [
+            2,
+            8,
+            5,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part1",
+      "from": [
+        8,
+        -3,
+        2.5
+      ],
+      "to": [
+        8,
+        5,
+        3.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          2,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            10,
+            1,
+            11,
+            9
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            10,
+            1,
+            11,
+            9
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part5",
+      "from": [
+        8,
+        -3,
+        12.5
+      ],
+      "to": [
+        8,
+        5,
+        13.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          2,
+          18
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            1,
+            1,
+            9
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            0,
+            1,
+            1,
+            9
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part2",
+      "from": [
+        8,
+        -4,
+        3.5
+      ],
+      "to": [
+        8,
+        6,
+        4.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          1,
+          9
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            9,
+            0,
+            10,
+            10
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            9,
+            0,
+            10,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part6",
+      "from": [
+        8,
+        -4,
+        11.5
+      ],
+      "to": [
+        8,
+        6,
+        12.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          1,
+          17
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            1,
+            0,
+            2,
+            10
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            1,
+            0,
+            2,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part3",
+      "from": [
+        8,
+        4,
+        4.5
+      ],
+      "to": [
+        8,
+        6,
+        7.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          9,
+          10
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            6,
+            0,
+            9,
+            2
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            6,
+            0,
+            9,
+            2
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part7",
+      "from": [
+        8,
+        4,
+        8.5
+      ],
+      "to": [
+        8,
+        6,
+        11.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          9,
+          14
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            2,
+            0,
+            5,
+            2
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            2,
+            0,
+            5,
+            2
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part4",
+      "from": [
+        8,
+        -4,
+        4.5
+      ],
+      "to": [
+        8,
+        -2,
+        7.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          1,
+          10
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            6,
+            8,
+            9,
+            10
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            6,
+            8,
+            9,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    },
+    {
+      "name": "part8",
+      "from": [
+        8,
+        -4,
+        8.5
+      ],
+      "to": [
+        8,
+        -2,
+        11.5
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          1,
+          14
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            2,
+            8,
+            5,
+            10
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            2,
+            8,
+            5,
+            10
+          ],
+          "texture": "#6"
+        }
+      }
+    }
+  ],
+  "groups": [
+    0,
+    {
+      "name": "Mixer wire1",
+      "origin": [
+        8,
+        1,
+        8
+      ],
+      "color": 0,
+      "children": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "name": "Mixer wire2",
+      "origin": [
+        8,
+        1,
+        8
+      ],
+      "color": 0,
+      "children": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    }
+  ]
 }
