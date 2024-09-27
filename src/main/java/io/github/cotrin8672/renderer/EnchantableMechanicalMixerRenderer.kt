@@ -9,6 +9,7 @@ import com.simibubi.create.foundation.render.CachedBufferer
 import com.simibubi.create.foundation.utility.AnimationTickHolder
 import io.github.cotrin8672.blockentity.EnchantableMechanicalMixerBlockEntity
 import io.github.cotrin8672.config.Config
+import io.github.cotrin8672.registry.PartialModelRegistration
 import io.github.cotrin8672.util.use
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
@@ -77,8 +78,10 @@ class EnchantableMechanicalMixerRenderer(
                 poleRender.translate(0.0, -renderedHeadOffset, 0.0)
                     .light(light)
                     .renderInto(ms, consumer)
-
-                headRender.rotateCentered(Direction.UP, angle.toFloat())
+                
+                val enchantableHead =
+                    CachedBufferer.partial(PartialModelRegistration.ENCHANTABLE_MECHANICAL_MIXER_HEAD, blockState)
+                enchantableHead.rotateCentered(Direction.UP, angle.toFloat())
                     .translate(0.0, -renderedHeadOffset, 0.0)
                     .light(light)
                     .renderInto(ms, consumer)
