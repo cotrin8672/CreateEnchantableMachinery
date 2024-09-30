@@ -1,11 +1,10 @@
 package io.github.cotrin8672.util
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity
-import com.simibubi.create.content.processing.basin.BasinOperatingBlockEntity
+import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.infrastructure.config.AllConfigs
-import io.github.cotrin8672.mixin.BasinOperatingBlockEntityMixin
 import io.github.cotrin8672.mixin.KineticBlockEntityMixin
 import io.github.cotrin8672.mixin.SmartBlockEntityMixin
 import net.minecraft.world.level.Level
@@ -55,10 +54,12 @@ fun KineticBlockEntity.kineticBlockEntityTick() {
     }
 }
 
-fun BasinOperatingBlockEntity.basinOperatingBlockEntityTick() {
+fun MechanicalMixerBlockEntity.mechanicalMixerBlockEntityTick() {
     if (basinRemoved) {
         basinRemoved = false
-        (this as BasinOperatingBlockEntityMixin).onBasinRemoved()
+        if (!running) return
+        runningTicks = 40
+        running = false
         sendData()
         return
     }
