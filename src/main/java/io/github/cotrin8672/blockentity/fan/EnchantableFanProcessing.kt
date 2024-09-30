@@ -54,9 +54,10 @@ class EnchantableFanProcessing(private val efficiencyLevel: Int) {
         if (transported.processedBy !== type) {
             transported.processedBy = type
             val timeModifierForStackSize = ((transported.stack.count - 1) / 16) + 1
+            val efficiencyLevelModifier = if (efficiencyLevel == 0) 1.0 else efficiencyLevel.toDouble().pow(1.5)
             val processingTime =
                 (AllConfigs.server().kinetics.fanProcessingTime.get() * timeModifierForStackSize) + 1
-            transported.processingTime = processingTime
+            transported.processingTime = (processingTime / efficiencyLevelModifier).toInt()
             if (!type.canProcess(transported.stack, world)) transported.processingTime = -1
             return ignore
         }
