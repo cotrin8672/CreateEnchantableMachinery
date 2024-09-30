@@ -21,6 +21,10 @@ class EnchantableEncasedFanBlockEntity(
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
 ) : EncasedFanBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
+    init {
+        val enc = delegate.getEnchantments()
+    }
+
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
         for (instance in delegate.enchantmentInstances) {
@@ -35,6 +39,8 @@ class EnchantableEncasedFanBlockEntity(
     override fun read(tag: CompoundTag, clientPacket: Boolean) {
         super.read(tag, clientPacket)
         delegate.enchantmentsTag = tag.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        if (airCurrent !is EnchantableAirCurrent)
+            airCurrent = EnchantableAirCurrent(this, getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY))
     }
 
     override fun write(tag: CompoundTag, clientPacket: Boolean) {
