@@ -11,10 +11,7 @@ import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
 import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.Companion.REGISTRATE
-import io.github.cotrin8672.behaviour.movement.EnchantableDrillMovementBehaviour
-import io.github.cotrin8672.behaviour.movement.EnchantableHarvesterMovementBehaviour
-import io.github.cotrin8672.behaviour.movement.EnchantablePloughMovementBehaviour
-import io.github.cotrin8672.behaviour.movement.EnchantableSawMovementBehaviour
+import io.github.cotrin8672.behaviour.movement.*
 import io.github.cotrin8672.block.*
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.state.BlockBehaviour
@@ -151,6 +148,17 @@ class BlockRegistration {
                 .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
                 .addLayer { Supplier { RenderType.cutoutMipped() } }
                 .transform(BlockStressDefaults.setImpact(4.0))
+                .register()
+
+        @JvmStatic
+        val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntry<EnchantableRollerBlock> =
+            REGISTRATE.block<EnchantableRollerBlock>("enchantable_mechanical_roller", ::EnchantableRollerBlock)
+                .initialProperties(SharedProperties::stone)
+                .properties { it.color(MaterialColor.COLOR_GRAY).noOcclusion() }
+                .transform(axeOrPickaxe())
+                .onRegister(movementBehaviour(EnchantableRollerMovementBehaviour()))
+                .blockstate(BlockStateGen.horizontalBlockProvider(true))
+                .addLayer { Supplier { RenderType.cutoutMipped() } }
                 .register()
 
         @JvmStatic
