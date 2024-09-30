@@ -3,7 +3,7 @@ package io.github.cotrin8672.blockentity
 import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe
 import com.simibubi.create.foundation.utility.Lang
-import io.github.cotrin8672.util.basinOperatingBlockEntityTick
+import io.github.cotrin8672.util.mechanicalMixerBlockEntityTick
 import io.github.cotrin8672.util.nonNullLevel
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
@@ -29,13 +29,13 @@ class EnchantableMechanicalMixerBlockEntity(
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
 ) : MechanicalMixerBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
     override fun tick() {
-        basinOperatingBlockEntityTick()
+        mechanicalMixerBlockEntityTick()
 
         if (runningTicks >= 40) {
-            running = false;
-            runningTicks = 0;
-            basinChecker.scheduleUpdate();
-            return;
+            running = false
+            runningTicks = 0
+            basinChecker.scheduleUpdate()
+            return
         }
 
         val speed = abs(speed)

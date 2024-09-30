@@ -121,6 +121,15 @@ class BlockEntityRegistration {
                 .register()
 
         @JvmStatic
+        val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntityEntry<EnchantableRollerBlockEntity> =
+            REGISTRATE.blockEntity<EnchantableRollerBlockEntity>("enchantable_mechanical_roller") { type, pos, state ->
+                EnchantableRollerBlockEntity(type, pos, state)
+            }
+                .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
+                .renderer { NonNullFunction(::EnchantableRollerRenderer) }
+                .register()
+
+        @JvmStatic
         fun register() {
         }
     }

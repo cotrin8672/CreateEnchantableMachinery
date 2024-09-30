@@ -35,6 +35,8 @@ class EnchantableEncasedFanBlockEntity(
     override fun read(tag: CompoundTag, clientPacket: Boolean) {
         super.read(tag, clientPacket)
         delegate.enchantmentsTag = tag.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        if (airCurrent !is EnchantableAirCurrent)
+            airCurrent = EnchantableAirCurrent(this, getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY))
     }
 
     override fun write(tag: CompoundTag, clientPacket: Boolean) {
