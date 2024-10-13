@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "${modId}",
+  "version": "${modVersion}",
+  "name": "${modName}",
+  "description": "${modDescription}",
+  "authors": [
+    "${modAuthors}"
+  ],
+  "contact": {
+    "sources": "https://github.com/cotrin8672/CreateEnchantableMachinery"
+  },
+  "license": "${modLicense}",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.cotrin8672.fabric.CreateEnchantableMachineryFabric"
+      }
+    ]
+  },
+  "mixins": [
+    "${modId}.mixins.json",
+    "${modId}-common.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${minecraftVersion}",
+    "fabricloader": ">=${fabricLoaderVersion}",
+    "fabric-api": ">=${fabricApiVersion}",
+    "create": ">=0.5.1-f-build.1335+mc1.20.1"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.cotrin8672.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixins": [
+    "BlockItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
