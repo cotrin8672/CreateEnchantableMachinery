@@ -6,7 +6,11 @@
   "client": [
   ],
   "mixins": [
-    "BlockItemMixin"
+    "BlockItemMixin",
+    "DrillBlockMixin",
+    "EnchantmentMixin",
+    "ItemMixin",
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

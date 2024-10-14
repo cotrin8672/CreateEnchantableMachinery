@@ -15,6 +15,6 @@ class RegistrateHandlerImpl : RegistrateHandler {
     }
 
     override fun register() {
-        checkNotNull(registrate).registerEventListeners(MOD_BUS)
+        getRegistrate().registerEventListeners(MOD_BUS)
     }
 }

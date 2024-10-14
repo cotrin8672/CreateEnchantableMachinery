@@ -1,0 +1,14 @@
+{
+  "values": [
+    "createenchantablemachinery:enchantable_mechanical_drill",
+    "createenchantablemachinery:enchantable_mechanical_harvester",
+    "createenchantablemachinery:enchantable_mechanical_saw",
+    "createenchantablemachinery:enchantable_mechanical_plough",
+    "createenchantablemachinery:enchantable_encased_fan",
+    "createenchantablemachinery:enchantable_millstone",
+    "createenchantablemachinery:enchantable_crushing_wheel",
+    "createenchantablemachinery:enchantable_mechanical_press",
+    "createenchantablemachinery:enchantable_mechanical_mixer",
+    "createenchantablemachinery:enchantable_mechanical_roller"
+  ]
+}

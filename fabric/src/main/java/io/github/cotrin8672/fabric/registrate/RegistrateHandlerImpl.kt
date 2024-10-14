@@ -15,6 +15,6 @@ class RegistrateHandlerImpl : RegistrateHandler {
     }
 
     override fun register() {
-        checkNotNull(registrate).register()
+        getRegistrate().register()
     }
 }
