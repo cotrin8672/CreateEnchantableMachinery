@@ -10,12 +10,11 @@ plugins {
 }
 
 val modId: String by project
-val modArchiveName: String by project
 val modVersion: String by project
 val modName: String by project
 
 base {
-    archivesName = modArchiveName
+    archivesName = modId
     version = "${project.name}-${modVersion}-${libs.versions.minecraft.get()}"
 }
 
@@ -33,6 +32,9 @@ architectury {
 }
 
 loom {
+    mixin {
+        defaultRefmapName.set("${modId}.refmap.json")
+    }
     silentMojangMappingsLicense()
 }
 
@@ -98,17 +100,17 @@ publisher {
     versionType.set("release")
     changelog.set(file("../changelog.md"))
     version.set(modVersion)
-    displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() } } ${libs.versions.minecraft.get()}-${modVersion}")
+    displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() }} ${libs.versions.minecraft.get()}-${modVersion}")
     setGameVersions(libs.versions.minecraft.get())
     setLoaders(project.name)
     setCurseEnvironment(CurseEnvironment.BOTH)
     artifact.set("build/libs/${base.archivesName.get()}-${project.version}.jar")
 
     curseDepends {
-        required("create-fabric", "fabric-api", "fabric-language-kotlin",  "architectury-api")
+        required("create-fabric", "fabric-api", "fabric-language-kotlin", "architectury-api")
     }
     modrinthDepends {
-        required("create-fabric", "fabric-api", "fabric-language-kotlin",  "architectury-api")
+        required("create-fabric", "fabric-api", "fabric-language-kotlin", "architectury-api")
     }
 }
 

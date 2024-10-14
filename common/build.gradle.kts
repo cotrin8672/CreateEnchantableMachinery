@@ -29,6 +29,12 @@ loom {
     silentMojangMappingsLicense()
 }
 
+sourceSets.main {
+    resources {
+        srcDir("src/generated/resources")
+    }
+}
+
 repositories {
     maven("https://api.modrinth.com/maven") // LazyDFU
     maven("https://maven.terraformersmc.com/releases/") // Mod Menu

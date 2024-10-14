@@ -4,7 +4,7 @@ loaderVersion = "[${forgeLoaderVersion},)"
 license = "${modLicense}"
 
 [[mods]]
-modId = "${modId}"
+modId = "createenchantablemachinery"
 version = "${modVersion}"
 displayName = "${modName}"
 authors = "${modAuthors}"

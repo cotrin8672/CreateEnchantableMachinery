@@ -1,6 +1,7 @@
 package io.github.cotrin8672.forge.registrate
 
 import com.simibubi.create.foundation.data.CreateRegistrate
+import io.github.cotrin8672.CreateEnchantableMachinery.MOD_ID
 import io.github.cotrin8672.registrate.RegistrateHandler
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
@@ -9,7 +10,7 @@ class RegistrateHandlerImpl : RegistrateHandler {
 
     override fun getRegistrate(): CreateRegistrate {
         return if (registrate == null) {
-            registrate = KotlinRegistrate.create("")
+            registrate = KotlinRegistrate.create(MOD_ID)
             registrate!!
         } else registrate!!
     }

@@ -1,5 +1,4 @@
 import com.hypherionmc.modpublisher.properties.CurseEnvironment
-import com.hypherionmc.modpublisher.properties.ModLoader
 
 plugins {
     alias(libs.plugins.architectury)
@@ -11,12 +10,11 @@ plugins {
 }
 
 val modId: String by project
-val modArchiveName: String by project
 val modVersion: String by project
 val modName: String by project
 
 base {
-    archivesName = modArchiveName
+    archivesName = modId
     version = "${project.name}-${modVersion}-${libs.versions.minecraft.get()}"
 }
 
@@ -38,13 +36,18 @@ loom {
         mixin {
             mixinConfig("${modId}.mixins.json")
             mixinConfig("${modId}-common.mixins.json")
+            defaultRefmapName.set("${modId}.refmap.json")
         }
     }
     silentMojangMappingsLicense()
-}
-
-sourceSets.main.get().resources {
-    srcDir("src/generated/resources")
+    runs {
+        create("data") {
+            val generatedResources = file("../common/src/generated/resources")
+            data()
+            programArgs("--all", "--mod", modId)
+            programArgs("--output", generatedResources.absolutePath)
+        }
+    }
 }
 
 val common: Configuration by configurations.creating
@@ -111,7 +114,7 @@ publisher {
     versionType.set("release")
     changelog.set(file("../changelog.md"))
     version.set(modVersion)
-    displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() } } ${libs.versions.minecraft.get()}-${modVersion}")
+    displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() }} ${libs.versions.minecraft.get()}-${modVersion}")
     setGameVersions(libs.versions.minecraft.get())
     setLoaders(project.name)
     setCurseEnvironment(CurseEnvironment.BOTH)
@@ -134,16 +137,16 @@ tasks.processResources {
     val modDescription: String by project
 
     val replaceProperties = mapOf(
-            "minecraftVersion" to libs.versions.minecraft.get(),
-            "forgeVersion" to libs.versions.forge.get(),
-            "forgeLoaderVersion" to libs.versions.forgeKotlin.get(),
-            "createForgeVersion" to libs.versions.createForge.get(),
-            "modId" to modId,
-            "modName" to modName,
-            "modLicense" to modLicense,
-            "modVersion" to modVersion,
-            "modAuthors" to modAuthors,
-            "modDescription" to modDescription,
+        "minecraftVersion" to libs.versions.minecraft.get(),
+        "forgeVersion" to libs.versions.forge.get(),
+        "forgeLoaderVersion" to libs.versions.forgeKotlin.get(),
+        "createForgeVersion" to libs.versions.createForge.get(),
+        "modId" to modId,
+        "modName" to modName,
+        "modLicense" to modLicense,
+        "modVersion" to modVersion,
+        "modAuthors" to modAuthors,
+        "modDescription" to modDescription,
     )
     inputs.properties(replaceProperties)
     filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) {
