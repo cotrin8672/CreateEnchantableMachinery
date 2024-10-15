@@ -5,14 +5,13 @@ import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.AbstractRegistrate
 import com.tterrag.registrate.builders.BuilderCallback
 import com.tterrag.registrate.util.OneTimeEventReceiver
-import io.github.cotrin8672.CreateEnchantableMachinery
 import io.github.cotrin8672.forge.mixin.CreateBlockEntityBuilderMixin
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 
 class KotlinBlockEntityBuilder<T : BlockEntity, P>
 private constructor(
-    owner: AbstractRegistrate<*>,
+    private val owner: AbstractRegistrate<*>,
     parent: P,
     name: String,
     callback: BuilderCallback,
@@ -20,7 +19,7 @@ private constructor(
 ) : CreateBlockEntityBuilder<T, P>(owner, parent, name, callback, factory) {
     companion object {
         @JvmStatic
-        fun <T : BlockEntity, P> createKt(
+        fun <T : BlockEntity, P> create(
             owner: AbstractRegistrate<*>,
             parent: P,
             name: String,
@@ -33,7 +32,7 @@ private constructor(
 
     override fun registerInstance() {
         OneTimeEventReceiver.addModListener(
-            CreateEnchantableMachinery.REGISTRATE,
+            owner,
             FMLClientSetupEvent::class.java
         ) { _ ->
             val instanceFactory = (this as CreateBlockEntityBuilderMixin<T>).instanceFactory

@@ -39,7 +39,7 @@ class KotlinRegistrate(modId: String) : CreateRegistrate(modId) {
         return entry(
             name
         ) { callback: BuilderCallback ->
-            KotlinBlockEntityBuilder.createKt(
+            KotlinBlockEntityBuilder.create(
                 this,
                 parent,
                 name,
