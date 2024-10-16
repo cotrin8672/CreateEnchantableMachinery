@@ -19,6 +19,7 @@ import io.github.cotrin8672.content.block.fan.EnchantableEncasedFanBlock
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlock
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterMovementBehaviour
 import io.github.cotrin8672.content.block.millstone.EnchantableMillstoneBlock
+import io.github.cotrin8672.content.block.mixer.EnchantableMechanicalMixerBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressBlock
@@ -146,6 +147,20 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
             .transform(BlockStressDefaults.setImpact(8.0))
+            .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_MIXER: BlockEntry<EnchantableMechanicalMixerBlock> =
+        REGISTRATE.block<EnchantableMechanicalMixerBlock>(
+            "enchantable_mechanical_mixer",
+            ::EnchantableMechanicalMixerBlock
+        )
+            .initialProperties(SharedProperties::stone)
+            .properties { it.noOcclusion().mapColor(MapColor.STONE) }
+            .transform(axeOrPickaxe())
+            .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+            .addLayer { Supplier { RenderType.cutoutMipped() } }
+            .transform(BlockStressDefaults.setImpact(4.0))
             .register()
 
     fun register() {}
