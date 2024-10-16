@@ -1,4 +1,4 @@
-package io.github.cotrin8672.util
+package io.github.cotrin8672.util.extension
 
 import com.mojang.blaze3d.vertex.PoseStack
 

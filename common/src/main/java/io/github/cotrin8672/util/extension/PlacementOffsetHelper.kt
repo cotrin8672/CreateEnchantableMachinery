@@ -1,4 +1,4 @@
-package io.github.cotrin8672.util
+package io.github.cotrin8672.util.extension
 
 import com.simibubi.create.foundation.placement.PlacementOffset
 import io.github.cotrin8672.CreateEnchantableMachinery

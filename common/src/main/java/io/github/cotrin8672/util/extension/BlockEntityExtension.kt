@@ -1,4 +1,4 @@
-package io.github.cotrin8672.util
+package io.github.cotrin8672.util.extension
 
 import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity
 import net.minecraft.world.level.Level
