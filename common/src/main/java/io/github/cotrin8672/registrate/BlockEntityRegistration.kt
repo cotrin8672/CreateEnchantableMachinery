@@ -12,6 +12,8 @@ import io.github.cotrin8672.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.content.block.drill.EnchantableDrillRenderer
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlockEntity
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterRenderer
+import io.github.cotrin8672.content.block.plough.EnchantablePloughBlockEntity
+import io.github.cotrin8672.content.block.plough.EnchantablePloughRenderer
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.content.block.saw.EnchantableSawRenderer
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -42,6 +44,14 @@ object BlockEntityRegistration {
             .instance(renderNormally = true) { ::SawInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
             .renderer { NonNullFunction(::EnchantableSawRenderer) }
+            .register()
+
+    val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntityEntry<EnchantablePloughBlockEntity> =
+        REGISTRATE.blockEntity<EnchantablePloughBlockEntity>("enchantable_plough") { type, pos, state ->
+            EnchantablePloughBlockEntity(type, pos, state)
+        }
+            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
+            .renderer { NonNullFunction(::EnchantablePloughRenderer) }
             .register()
 
     fun register() {}
