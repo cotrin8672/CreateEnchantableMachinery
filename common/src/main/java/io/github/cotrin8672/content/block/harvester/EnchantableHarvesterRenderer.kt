@@ -17,7 +17,7 @@ import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
 import io.github.cotrin8672.registrate.PartialModelRegistration
-import io.github.cotrin8672.util.use
+import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType

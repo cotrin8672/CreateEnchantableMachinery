@@ -1,8 +1,8 @@
-package io.github.cotrin8672.content.block.drill
+package io.github.cotrin8672.content.block.saw
 
 import com.simibubi.create.AllBlocks
-import com.simibubi.create.content.kinetics.drill.DrillBlock
-import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import com.simibubi.create.content.kinetics.saw.SawBlock
+import com.simibubi.create.content.kinetics.saw.SawBlockEntity
 import com.simibubi.create.foundation.placement.IPlacementHelper
 import com.simibubi.create.foundation.placement.PlacementHelpers
 import com.simibubi.create.foundation.placement.PlacementOffset
@@ -13,7 +13,6 @@ import io.github.cotrin8672.registrate.BlockRegistration
 import io.github.cotrin8672.util.extension.placeAlternativeBlockInWorld
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.LivingEntity
@@ -33,23 +32,19 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.BlockHitResult
 import java.util.function.Predicate
 
-class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), EnchantableBlock {
+class EnchantableSawBlock(properties: Properties) : SawBlock(properties), EnchantableBlock {
     companion object {
-        private val enchantedPlacementHelperId = PlacementHelpers.register(PlacementHelper())
+        private val placementHelperId = PlacementHelpers.register(PlacementHelper())
     }
 
-    override fun getName(): MutableComponent {
-        return AllBlocks.MECHANICAL_DRILL.get().name
-    }
-
-    override fun getBlockEntityType(): BlockEntityType<out DrillBlockEntity> {
-        return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_DRILL.get()
+    override fun getBlockEntityType(): BlockEntityType<out SawBlockEntity> {
+        return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_SAW.get()
     }
 
     @Deprecated("Deprecated in Java")
     override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
         val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
-        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
+        val stack = ItemStack(AllBlocks.MECHANICAL_SAW)
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
@@ -59,41 +54,18 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
     }
 
     override fun asItem(): Item {
-        return AllBlocks.MECHANICAL_DRILL.asItem()
+        return AllBlocks.MECHANICAL_SAW.asItem()
     }
 
     override fun getCloneItemStack(level: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
+        val stack = ItemStack(AllBlocks.MECHANICAL_SAW)
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
             }
         }
         return stack
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun use(
-        state: BlockState,
-        world: Level,
-        pos: BlockPos,
-        player: Player,
-        hand: InteractionHand,
-        ray: BlockHitResult,
-    ): InteractionResult {
-        if (!player.getItemInHand(hand).isEnchanted) return super.use(state, world, pos, player, hand, ray)
-
-        val heldItem = player.getItemInHand(hand)
-        val placementHelper = PlacementHelpers.get(enchantedPlacementHelperId)
-        if (!player.isShiftKeyDown && player.mayBuild()) {
-            if (placementHelper.matchesItem(heldItem)) {
-                placementHelper.getOffset(player, world, state, pos, ray)
-                    .placeAlternativeBlockInWorld(world, heldItem.item as BlockItem, player, hand, ray)
-                return InteractionResult.SUCCESS
-            }
-        }
-        return InteractionResult.PASS
     }
 
     override fun setPlacedBy(
@@ -110,10 +82,46 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
         }
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun use(
+        state: BlockState,
+        worldIn: Level,
+        pos: BlockPos,
+        player: Player,
+        handIn: InteractionHand,
+        hit: BlockHitResult,
+    ): InteractionResult {
+        if (!player.getItemInHand(handIn).isEnchanted) return super.use(state, worldIn, pos, player, handIn, hit)
+
+        val heldItem = player.getItemInHand(handIn)
+        val placementHelper = PlacementHelpers.get(placementHelperId)
+        if (!player.isShiftKeyDown && player.mayBuild()) {
+            if (
+                placementHelper.matchesItem(heldItem) && placementHelper.getOffset(player, worldIn, state, pos, hit)
+                    .placeAlternativeBlockInWorld(worldIn, heldItem.item as BlockItem, player, handIn, hit)
+                    .consumesAction()
+            )
+                return InteractionResult.SUCCESS
+        }
+
+        if (player.isSpectator || !player.getItemInHand(handIn).isEmpty) return InteractionResult.PASS
+        if (state.getOptionalValue(FACING).orElse(Direction.WEST) != Direction.UP) return InteractionResult.PASS
+
+        return onBlockEntityUse(worldIn, pos) { be: SawBlockEntity ->
+            for (i in 0 until be.inventory.slotCount) {
+                val heldItemStack = be.inventory.getStackInSlot(i)
+                if (!worldIn.isClientSide && !heldItemStack.isEmpty)
+                    player.inventory.placeItemBackInInventory(heldItemStack)
+            }
+            be.inventory.clear()
+            be.notifyUpdate()
+            InteractionResult.SUCCESS
+        }
+    }
+
     override fun canApply(enchantment: Enchantment): Boolean {
         return when {
-            enchantment == Enchantments.UNBREAKING -> false
-            enchantment == Enchantments.MENDING -> false
+            enchantment == Enchantments.BLOCK_EFFICIENCY -> true
             enchantment.category == EnchantmentCategory.DIGGER -> true
             else -> false
         }
@@ -121,20 +129,22 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
 
     private class PlacementHelper : IPlacementHelper {
         override fun getItemPredicate(): Predicate<ItemStack> {
-            return Predicate { stack -> AllBlocks.MECHANICAL_DRILL.isIn(stack) }
+            return Predicate { stack -> AllBlocks.MECHANICAL_SAW.isIn(stack) }
         }
 
         override fun getStatePredicate(): Predicate<BlockState> {
-            return Predicate { state -> BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL.has(state) }
+            return Predicate { state -> BlockRegistration.ENCHANTABLE_MECHANICAL_SAW.has(state) }
         }
 
         override fun getOffset(
-            player: Player?, world: Level, state: BlockState, pos: BlockPos,
+            player: Player,
+            world: Level,
+            state: BlockState,
+            pos: BlockPos,
             ray: BlockHitResult,
         ): PlacementOffset {
             val directions = IPlacementHelper.orderedByDistanceExceptAxis(
-                pos,
-                ray.location,
+                pos, ray.location,
                 state.getValue(FACING).axis
             ) { dir: Direction ->
                 world.getBlockState(pos.relative(dir)).canBeReplaced()
@@ -142,10 +152,10 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
 
             return if (directions.isEmpty()) PlacementOffset.fail()
             else {
-                PlacementOffset.success(
-                    pos.relative(directions[0])
-                ) { s: BlockState ->
+                PlacementOffset.success(pos.relative(directions[0])) { s: BlockState ->
                     s.setValue(FACING, state.getValue(FACING))
+                        .setValue(AXIS_ALONG_FIRST_COORDINATE, state.getValue(AXIS_ALONG_FIRST_COORDINATE))
+                        .setValue(FLIPPED, state.getValue(FLIPPED))
                 }
             }
         }

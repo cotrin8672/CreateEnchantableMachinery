@@ -10,7 +10,9 @@
     "DrillBlockMixin",
     "EnchantmentMixin",
     "ItemMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "SawBlockEntityMixin",
+    "SawBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
