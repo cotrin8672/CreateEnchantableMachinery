@@ -26,6 +26,7 @@ object CreateEnchantableMachinery : KoinComponent {
 
     fun registerBlockMapping() {
         EnchantableBlockMapping(AllBlocks.MECHANICAL_DRILL to BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
+        EnchantableBlockMapping(AllBlocks.MECHANICAL_HARVESTER to BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
     }
 
     fun id(path: String): ResourceLocation {

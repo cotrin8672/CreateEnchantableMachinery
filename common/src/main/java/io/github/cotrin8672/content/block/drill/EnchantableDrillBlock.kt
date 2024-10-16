@@ -62,8 +62,8 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
         return AllBlocks.MECHANICAL_DRILL.asItem()
     }
 
-    override fun getCloneItemStack(world: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
-        val blockEntity = world.getBlockEntity(pos)
+    override fun getCloneItemStack(level: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
+        val blockEntity = level.getBlockEntity(pos)
         val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {

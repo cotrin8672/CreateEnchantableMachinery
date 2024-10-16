@@ -9,6 +9,8 @@ import com.tterrag.registrate.util.nullness.NonNullFunction
 import io.github.cotrin8672.CreateEnchantableMachinery.REGISTRATE
 import io.github.cotrin8672.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.content.block.drill.EnchantableDrillRenderer
+import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlockEntity
+import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterRenderer
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
 
@@ -20,6 +22,14 @@ object BlockEntityRegistration {
             .instance(renderNormally = true) { ::DrillInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
             .renderer { NonNullFunction(::EnchantableDrillRenderer) }
+            .register()
+
+    val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntityEntry<EnchantableHarvesterBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableHarvesterBlockEntity>("enchantable_harvester") { type, pos, state ->
+            EnchantableHarvesterBlockEntity(type, pos, state)
+        }
+            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
+            .renderer { NonNullFunction(::EnchantableHarvesterRenderer) }
             .register()
 
     fun register() {}

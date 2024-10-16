@@ -5,6 +5,9 @@ import io.github.cotrin8672.CreateEnchantableMachinery.init
 import io.github.cotrin8672.CreateEnchantableMachinery.registerBlockMapping
 import io.github.cotrin8672.CreateEnchantableMachinery.registrateHandler
 import io.github.cotrin8672.config.Config
+import io.github.cotrin8672.registrate.PartialModelRegistration
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
@@ -23,6 +26,7 @@ class CreateEnchantableMachineryForge {
         registrateHandler.register()
         init()
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec, "$MOD_ID-client.toml")
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT) { Runnable { PartialModelRegistration.register() } }
     }
 
     private fun registerBlockMapping(event: FMLCommonSetupEvent) {

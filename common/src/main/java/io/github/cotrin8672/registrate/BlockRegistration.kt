@@ -9,7 +9,11 @@ import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.REGISTRATE
 import io.github.cotrin8672.content.block.drill.EnchantableDrillBlock
 import io.github.cotrin8672.content.block.drill.EnchantableDrillMovementBehaviour
+import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlock
+import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterMovementBehaviour
+import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.material.MapColor
+import java.util.function.Supplier
 
 object BlockRegistration {
     @JvmStatic
@@ -24,6 +28,17 @@ object BlockRegistration {
         .transform(BlockStressDefaults.setImpact(4.0))
         .onRegister(movementBehaviour(EnchantableDrillMovementBehaviour()))
         .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntry<EnchantableHarvesterBlock> =
+        REGISTRATE.block<EnchantableHarvesterBlock>("enchantable_mechanical_harvester", ::EnchantableHarvesterBlock)
+            .initialProperties(SharedProperties::stone)
+            .properties { it.mapColor(MapColor.METAL).forceSolidOn() }
+            .transform(axeOrPickaxe())
+            .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
+            .blockstate(BlockStateGen.horizontalBlockProvider(true))
+            .addLayer { Supplier { RenderType.cutoutMipped() } }
+            .register()
 
     fun register() {}
 }
