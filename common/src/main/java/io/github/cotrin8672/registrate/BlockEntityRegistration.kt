@@ -30,6 +30,8 @@ import io.github.cotrin8672.content.block.plough.EnchantablePloughBlockEntity
 import io.github.cotrin8672.content.block.plough.EnchantablePloughRenderer
 import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressBlockEntity
 import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressRenderer
+import io.github.cotrin8672.content.block.roller.EnchantableRollerBlockEntity
+import io.github.cotrin8672.content.block.roller.EnchantableRollerRenderer
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.content.block.saw.EnchantableSawRenderer
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -122,6 +124,14 @@ object BlockEntityRegistration {
             .instance(renderNormally = true) { ::MixerInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
             .renderer { NonNullFunction(::EnchantableMechanicalMixerRenderer) }
+            .register()
+
+    val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntityEntry<EnchantableRollerBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableRollerBlockEntity>("enchantable_mechanical_roller") { type, pos, state ->
+            EnchantableRollerBlockEntity(type, pos, state)
+        }
+            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
+            .renderer { NonNullFunction(::EnchantableRollerRenderer) }
             .register()
 
     fun register() {}

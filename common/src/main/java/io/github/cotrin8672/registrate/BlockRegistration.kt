@@ -23,6 +23,8 @@ import io.github.cotrin8672.content.block.mixer.EnchantableMechanicalMixerBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressBlock
+import io.github.cotrin8672.content.block.roller.EnchantableRollerBlock
+import io.github.cotrin8672.content.block.roller.EnchantableRollerMovementBehaviour
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.content.block.saw.EnchantableSawMovementBehaviour
 import net.minecraft.client.renderer.RenderType
@@ -161,6 +163,17 @@ object BlockRegistration {
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .transform(BlockStressDefaults.setImpact(4.0))
+            .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntry<EnchantableRollerBlock> =
+        REGISTRATE.block<EnchantableRollerBlock>("enchantable_mechanical_roller", ::EnchantableRollerBlock)
+            .initialProperties(SharedProperties::stone)
+            .properties { it.mapColor(MapColor.COLOR_GRAY).noOcclusion() }
+            .transform(axeOrPickaxe())
+            .onRegister(movementBehaviour(EnchantableRollerMovementBehaviour()))
+            .blockstate(BlockStateGen.horizontalBlockProvider(true))
+            .addLayer { Supplier { RenderType.cutoutMipped() } }
             .register()
 
     fun register() {}
