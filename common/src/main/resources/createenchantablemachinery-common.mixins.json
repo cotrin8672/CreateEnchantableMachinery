@@ -11,9 +11,11 @@
     "EnchantmentMixin",
     "ItemMixin",
     "ItemStackMixin",
+    "KineticBlockEntityMixin",
     "SawBlockEntityMixin",
     "SawBlockMixin",
-    "ServerGamePacketListenerImplMixin"
+    "ServerGamePacketListenerImplMixin",
+    "SmartBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

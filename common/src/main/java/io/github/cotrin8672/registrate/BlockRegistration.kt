@@ -3,9 +3,11 @@ package io.github.cotrin8672.registrate
 import com.simibubi.create.AllMovementBehaviours.movementBehaviour
 import com.simibubi.create.content.kinetics.BlockStressDefaults
 import com.simibubi.create.content.kinetics.saw.SawGenerator
+import com.simibubi.create.foundation.data.AssetLookup
 import com.simibubi.create.foundation.data.BlockStateGen
 import com.simibubi.create.foundation.data.SharedProperties
 import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
+import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.REGISTRATE
 import io.github.cotrin8672.content.block.drill.EnchantableDrillBlock
@@ -13,6 +15,7 @@ import io.github.cotrin8672.content.block.drill.EnchantableDrillMovementBehaviou
 import io.github.cotrin8672.content.block.fan.EnchantableEncasedFanBlock
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlock
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterMovementBehaviour
+import io.github.cotrin8672.content.block.millstone.EnchantableMillstoneBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlock
@@ -79,6 +82,15 @@ object BlockRegistration {
             .transform(BlockStressDefaults.setImpact(2.0))
             .register()
 
-
+    @JvmStatic
+    val ENCHANTABLE_MILLSTONE: BlockEntry<EnchantableMillstoneBlock> =
+        REGISTRATE.block<EnchantableMillstoneBlock>("enchantable_millstone", ::EnchantableMillstoneBlock)
+            .initialProperties(SharedProperties::stone)
+            .properties { it.mapColor(MapColor.METAL) }
+            .transform(pickaxeOnly())
+            .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+            .transform(BlockStressDefaults.setImpact(4.0))
+            .register()
+    
     fun register() {}
 }
