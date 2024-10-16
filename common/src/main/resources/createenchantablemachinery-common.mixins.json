@@ -12,7 +12,8 @@
     "ItemMixin",
     "ItemStackMixin",
     "SawBlockEntityMixin",
-    "SawBlockMixin"
+    "SawBlockMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1

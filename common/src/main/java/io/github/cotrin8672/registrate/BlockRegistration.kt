@@ -10,6 +10,7 @@ import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.CreateEnchantableMachinery.REGISTRATE
 import io.github.cotrin8672.content.block.drill.EnchantableDrillBlock
 import io.github.cotrin8672.content.block.drill.EnchantableDrillMovementBehaviour
+import io.github.cotrin8672.content.block.fan.EnchantableEncasedFanBlock
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlock
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterMovementBehaviour
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlock
@@ -66,6 +67,18 @@ object BlockRegistration {
             .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(false))
             .register()
+
+    @JvmStatic
+    val ENCHANTABLE_ENCASED_FAN: BlockEntry<EnchantableEncasedFanBlock> =
+        REGISTRATE.block<EnchantableEncasedFanBlock>("enchantable_encased_fan", ::EnchantableEncasedFanBlock)
+            .initialProperties(SharedProperties::stone)
+            .properties { it.mapColor(MapColor.PODZOL) }
+            .blockstate(BlockStateGen.directionalBlockProvider(true))
+            .addLayer { Supplier { RenderType.cutoutMipped() } }
+            .transform(axeOrPickaxe())
+            .transform(BlockStressDefaults.setImpact(2.0))
+            .register()
+
 
     fun register() {}
 }

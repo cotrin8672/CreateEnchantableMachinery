@@ -1,8 +1,8 @@
 package io.github.cotrin8672.fabric.util
 
 import com.simibubi.create.foundation.placement.PlacementOffset
-import io.github.cotrin8672.util.AlternativePlacementHelper
 import io.github.cotrin8672.util.EnchantableBlockMapping
+import io.github.cotrin8672.util.interfaces.AlternativePlacementHelper
 import net.minecraft.advancements.CriteriaTriggers
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerPlayer

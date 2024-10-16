@@ -10,7 +10,13 @@ import org.koin.core.context.startKoin
 class CreateEnchantableMachineryFabric : ModInitializer {
     override fun onInitialize() {
         startKoin {
-            modules(registrateModule, fakePlayerModule, alternativePlacementHelperModule)
+            modules(
+                registrateModule,
+                fakePlayerModule,
+                alternativePlacementHelperModule,
+                itemEntityDataHelperModule,
+                sideExecutorHelperModule
+            )
         }
 
         init()

@@ -3,6 +3,7 @@ package io.github.cotrin8672.registrate
 import com.jozufozu.flywheel.api.MaterialManager
 import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
 import com.simibubi.create.content.kinetics.drill.DrillInstance
+import com.simibubi.create.content.kinetics.fan.FanInstance
 import com.simibubi.create.content.kinetics.saw.SawInstance
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
@@ -10,6 +11,8 @@ import com.tterrag.registrate.util.nullness.NonNullFunction
 import io.github.cotrin8672.CreateEnchantableMachinery.REGISTRATE
 import io.github.cotrin8672.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.content.block.drill.EnchantableDrillRenderer
+import io.github.cotrin8672.content.block.fan.EnchantableEncasedFanBlockEntity
+import io.github.cotrin8672.content.block.fan.EnchantableEncasedFanRenderer
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterBlockEntity
 import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterRenderer
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlockEntity
@@ -52,6 +55,15 @@ object BlockEntityRegistration {
         }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
             .renderer { NonNullFunction(::EnchantablePloughRenderer) }
+            .register()
+
+    val ENCHANTABLE_ENCASED_FAN: BlockEntityEntry<EnchantableEncasedFanBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableEncasedFanBlockEntity>("enchantable_encase_fan") { type, pos, state ->
+            EnchantableEncasedFanBlockEntity(type, pos, state)
+        }
+            .instance(renderNormally = true) { ::FanInstance }
+            .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
+            .renderer { NonNullFunction(::EnchantableEncasedFanRenderer) }
             .register()
 
     fun register() {}

@@ -1,4 +1,4 @@
-package io.github.cotrin8672.util
+package io.github.cotrin8672.util.interfaces
 
 import com.simibubi.create.foundation.placement.PlacementOffset
 import net.minecraft.world.InteractionHand

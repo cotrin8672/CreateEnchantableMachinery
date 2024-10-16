@@ -19,7 +19,13 @@ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 class CreateEnchantableMachineryForge {
     init {
         startKoin {
-            modules(registrateModule, fakePlayerModule, alternativePlacementHelperModule)
+            modules(
+                registrateModule,
+                fakePlayerModule,
+                alternativePlacementHelperModule,
+                itemEntityDataHelperModule,
+                sideExecutorHelperModule
+            )
         }
 
         MOD_BUS.addListener(this::registerBlockMapping)
