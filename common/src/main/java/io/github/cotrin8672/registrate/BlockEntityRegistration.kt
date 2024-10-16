@@ -6,6 +6,7 @@ import com.simibubi.create.content.kinetics.base.CutoutRotatingInstance
 import com.simibubi.create.content.kinetics.drill.DrillInstance
 import com.simibubi.create.content.kinetics.fan.FanInstance
 import com.simibubi.create.content.kinetics.millstone.MillstoneCogInstance
+import com.simibubi.create.content.kinetics.press.PressInstance
 import com.simibubi.create.content.kinetics.saw.SawInstance
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
@@ -24,6 +25,8 @@ import io.github.cotrin8672.content.block.millstone.EnchantableMillstoneBlockEnt
 import io.github.cotrin8672.content.block.millstone.EnchantableMillstoneRenderer
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlockEntity
 import io.github.cotrin8672.content.block.plough.EnchantablePloughRenderer
+import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressBlockEntity
+import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressRenderer
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.content.block.saw.EnchantableSawRenderer
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -98,6 +101,15 @@ object BlockEntityRegistration {
             .instance(renderNormally = true) { ::CutoutRotatingInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
             .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
+            .register()
+
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntityEntry<EnchantableMechanicalPressBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableMechanicalPressBlockEntity>("enchantable_mechanical_press") { type, pos, state ->
+            EnchantableMechanicalPressBlockEntity(type, pos, state)
+        }
+            .instance(renderNormally = true) { ::PressInstance }
+            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
+            .renderer { NonNullFunction(::EnchantableMechanicalPressRenderer) }
             .register()
 
     fun register() {}

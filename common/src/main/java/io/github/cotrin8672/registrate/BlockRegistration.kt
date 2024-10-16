@@ -21,6 +21,7 @@ import io.github.cotrin8672.content.block.harvester.EnchantableHarvesterMovement
 import io.github.cotrin8672.content.block.millstone.EnchantableMillstoneBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughBlock
 import io.github.cotrin8672.content.block.plough.EnchantablePloughMovementBehaviour
+import io.github.cotrin8672.content.block.press.EnchantableMechanicalPressBlock
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.content.block.saw.EnchantableSawMovementBehaviour
 import net.minecraft.client.renderer.RenderType
@@ -134,6 +135,18 @@ object BlockRegistration {
             .transform(BlockStressDefaults.setImpact(8.0))
             .register()
 
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> =
+        REGISTRATE.block<EnchantableMechanicalPressBlock>(
+            "enchantable_mechanical_press",
+            ::EnchantableMechanicalPressBlock
+        )
+            .initialProperties(SharedProperties::stone)
+            .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.horizontalBlockProvider(true))
+            .transform(BlockStressDefaults.setImpact(8.0))
+            .register()
 
     fun register() {}
 }
