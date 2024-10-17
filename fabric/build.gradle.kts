@@ -102,7 +102,7 @@ publisher {
     version.set(modVersion)
     displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() }} ${libs.versions.minecraft.get()}-${modVersion}")
     setGameVersions(libs.versions.minecraft.get())
-    setLoaders(project.name)
+    setLoaders(project.name, "quilt")
     setCurseEnvironment(CurseEnvironment.BOTH)
     artifact.set("build/libs/${base.archivesName.get()}-${project.version}.jar")
 
