@@ -28,8 +28,14 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      - name: Upload Forge version
-        run: ./gradlew forge:publishMod
+      - name: Upload Forge version to CurseForge
+        run: ./gradlew forge:publishCurseforge
 
-      - name: Upload Fabric version
-        run: ./gradlew fabric:publishMod
+      - name: Upload Forge version to Modrinth
+        run: ./gradlew forge:publishModrinth
+
+      - name: Upload Fabric version to CurseForge
+        run: ./gradlew fabric:publishCurseforge
+
+      - name: Upload Fabric version to Modrinth
+        run: ./gradlew fabric:publishModrinth
