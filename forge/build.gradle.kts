@@ -121,10 +121,10 @@ publisher {
     artifact.set("build/libs/${base.archivesName}-${project.version}.jar")
 
     curseDepends {
-        required("create", "kotlin-for-forge", "architectury-api")
+        required("create", "kotlin-for-forge")
     }
     modrinthDepends {
-        required("create", "kotlin-for-forge", "architectury-api")
+        required("create", "kotlin-for-forge")
     }
 }
 
