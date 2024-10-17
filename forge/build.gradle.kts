@@ -118,7 +118,7 @@ publisher {
     setGameVersions(libs.versions.minecraft.get())
     setLoaders(project.name)
     setCurseEnvironment(CurseEnvironment.BOTH)
-    artifact.set("build/libs/${base.archivesName}-${project.version}.jar")
+    artifact.set("build/libs/${base.archivesName.get()}-${project.version}.jar")
 
     curseDepends {
         required("create", "kotlin-for-forge")
