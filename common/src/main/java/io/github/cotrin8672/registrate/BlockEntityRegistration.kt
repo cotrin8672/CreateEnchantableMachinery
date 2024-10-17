@@ -136,9 +136,9 @@ object BlockEntityRegistration {
 
     fun register() {}
 
-    private fun <T : BlockEntity, P> CreateBlockEntityBuilder<T, P>.instance(
+    private inline fun <T : BlockEntity, P> CreateBlockEntityBuilder<T, P>.instance(
         renderNormally: Boolean = false,
-        instanceFactory: () -> ((MaterialManager, T) -> BlockEntityInstance<in T>),
+        crossinline instanceFactory: () -> ((MaterialManager, T) -> BlockEntityInstance<in T>),
     ): CreateBlockEntityBuilder<T, P> {
         return this.instance({
             BiFunction { materialManager: MaterialManager, be: T ->
