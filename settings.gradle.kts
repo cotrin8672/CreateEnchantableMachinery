@@ -1,23 +1,14 @@
 pluginManagement {
     repositories {
+        maven("https://maven.fabricmc.net/")
+        maven("https://maven.architectury.dev/")
+        maven("https://maven.minecraftforge.net/")
+        maven("https://maven.quiltmc.org/repository/release")
+        maven("https://maven.firstdark.dev/releases")
         gradlePluginPortal()
-        mavenCentral()
-        maven {
-            name = "MinecraftForge"
-            url = uri("https://maven.minecraftforge.net/")
-        }
-        maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
-        maven { url = uri("https://maven.firstdark.dev/releases") }
-    }
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.toString() == "org.spongepowered.mixin") {
-                useModule("org.spongepowered:mixingradle:0.7-SNAPSHOT")
-            }
-        }
     }
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
-}
+include("common")
+include("fabric")
+include("forge")

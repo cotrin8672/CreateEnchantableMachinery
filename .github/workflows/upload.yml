@@ -2,11 +2,14 @@ name: Upload to CurseForge and Modrinth
 on:
   push:
     branches:
-      - main
+      - 1.20.1
 
 jobs:
   upload:
     runs-on: ubuntu-latest
+    env:
+      CURSE_FORGE_API_KEY: ${{ secrets.CURSE_FORGE_API_KEY }}
+      MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,12 +24,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Build jar
-        run: |
-          chmod +x ./gradlew
-          ./gradlew build
+        run: ./gradlew build
 
-      - name: Upload to CurseForge
-        run: ./gradlew publishCurseforge
+      - name: Upload Forge version
+        run: ./gradlew forge:publishMod
 
-      - name: Upload to CurseForge
-        run: ./gradlew publishCurseforge
+      - name: Upload Fabric version
+        run: ./gradlew fabric:publishMod

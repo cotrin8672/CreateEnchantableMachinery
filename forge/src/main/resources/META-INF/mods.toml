@@ -1,0 +1,33 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[${forgeLoaderVersion},)"
+#issueTrackerURL = ""
+license = "${modLicense}"
+
+[[mods]]
+modId = "createenchantablemachinery"
+version = "${modVersion}"
+displayName = "${modName}"
+authors = "${modAuthors}"
+description = '''${modDescription}'''
+logoFile = "logo.png"
+
+[[dependencies.${modId}]]
+modId = "forge"
+mandatory = true
+versionRange = "[${forgeVersion},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modId}]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraftVersion}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modId}]]
+modId="create"
+mandatory=true
+versionRange="[0.5.1.f, )"
+ordering="NONE"
+side="BOTH"
