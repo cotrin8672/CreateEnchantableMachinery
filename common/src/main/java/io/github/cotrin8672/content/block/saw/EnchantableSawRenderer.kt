@@ -16,11 +16,9 @@ import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRender
 import com.simibubi.create.foundation.render.CachedBufferer
 import com.simibubi.create.foundation.render.SuperByteBuffer
 import com.simibubi.create.foundation.utility.AngleHelper
-import io.github.cotrin8672.CreateEnchantableMachinery
 import io.github.cotrin8672.CreateEnchantableMachinery.itemStackHandlerHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
-import io.github.cotrin8672.util.extension.inventorySlots
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource

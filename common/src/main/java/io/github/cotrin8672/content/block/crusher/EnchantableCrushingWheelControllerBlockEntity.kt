@@ -17,9 +17,8 @@ import io.github.cotrin8672.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.mixin.CrushingWheelControllerBlockEntityMixin
 import io.github.cotrin8672.util.Side
 import io.github.cotrin8672.util.SideExecutor
-import io.github.cotrin8672.util.extension.nonNullLevel
 import io.github.cotrin8672.util.extension.entityPersistentData
-import io.github.cotrin8672.util.extension.inventorySlots
+import io.github.cotrin8672.util.extension.nonNullLevel
 import io.github.cotrin8672.util.extension.smartBlockEntityTick
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
