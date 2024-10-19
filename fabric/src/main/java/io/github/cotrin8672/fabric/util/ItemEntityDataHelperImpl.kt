@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.item.ItemEntity
 
 class ItemEntityDataHelperImpl : ItemEntityDataHelper {
-    override fun persistentData(itemEntity: ItemEntity): CompoundTag {
+    override fun entityPersistentData(itemEntity: ItemEntity): CompoundTag {
         return itemEntity.customData
     }
 }

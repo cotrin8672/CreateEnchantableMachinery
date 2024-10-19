@@ -15,7 +15,8 @@ class CreateEnchantableMachineryFabric : ModInitializer {
                 fakePlayerModule,
                 alternativePlacementHelperModule,
                 itemEntityDataHelperModule,
-                sideExecutorHelperModule
+                sideExecutorHelperModule,
+                itemStackHandlerHelperModule,
             )
         }
 
