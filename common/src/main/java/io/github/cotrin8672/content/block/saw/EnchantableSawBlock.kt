@@ -6,6 +6,7 @@ import com.simibubi.create.content.kinetics.saw.SawBlockEntity
 import com.simibubi.create.foundation.placement.IPlacementHelper
 import com.simibubi.create.foundation.placement.PlacementHelpers
 import com.simibubi.create.foundation.placement.PlacementOffset
+import io.github.cotrin8672.CreateEnchantableMachinery.itemStackHandlerHelper
 import io.github.cotrin8672.content.block.EnchantableBlock
 import io.github.cotrin8672.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.registrate.BlockEntityRegistration
@@ -108,7 +109,7 @@ class EnchantableSawBlock(properties: Properties) : SawBlock(properties), Enchan
         if (state.getOptionalValue(FACING).orElse(Direction.WEST) != Direction.UP) return InteractionResult.PASS
 
         return onBlockEntityUse(worldIn, pos) { be: SawBlockEntity ->
-            for (i in 0 until be.inventory.slotCount) {
+            for (i in 0 until itemStackHandlerHelper.getSlots(be.inventory)) {
                 val heldItemStack = be.inventory.getStackInSlot(i)
                 if (!worldIn.isClientSide && !heldItemStack.isEmpty)
                     player.inventory.placeItemBackInInventory(heldItemStack)

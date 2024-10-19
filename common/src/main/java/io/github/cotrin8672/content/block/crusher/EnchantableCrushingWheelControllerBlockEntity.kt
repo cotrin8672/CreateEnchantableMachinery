@@ -11,13 +11,14 @@ import com.simibubi.create.foundation.sound.SoundScapes
 import com.simibubi.create.foundation.sound.SoundScapes.AmbienceGroup
 import com.simibubi.create.foundation.utility.VecHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
+import io.github.cotrin8672.CreateEnchantableMachinery.itemStackHandlerHelper
 import io.github.cotrin8672.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.mixin.CrushingWheelControllerBlockEntityMixin
 import io.github.cotrin8672.util.Side
 import io.github.cotrin8672.util.SideExecutor
+import io.github.cotrin8672.util.extension.entityPersistentData
 import io.github.cotrin8672.util.extension.nonNullLevel
-import io.github.cotrin8672.util.extension.persistentData
 import io.github.cotrin8672.util.extension.smartBlockEntityTick
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -124,7 +125,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
                 if (behaviour != null) {
                     var changed = false
                     if (!behaviour.canInsertFromSide(facing)) return
-                    for (slot in 0 until inventory.slotCount) {
+                    for (slot in 0 until itemStackHandlerHelper.getSlots(inventory)) {
                         val stack = inventory.getStackInSlot(slot)
                         if (stack.isEmpty) continue
                         val remainder = behaviour.handleInsertion(stack, facing, false)
@@ -141,12 +142,12 @@ class EnchantableCrushingWheelControllerBlockEntity(
             }
 
             // Eject Items
-            for (slot in 0 until inventory.slotCount) {
+            for (slot in 0 until itemStackHandlerHelper.getSlots(inventory)) {
                 val stack = inventory.getStackInSlot(slot)
                 if (stack.isEmpty) continue
                 val entityIn = ItemEntity(nonNullLevel, outPos.x, outPos.y, outPos.z, stack)
                 entityIn.deltaMovement = outSpeed
-                entityIn.persistentData.put("BypassCrushingWheel", NbtUtils.writeBlockPos(worldPosition))
+                entityIn.entityPersistentData.put("BypassCrushingWheel", NbtUtils.writeBlockPos(worldPosition))
                 nonNullLevel.addFreshEntity(entityIn)
             }
             inventory.clear()
@@ -260,7 +261,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
                 }
             }
             var slot = 0
-            while (slot < list.size && slot + 1 < inventory.slotCount) {
+            while (slot < list.size && slot + 1 < itemStackHandlerHelper.getSlots(inventory)) {
                 inventory.setStackInSlot(slot + 1, list[slot])
                 slot++
             }

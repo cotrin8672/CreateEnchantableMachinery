@@ -6,7 +6,7 @@ import com.simibubi.create.content.kinetics.fan.processing.AllFanProcessingTypes
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry
 import com.simibubi.create.infrastructure.config.AllConfigs
-import io.github.cotrin8672.util.extension.persistentData
+import io.github.cotrin8672.util.extension.entityPersistentData
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.level.Level
@@ -14,8 +14,8 @@ import kotlin.math.pow
 
 class EnchantableFanProcessing(private val efficiencyLevel: Int) {
     fun canProcess(entity: ItemEntity, type: FanProcessingType): Boolean {
-        if (entity.persistentData.contains("CreateData")) {
-            val compound = entity.persistentData.getCompound("CreateData")
+        if (entity.entityPersistentData.contains("CreateData")) {
+            val compound = entity.entityPersistentData.getCompound("CreateData")
             if (compound.contains("Processing")) {
                 val processing = compound.getCompound("Processing")
 
@@ -77,7 +77,7 @@ class EnchantableFanProcessing(private val efficiencyLevel: Int) {
     }
 
     private fun decrementProcessingTime(entity: ItemEntity, type: FanProcessingType): Int {
-        val nbt = entity.persistentData
+        val nbt = entity.entityPersistentData
 
         if (!nbt.contains("CreateData")) nbt.put("CreateData", CompoundTag())
         val createData = nbt.getCompound("CreateData")

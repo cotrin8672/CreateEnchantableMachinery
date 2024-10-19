@@ -24,7 +24,8 @@ class CreateEnchantableMachineryForge {
                 fakePlayerModule,
                 alternativePlacementHelperModule,
                 itemEntityDataHelperModule,
-                sideExecutorHelperModule
+                sideExecutorHelperModule,
+                itemStackHandlerHelperModule,
             )
         }
 
