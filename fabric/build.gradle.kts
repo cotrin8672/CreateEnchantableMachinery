@@ -31,11 +31,28 @@ architectury {
     fabric()
 }
 
+fabricApi {
+    configureDataGeneration()
+}
+
 loom {
     mixin {
         defaultRefmapName.set("${modId}.refmap.json")
     }
     silentMojangMappingsLicense()
+
+    runs {
+        getByName("datagen") {
+            client()
+
+            vmArg("-Dfabric-api.datagen")
+            vmArg("-Dfabric-api.datagen.output-dir=${project(":common").file("src/generated/resources")}")
+            vmArg("-Dporting_lib.datagen.existing_resources=${project(":common").file("src/main/resources")}")
+            vmArg("-Dporting_lib.datagen.existing-mod=create")
+
+            environmentVariable("DATAGEN", "TRUE")
+        }
+    }
 }
 
 val common: Configuration by configurations.creating

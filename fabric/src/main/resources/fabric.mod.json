@@ -14,6 +14,9 @@
   "icon": "logo.png",
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "io.github.cotrin8672.fabric.CreateEnchantableMachineryDatagen"
+    ],
     "client": [
       {
         "adapter": "kotlin",
