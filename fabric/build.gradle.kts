@@ -70,6 +70,7 @@ configurations {
 }
 
 repositories {
+    mavenCentral() // Mixin Extras, Fabric ASM
     maven("https://api.modrinth.com/maven") // LazyDFU
     maven("https://maven.terraformersmc.com/releases/") // Mod Menu
     maven("https://mvn.devos.one/snapshots/")
@@ -78,7 +79,10 @@ repositories {
     maven("https://maven.jamieswhiteshirt.com/libs-release")// Reach Entity Attributes
     maven("https://jitpack.io/")
     maven("https://maven.parchmentmc.org")
-    mavenCentral() // Mixin Extras, Fabric ASM
+    maven {
+        url = uri("https://cursemaven.com")
+        content { includeGroup("curse.maven") }
+    }
 }
 
 configurations.configureEach {
@@ -98,7 +102,9 @@ dependencies {
     modImplementation(libs.fabric.api)
     modImplementation(libs.fabric.kotlin)
     modImplementation(libs.create.fabric)
+
     modLocalRuntime(libs.modmenu)
+    modCompileOnly(libs.majrusz.library.fabric)
 
     implementation(libs.koin)
     include(libs.koin)

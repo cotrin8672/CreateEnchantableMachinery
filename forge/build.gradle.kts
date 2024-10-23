@@ -96,6 +96,8 @@ dependencies {
     modImplementation(libs.registrate)
     modImplementation(libs.flywheel)
 
+    modCompileOnly(libs.majrusz.library.forge)
+
     implementation(libs.koin)
     kotlinForgeRuntimeLibrary(libs.koin)
     include(libs.koin)
