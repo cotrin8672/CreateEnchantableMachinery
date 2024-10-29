@@ -131,7 +131,7 @@ class EnchantableSawBlockEntity(
             CuttingRecipe::class.java
         )
         if (assemblyRecipe.isPresent && (this@EnchantableSawBlockEntity as SawBlockEntityMixin).filtering.test(
-                assemblyRecipe.get().getResultItem(level!!.registryAccess())
+                assemblyRecipe.get().getResultItem()
             )
         ) return ImmutableList.of(assemblyRecipe.get())
 

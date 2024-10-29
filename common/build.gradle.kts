@@ -54,6 +54,7 @@ dependencies {
         officialMojangMappings { nameSyntheticMembers = false }
     })
     modImplementation(libs.fabric.loader)
+    modCompileOnly(libs.fabric.api)
     modCompileOnly(libs.create.fabric)
     compileOnly(libs.koin)
 }

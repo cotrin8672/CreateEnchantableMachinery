@@ -11,6 +11,7 @@ class RegistrateHandlerImpl : RegistrateHandler {
     override fun getRegistrate(): CreateRegistrate {
         return if (registrate == null) {
             registrate = KotlinRegistrate.create(MOD_ID)
+            registrate!!.registerEventListeners(MOD_BUS)
             registrate!!
         } else registrate!!
     }

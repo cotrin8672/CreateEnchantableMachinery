@@ -3,7 +3,7 @@ package io.github.cotrin8672.fabric.content.entity
 import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import io.github.cotrin8672.util.EnchantedItemFactory
-import net.fabricmc.fabric.api.entity.FakePlayer
+import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper

@@ -4,7 +4,8 @@ import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity
 import io.github.cotrin8672.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.util.EnchantedItemFactory
-import net.fabricmc.fabric.api.entity.FakePlayer
+import io.github.cotrin8672.util.extension.center
+import io.github.fabricators_of_create.porting_lib.fake_players.FakePlayer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
@@ -20,7 +21,7 @@ class BlockBreaker(
         private val _blockBreakerList = mutableListOf<BlockBreaker>()
 
         fun unload(level: ServerLevel) {
-            _blockBreakerList.removeIf { it.level() == level }
+            _blockBreakerList.removeIf { it.level == level }
         }
     }
 

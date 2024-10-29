@@ -6,6 +6,6 @@ import net.minecraft.world.entity.item.ItemEntity
 
 class ItemEntityDataHelperImpl : ItemEntityDataHelper {
     override fun entityPersistentData(itemEntity: ItemEntity): CompoundTag {
-        return itemEntity.customData
+        return itemEntity.extraCustomData
     }
 }

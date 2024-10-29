@@ -6,6 +6,8 @@
   "client": [
   ],
   "mixins": [
+    "BlockBuilderMixin",
+    "BlockEntityBuilderMixin",
     "BlockItemMixin",
     "CreateBlockEntityBuilderMixin",
     "CustomEnchantmentMixin"

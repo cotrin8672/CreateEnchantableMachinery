@@ -1,6 +1,6 @@
 package io.github.cotrin8672.forge.mixin;
 
-import com.majruszlibrary.item.CustomEnchantment;
+import com.mlib.enchantments.CustomEnchantment;
 import io.github.cotrin8672.content.block.EnchantableBlock;
 import io.github.cotrin8672.util.EnchantableBlockMapping;
 import net.minecraft.world.item.BlockItem;

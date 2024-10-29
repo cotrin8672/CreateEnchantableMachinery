@@ -5,6 +5,6 @@ import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandle
 
 class ItemStackHandlerHelperImpl : ItemStackHandlerHelper<ItemStackHandler> {
     override fun getSlots(itemStackHandler: ItemStackHandler): Int {
-        return itemStackHandler.slotCount
+        return itemStackHandler.slots
     }
 }
