@@ -27,7 +27,7 @@ import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.BlockHitResult
 import java.util.function.Predicate
@@ -46,9 +46,9 @@ class EnchantableRollerBlock(properties: Properties) : RollerBlock(properties), 
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
+    override fun getDrops(blockState: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
         val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
-        val stack = ItemStack(AllBlocks.MECHANICAL_ROLLER)
+        val stack = ItemStack(AllBlocks.MECHANICAL_ROLLER.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
@@ -58,12 +58,12 @@ class EnchantableRollerBlock(properties: Properties) : RollerBlock(properties), 
     }
 
     override fun asItem(): Item {
-        return AllBlocks.MECHANICAL_ROLLER.asItem()
+        return AllBlocks.MECHANICAL_ROLLER.get().asItem()
     }
 
     override fun getCloneItemStack(level: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_ROLLER)
+        val stack = ItemStack(AllBlocks.MECHANICAL_ROLLER.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)

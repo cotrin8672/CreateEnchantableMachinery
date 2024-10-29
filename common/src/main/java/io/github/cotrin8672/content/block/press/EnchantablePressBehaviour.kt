@@ -53,7 +53,7 @@ class EnchantablePressBehaviour<T>(
                         ItemEntity::class.java,
                         AABB(worldPosition.below()).deflate(0.125)
                     )) {
-                        if (!itemEntity.isAlive || !itemEntity.onGround()) continue
+                        if (!itemEntity.isAlive || !itemEntity.isOnGround) continue
                         if (!specifics.tryProcessInWorld(itemEntity, true)) continue
                         start(Mode.WORLD)
                         return

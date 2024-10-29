@@ -31,8 +31,7 @@ import io.github.cotrin8672.content.block.saw.EnchantableSawMovementBehaviour
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockBehaviour
-import net.minecraft.world.level.material.MapColor
-import net.minecraft.world.level.material.PushReaction
+import net.minecraft.world.level.material.MaterialColor
 import java.util.function.Supplier
 
 object BlockRegistration {
@@ -43,7 +42,7 @@ object BlockRegistration {
             ::EnchantableDrillBlock
         )
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.PODZOL) }
+            .properties { it.color(MaterialColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.directionalBlockProvider(true))
             .transform(BlockStressDefaults.setImpact(4.0))
@@ -54,7 +53,7 @@ object BlockRegistration {
     val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntry<EnchantableHarvesterBlock> =
         REGISTRATE.block<EnchantableHarvesterBlock>("enchantable_mechanical_harvester", ::EnchantableHarvesterBlock)
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.METAL).forceSolidOn() }
+            .properties { it.color(MaterialColor.METAL) }
             .transform(axeOrPickaxe())
             .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
@@ -66,7 +65,7 @@ object BlockRegistration {
         REGISTRATE.block<EnchantableSawBlock>("enchantable_mechanical_saw", ::EnchantableSawBlock)
             .initialProperties(SharedProperties::stone)
             .addLayer(RenderType.cutoutMipped())
-            .properties { it.mapColor(MapColor.PODZOL) }
+            .properties { it.color(MaterialColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(SawGenerator()::generate)
             .transform(BlockStressDefaults.setImpact(4.0))
@@ -77,7 +76,7 @@ object BlockRegistration {
     val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntry<EnchantablePloughBlock> =
         REGISTRATE.block<EnchantablePloughBlock>("enchantable_mechanical_plough", ::EnchantablePloughBlock)
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.COLOR_GRAY).forceSolidOn() }
+            .properties { it.color(MaterialColor.COLOR_GRAY) }
             .transform(axeOrPickaxe())
             .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(false))
@@ -87,7 +86,7 @@ object BlockRegistration {
     val ENCHANTABLE_ENCASED_FAN =
         REGISTRATE.block<EnchantableEncasedFanBlock>("enchantable_encased_fan", ::EnchantableEncasedFanBlock)
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.PODZOL) }
+            .properties { it.color(MaterialColor.PODZOL) }
             .blockstate(BlockStateGen.directionalBlockProvider(true))
             .addLayer(RenderType.cutoutMipped())
             .transform(axeOrPickaxe())
@@ -98,7 +97,7 @@ object BlockRegistration {
     val ENCHANTABLE_MILLSTONE: BlockEntry<EnchantableMillstoneBlock> =
         REGISTRATE.block<EnchantableMillstoneBlock>("enchantable_millstone", ::EnchantableMillstoneBlock)
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.METAL) }
+            .properties { it.color(MaterialColor.METAL) }
             .transform(pickaxeOnly())
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .transform(BlockStressDefaults.setImpact(4.0))
@@ -111,12 +110,10 @@ object BlockRegistration {
             ::EnchantableCrushingWheelControllerBlock
         )
             .properties {
-                it.mapColor(MapColor.STONE)
+                it.color(MaterialColor.STONE)
                     .noOcclusion()
-                    .noLootTable()
+                    .noDrops()
                     .air()
-                    .noCollission()
-                    .pushReaction(PushReaction.BLOCK)
             }
             .blockstate { c, p ->
                 p.getVariantBuilder(c.get()).forAllStatesExcept(
@@ -132,7 +129,7 @@ object BlockRegistration {
             "enchantable_crushing_wheel",
             ::EnchantableCrushingWheelBlock
         )
-            .properties { it.mapColor(MapColor.METAL) }
+            .properties { it.color(MaterialColor.METAL) }
             .initialProperties(SharedProperties::stone)
             .properties(BlockBehaviour.Properties::noOcclusion)
             .transform(pickaxeOnly())
@@ -148,7 +145,7 @@ object BlockRegistration {
             ::EnchantableMechanicalPressBlock
         )
             .initialProperties(SharedProperties::stone)
-            .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
+            .properties { it.noOcclusion().color(MaterialColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
             .transform(BlockStressDefaults.setImpact(8.0))
@@ -161,7 +158,7 @@ object BlockRegistration {
             ::EnchantableMechanicalMixerBlock
         )
             .initialProperties(SharedProperties::stone)
-            .properties { it.noOcclusion().mapColor(MapColor.STONE) }
+            .properties { it.noOcclusion().color(MaterialColor.STONE) }
             .transform(axeOrPickaxe())
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .addLayer(RenderType.cutoutMipped())
@@ -172,7 +169,7 @@ object BlockRegistration {
     val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntry<EnchantableRollerBlock> =
         REGISTRATE.block<EnchantableRollerBlock>("enchantable_mechanical_roller", ::EnchantableRollerBlock)
             .initialProperties(SharedProperties::stone)
-            .properties { it.mapColor(MapColor.COLOR_GRAY).noOcclusion() }
+            .properties { it.color(MaterialColor.COLOR_GRAY).noOcclusion() }
             .transform(axeOrPickaxe())
             .onRegister(movementBehaviour(EnchantableRollerMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(true))

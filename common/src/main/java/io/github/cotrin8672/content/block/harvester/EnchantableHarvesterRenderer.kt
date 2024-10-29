@@ -3,7 +3,6 @@ package io.github.cotrin8672.content.block.harvester
 import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterBlock
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
@@ -17,13 +16,14 @@ import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
 import io.github.cotrin8672.registrate.PartialModelRegistration
+import io.github.cotrin8672.util.CustomSheetedDecalTextureGenerator
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
-import net.minecraft.util.RandomSource
 import net.minecraft.world.phys.Vec3
+import java.util.*
 
 class EnchantableHarvesterRenderer(
     private val context: BlockEntityRendererProvider.Context,
@@ -38,7 +38,7 @@ class EnchantableHarvesterRenderer(
     ) {
         val blockState = be.blockState
         val superBuffer = CachedBufferer.partial(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE, blockState)
-        val consumer = SheetedDecalTextureGenerator(
+        val consumer = CustomSheetedDecalTextureGenerator(
             buffer.getBuffer(EnchantedRenderType.GLINT),
             ms.last().pose(),
             ms.last().normal(),
@@ -73,7 +73,7 @@ class EnchantableHarvesterRenderer(
 
     companion object {
         private val PIVOT = Vec3(0.0, 6.0, 9.0)
-        private val RANDOM = RandomSource.create()
+        private val RANDOM = Random()
 
         fun renderInContraption(
             movementContext: MovementContext,
@@ -89,7 +89,7 @@ class EnchantableHarvesterRenderer(
                 movementContext.animationSpeed else 0f
             if (movementContext.contraption.stalled) speed = 0f
 
-            val consumer = SheetedDecalTextureGenerator(
+            val consumer = CustomSheetedDecalTextureGenerator(
                 buffers.getBuffer(EnchantedRenderType.GLINT),
                 matrices.viewProjection.last().pose(),
                 matrices.viewProjection.last().normal(),

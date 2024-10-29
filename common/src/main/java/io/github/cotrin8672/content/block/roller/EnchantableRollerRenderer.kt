@@ -3,7 +3,6 @@ package io.github.cotrin8672.content.block.roller
 import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
 import com.simibubi.create.content.contraptions.actors.roller.RollerBlock
@@ -16,15 +15,16 @@ import com.simibubi.create.foundation.utility.AngleHelper
 import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
+import io.github.cotrin8672.util.CustomSheetedDecalTextureGenerator
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.core.Direction
-import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
+import java.util.*
 
 class EnchantableRollerRenderer(
     private val context: BlockEntityRendererProvider.Context,
@@ -60,7 +60,7 @@ class EnchantableRollerRenderer(
 
         ms.use {
             if (Config.renderGlint.get()) {
-                val consumer = SheetedDecalTextureGenerator(
+                val consumer = CustomSheetedDecalTextureGenerator(
                     buffer.getBuffer(EnchantedRenderType.GLINT),
                     ms.last().pose(),
                     ms.last().normal(),
@@ -87,7 +87,7 @@ class EnchantableRollerRenderer(
     }
 
     companion object {
-        private val RANDOM = RandomSource.create()
+        private val RANDOM = Random()
 
         fun renderInContraption(
             context: MovementContext,
@@ -104,7 +104,7 @@ class EnchantableRollerRenderer(
 
             val viewProjection = matrices.viewProjection
             val contraptionWorldLight = ContraptionRenderDispatcher.getContraptionWorldLight(context, renderWorld)
-            val consumer = SheetedDecalTextureGenerator(
+            val consumer = CustomSheetedDecalTextureGenerator(
                 buffers.getBuffer(EnchantedRenderType.GLINT),
                 viewProjection.last().pose(),
                 viewProjection.last().normal(),

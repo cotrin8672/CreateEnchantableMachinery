@@ -6,7 +6,6 @@ import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMoveme
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ActorInstance
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
-import com.simibubi.create.foundation.item.ItemHelper
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.config.Config
@@ -29,6 +28,10 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty
 import org.apache.commons.lang3.mutable.MutableBoolean
 
 class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
+    private fun sameItem(stack: ItemStack, otherStack: ItemStack): Boolean {
+        return !otherStack.isEmpty && stack.`is`(otherStack.item)
+    }
+
     override fun createInstance(
         materialManager: MaterialManager?,
         simulationWorld: VirtualRenderWorld?,
@@ -68,7 +71,7 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
         BlockHelper.destroyBlockAs(world, pos, null, item, effectChance) { stack: ItemStack ->
             if (
                 AllConfigs.server().kinetics.harvesterReplants.get() && !seedSubtracted.value
-                && ItemHelper.sameItem(stack, ItemStack(stateVisited.block))
+                && sameItem(stack, ItemStack(stateVisited.block))
             ) {
                 stack.shrink(1)
                 seedSubtracted.setTrue()

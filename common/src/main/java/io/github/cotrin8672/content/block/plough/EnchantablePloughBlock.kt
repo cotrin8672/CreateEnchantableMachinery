@@ -16,7 +16,7 @@ import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 
 class EnchantablePloughBlock(properties: Properties) :
@@ -36,9 +36,9 @@ class EnchantablePloughBlock(properties: Properties) :
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
+    override fun getDrops(blockState: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
         val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
-        val stack = ItemStack(AllBlocks.MECHANICAL_PLOUGH)
+        val stack = ItemStack(AllBlocks.MECHANICAL_PLOUGH.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
@@ -49,7 +49,7 @@ class EnchantablePloughBlock(properties: Properties) :
 
     override fun getCloneItemStack(level: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_PLOUGH)
+        val stack = ItemStack(AllBlocks.MECHANICAL_PLOUGH.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)

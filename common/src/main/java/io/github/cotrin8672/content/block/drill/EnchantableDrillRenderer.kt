@@ -3,7 +3,6 @@ package io.github.cotrin8672.content.block.drill
 import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
@@ -17,12 +16,13 @@ import com.simibubi.create.foundation.utility.AnimationTickHolder
 import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
+import io.github.cotrin8672.util.CustomSheetedDecalTextureGenerator
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
-import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.BlockState
+import java.util.*
 
 class EnchantableDrillRenderer(
     private val context: BlockEntityRendererProvider.Context,
@@ -39,7 +39,7 @@ class EnchantableDrillRenderer(
         light: Int,
         overlay: Int,
     ) {
-        val consumer = SheetedDecalTextureGenerator(
+        val consumer = CustomSheetedDecalTextureGenerator(
             buffer.getBuffer(EnchantedRenderType.GLINT),
             ms.last().pose(),
             ms.last().normal(),
@@ -59,7 +59,7 @@ class EnchantableDrillRenderer(
     }
 
     companion object {
-        private val RANDOM = RandomSource.create()
+        private val RANDOM = Random()
 
         fun renderInContraption(
             movementContext: MovementContext,
@@ -72,7 +72,7 @@ class EnchantableDrillRenderer(
             val facing = state.getValue(DrillBlock.FACING)
 
             val time = AnimationTickHolder.getRenderTime() / 20
-            val consumer = SheetedDecalTextureGenerator(
+            val consumer = CustomSheetedDecalTextureGenerator(
                 buffer.getBuffer(EnchantedRenderType.GLINT),
                 matrices.viewProjection.last().pose(),
                 matrices.viewProjection.last().normal(),

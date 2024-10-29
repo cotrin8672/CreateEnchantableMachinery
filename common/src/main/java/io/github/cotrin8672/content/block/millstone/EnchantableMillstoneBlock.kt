@@ -17,7 +17,7 @@ import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 
 class EnchantableMillstoneBlock(properties: Properties) : MillstoneBlock(properties), EnchantableBlock {
@@ -30,9 +30,9 @@ class EnchantableMillstoneBlock(properties: Properties) : MillstoneBlock(propert
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
+    override fun getDrops(blockState: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
         val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
-        val stack = ItemStack(AllBlocks.MILLSTONE)
+        val stack = ItemStack(AllBlocks.MILLSTONE.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
@@ -42,12 +42,12 @@ class EnchantableMillstoneBlock(properties: Properties) : MillstoneBlock(propert
     }
 
     override fun asItem(): Item {
-        return AllBlocks.MILLSTONE.asItem()
+        return AllBlocks.MILLSTONE.get().asItem()
     }
 
     override fun getCloneItemStack(level: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MILLSTONE)
+        val stack = ItemStack(AllBlocks.MILLSTONE.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)

@@ -20,28 +20,28 @@ class EnchantableFanProcessing(private val efficiencyLevel: Int) {
                 val processing = compound.getCompound("Processing")
 
                 if (AllFanProcessingTypes.parseLegacy(processing.getString("Type")) !== type)
-                    return type.canProcess(entity.item, entity.level())
+                    return type.canProcess(entity.item, entity.level)
                 else if (processing.getInt("Time") >= 0)
                     return true
                 else if (processing.getInt("Time") == -1)
                     return false
             }
         }
-        return type.canProcess(entity.item, entity.level())
+        return type.canProcess(entity.item, entity.level)
     }
 
     fun applyProcessing(entity: ItemEntity, type: FanProcessingType): Boolean {
         if (decrementProcessingTime(entity, type) != 0) return false
-        val stacks = type.process(entity.item, entity.level()) ?: return false
+        val stacks = type.process(entity.item, entity.level) ?: return false
         if (stacks.isEmpty()) {
             entity.discard()
             return false
         }
         entity.item = stacks.removeAt(0)
         for (additional in stacks) {
-            val entityIn = ItemEntity(entity.level(), entity.x, entity.y, entity.z, additional)
+            val entityIn = ItemEntity(entity.level, entity.x, entity.y, entity.z, additional)
             entityIn.deltaMovement = entity.deltaMovement
-            entity.level().addFreshEntity(entityIn)
+            entity.level.addFreshEntity(entityIn)
         }
         return true
     }

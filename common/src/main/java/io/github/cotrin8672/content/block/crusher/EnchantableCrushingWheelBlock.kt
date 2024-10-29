@@ -28,7 +28,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.Vec3
 import kotlin.math.sign
@@ -103,7 +103,7 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         }
 
         if (!controllerExists) {
-            if (!level.getBlockState(controllerPos).canBeReplaced()) return
+            if (!level.getBlockState(controllerPos).material.isReplaceable) return
             level.setBlockAndUpdate(
                 controllerPos, BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.defaultState
                     .setValue(VALID, controllerShouldBeValid)
@@ -170,9 +170,9 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
+    override fun getDrops(blockState: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
         val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
-        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
+        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)
@@ -182,12 +182,12 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
     }
 
     override fun asItem(): Item {
-        return AllBlocks.CRUSHING_WHEEL.asItem()
+        return AllBlocks.CRUSHING_WHEEL.get().asItem()
     }
 
     override fun getCloneItemStack(level: BlockGetter, pos: BlockPos, state: BlockState): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
+        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL.get())
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.getEnchantments().forEach {
                 stack.enchant(it.enchantment, it.level)

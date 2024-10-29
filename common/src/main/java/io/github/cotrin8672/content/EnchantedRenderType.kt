@@ -59,7 +59,7 @@ class EnchantedRenderType private constructor(
             false,
             CompositeState.builder()
                 .setShaderState(RENDERTYPE_GLINT_SHADER)
-                .setTextureState(TextureStateShard(ItemRenderer.ENCHANTED_GLINT_ITEM, true, false))
+                .setTextureState(TextureStateShard(ItemRenderer.ENCHANT_GLINT_LOCATION, true, false))
                 .setWriteMaskState(COLOR_WRITE)
                 .setCullState(NO_CULL)
                 .setDepthTestState(LEQUAL_DEPTH_TEST)

@@ -50,7 +50,7 @@ repositories {
 dependencies {
     minecraft(libs.minecraft)
     mappings(loom.layered {
-        mappings("org.quiltmc:quilt-mappings:1.20.1+build.23:intermediary-v2")
+        mappings("org.quiltmc:quilt-mappings:1.18.2+build.26:intermediary-v2")
         officialMojangMappings { nameSyntheticMembers = false }
     })
     modImplementation(libs.fabric.loader)

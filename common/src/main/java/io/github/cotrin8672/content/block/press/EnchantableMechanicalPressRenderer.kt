@@ -2,19 +2,19 @@ package io.github.cotrin8672.content.block.press
 
 import com.jozufozu.flywheel.backend.Backend
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
 import com.simibubi.create.foundation.render.CachedBufferer
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
+import io.github.cotrin8672.util.CustomSheetedDecalTextureGenerator
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context
-import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.BlockState
+import java.util.*
 
 class EnchantableMechanicalPressRenderer(
     private val context: Context,
@@ -31,7 +31,7 @@ class EnchantableMechanicalPressRenderer(
         light: Int,
         overlay: Int,
     ) {
-        val consumer = SheetedDecalTextureGenerator(
+        val consumer = CustomSheetedDecalTextureGenerator(
             buffer.getBuffer(EnchantedRenderType.GLINT),
             ms.last().pose(),
             ms.last().normal(),
@@ -72,6 +72,6 @@ class EnchantableMechanicalPressRenderer(
     }
 
     companion object {
-        private val Random = RandomSource.create()
+        private val Random = Random()
     }
 }

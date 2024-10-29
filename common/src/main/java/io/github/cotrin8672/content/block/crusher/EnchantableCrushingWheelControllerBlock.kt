@@ -56,6 +56,6 @@ class EnchantableCrushingWheelControllerBlock(
     }
 
     override fun asItem(): Item {
-        return AllBlocks.CRUSHING_WHEEL_CONTROLLER.asItem()
+        return AllBlocks.CRUSHING_WHEEL_CONTROLLER.get().asItem()
     }
 }

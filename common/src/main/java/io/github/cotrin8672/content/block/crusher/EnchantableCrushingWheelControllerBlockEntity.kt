@@ -2,10 +2,10 @@ package io.github.cotrin8672.content.block.crusher
 
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour
+import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
-import com.simibubi.create.foundation.damageTypes.CreateDamageSources
 import com.simibubi.create.foundation.item.ItemHelper
 import com.simibubi.create.foundation.sound.SoundScapes
 import com.simibubi.create.foundation.sound.SoundScapes.AmbienceGroup
@@ -190,7 +190,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
                         it.setPos(entityOutPos.x, entityOutPos.y, entityOutPos.z)
                 }
                 if (delegate.getEnchantmentLevel(Enchantments.SILK_TOUCH) <= 0)
-                    it.hurt(CreateDamageSources.crush(level), crusherDamage.toFloat())
+                    it.hurt(CrushingWheelBlockEntity.DAMAGE_SOURCE, crusherDamage.toFloat())
                 if (!it.isAlive) it.setPos(entityOutPos.x, entityOutPos.y, entityOutPos.z)
                 return
             } else {

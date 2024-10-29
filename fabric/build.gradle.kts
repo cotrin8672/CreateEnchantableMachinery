@@ -94,7 +94,7 @@ configurations.configureEach {
 dependencies {
     minecraft(libs.minecraft)
     mappings(loom.layered {
-        mappings("org.quiltmc:quilt-mappings:1.20.1+build.23:intermediary-v2")
+        mappings("org.quiltmc:quilt-mappings:1.18.2+build.26:intermediary-v2")
         officialMojangMappings { nameSyntheticMembers = false }
     })
 
@@ -104,7 +104,7 @@ dependencies {
     modImplementation(libs.create.fabric)
 
     modLocalRuntime(libs.modmenu)
-    modCompileOnly(libs.majrusz.library.fabric)
+    // modCompileOnly(libs.majrusz.library.fabric)
 
     implementation(libs.koin)
     include(libs.koin)

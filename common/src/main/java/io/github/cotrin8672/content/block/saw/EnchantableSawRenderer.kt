@@ -3,8 +3,7 @@ package io.github.cotrin8672.content.block.saw
 import com.jozufozu.flywheel.backend.Backend
 import com.jozufozu.flywheel.core.PartialModel
 import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
-import com.mojang.math.Axis
+import com.mojang.math.Vector3f
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
@@ -19,18 +18,19 @@ import com.simibubi.create.foundation.utility.AngleHelper
 import io.github.cotrin8672.CreateEnchantableMachinery.itemStackHandlerHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
+import io.github.cotrin8672.util.CustomSheetedDecalTextureGenerator
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
+import net.minecraft.client.renderer.block.model.ItemTransforms
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.core.Direction
 import net.minecraft.util.Mth
-import net.minecraft.util.RandomSource
-import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.level.block.Rotation
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import java.util.*
 import kotlin.math.abs
 
 class EnchantableSawRenderer(
@@ -58,7 +58,7 @@ class EnchantableSawRenderer(
         light: Int,
         overlay: Int,
     ) {
-        val consumer = SheetedDecalTextureGenerator(
+        val consumer = CustomSheetedDecalTextureGenerator(
             buffer.getBuffer(EnchantedRenderType.GLINT),
             ms.last().pose(),
             ms.last().normal(),
@@ -173,9 +173,17 @@ class EnchantableSawRenderer(
                     )
 
                     ms.scale(.5f, .5f, .5f)
-                    if (alongZ) ms.mulPose(Axis.YP.rotationDegrees(90f))
-                    ms.mulPose(Axis.XP.rotationDegrees(90f))
-                    itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, light, overlay, ms, buffer, be.level, 0)
+                    if (alongZ) ms.mulPose(Vector3f.YP.rotationDegrees(90f))
+                    ms.mulPose(Vector3f.XP.rotationDegrees(90f))
+                    itemRenderer.renderStatic(
+                        stack,
+                        ItemTransforms.TransformType.FIXED,
+                        light,
+                        overlay,
+                        ms,
+                        buffer,
+                        0
+                    )
                     break
                 }
             }
@@ -183,6 +191,6 @@ class EnchantableSawRenderer(
     }
 
     companion object {
-        private val RANDOM: RandomSource = RandomSource.create()
+        private val RANDOM = Random()
     }
 }
