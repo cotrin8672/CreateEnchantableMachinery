@@ -15,7 +15,7 @@ val modName: String by project
 
 base {
     archivesName = modId
-    version = "${project.name}-${modVersion}-${libs.versions.minecraft.get()}"
+    version = "mc${libs.versions.minecraft.get()}-${modVersion}-${project.name}"
 }
 
 kotlin.jvmToolchain(17)
@@ -31,11 +31,28 @@ architectury {
     fabric()
 }
 
+fabricApi {
+    configureDataGeneration()
+}
+
 loom {
     mixin {
         defaultRefmapName.set("${modId}.refmap.json")
     }
     silentMojangMappingsLicense()
+
+    runs {
+        getByName("datagen") {
+            client()
+
+            vmArg("-Dfabric-api.datagen")
+            vmArg("-Dfabric-api.datagen.output-dir=${project(":common").file("src/generated/resources")}")
+            vmArg("-Dporting_lib.datagen.existing_resources=${project(":common").file("src/main/resources")}")
+            vmArg("-Dporting_lib.datagen.existing-mod=create")
+
+            environmentVariable("DATAGEN", "TRUE")
+        }
+    }
 }
 
 val common: Configuration by configurations.creating
@@ -53,6 +70,7 @@ configurations {
 }
 
 repositories {
+    mavenCentral() // Mixin Extras, Fabric ASM
     maven("https://api.modrinth.com/maven") // LazyDFU
     maven("https://maven.terraformersmc.com/releases/") // Mod Menu
     maven("https://mvn.devos.one/snapshots/")
@@ -61,7 +79,10 @@ repositories {
     maven("https://maven.jamieswhiteshirt.com/libs-release")// Reach Entity Attributes
     maven("https://jitpack.io/")
     maven("https://maven.parchmentmc.org")
-    mavenCentral() // Mixin Extras, Fabric ASM
+    maven {
+        url = uri("https://cursemaven.com")
+        content { includeGroup("curse.maven") }
+    }
 }
 
 configurations.configureEach {
@@ -81,7 +102,9 @@ dependencies {
     modImplementation(libs.fabric.api)
     modImplementation(libs.fabric.kotlin)
     modImplementation(libs.create.fabric)
+
     modLocalRuntime(libs.modmenu)
+    modCompileOnly(libs.majrusz.library.fabric)
 
     implementation(libs.koin)
     include(libs.koin)
@@ -95,11 +118,11 @@ publisher {
         curseforge(System.getenv("CURSE_FORGE_API_KEY"))
         modrinth(System.getenv("MODRINTH_API_KEY"))
     }
-    curseID.set("1061749")
+    curseID.set("1126577")
     modrinthID.set("eqrvp4NK")
     versionType.set("release")
     changelog.set(file("../changelog.md"))
-    version.set(modVersion)
+    version.set(project.version.toString())
     displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() }} ${libs.versions.minecraft.get()}-${modVersion}")
     setGameVersions(libs.versions.minecraft.get())
     setLoaders(project.name, "quilt")

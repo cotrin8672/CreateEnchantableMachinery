@@ -1,5 +1,6 @@
 package io.github.cotrin8672.forge.registrate
 
+import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.simibubi.create.foundation.data.CreateRegistrate
 import com.tterrag.registrate.builders.BlockEntityBuilder
 import com.tterrag.registrate.builders.BuilderCallback
@@ -18,34 +19,32 @@ class KotlinRegistrate(modId: String) : CreateRegistrate(modId) {
         return MOD_BUS
     }
 
-    override fun <T : BlockEntity> blockEntity(
-        name: String,
-        factory: BlockEntityBuilder.BlockEntityFactory<T>,
-    ): KotlinBlockEntityBuilder<T, CreateRegistrate> {
-        return customBlockEntity(parent = self(), name = name, factory = factory)
-    }
-
-    override fun <T : BlockEntity, P : Any> blockEntity(
-        parent: P,
-        name: String,
-        factory: BlockEntityBuilder.BlockEntityFactory<T>,
-    ): KotlinBlockEntityBuilder<T, P> = customBlockEntity(parent, name, factory)
+//    override fun <T : BlockEntity> blockEntity(
+//        name: String,
+//        factory: BlockEntityBuilder.BlockEntityFactory<T>,
+//    ) = customBlockEntity(parent = self(), name = name, factory = factory)
+//
+//    override fun <T : BlockEntity, P : Any> blockEntity(
+//        parent: P,
+//        name: String,
+//        factory: BlockEntityBuilder.BlockEntityFactory<T>,
+//    ) = customBlockEntity(parent, name, factory)
 
     private fun <T : BlockEntity, P> customBlockEntity(
         parent: P,
         name: String,
         factory: BlockEntityBuilder.BlockEntityFactory<T>,
-    ): KotlinBlockEntityBuilder<T, P> {
+    ): CreateBlockEntityBuilder<T, P> {
         return entry(
             name
         ) { callback: BuilderCallback ->
-            KotlinBlockEntityBuilder.create(
+            CreateBlockEntityBuilder.create(
                 this,
                 parent,
                 name,
                 callback,
                 factory
             )
-        } as KotlinBlockEntityBuilder<T, P>
+        } as CreateBlockEntityBuilder<T, P>
     }
 }
