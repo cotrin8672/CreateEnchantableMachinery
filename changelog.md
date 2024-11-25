@@ -1,2 +1,2 @@
 ### Fixed
- - Fixed an issue where crushing items with CrushingWheel would cause a crash.
+ - Fixed an issue that mechanical press doesn't render correctly when flywheel backend off.
