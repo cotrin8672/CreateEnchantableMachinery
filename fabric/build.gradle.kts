@@ -15,7 +15,7 @@ val modName: String by project
 
 base {
     archivesName = modId
-    version = "${project.name}-${modVersion}-${libs.versions.minecraft.get()}"
+    version = "mc${libs.versions.minecraft.get()}-${modVersion}-${project.name}"
 }
 
 kotlin.jvmToolchain(17)
@@ -122,7 +122,7 @@ publisher {
     modrinthID.set("eqrvp4NK")
     versionType.set("release")
     changelog.set(file("../changelog.md"))
-    version.set(modVersion)
+    version.set(project.version.toString())
     displayName.set("$modName ${project.name.replaceFirstChar { it.uppercase() }} ${libs.versions.minecraft.get()}-${modVersion}")
     setGameVersions(libs.versions.minecraft.get())
     setLoaders(project.name, "quilt")
