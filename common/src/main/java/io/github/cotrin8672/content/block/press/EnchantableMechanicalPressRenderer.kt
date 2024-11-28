@@ -37,7 +37,6 @@ class EnchantableMechanicalPressRenderer(
             ms.last().normal(),
             0.007125f
         )
-        super.renderSafe(be, partialTicks, ms, buffer, light, overlay)
         val blockState = be.blockState
         val headModel = CachedBufferer.partialFacing(
             AllPartialModels.MECHANICAL_PRESS_HEAD,
@@ -47,12 +46,7 @@ class EnchantableMechanicalPressRenderer(
         val pressingBehaviour = be.getPressingBehaviour()
         val renderedHeadOffset =
             pressingBehaviour.getRenderedHeadOffset(partialTicks) * pressingBehaviour.mode.headOffset
-        if (!Backend.canUseInstancing(be.level)) {
-            headModel
-                .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
-                .light(light)
-                .renderInto(ms, buffer.getBuffer(RenderType.solid()))
-        }
+
 
         ms.use {
             if (Config.renderGlint.get()) {
@@ -63,6 +57,12 @@ class EnchantableMechanicalPressRenderer(
                     .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
                     .light(light)
                     .renderInto(ms, consumer)
+            }
+            if (!Backend.canUseInstancing(be.level)) {
+                headModel
+                    .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
+                    .light(light)
+                    .renderInto(ms, buffer.getBuffer(RenderType.solid()))
             }
         }
     }
