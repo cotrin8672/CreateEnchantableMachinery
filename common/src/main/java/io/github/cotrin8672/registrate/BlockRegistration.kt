@@ -28,6 +28,8 @@ import io.github.cotrin8672.content.block.roller.EnchantableRollerBlock
 import io.github.cotrin8672.content.block.roller.EnchantableRollerMovementBehaviour
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.content.block.saw.EnchantableSawMovementBehaviour
+import io.github.cotrin8672.util.Side
+import io.github.cotrin8672.util.SideExecutor
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockBehaviour
@@ -58,14 +60,22 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            .addLayer(RenderType.cutoutMipped())
+            .apply {
+                SideExecutor.runWhenOn(Side.CLIENT) {
+                    this@apply.addLayer(RenderType.cutoutMipped())
+                }
+            }
             .register()
 
     @JvmStatic
     val ENCHANTABLE_MECHANICAL_SAW: BlockEntry<EnchantableSawBlock> =
         REGISTRATE.block<EnchantableSawBlock>("enchantable_mechanical_saw", ::EnchantableSawBlock)
             .initialProperties(SharedProperties::stone)
-            .addLayer(RenderType.cutoutMipped())
+            .apply {
+                SideExecutor.runWhenOn(Side.CLIENT) {
+                    this@apply.addLayer(RenderType.cutoutMipped())
+                }
+            }
             .properties { it.mapColor(MapColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(SawGenerator()::generate)
@@ -89,7 +99,11 @@ object BlockRegistration {
             .initialProperties(SharedProperties::stone)
             .properties { it.mapColor(MapColor.PODZOL) }
             .blockstate(BlockStateGen.directionalBlockProvider(true))
-            .addLayer(RenderType.cutoutMipped())
+            .apply {
+                SideExecutor.runWhenOn(Side.CLIENT) {
+                    this@apply.addLayer(RenderType.cutoutMipped())
+                }
+            }
             .transform(axeOrPickaxe())
             .transform(BlockStressDefaults.setImpact(2.0))
             .register()
@@ -137,7 +151,11 @@ object BlockRegistration {
             .properties(BlockBehaviour.Properties::noOcclusion)
             .transform(pickaxeOnly())
             .blockstate { c, p -> BlockStateGen.axisBlock(c, p) { AssetLookup.partialBaseModel(c, p) } }
-            .addLayer(RenderType.cutoutMipped())
+            .apply {
+                SideExecutor.runWhenOn(Side.CLIENT) {
+                    this@apply.addLayer(RenderType.cutoutMipped())
+                }
+            }
             .transform(BlockStressDefaults.setImpact(8.0))
             .register()
 
@@ -164,7 +182,11 @@ object BlockRegistration {
             .properties { it.noOcclusion().mapColor(MapColor.STONE) }
             .transform(axeOrPickaxe())
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
-            .addLayer(RenderType.cutoutMipped())
+            .apply {
+                SideExecutor.runWhenOn(Side.CLIENT) {
+                    this@apply.addLayer(RenderType.cutoutMipped())
+                }
+            }
             .transform(BlockStressDefaults.setImpact(4.0))
             .register()
 
@@ -176,7 +198,11 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .onRegister(movementBehaviour(EnchantableRollerMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            .addLayer(RenderType.cutoutMipped())
+            .apply {
+                SideExecutor.runWhenOn(Side.CLIENT) {
+                    this@apply.addLayer(RenderType.cutoutMipped())
+                }
+            }
             .register()
 
     fun register() {}
