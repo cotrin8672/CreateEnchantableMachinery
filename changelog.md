@@ -1,2 +1,3 @@
 ### Fixed
- - Fixed an issue that mechanical press doesn't render correctly when flywheel backend off.
+
+- Fixed an issue where Fabric server did not start correctly.
