@@ -3,7 +3,6 @@ package io.github.cotrin8672.forge
 import io.github.cotrin8672.CreateEnchantableMachinery.MOD_ID
 import io.github.cotrin8672.CreateEnchantableMachinery.init
 import io.github.cotrin8672.CreateEnchantableMachinery.registerBlockMapping
-import io.github.cotrin8672.CreateEnchantableMachinery.registrateHandler
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.registrate.PartialModelRegistration
 import net.minecraftforge.api.distmarker.Dist
@@ -24,13 +23,13 @@ class CreateEnchantableMachineryForge {
                 fakePlayerModule,
                 alternativePlacementHelperModule,
                 itemEntityDataHelperModule,
-                sideExecutorHelperModule,
+                sideExecutorModule,
                 itemStackHandlerHelperModule,
             )
         }
 
         MOD_BUS.addListener(this::registerBlockMapping)
-        registrateHandler.register()
+        //registrateHandler.register()
         init()
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec, "$MOD_ID-client.toml")
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT) { Runnable { PartialModelRegistration.register() } }

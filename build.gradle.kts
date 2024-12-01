@@ -16,6 +16,7 @@ subprojects {
         maven("https://maven.blamejared.com/") // JEI
         maven("https://maven.quiltmc.org/repository/release") // Quilt Mappings
         maven("https://maven.tterrag.com/")
+        maven("https://maven.parchmentmc.org")
     }
 }
 

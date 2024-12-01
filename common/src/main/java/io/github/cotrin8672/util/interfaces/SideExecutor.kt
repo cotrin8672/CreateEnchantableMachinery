@@ -1,14 +1,15 @@
 package io.github.cotrin8672.util.interfaces
 
+import io.github.cotrin8672.util.Side
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-interface ItemStackHandlerHelper<T> {
+interface SideExecutor {
     companion object : KoinComponent {
-        private val instance: ItemStackHandlerHelper<Any> by inject()
+        private val instance: SideExecutor by inject()
 
         operator fun invoke() = instance
     }
 
-    fun getSlots(itemStackHandler: T): Int
+    fun runWhenOn(side: Side, block: () -> Unit)
 }

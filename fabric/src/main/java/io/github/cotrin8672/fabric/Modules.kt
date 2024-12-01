@@ -6,12 +6,12 @@ import io.github.cotrin8672.fabric.registrate.RegistrateHandlerImpl
 import io.github.cotrin8672.fabric.util.AlternativePlacementHelperImpl
 import io.github.cotrin8672.fabric.util.ItemEntityDataHelperImpl
 import io.github.cotrin8672.fabric.util.ItemStackHandlerHelperImpl
-import io.github.cotrin8672.fabric.util.SideExecutorHelperImpl
+import io.github.cotrin8672.fabric.util.SideExecutorImpl
 import io.github.cotrin8672.registrate.RegistrateHandler
 import io.github.cotrin8672.util.interfaces.AlternativePlacementHelper
 import io.github.cotrin8672.util.interfaces.ItemEntityDataHelper
 import io.github.cotrin8672.util.interfaces.ItemStackHandlerHelper
-import io.github.cotrin8672.util.interfaces.SideExecutorHelper
+import io.github.cotrin8672.util.interfaces.SideExecutor
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -32,8 +32,8 @@ val itemEntityDataHelperModule = module {
     singleOf(::ItemEntityDataHelperImpl) bind ItemEntityDataHelper::class
 }
 
-val sideExecutorHelperModule = module {
-    singleOf(::SideExecutorHelperImpl) bind SideExecutorHelper::class
+val sideExecutorModule = module {
+    singleOf(::SideExecutorImpl) bind SideExecutor::class
 }
 
 val itemStackHandlerHelperModule = module {

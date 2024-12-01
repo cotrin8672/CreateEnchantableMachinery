@@ -7,8 +7,16 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.BlockHitResult
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 interface AlternativePlacementHelper {
+    companion object : KoinComponent {
+        private val instance: AlternativePlacementHelper by inject()
+
+        operator fun invoke() = instance
+    }
+
     fun placeAlternativeBlockInWorld(
         placementOffset: PlacementOffset,
         world: Level,

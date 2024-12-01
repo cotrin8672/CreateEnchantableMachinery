@@ -8,7 +8,7 @@ import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.mixin.KineticBlockEntityMixin
 import io.github.cotrin8672.mixin.SmartBlockEntityMixin
 import io.github.cotrin8672.util.Side
-import io.github.cotrin8672.util.SideExecutor
+import io.github.cotrin8672.util.interfaces.SideExecutor
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
 
@@ -35,7 +35,7 @@ fun KineticBlockEntity.kineticBlockEntityTick() {
 
     preventSpeedUpdate = 0
     if (nonNullLevel.isClientSide) {
-        SideExecutor.runWhenOn(Side.CLIENT) { Runnable(this::tickAudio) }
+        SideExecutor().runWhenOn(Side.CLIENT) { Runnable(this::tickAudio) }
         return
     }
 

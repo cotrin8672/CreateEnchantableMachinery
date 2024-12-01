@@ -35,6 +35,8 @@ import io.github.cotrin8672.content.block.roller.EnchantableRollerBlockEntity
 import io.github.cotrin8672.content.block.roller.EnchantableRollerRenderer
 import io.github.cotrin8672.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.content.block.saw.EnchantableSawRenderer
+import io.github.cotrin8672.util.Side
+import io.github.cotrin8672.util.interfaces.SideExecutor
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -46,9 +48,13 @@ object BlockEntityRegistration {
             "enchantable_drill",
             ::EnchantableDrillBlockEntity
         )
-            .instance(renderNormally = true) { ::DrillInstance }
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::DrillInstance }
+                    this@apply.renderer(::EnchantableDrillRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
-            .renderer(::EnchantableDrillRenderer)
             .register()
 
     val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntityEntry<EnchantableHarvesterBlockEntity> =
@@ -56,20 +62,39 @@ object BlockEntityRegistration {
             "enchantable_harvester",
             ::EnchantableHarvesterBlockEntity
         )
-            .renderer(::EnchantableHarvesterRenderer)
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.renderer(::EnchantableHarvesterRenderer)
+                }
+            }
+            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
             .register()
 
     val ENCHANTABLE_MECHANICAL_SAW: BlockEntityEntry<EnchantableSawBlockEntity> =
-        REGISTRATE.blockEntity<EnchantableSawBlockEntity>("enchantable_saw", ::EnchantableSawBlockEntity)
-            .instance(renderNormally = true) { ::SawInstance }
+        REGISTRATE.blockEntity<EnchantableSawBlockEntity>(
+            "enchantable_saw",
+            ::EnchantableSawBlockEntity
+        )
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::SawInstance }
+                    this@apply.renderer(::EnchantableSawRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
-            .renderer(::EnchantableSawRenderer)
             .register()
 
     val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntityEntry<EnchantablePloughBlockEntity> =
-        REGISTRATE.blockEntity<EnchantablePloughBlockEntity>("enchantable_plough", ::EnchantablePloughBlockEntity)
+        REGISTRATE.blockEntity<EnchantablePloughBlockEntity>(
+            "enchantable_plough",
+            ::EnchantablePloughBlockEntity
+        )
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.renderer(::EnchantablePloughRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
-            .renderer(::EnchantablePloughRenderer)
             .register()
 
     val ENCHANTABLE_ENCASED_FAN: BlockEntityEntry<EnchantableEncasedFanBlockEntity> =
@@ -77,9 +102,13 @@ object BlockEntityRegistration {
             "enchantable_encase_fan",
             ::EnchantableEncasedFanBlockEntity
         )
-            .instance(renderNormally = true) { ::FanInstance }
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::FanInstance }
+                    this@apply.renderer(::EnchantableEncasedFanRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
-            .renderer(::EnchantableEncasedFanRenderer)
             .register()
 
     val ENCHANTABLE_MILLSTONE: BlockEntityEntry<EnchantableMillstoneBlockEntity> =
@@ -87,9 +116,13 @@ object BlockEntityRegistration {
             "enchantable_millstone",
             ::EnchantableMillstoneBlockEntity
         )
-            .instance(renderNormally = true) { ::MillstoneCogInstance }
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::MillstoneCogInstance }
+                    this@apply.renderer(::EnchantableMillstoneRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MILLSTONE)
-            .renderer(::EnchantableMillstoneRenderer)
             .register()
 
     val ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER: BlockEntityEntry<EnchantableCrushingWheelControllerBlockEntity> =
@@ -105,9 +138,13 @@ object BlockEntityRegistration {
             "enchantable_crushing_wheel",
             ::EnchantableCrushingWheelBlockEntity
         )
-            .instance(renderNormally = true) { ::CutoutRotatingInstance }
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::CutoutRotatingInstance }
+                    this@apply.renderer(::EnchantableCrushingWheelRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
-            .renderer(::EnchantableCrushingWheelRenderer)
             .register()
 
     val ENCHANTABLE_MECHANICAL_PRESS: BlockEntityEntry<EnchantableMechanicalPressBlockEntity> =
@@ -115,9 +152,13 @@ object BlockEntityRegistration {
             "enchantable_mechanical_press",
             ::EnchantableMechanicalPressBlockEntity
         )
-            .instance(renderNormally = true) { ::PressInstance }
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::PressInstance }
+                    this@apply.renderer(::EnchantableMechanicalPressRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
-            .renderer(::EnchantableMechanicalPressRenderer)
             .register()
 
     val ENCHANTABLE_MECHANICAL_MIXER: BlockEntityEntry<EnchantableMechanicalMixerBlockEntity> =
@@ -125,9 +166,13 @@ object BlockEntityRegistration {
             "enchantable_mechanical_mixer",
             ::EnchantableMechanicalMixerBlockEntity
         )
-            .instance(renderNormally = true) { ::MixerInstance }
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.instance(renderNormally = true) { ::MixerInstance }
+                    this@apply.renderer(::EnchantableMechanicalMixerRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
-            .renderer(::EnchantableMechanicalMixerRenderer)
             .register()
 
     val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntityEntry<EnchantableRollerBlockEntity> =
@@ -135,8 +180,12 @@ object BlockEntityRegistration {
             "enchantable_mechanical_roller",
             ::EnchantableRollerBlockEntity
         )
+            .apply {
+                SideExecutor().runWhenOn(Side.CLIENT) {
+                    this@apply.renderer(::EnchantableRollerRenderer)
+                }
+            }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
-            .renderer(::EnchantableRollerRenderer)
             .register()
 
     fun register() {}

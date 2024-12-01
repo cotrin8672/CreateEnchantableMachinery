@@ -10,7 +10,7 @@ import com.simibubi.create.foundation.advancement.AllAdvancements
 import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.mixin.ServerGamePacketListenerImplMixin
 import io.github.cotrin8672.util.Side
-import io.github.cotrin8672.util.SideExecutor
+import io.github.cotrin8672.util.interfaces.SideExecutor
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.Minecraft
@@ -90,7 +90,7 @@ class EnchantableAirCurrent(source: IAirCurrentSource, efficiencyLevel: Int) : A
 
             entity.deltaMovement = previousMotion.add(Vec3(xIn, yIn, zIn).scale((1 / 8f).toDouble()))
             entity.fallDistance = 0f
-            SideExecutor.runWhenOn(Side.CLIENT) {
+            SideExecutor().runWhenOn(Side.CLIENT) {
                 enableClientPlayerSound(entity, Mth.clamp(speed / 128f * .4f, 0.01f, .4f))
             }
 
