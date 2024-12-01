@@ -26,10 +26,10 @@ jobs:
       - name: Build jar
         run: |
           chmod +x ./gradlew
-          ./gradlew clean
           ./gradlew build
-      - name: Upload to CurseForge
-        run: ./gradlew publishCurseforge
 
-      - name: Upload to Modrinth
-        run: ./gradlew publishModrinth
+      - name: Upload Forge version
+        run: ./gradlew forge:publishMod
+
+      - name: Upload Fabric version
+        run: ./gradlew fabric:publishMod
