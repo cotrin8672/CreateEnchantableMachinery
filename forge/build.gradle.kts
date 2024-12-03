@@ -15,7 +15,7 @@ val modName: String by project
 
 base {
     archivesName = modId
-    version = "mc${libs.versions.minecraft.get()}-${modVersion}-${project.name}"
+    version = "${modVersion}-mc${libs.versions.minecraft.get()}-${project.name}"
 }
 
 kotlin.jvmToolchain(17)
@@ -81,10 +81,7 @@ repositories {
 
 dependencies {
     minecraft(libs.minecraft)
-    mappings(loom.layered {
-        mappings("org.quiltmc:quilt-mappings:1.18.2+build.26:intermediary-v2")
-        officialMojangMappings { nameSyntheticMembers = false }
-    })
+    mappings(loom.officialMojangMappings())
 
     forge(libs.forge)
     implementation(libs.forge.kotlin)
