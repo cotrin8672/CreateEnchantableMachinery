@@ -6,11 +6,11 @@
   "client": [
   ],
   "mixins": [
-    "BlockBuilderMixin",
-    "BlockEntityBuilderMixin",
-    "BlockItemMixin",
-    "CreateBlockEntityBuilderMixin",
-    "CustomEnchantmentMixin"
+    "io.github.cotrin8672.createenchantablemachinery.forge.mixin.BlockBuilderMixin",
+    "io.github.cotrin8672.createenchantablemachinery.forge.mixin.BlockEntityBuilderMixin",
+    "io.github.cotrin8672.createenchantablemachinery.forge.mixin.BlockItemMixin",
+    "io.github.cotrin8672.createenchantablemachinery.forge.mixin.CreateBlockEntityBuilderMixin",
+    "io.github.cotrin8672.createenchantablemachinery.forge.mixin.CustomEnchantmentMixin"
   ],
   "injectors": {
     "defaultRequire": 1

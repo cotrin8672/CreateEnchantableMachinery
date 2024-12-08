@@ -15,18 +15,18 @@
   "environment": "*",
   "entrypoints": {
     "fabric-datagen": [
-      "io.github.cotrin8672.fabric.CreateEnchantableMachineryDatagen"
+      "io.github.cotrin8672.createenchantablemachinery.fabric.CreateEnchantableMachineryDatagen"
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "io.github.cotrin8672.fabric.CreateEnchantableMachineryFabricClient"
+        "value": "io.github.cotrin8672.createenchantablemachinery.fabric.CreateEnchantableMachineryFabricClient"
       }
     ],
     "main": [
       {
         "adapter": "kotlin",
-        "value": "io.github.cotrin8672.fabric.CreateEnchantableMachineryFabric"
+        "value": "io.github.cotrin8672.createenchantablemachinery.fabric.CreateEnchantableMachineryFabric"
       }
     ]
   },
