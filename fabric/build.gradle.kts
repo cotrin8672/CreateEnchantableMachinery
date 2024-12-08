@@ -118,7 +118,7 @@ publisher {
         curseforge(System.getenv("CURSE_FORGE_API_KEY"))
         modrinth(System.getenv("MODRINTH_API_KEY"))
     }
-    curseID.set("1061749")
+    curseID.set("1126577")
     modrinthID.set("eqrvp4NK")
     versionType.set("release")
     changelog.set(file("../changelog.md"))
