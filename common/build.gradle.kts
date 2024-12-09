@@ -10,7 +10,7 @@ val modVersion: String by project
 
 base {
     archivesName = modId
-    version = "mc${libs.versions.minecraft.get()}-${modVersion}-${project.name}"
+    version = "${modVersion}-mc${libs.versions.minecraft.get()}-${project.name}"
 }
 
 kotlin.jvmToolchain(17)
