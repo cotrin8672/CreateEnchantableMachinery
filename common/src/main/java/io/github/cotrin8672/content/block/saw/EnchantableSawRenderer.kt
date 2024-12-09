@@ -16,9 +16,9 @@ import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRender
 import com.simibubi.create.foundation.render.CachedBufferer
 import com.simibubi.create.foundation.render.SuperByteBuffer
 import com.simibubi.create.foundation.utility.AngleHelper
-import io.github.cotrin8672.CreateEnchantableMachinery.itemStackHandlerHelper
 import io.github.cotrin8672.config.Config
 import io.github.cotrin8672.content.EnchantedRenderType
+import io.github.cotrin8672.platform.ItemStackHandlerHelper
 import io.github.cotrin8672.util.extension.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
@@ -158,7 +158,7 @@ class EnchantableSawRenderer(
                 if (be.speed == 0f) offset = .5f
                 if ((be.speed < 0) xor alongZ) offset = 1 - offset
 
-                for (i in 0 until itemStackHandlerHelper.getSlots(be.inventory)) {
+                for (i in 0 until ItemStackHandlerHelper().getSlots(be.inventory)) {
                     val stack = be.inventory.getStackInSlot(i)
                     if (stack.isEmpty) continue
 

@@ -1,4 +1,4 @@
-package io.github.cotrin8672.util.interfaces
+package io.github.cotrin8672.platform
 
 import io.github.cotrin8672.util.Side
 

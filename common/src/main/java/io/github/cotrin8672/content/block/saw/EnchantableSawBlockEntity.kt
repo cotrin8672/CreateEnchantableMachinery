@@ -14,8 +14,8 @@ import com.simibubi.create.foundation.utility.VecHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.content.block.EnchantableBlockEntityDelegate
-import io.github.cotrin8672.content.entity.FakePlayerFactory
 import io.github.cotrin8672.mixin.SawBlockEntityMixin
+import io.github.cotrin8672.platform.BlockBreaker
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
@@ -31,8 +31,6 @@ import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.util.stream.Collectors
 import kotlin.math.max
 import kotlin.math.pow
@@ -42,12 +40,11 @@ class EnchantableSawBlockEntity(
     pos: BlockPos,
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : SawBlockEntity(type, pos, state), EnchantableBlockEntity by delegate, KoinComponent {
-    private val fakePlayerFactory: FakePlayerFactory by inject()
+) : SawBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
     private val fakePlayer by lazy {
         val nonNullLevel = checkNotNull(this.level)
         if (nonNullLevel is ServerLevel)
-            fakePlayerFactory.getBlockBreaker(nonNullLevel, this@EnchantableSawBlockEntity)
+            BlockBreaker(nonNullLevel, this@EnchantableSawBlockEntity)
         else null
     }
 

@@ -8,7 +8,7 @@ import com.simibubi.create.content.contraptions.render.ActorInstance
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.utility.BlockHelper
 import io.github.cotrin8672.config.Config
-import io.github.cotrin8672.content.entity.FakePlayerFactory
+import io.github.cotrin8672.platform.ContraptionBlockBreaker
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
@@ -16,12 +16,8 @@ import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class EnchantableRollerMovementBehaviour : RollerMovementBehaviour(), KoinComponent {
-    private val fakePlayerFactory: FakePlayerFactory by inject()
-
+class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
     override fun createInstance(
         materialManager: MaterialManager?,
         simulationWorld: VirtualRenderWorld?,
@@ -45,7 +41,7 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour(), KoinCompon
 
         val level = context.world
         val fakePlayer = if (level is ServerLevel) {
-            fakePlayerFactory.getContraptionBlockBreaker(level, context)
+            ContraptionBlockBreaker(level, context)
         } else null
         val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
             tag = context.blockEntityData

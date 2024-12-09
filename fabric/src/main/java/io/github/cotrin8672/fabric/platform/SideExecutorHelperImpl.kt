@@ -1,7 +1,7 @@
-package io.github.cotrin8672.fabric.util
+package io.github.cotrin8672.fabric.platform
 
+import io.github.cotrin8672.platform.SideExecutorHelper
 import io.github.cotrin8672.util.Side
-import io.github.cotrin8672.util.interfaces.SideExecutorHelper
 import io.github.fabricators_of_create.porting_lib.util.EnvExecutor
 import net.fabricmc.api.EnvType
 

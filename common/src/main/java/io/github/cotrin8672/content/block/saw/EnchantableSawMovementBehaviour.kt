@@ -6,7 +6,7 @@ import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.TreeCutter
-import io.github.cotrin8672.content.entity.FakePlayerFactory
+import io.github.cotrin8672.platform.ContraptionBlockBreaker
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
@@ -15,16 +15,12 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.block.state.BlockState
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class EnchantableSawMovementBehaviour : SawMovementBehaviour(), KoinComponent {
-    private val fakePlayerFactory: FakePlayerFactory by inject()
-
+class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
         val level = context?.world
         val fakePlayer = if (level is ServerLevel) {
-            fakePlayerFactory.getContraptionBlockBreaker(level, context)
+            ContraptionBlockBreaker(level, context)
         } else null
         BlockHelper.destroyBlockAs(context?.world, breakingPos, fakePlayer, fakePlayer?.mainHandItem, 1f) {
             this.dropItem(context, it)
@@ -35,7 +31,7 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour(), KoinComponent {
         if (brokenState.`is`(BlockTags.LEAVES)) return
         val level = context?.world
         val fakePlayer = if (level is ServerLevel) {
-            fakePlayerFactory.getContraptionBlockBreaker(level, context)
+            ContraptionBlockBreaker(level, context)
         } else null
 
         val dynamicTree = TreeCutter.findDynamicTree(brokenState.block, pos)

@@ -1,4 +1,4 @@
-package io.github.cotrin8672.util.interfaces
+package io.github.cotrin8672.platform
 
 import com.simibubi.create.foundation.placement.PlacementOffset
 import net.minecraft.world.InteractionHand
@@ -7,8 +7,16 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.BlockHitResult
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 interface AlternativePlacementHelper {
+    companion object : KoinComponent {
+        private val instance by inject<AlternativePlacementHelper>()
+
+        operator fun invoke() = instance
+    }
+
     fun placeAlternativeBlockInWorld(
         placementOffset: PlacementOffset,
         world: Level,

@@ -1,6 +1,6 @@
-package io.github.cotrin8672.forge.util
+package io.github.cotrin8672.forge.platform
 
-import io.github.cotrin8672.util.interfaces.ItemStackHandlerHelper
+import io.github.cotrin8672.platform.ItemStackHandlerHelper
 import net.minecraftforge.items.ItemStackHandler
 
 class ItemStackHandlerHelperImpl : ItemStackHandlerHelper<ItemStackHandler> {

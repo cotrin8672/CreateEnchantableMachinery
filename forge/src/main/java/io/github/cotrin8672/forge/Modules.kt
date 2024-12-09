@@ -1,17 +1,14 @@
 package io.github.cotrin8672.forge
 
-import io.github.cotrin8672.content.entity.FakePlayerFactory
-import io.github.cotrin8672.forge.content.entity.FakePlayerFactoryImpl
+import io.github.cotrin8672.forge.platform.AlternativePlacementHelperImpl
+import io.github.cotrin8672.forge.platform.ItemEntityDataHelperImpl
+import io.github.cotrin8672.forge.platform.ItemStackHandlerHelperImpl
+import io.github.cotrin8672.forge.platform.SideExecutorHelperImpl
+import io.github.cotrin8672.forge.platform.entity.BlockBreakerImpl
+import io.github.cotrin8672.forge.platform.entity.ContraptionBlockBreakerImpl
 import io.github.cotrin8672.forge.registrate.RegistrateHandlerImpl
-import io.github.cotrin8672.forge.util.AlternativePlacementHelperImpl
-import io.github.cotrin8672.forge.util.ItemEntityDataHelperImpl
-import io.github.cotrin8672.forge.util.ItemStackHandlerHelperImpl
-import io.github.cotrin8672.forge.util.SideExecutorHelperImpl
+import io.github.cotrin8672.platform.*
 import io.github.cotrin8672.registrate.RegistrateHandler
-import io.github.cotrin8672.util.interfaces.AlternativePlacementHelper
-import io.github.cotrin8672.util.interfaces.ItemEntityDataHelper
-import io.github.cotrin8672.util.interfaces.ItemStackHandlerHelper
-import io.github.cotrin8672.util.interfaces.SideExecutorHelper
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -21,7 +18,8 @@ val registrateModule = module {
 }
 
 val fakePlayerModule = module {
-    singleOf(::FakePlayerFactoryImpl) bind FakePlayerFactory::class
+    singleOf(::BlockBreakerImpl) bind BlockBreaker::class
+    singleOf(::ContraptionBlockBreakerImpl) bind ContraptionBlockBreaker::class
 }
 
 val alternativePlacementHelperModule = module {

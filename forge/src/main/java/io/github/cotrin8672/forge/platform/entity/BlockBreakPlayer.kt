@@ -1,31 +1,31 @@
-package io.github.cotrin8672.fabric.content.entity
+package io.github.cotrin8672.forge.platform.entity
 
 import com.mojang.authlib.GameProfile
 import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity
 import io.github.cotrin8672.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.util.EnchantedItemFactory
-import net.fabricmc.fabric.api.entity.FakePlayer
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
+import net.minecraftforge.common.util.FakePlayer
 import java.util.*
 
-class BlockBreaker(
+class BlockBreakPlayer(
     level: ServerLevel,
     blockEntity: BlockBreakingKineticBlockEntity,
 ) : FakePlayer(level, GameProfile(UUID.randomUUID(), "block_breaker")) {
     companion object {
-        private val _blockBreakerList = mutableListOf<BlockBreaker>()
+        private val _blockBreakPlayerList = mutableListOf<BlockBreakPlayer>()
 
         fun unload(level: ServerLevel) {
-            _blockBreakerList.removeIf { it.level() == level }
+            _blockBreakPlayerList.removeIf { it.level() == level }
         }
     }
 
     init {
-        _blockBreakerList.add(this)
+        _blockBreakPlayerList.add(this)
     }
 
     private val facing = level.getBlockState(blockEntity.blockPos).getValue(BlockStateProperties.FACING)

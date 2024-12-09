@@ -1,6 +1,6 @@
-package io.github.cotrin8672.forge.util
+package io.github.cotrin8672.forge.platform
 
-import io.github.cotrin8672.util.interfaces.ItemEntityDataHelper
+import io.github.cotrin8672.platform.ItemEntityDataHelper
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.item.ItemEntity
 

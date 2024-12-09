@@ -6,7 +6,7 @@ import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.utility.BlockHelper
 import io.github.cotrin8672.config.Config
-import io.github.cotrin8672.content.entity.FakePlayerFactory
+import io.github.cotrin8672.platform.ContraptionBlockBreaker
 import io.github.cotrin8672.util.EnchantedItemFactory
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
@@ -15,12 +15,8 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.EnchantmentInstance
 import net.minecraft.world.item.enchantment.Enchantments
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class EnchantablePloughMovementBehaviour : PloughMovementBehaviour(), KoinComponent {
-    private val fakePlayerFactory: FakePlayerFactory by inject()
-
+class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos?) {
         val level = context?.world
         val enchantedItem = EnchantedItemFactory.getHoeItemStack(
@@ -29,7 +25,7 @@ class EnchantablePloughMovementBehaviour : PloughMovementBehaviour(), KoinCompon
                 .toTypedArray()
         )
         val fakePlayer = if (level is ServerLevel) {
-            fakePlayerFactory.getContraptionBlockBreaker(level, context, enchantedItem)
+            ContraptionBlockBreaker(level, context, enchantedItem)
         } else null
         BlockHelper.destroyBlockAs(context?.world, breakingPos, fakePlayer, fakePlayer?.mainHandItem, 1f) {
             this.dropItem(context, it)

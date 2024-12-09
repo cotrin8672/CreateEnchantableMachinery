@@ -1,7 +1,7 @@
-package io.github.cotrin8672.forge.util
+package io.github.cotrin8672.forge.platform
 
+import io.github.cotrin8672.platform.SideExecutorHelper
 import io.github.cotrin8672.util.Side
-import io.github.cotrin8672.util.interfaces.SideExecutorHelper
 import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.fml.DistExecutor
 

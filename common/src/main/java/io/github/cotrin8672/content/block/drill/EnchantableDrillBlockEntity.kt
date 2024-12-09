@@ -6,7 +6,7 @@ import com.simibubi.create.foundation.utility.Lang
 import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.content.block.EnchantableBlockEntityDelegate
-import io.github.cotrin8672.content.entity.FakePlayerFactory
+import io.github.cotrin8672.platform.BlockBreaker
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
@@ -20,23 +20,16 @@ import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 class EnchantableDrillBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity by delegate, KoinComponent {
-    private val fakePlayerFactory: FakePlayerFactory by inject()
+) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
 
-    private val fakePlayer by lazy {
-        val nonNullLevel = checkNotNull(this.level)
-        if (nonNullLevel is ServerLevel)
-            fakePlayerFactory.getBlockBreaker(nonNullLevel, this@EnchantableDrillBlockEntity)
-        else null
-    }
+    private val fakePlayer = if (this.level is ServerLevel)
+        BlockBreaker(this.level as ServerLevel, this@EnchantableDrillBlockEntity) else null
 
     override fun getBreakSpeed(): Float {
         val efficiencyLevel = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)

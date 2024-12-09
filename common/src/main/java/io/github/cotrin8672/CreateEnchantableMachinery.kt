@@ -6,21 +6,13 @@ import io.github.cotrin8672.registrate.BlockEntityRegistration
 import io.github.cotrin8672.registrate.BlockRegistration
 import io.github.cotrin8672.registrate.RegistrateHandler
 import io.github.cotrin8672.util.EnchantableBlockMapping
-import io.github.cotrin8672.util.interfaces.AlternativePlacementHelper
-import io.github.cotrin8672.util.interfaces.ItemEntityDataHelper
-import io.github.cotrin8672.util.interfaces.ItemStackHandlerHelper
 import net.minecraft.resources.ResourceLocation
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 object CreateEnchantableMachinery : KoinComponent {
     const val MOD_ID: String = "createenchantablemachinery"
-    val registrateHandler: RegistrateHandler by inject()
     val REGISTRATE: CreateRegistrate
-        get() = registrateHandler.getRegistrate()
-    val alternativePlacementHelper: AlternativePlacementHelper by inject()
-    val itemEntityDataHelper: ItemEntityDataHelper by inject()
-    val itemStackHandlerHelper: ItemStackHandlerHelper<Any> by inject()
+        get() = RegistrateHandler().getRegistrate()
 
     @JvmStatic
     fun init() {
