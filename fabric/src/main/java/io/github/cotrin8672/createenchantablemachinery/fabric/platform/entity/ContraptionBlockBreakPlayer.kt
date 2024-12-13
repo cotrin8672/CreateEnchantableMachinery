@@ -15,7 +15,7 @@ class ContraptionBlockBreakPlayer
 private constructor(
     level: ServerLevel,
     private var context: MovementContext?,
-    private val heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(
+    private var heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(
         *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context?.blockEntityData })
             .map { EnchantmentInstance(it.key, it.value) }
             .toTypedArray()
@@ -37,6 +37,10 @@ private constructor(
                 instance = ContraptionBlockBreakPlayer(level, context, heldItem)
             } else {
                 instance.setMovementContext(context)
+                instance.heldItem = EnchantedItemFactory.getPickaxeItemStack(
+                    *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context?.blockEntityData })
+                        .map { EnchantmentInstance(it.key, it.value) }
+                        .toTypedArray())
             }
 
             return instance

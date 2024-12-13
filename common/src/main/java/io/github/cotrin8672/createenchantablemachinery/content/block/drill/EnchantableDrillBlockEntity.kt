@@ -27,9 +27,10 @@ class EnchantableDrillBlockEntity(
     state: BlockState,
     private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
 ) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
-
-    private val fakePlayer = if (this.level is ServerLevel)
-        BlockBreaker(this.level as ServerLevel, this@EnchantableDrillBlockEntity) else null
+    private val fakePlayer by lazy {
+        if (this.level is ServerLevel)
+            BlockBreaker(this.level as ServerLevel, this@EnchantableDrillBlockEntity) else null
+    }
 
     override fun getBreakSpeed(): Float {
         val efficiencyLevel = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
@@ -47,7 +48,7 @@ class EnchantableDrillBlockEntity(
             nonNullLevel,
             breakingPos,
             fakePlayer,
-            fakePlayer?.mainHandItem ?: ItemStack.EMPTY,
+            fakePlayer?.mainHandItem,
             1f
         ) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
