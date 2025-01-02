@@ -13,7 +13,9 @@ A clear and concise description of what the bug is.
 **Environment**
 Minecraft version : 
 mod version : 
-other mod version : [optional] 
+other mod name and version : [optional. If the problem is based on compatibility with another mod, please write the name and version of that mod.]
+  > ⚠️ **Do not list entire modpacks here!**  
+  > If the issue occurs in a modpack, you must first identify the specific mod causing the conflict. Reports for entire modpacks will not be accepted. 
 
 **To Reproduce**
 Steps to reproduce the behavior:
