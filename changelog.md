@@ -1,3 +1,3 @@
-### Fixed
+### Added
 
-- Fixed an issue where the Mechanical Drill enchantment was not working correctly.
+- Enchantable Spout Block.
