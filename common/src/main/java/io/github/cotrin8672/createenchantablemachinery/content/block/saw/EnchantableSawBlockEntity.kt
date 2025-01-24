@@ -19,7 +19,6 @@ import io.github.cotrin8672.createenchantablemachinery.platform.BlockBreaker
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.item.ItemEntity
@@ -39,8 +38,7 @@ class EnchantableSawBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : SawBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
+) : SawBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     private val fakePlayer by lazy {
         val nonNullLevel = checkNotNull(this.level)
         if (nonNullLevel is ServerLevel)
@@ -148,7 +146,7 @@ class EnchantableSawBlockEntity(
 
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-        for (instance in delegate.enchantmentInstances) {
+        for (instance in getEnchantments()) {
             val level = instance.level
             Lang.text(Strings.repeat(' ', 0))
                 .add(instance.enchantment.getFullname(level).copy())
@@ -158,13 +156,13 @@ class EnchantableSawBlockEntity(
     }
 
     override fun read(compound: CompoundTag, clientPacket: Boolean) {
-        delegate.enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        readEnchantments(compound)
         super.read(compound, clientPacket)
     }
 
     override fun write(compound: CompoundTag, clientPacket: Boolean) {
         compound.remove(ItemStack.TAG_ENCH)
-        delegate.enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
+        writeEnchantments(compound)
         super.write(compound, clientPacket)
     }
 }

@@ -34,6 +34,8 @@ import io.github.cotrin8672.createenchantablemachinery.content.block.roller.Ench
 import io.github.cotrin8672.createenchantablemachinery.content.block.roller.EnchantableRollerRenderer
 import io.github.cotrin8672.createenchantablemachinery.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.saw.EnchantableSawRenderer
+import io.github.cotrin8672.createenchantablemachinery.content.block.spout.EnchantableSpoutBlockEntity
+import io.github.cotrin8672.createenchantablemachinery.content.block.spout.EnchantableSpoutRenderer
 import net.minecraft.world.level.block.entity.BlockEntity
 import java.util.function.BiFunction
 
@@ -132,6 +134,14 @@ object BlockEntityRegistration {
         }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
             .renderer { NonNullFunction(::EnchantableRollerRenderer) }
+            .register()
+
+    val ENCHANTABLE_SPOUT: BlockEntityEntry<EnchantableSpoutBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableSpoutBlockEntity>("enchantable_spout") { type, pos, state ->
+            EnchantableSpoutBlockEntity(type, pos, state)
+        }
+            .validBlocks(BlockRegistration.ENCHANTABLE_SPOUT)
+            .renderer { NonNullFunction(::EnchantableSpoutRenderer) }
             .register()
 
     fun register() {}

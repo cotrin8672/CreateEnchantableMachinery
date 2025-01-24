@@ -14,6 +14,7 @@ import io.github.cotrin8672.createenchantablemachinery.registrate.BlockRegistrat
 import io.github.cotrin8672.createenchantablemachinery.util.extension.placeAlternativeBlockInWorld
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.LivingEntity
@@ -36,6 +37,10 @@ import java.util.function.Predicate
 class EnchantableSawBlock(properties: Properties) : SawBlock(properties), EnchantableBlock {
     companion object {
         private val placementHelperId = PlacementHelpers.register(PlacementHelper())
+    }
+
+    override fun getName(): MutableComponent {
+        return AllBlocks.MECHANICAL_DRILL.get().name
     }
 
     override fun getBlockEntityType(): BlockEntityType<out SawBlockEntity> {

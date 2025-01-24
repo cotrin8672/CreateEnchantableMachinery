@@ -18,8 +18,7 @@ class EnchantableCrushingWheelBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : CrushingWheelBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
+) : CrushingWheelBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     override fun fixControllers() {
         for (direction in Iterate.directions) {
             (blockState.block as EnchantableCrushingWheelBlock).updateControllers(
@@ -33,7 +32,7 @@ class EnchantableCrushingWheelBlockEntity(
 
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-        for (instance in delegate.enchantmentInstances) {
+        for (instance in getEnchantments()) {
             val level = instance.level
             Lang.text(Strings.repeat(' ', 0))
                 .add(instance.enchantment.getFullname(level).copy())
@@ -43,13 +42,13 @@ class EnchantableCrushingWheelBlockEntity(
     }
 
     override fun read(compound: CompoundTag, clientPacket: Boolean) {
-        delegate.enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        readEnchantments(compound)
         super.read(compound, clientPacket)
     }
 
     override fun write(compound: CompoundTag, clientPacket: Boolean) {
         compound.remove(ItemStack.TAG_ENCH)
-        delegate.enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
+        writeEnchantments(compound)
         super.write(compound, clientPacket)
     }
 }

@@ -26,7 +26,6 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtUtils
-import net.minecraft.nbt.Tag
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.LivingEntity
@@ -45,8 +44,9 @@ class EnchantableCrushingWheelControllerBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : CrushingWheelControllerBlockEntity(type, pos, state), EnchantableBlockEntity by delegate, IHaveGoggleInformation {
+) : CrushingWheelControllerBlockEntity(type, pos, state),
+    EnchantableBlockEntity by EnchantableBlockEntityDelegate(),
+    IHaveGoggleInformation {
     private var initialized = false
     private var entityUUID: UUID?
         get() = (this as CrushingWheelControllerBlockEntityMixin).entityUUID
@@ -95,7 +95,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
             if (facing.axis == Direction.Axis.Z) 0.55 * offset else 0.0
         )
         if (!hasEntity()) {
-            val efficiencyModifier = 1.5f.pow(delegate.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY))
+            val efficiencyModifier = 1.5f.pow(getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY))
             val processingSpeed = Mth.clamp(
                 speed / (if (!inventory.appliedRecipe) Mth.log2(inventory.getStackInSlot(0).count) else 1),
                 0.25f,
@@ -189,7 +189,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
                     if ((it.health - crusherDamage <= 0) && (it.hurtTime <= 0))
                         it.setPos(entityOutPos.x, entityOutPos.y, entityOutPos.z)
                 }
-                if (delegate.getEnchantmentLevel(Enchantments.SILK_TOUCH) <= 0)
+                if (getEnchantmentLevel(Enchantments.SILK_TOUCH) <= 0)
                     it.hurt(CreateDamageSources.crush(level), crusherDamage.toFloat())
                 if (!it.isAlive) it.setPos(entityOutPos.x, entityOutPos.y, entityOutPos.z)
                 return
@@ -225,14 +225,14 @@ class EnchantableCrushingWheelControllerBlockEntity(
     }
 
     override fun read(compound: CompoundTag, clientPacket: Boolean) {
-        delegate.enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        readEnchantments(compound)
         super.read(compound, clientPacket)
     }
 
     override fun write(compound: CompoundTag, clientPacket: Boolean) {
         super.write(compound, clientPacket)
         compound.remove(ItemStack.TAG_ENCH)
-        delegate.enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
+        writeEnchantments(compound)
         if (hasEntity()) entityUUID?.let { compound.put("Entity", NbtUtils.createUUID(it)) }
     }
 

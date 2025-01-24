@@ -18,7 +18,8 @@
     "SawBlockEntityMixin",
     "SawBlockMixin",
     "ServerGamePacketListenerImplMixin",
-    "SmartBlockEntityMixin"
+    "SmartBlockEntityMixin",
+    "SpoutBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

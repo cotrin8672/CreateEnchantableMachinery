@@ -8,7 +8,6 @@ import io.github.cotrin8672.createenchantablemachinery.content.block.Enchantable
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.entity.BlockEntityType
@@ -18,13 +17,12 @@ class EnchantableHarvesterBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
 ) : HarvesterBlockEntity(type, pos, state),
     IHaveGoggleInformation,
-    EnchantableBlockEntity by delegate {
+    EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-        for (instance in delegate.enchantmentInstances) {
+        for (instance in getEnchantments()) {
             val level = instance.level
             Lang.text(Strings.repeat(' ', 0))
                 .add(instance.enchantment.getFullname(level).copy())
@@ -34,13 +32,13 @@ class EnchantableHarvesterBlockEntity(
     }
 
     override fun load(tag: CompoundTag) {
-        delegate.enchantmentsTag = tag.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        readEnchantments(tag)
         super.load(tag)
     }
 
     override fun saveAdditional(tag: CompoundTag) {
         tag.remove(ItemStack.TAG_ENCH)
-        delegate.enchantmentsTag?.let { tag.put(ItemStack.TAG_ENCH, it) }
+        writeEnchantments(tag)
         super.saveAdditional(tag)
     }
 }
