@@ -27,6 +27,7 @@ import io.github.cotrin8672.createenchantablemachinery.content.block.roller.Ench
 import io.github.cotrin8672.createenchantablemachinery.content.block.roller.EnchantableRollerMovementBehaviour
 import io.github.cotrin8672.createenchantablemachinery.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.createenchantablemachinery.content.block.saw.EnchantableSawMovementBehaviour
+import io.github.cotrin8672.createenchantablemachinery.content.block.spout.EnchantableSpoutBlock
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.material.MapColor
@@ -173,6 +174,16 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .onRegister(movementBehaviour(EnchantableRollerMovementBehaviour()))
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
+            .addLayer { Supplier { RenderType.cutoutMipped() } }
+            .register()
+
+
+    @JvmStatic
+    val ENCHANTABLE_SPOUT: BlockEntry<EnchantableSpoutBlock> =
+        REGISTRATE.block<EnchantableSpoutBlock>("enchantable_spout", ::EnchantableSpoutBlock)
+            .initialProperties(SharedProperties::copperMetal)
+            .transform(pickaxeOnly())
+            .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .register()
 

@@ -28,8 +28,7 @@ class EnchantableMechanicalMixerBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : MechanicalMixerBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
+) : MechanicalMixerBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     override fun tick() {
         mechanicalMixerBlockEntityTick()
 
@@ -52,7 +51,7 @@ class EnchantableMechanicalMixerBlockEntity(
                         if (t != 0) recipeSpeed = t / 100f
                     }
 
-                    val efficiencyModifier = 1.3.pow(delegate.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY))
+                    val efficiencyModifier = 1.3.pow(getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY))
                     processingTicks =
                         (Mth.clamp(log2(512 / speed) * ceil(recipeSpeed * 15f), 1f, 512f) / efficiencyModifier).toInt()
 
@@ -86,7 +85,7 @@ class EnchantableMechanicalMixerBlockEntity(
 
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-        for (instance in delegate.enchantmentInstances) {
+        for (instance in getEnchantments()) {
             val level = instance.level
             Lang.text(Strings.repeat(' ', 0))
                 .add(instance.enchantment.getFullname(level).copy())
@@ -96,13 +95,13 @@ class EnchantableMechanicalMixerBlockEntity(
     }
 
     override fun read(compound: CompoundTag, clientPacket: Boolean) {
-        delegate.enchantmentsTag = compound.getList(ItemStack.TAG_ENCH, Tag.TAG_COMPOUND.toInt())
+        readEnchantments(compound)
         super.read(compound, clientPacket)
     }
 
     override fun write(compound: CompoundTag, clientPacket: Boolean) {
         compound.remove(ItemStack.TAG_ENCH)
-        delegate.enchantmentsTag?.let { compound.put(ItemStack.TAG_ENCH, it) }
+        writeEnchantments(compound)
         super.write(compound, clientPacket)
     }
 }

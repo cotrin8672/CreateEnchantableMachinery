@@ -10,6 +10,7 @@
     "createenchantablemachinery:enchantable_crushing_wheel",
     "createenchantablemachinery:enchantable_mechanical_press",
     "createenchantablemachinery:enchantable_mechanical_mixer",
-    "createenchantablemachinery:enchantable_mechanical_roller"
+    "createenchantablemachinery:enchantable_mechanical_roller",
+    "createenchantablemachinery:enchantable_spout"
   ]
 }

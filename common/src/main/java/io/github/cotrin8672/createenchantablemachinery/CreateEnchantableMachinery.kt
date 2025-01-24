@@ -31,6 +31,7 @@ object CreateEnchantableMachinery : KoinComponent {
         EnchantableBlockMapping(AllBlocks.MECHANICAL_PRESS to BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
         EnchantableBlockMapping(AllBlocks.MECHANICAL_MIXER to BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
         EnchantableBlockMapping(AllBlocks.MECHANICAL_ROLLER to BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
+        EnchantableBlockMapping(AllBlocks.SPOUT to BlockRegistration.ENCHANTABLE_SPOUT)
     }
 
     fun id(path: String): ResourceLocation {
