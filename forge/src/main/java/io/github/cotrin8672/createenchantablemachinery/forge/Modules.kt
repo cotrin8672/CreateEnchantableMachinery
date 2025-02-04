@@ -1,9 +1,6 @@
 package io.github.cotrin8672.createenchantablemachinery.forge
 
-import io.github.cotrin8672.createenchantablemachinery.forge.platform.AlternativePlacementHelperImpl
-import io.github.cotrin8672.createenchantablemachinery.forge.platform.ItemEntityDataHelperImpl
-import io.github.cotrin8672.createenchantablemachinery.forge.platform.ItemStackHandlerHelperImpl
-import io.github.cotrin8672.createenchantablemachinery.forge.platform.SideExecutorImpl
+import io.github.cotrin8672.createenchantablemachinery.forge.platform.*
 import io.github.cotrin8672.createenchantablemachinery.forge.platform.entity.BlockBreakerImpl
 import io.github.cotrin8672.createenchantablemachinery.forge.platform.entity.ContraptionBlockBreakerImpl
 import io.github.cotrin8672.createenchantablemachinery.forge.registrate.RegistrateHandlerImpl
@@ -36,4 +33,13 @@ val sideExecutorModule = module {
 
 val itemStackHandlerHelperModule = module {
     singleOf(::ItemStackHandlerHelperImpl) bind ItemStackHandlerHelper::class
+}
+
+val fluidBehaviourModules = module {
+    singleOf(::SmartFluidTankHelperImpl) bind SmartFluidTankHelper::class
+    singleOf(::FillingBySpoutHelperImpl) bind FillingBySpoutHelper::class
+    singleOf(::BlockSpoutingBehaviourHelperImpl) bind BlockSpoutingBehaviourHelper::class
+    singleOf(::FluidFXHelperImpl) bind FluidFXHelper::class
+    singleOf(::FluidRendererHelperImpl) bind FluidRendererHelper::class
+    singleOf(::FluidVariantAttributesHelperImpl) bind FluidVariantAttributesHelper::class
 }

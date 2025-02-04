@@ -9,13 +9,14 @@ import com.simibubi.create.content.kinetics.belt.behaviour.TransportedItemStackH
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack
 import com.simibubi.create.foundation.advancement.AdvancementBehaviour
 import com.simibubi.create.foundation.advancement.AllAdvancements
-import com.simibubi.create.foundation.fluid.FluidHelper
 import com.simibubi.create.foundation.utility.Lang
+import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.createenchantablemachinery.mixin.SpoutBlockEntityMixin
+import io.github.cotrin8672.createenchantablemachinery.platform.*
+import io.github.cotrin8672.createenchantablemachinery.util.extension.nonNullLevel
 import io.github.cotrin8672.createenchantablemachinery.util.extension.smartBlockEntityTick
-import io.github.fabricators_of_create.porting_lib.fluids.FluidStack
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
@@ -24,6 +25,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
+import kotlin.math.ceil
 import kotlin.math.max
 
 class EnchantableSpoutBlockEntity(
@@ -31,36 +33,52 @@ class EnchantableSpoutBlockEntity(
     pos: BlockPos,
     state: BlockState,
 ) : SpoutBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
+    val enchantedFillingTime: Int
+        get() {
+            val efficiency = this.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+            return max(1, (20 - efficiency * 2))
+        }
+
+    val executionTick: Int
+        get() {
+            return max(0, ceil(enchantedFillingTime / 4f).toInt())
+        }
+
+    private val spawnParticleTick: Int
+        get() {
+            return max(0, enchantedFillingTime * 2 / 5)
+        }
+
     private fun getCurrentFluidInTank(): FluidStack {
-        return (this as SpoutBlockEntityMixin).tank.primaryHandler.fluid
+        return SmartFluidTankHelper().getFluid((this as SpoutBlockEntityMixin).tank.primaryHandler)
     }
 
     override fun whenItemHeld(
         transported: TransportedItemStack,
         handler: TransportedItemStackHandlerBehaviour,
     ): BeltProcessingBehaviour.ProcessingResult {
-        if (processingTicks != -1 && processingTicks != 5)
+        if (processingTicks != -1 && processingTicks != executionTick)
             return BeltProcessingBehaviour.ProcessingResult.HOLD
         if (!FillingBySpout.canItemBeFilled(level, transported.stack))
             return BeltProcessingBehaviour.ProcessingResult.PASS
         if ((this as SpoutBlockEntityMixin).tank.isEmpty)
             return BeltProcessingBehaviour.ProcessingResult.HOLD
         val fluid = getCurrentFluidInTank()
-        val requiredAmountForItem = FillingBySpout.getRequiredAmountForItem(level, transported.stack, fluid.copy())
+        val requiredAmountForItem =
+            FillingBySpoutHelper().getRequiredAmountForItem(nonNullLevel, transported.stack, fluid.copy())
         if (requiredAmountForItem == -1L)
             return BeltProcessingBehaviour.ProcessingResult.PASS
         if (requiredAmountForItem > fluid.amount)
             return BeltProcessingBehaviour.ProcessingResult.HOLD
 
         if (processingTicks == -1) {
-            val efficiency = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
-            processingTicks = max(FILLING_TIME - efficiency * 2, 1)
+            processingTicks = enchantedFillingTime
             notifyUpdate()
             return BeltProcessingBehaviour.ProcessingResult.HOLD
         }
 
         // Process finished
-        val out = FillingBySpout.fillItem(level, requiredAmountForItem, transported.stack, fluid)
+        val out = FillingBySpoutHelper().fillItem(nonNullLevel, requiredAmountForItem, transported.stack, fluid)
         if (!out.isEmpty) {
             val outList: MutableList<TransportedItemStack> = ArrayList()
             var held: TransportedItemStack? = null
@@ -82,8 +100,8 @@ class EnchantableSpoutBlockEntity(
             if (createdChocolateBerries && createdHoneyApple && createdSweetRoll) award(AllAdvancements.FOODS)
         }
 
-        tank.primaryHandler.fluid =
-            if (fluid.isEmpty) FluidStack.EMPTY else fluid // fabric: if the FluidStack is empty it should actually be empty
+        SmartFluidTankHelper().setFluid(tank.primaryHandler, if (fluid.isEmpty) FluidStack.EMPTY else fluid)
+
         sendSplash = true
         notifyUpdate()
         return BeltProcessingBehaviour.ProcessingResult.HOLD
@@ -91,13 +109,20 @@ class EnchantableSpoutBlockEntity(
 
     override fun tick() {
         smartBlockEntityTick()
-        val currentFluidInTank = (this@EnchantableSpoutBlockEntity as SpoutBlockEntityMixin).tank.primaryHandler.fluid
+        val currentFluidInTank = getCurrentFluidInTank()
         if (processingTicks == -1 && (isVirtual || !level!!.isClientSide()) && !currentFluidInTank.isEmpty) {
             BlockSpoutingBehaviour.forEach { behaviour: BlockSpoutingBehaviour ->
                 if (customProcess != null) return@forEach
-                if (behaviour.fillBlock(level, worldPosition.below(2), this, currentFluidInTank, true) > 0) {
-                    val efficiency = getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
-                    processingTicks = max(FILLING_TIME - efficiency * 2.5, 1.0).toInt()
+                val amount = BlockSpoutingBehaviourHelper().fillBlock(
+                    behaviour,
+                    nonNullLevel,
+                    worldPosition.below(2),
+                    this@EnchantableSpoutBlockEntity,
+                    currentFluidInTank,
+                    true
+                )
+                if (amount > 0) {
+                    processingTicks = enchantedFillingTime
                     customProcess = behaviour
                     notifyUpdate()
                 }
@@ -106,26 +131,40 @@ class EnchantableSpoutBlockEntity(
 
         if (processingTicks >= 0) {
             processingTicks--
-            if (processingTicks == 5 && customProcess != null) {
-                val fillBlock =
-                    customProcess.fillBlock(level, worldPosition.below(2), this, currentFluidInTank, false).toLong()
+            if (processingTicks == executionTick && customProcess != null) {
+                val fillBlock = BlockSpoutingBehaviourHelper().fillBlock(
+                    customProcess,
+                    nonNullLevel,
+                    worldPosition.below(2),
+                    this,
+                    currentFluidInTank,
+                    false
+                )
                 customProcess = null
                 if (fillBlock > 0) {
                     // fabric: if the FluidStack is empty it should actually be empty
-                    var newStack = FluidHelper.copyStackWithAmount(
-                        currentFluidInTank,
-                        (currentFluidInTank.amount - fillBlock).toInt().toLong()
-                    )
+                    var newStack = currentFluidInTank.copyStackWithAmount(currentFluidInTank.amount - fillBlock)
+
                     if (newStack.isEmpty) newStack = FluidStack.EMPTY
-                    tank.primaryHandler.fluid = newStack
+                    val tank = (this as SpoutBlockEntityMixin).tank
+                    SmartFluidTankHelper().setFluid(tank.primaryHandler, FluidStack.EMPTY)
+                    tank.primaryHandler.fluid = io.github.fabricators_of_create.porting_lib.fluids.FluidStack.EMPTY
                     sendSplash = true
                     notifyUpdate()
                 }
             }
         }
 
-        if (processingTicks >= 8 && level!!.isClientSide)
-            spawnProcessingParticles(tank.primaryTank.renderedFluid)
+        if (processingTicks >= spawnParticleTick && level!!.isClientSide)
+            spawnProcessingParticles(SmartFluidTankHelper().getRenderedFluid((this as SpoutBlockEntityMixin).tank.primaryTank))
+    }
+
+    private fun spawnProcessingParticles(fluidStack: FluidStack) {
+        if (isVirtual) return
+        var vec = VecHelper.getCenterOf(worldPosition)
+        vec = vec.subtract(0.0, (8 / 16f).toDouble(), 0.0)
+        val particle = FluidFXHelper().getFluidParticle(fluidStack)
+        nonNullLevel.addAlwaysVisibleParticle(particle, vec.x, vec.y, vec.z, 0.0, -.1, 0.0)
     }
 
     private fun trackFoods(): Boolean {

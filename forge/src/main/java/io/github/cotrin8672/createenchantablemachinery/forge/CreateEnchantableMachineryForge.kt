@@ -26,6 +26,7 @@ class CreateEnchantableMachineryForge {
                 itemEntityDataHelperModule,
                 sideExecutorModule,
                 itemStackHandlerHelperModule,
+                fluidBehaviourModules,
             )
         }
 
