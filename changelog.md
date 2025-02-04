@@ -1,3 +1,3 @@
-### Added
+### Fixed
 
-- Enchantable Spout Block.
+- Enchantable spout does not work with forge
