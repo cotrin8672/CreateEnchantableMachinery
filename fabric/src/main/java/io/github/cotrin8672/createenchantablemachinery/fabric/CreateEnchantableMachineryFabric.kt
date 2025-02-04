@@ -17,6 +17,7 @@ class CreateEnchantableMachineryFabric : ModInitializer {
                 itemEntityDataHelperModule,
                 sideExecutorModule,
                 itemStackHandlerHelperModule,
+                fluidBehaviourModules,
             )
         }
 
