@@ -1,3 +1,3 @@
 ### Fixed
 
-- Enchantable spout does not work with forge
+- Fixed Issue#77

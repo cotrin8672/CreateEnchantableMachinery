@@ -148,7 +148,6 @@ class EnchantableSpoutBlockEntity(
                     if (newStack.isEmpty) newStack = FluidStack.EMPTY
                     val tank = (this as SpoutBlockEntityMixin).tank
                     SmartFluidTankHelper().setFluid(tank.primaryHandler, FluidStack.EMPTY)
-                    tank.primaryHandler.fluid = io.github.fabricators_of_create.porting_lib.fluids.FluidStack.EMPTY
                     sendSplash = true
                     notifyUpdate()
                 }
