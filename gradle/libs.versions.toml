@@ -1,51 +1,31 @@
 [versions]
-kotlin = "2.0.0"
-loom = "1.6-SNAPSHOT"
-architecturyPlugin = "3.4-SNAPSHOT"
-shadow = "8.1.1"
-minecraft = "1.20.1"
-parchiment = "2023.09.03@zip"
-forge = "1.20.1-47.3.0"
-forgeKotlin = "4.11.0"
-fabricLoader = "0.16.5"
-fabricApi = "0.92.2+1.20.1"
-fabricKotlin = "1.11.0+kotlin.2.0.0"
-architectury = "9.2.14"
-createForge = "0.5.1.f-26"
-createFabric = "0.5.1-f-build.1335+mc1.20.1"
-flywheel = "0.6.10-7"
-registrate = "MC1.20-1.3.3"
+kotlin = "2.1.0"
+minecraft = "1.21.1"
+parchiment = "2024.11.17"
+neoforge = "21.1.125"
+modDevGradle = "2.0.78"
+kotlinforforge = "5.7.0"
+createForge = "6.0.0-4"
+flywheel = "1.0.0-9"
+ponder = "1.0.39"
+registrate = "MC1.21-1.3.0+62"
 majruszLibForge = "5302100"
 majruszLibFabric = "5301915"
-modMenu = "7.2.2"
-koin = "3.5.6"
 modPublisher = "2.1.6"
-zenith = "1.2.4-1.20.1"
 
 [libraries]
 minecraft = { module = "net.minecraft:minecraft", version.ref = "minecraft" }
 parchment = { module = "org.parchmentmc.data:parchment-1.20.1", version.ref = "parchiment" }
-forge = { module = "net.minecraftforge:forge", version.ref = "forge" }
-forge-kotlin = { module = "thedarkcolour:kotlinforforge", version.ref = "forgeKotlin" }
-fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
-fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabricApi" }
-fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabricKotlin" }
-architectury = { module = "dev.architectury:architectury", version.ref = "architectury" }
-architectury-forge = { module = "dev.architectury:architectury-forge", version.ref = "architectury" }
-architectury-fabric = { module = "dev.architectury:architectury-fabric", version.ref = "architectury" }
-create-forge = { module = "com.simibubi.create:create-1.20.1", version.ref = "createForge" }
-create-fabric = { module = "com.simibubi.create:create-fabric-1.20.1", version.ref = "createFabric" }
-flywheel = { module = "com.jozufozu.flywheel:flywheel-forge-1.20.1", version.ref = "flywheel" }
+kotlinforforge = { module = "thedarkcolour:kotlinforforge-neoforge", version.ref = "kotlinforforge" }
+create = { module = "com.simibubi.create:create-1.21.1", version.ref = "createForge" }
+flywheel = { module = "dev.engine-room.flywheel:flywheel-neoforge-1.21.1", version.ref = "flywheel" }
+flywheel-api = { module = "dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1", version.ref = "flywheel" }
+ponder = { module = "net.createmod.ponder:Ponder-NeoForge-1.21.1", version.ref = "ponder" }
 registrate = { module = "com.tterrag.registrate:Registrate", version.ref = "registrate" }
 majrusz-library-forge = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibForge" }
 majrusz-library-fabric = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibFabric" }
-modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modMenu" }
-koin = { module = "io.insert-koin:koin-core-jvm", version.ref = "koin" }
-zenith = { module = "maven.modrinth:zenith", version.ref = "zenith" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-loom = { id = "dev.architectury.loom", version.ref = "loom" }
-architectury = { id = "architectury-plugin", version.ref = "architecturyPlugin" }
-shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
+modDevGradle = { id = "net.neoforged.moddev", version.ref = "modDevGradle" }
 modPublisher = { id = "com.hypherionmc.modutils.modpublisher", version.ref = "modPublisher" }

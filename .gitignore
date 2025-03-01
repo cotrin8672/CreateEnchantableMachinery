@@ -24,6 +24,5 @@ run
 # Files from Forge MDK
 forge*changelog.txt
 ｆbuild.gradle.kts
-/.kotlin/sessions/
 /src/generated/resources/.cache/
-/run-data/
+/run
