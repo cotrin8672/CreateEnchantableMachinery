@@ -85,10 +85,11 @@ repositories {
         content { includeGroup("thedarkcolour") }
     }
     maven("https://maven.blamejared.com/") // JEI
-    maven("https://maven.createmod.net/") // Ponder, Flywheel
+    maven("https://maven.createmod.net") // Create, Ponder, Flywheel
     maven("https://mvn.devos.one/snapshots") // Registrate
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
     maven("https://api.modrinth.com/maven") // Modrinth Maven
+    maven("https://maven.theillusivec4.top/") // Curios API
 }
 
 dependencies {
@@ -100,6 +101,9 @@ dependencies {
     compileOnly(libs.flywheel.api)
     runtimeOnly(libs.flywheel)
     implementation(libs.registrate)
+
+    runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1")
+    compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
 }
 
 publisher {

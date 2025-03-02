@@ -6,6 +6,8 @@
   "client": [
   ],
   "mixins": [
+    "BlockItemMixin",
+    "CreateBlockEntityBuilderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
