@@ -1,17 +1,22 @@
+import com.hypherionmc.modpublisher.properties.CurseEnvironment
+import com.hypherionmc.modpublisher.properties.ModLoader
+
 plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.modDevGradle)
+    alias(libs.plugins.modPublisher)
 }
 
 val modId: String by project
+val modName: String by project
 val modVersion: String by project
 val modGroupId: String by project
 
 group = modGroupId
+version = "${modVersion}-mc${libs.versions.minecraft.get()}"
 
 base {
     archivesName = modId
-    version = "${modVersion}-mc${libs.versions.minecraft.get()}"
 }
 
 kotlin {
@@ -79,13 +84,6 @@ repositories {
         url = uri("https://thedarkcolour.github.io/KotlinForForge/")
         content { includeGroup("thedarkcolour") }
     }
-    maven {
-        url = uri("https://jm.gserv.me/repository/maven-public") // JourneyMap
-        content {
-            includeGroup("info.journeymap")
-            includeGroup("mysticdrew")
-        }
-    }
     maven("https://maven.blamejared.com/") // JEI
     maven("https://maven.createmod.net/") // Ponder, Flywheel
     maven("https://mvn.devos.one/snapshots") // Registrate
@@ -104,8 +102,32 @@ dependencies {
     implementation(libs.registrate)
 }
 
+publisher {
+    apiKeys {
+        curseforge(System.getenv("CURSE_FORGE_API_KEY"))
+        modrinth(System.getenv("MODRINTH_API_KEY"))
+    }
+
+    curseID.set("1061749")
+    modrinthID.set("eqrvp4NK")
+    versionType.set("release")
+    changelog.set(file("../changelog.md"))
+    version.set(project.version.toString())
+    displayName.set("$modName $modVersion")
+    setGameVersions(libs.versions.minecraft.get())
+    setLoaders(ModLoader.NEOFORGE)
+    setCurseEnvironment(CurseEnvironment.BOTH)
+    artifact.set("build/libs/${base.archivesName.get()}-${project.version}.jar")
+
+    curseDepends {
+        required("create", "kotlin-for-forge")
+    }
+    modrinthDepends {
+        required("create", "kotlin-for-forge")
+    }
+}
+
 val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
-    val modName: String by project
     val modLicense: String by project
     val modAuthors: String by project
     val modDescription: String by project

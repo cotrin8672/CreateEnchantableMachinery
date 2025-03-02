@@ -2,7 +2,7 @@ name: Upload to CurseForge and Modrinth
 on:
   push:
     branches:
-      - 1.20.1
+      - 1.21.1
 
 jobs:
   upload:
@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
-          java-version: '17'
+          java-version: '21'
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -28,8 +28,5 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      - name: Upload Forge version
-        run: ./gradlew forge:publishMod
-
-      - name: Upload Fabric version
-        run: ./gradlew fabric:publishMod
+      - name: Publish Mod
+        run: ./gradlew publishMod
