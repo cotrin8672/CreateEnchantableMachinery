@@ -3,6 +3,7 @@ package io.github.cotrin8672.cem.content.block.drill
 import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.kinetics.drill.DrillBlock
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
 import io.github.cotrin8672.cem.util.placeAlternativeBlockInWorld
@@ -11,6 +12,7 @@ import net.createmod.catnip.placement.PlacementHelpers
 import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.ItemInteractionResult
@@ -19,6 +21,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.ItemEnchantments
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.entity.BlockEntityType
@@ -101,11 +104,10 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
         stack: ItemStack,
     ) {
         super.setPlacedBy(worldIn, pos, state, placer, stack)
-//        val blockEntity = worldIn.getBlockEntity(pos)
-////        if (blockEntity is EnchantableBlockEntity) {
-////            blockEntity.setEnchantment(stack.enchantmentTags)
-////        }
-//        TODO("コンポーネント化するから要らないかも")
+        val blockEntity = worldIn.getBlockEntity(pos)
+        if (blockEntity is EnchantableBlockEntity) {
+            blockEntity.setEnchantment(stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+        }
     }
 
     private class PlacementHelper : IPlacementHelper {

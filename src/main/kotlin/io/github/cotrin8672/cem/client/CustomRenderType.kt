@@ -44,7 +44,7 @@ class CustomRenderType private constructor(
     companion object {
         private val CUSTOM_POLYGON_OFFSET_LAYERING = LayeringStateShard(
             "polygon_offset_layering", {
-                RenderSystem.polygonOffset(-0.25f, -10.0f)
+                RenderSystem.polygonOffset(-1.0f, -40.0f)
                 RenderSystem.enablePolygonOffset()
             }, {
                 RenderSystem.polygonOffset(0.0f, 0.0f)
