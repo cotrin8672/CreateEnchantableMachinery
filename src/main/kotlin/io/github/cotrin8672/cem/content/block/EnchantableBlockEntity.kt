@@ -16,20 +16,16 @@ interface EnchantableBlockEntity {
         return getEnchantments().getLevel(enchantment)
     }
 
-    fun readEnchantments(tag: CompoundTag, provider: HolderLookup.Provider): ItemEnchantments {
+    fun readEnchantments(tag: CompoundTag, provider: HolderLookup.Provider) {
         if (tag.contains("Enchantments")) {
             val registryOps = provider.createSerializationContext(NbtOps.INSTANCE)
-            var itemEnchantments: ItemEnchantments = ItemEnchantments.EMPTY
             ItemEnchantments.CODEC
                 .parse(registryOps, tag.get("Enchantments"))
                 .resultOrPartial()
                 .ifPresent {
                     setEnchantment(it)
-                    itemEnchantments = it
                 }
-            return itemEnchantments
         }
-        return ItemEnchantments.EMPTY
     }
 
     fun writeEnchantments(tag: CompoundTag, provider: HolderLookup.Provider) {

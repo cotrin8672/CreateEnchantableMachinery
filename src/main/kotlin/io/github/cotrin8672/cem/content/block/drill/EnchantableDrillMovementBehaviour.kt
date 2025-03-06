@@ -1,11 +1,13 @@
 package io.github.cotrin8672.cem.content.block.drill
 
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
+import com.simibubi.create.content.contraptions.render.ActorVisual
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.content.kinetics.drill.DrillMovementBehaviour
 import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
-import io.github.cotrin8672.cem.config.CemConfig
+import dev.engine_room.flywheel.api.visualization.VisualizationContext
+import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.content.entity.ContraptionBlockBreaker
 import io.github.cotrin8672.cem.util.getEnchantmentLevel
 import net.minecraft.client.renderer.MultiBufferSource
@@ -30,6 +32,14 @@ class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
         return super.getBlockBreakingSpeed(context) * (getEnchantmentLevel(context, Enchantments.EFFICIENCY) + 1)
     }
 
+    override fun createVisual(
+        visualizationContext: VisualizationContext,
+        simulationWorld: VirtualRenderWorld,
+        movementContext: MovementContext,
+    ): ActorVisual {
+        return EnchantableDrillActorVisual(visualizationContext, simulationWorld, movementContext)
+    }
+
     @OnlyIn(Dist.CLIENT)
     override fun renderInContraption(
         context: MovementContext,
@@ -37,8 +47,7 @@ class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
         matrices: ContraptionMatrices,
         buffer: MultiBufferSource,
     ) {
-        super.renderInContraption(context, renderWorld, matrices, buffer)
-        if (CemConfig.CONFIG.renderGlint.get())
+        if (!VisualizationManager.supportsVisualization(context.world))
             EnchantableDrillRenderer.renderInContraption(context, renderWorld, matrices, buffer)
     }
 }

@@ -13,7 +13,6 @@ class ContraptionBlockBreaker
 private constructor(
     level: ServerLevel,
     private var context: MovementContext?,
-    private val heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(context?.blockEntityData),
 ) : FakePlayer(level, GameProfile(UUID.randomUUID(), "contraption_block_breaker")) {
     companion object {
         private val _contraptionBlockBreakPlayerList = mutableListOf<ContraptionBlockBreaker>()
@@ -27,10 +26,9 @@ private constructor(
         fun getBlockBreakerForMovementContext(
             level: ServerLevel,
             context: MovementContext?,
-            heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(context?.blockEntityData),
         ): ContraptionBlockBreaker {
             if (!Companion::instance.isInitialized) {
-                instance = ContraptionBlockBreaker(level, context, heldItem)
+                instance = ContraptionBlockBreaker(level, context)
             } else {
                 instance.setMovementContext(context)
             }
@@ -56,7 +54,7 @@ private constructor(
     }
 
     override fun getMainHandItem(): ItemStack {
-        return heldItem
+        return EnchantedItemFactory.getPickaxeItemStack(context?.blockEntityData, context)
     }
 
     private fun setMovementContext(context: MovementContext?) {

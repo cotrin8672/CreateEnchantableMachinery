@@ -1,5 +1,6 @@
 package io.github.cotrin8672.cem.util
 
+import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import it.unimi.dsi.fastutil.objects.Object2IntMap
 import net.minecraft.core.Holder
 import net.minecraft.nbt.CompoundTag
@@ -28,15 +29,17 @@ object EnchantedItemFactory {
         }
     }
 
-    fun getPickaxeItemStack(tag: CompoundTag?): ItemStack {
+    fun getPickaxeItemStack(tag: CompoundTag?, context: MovementContext?): ItemStack {
         if (tag == null) return getPickaxeItemStack(setOf())
-        var enchantments: ItemEnchantments? = null
+        if (context == null) return getPickaxeItemStack(setOf())
+        var enchantments: ItemEnchantments = ItemEnchantments.EMPTY
+        val registryOps = context.world.registryAccess().createSerializationContext(NbtOps.INSTANCE)
         ItemEnchantments.CODEC
-            .parse(NbtOps.INSTANCE, tag.get("Enchantments"))
+            .parse(registryOps, tag.get("Enchantments"))
             .resultOrPartial()
             .ifPresent { enchantments = it }
 
-        return getPickaxeItemStack(enchantments?.entrySet() ?: setOf())
+        return getPickaxeItemStack(enchantments.entrySet())
     }
 
     fun getHoeItemStack(enchantmentSet: Set<Object2IntMap.Entry<Holder<Enchantment>>>): ItemStack {

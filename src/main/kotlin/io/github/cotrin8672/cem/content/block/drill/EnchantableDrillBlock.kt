@@ -3,6 +3,7 @@ package io.github.cotrin8672.cem.content.block.drill
 import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.kinetics.drill.DrillBlock
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import io.github.cotrin8672.cem.content.block.EnchantableBlock
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
@@ -30,7 +31,7 @@ import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import java.util.function.Predicate
 
-class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
+class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), EnchantableBlock {
     companion object {
         private val enchantedPlacementHelperId = PlacementHelpers.register(PlacementHelper())
     }
@@ -42,18 +43,6 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
     override fun getBlockEntityType(): BlockEntityType<out DrillBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_DRILL.get()
     }
-
-//    @Deprecated("Deprecated in Java")
-//    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
-//        val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
-//        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
-//        if (blockEntity is EnchantableBlockEntity) {
-//            blockEntity.getEnchantments().forEach {
-//                stack.enchant(it.enchantment, it.level)
-//            }
-//        }
-//        return mutableListOf(stack)
-//    }
 
     override fun asItem(): Item {
         return AllBlocks.MECHANICAL_DRILL.asItem()
@@ -68,11 +57,16 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
         val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
-        blockEntity?.components()?.let { stack.applyComponents(it) }
+        if (blockEntity is EnchantableBlockEntity) {
+            val enchantments = blockEntity.getEnchantments().entrySet()
+            enchantments.forEach {
+                stack.enchant(it.key, it.intValue)
+            }
+        }
         return stack
     }
 
-    override fun useItemOn(
+    public override fun useItemOn(
         stack: ItemStack,
         state: BlockState,
         level: Level,

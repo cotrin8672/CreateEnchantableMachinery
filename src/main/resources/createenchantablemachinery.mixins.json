@@ -7,7 +7,10 @@
   ],
   "mixins": [
     "BlockItemMixin",
-    "CreateBlockEntityBuilderMixin"
+    "ContraptionVisualMixin",
+    "CreateBlockEntityBuilderMixin",
+    "DrillBlockMixin",
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

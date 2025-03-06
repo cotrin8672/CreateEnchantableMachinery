@@ -14,4 +14,9 @@ object EnchantableBlockMapping {
     fun getAlternativeBlock(originalBlock: Block): Block? {
         return mappings[originalBlock]
     }
+
+    @JvmStatic
+    fun getOriginalBlocks(): Set<Block> {
+        return mappings.keys.toSet()
+    }
 }

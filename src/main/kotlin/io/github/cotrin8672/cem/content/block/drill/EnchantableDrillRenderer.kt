@@ -7,7 +7,9 @@ import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
 import com.simibubi.create.content.kinetics.drill.DrillBlock
+import com.simibubi.create.content.kinetics.drill.DrillRenderer
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
+import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
@@ -51,7 +53,9 @@ class EnchantableDrillRenderer(
                 context.blockRenderDispatcher.renderBatched(
                     be.blockState, be.blockPos, be.level!!, ms, consumer, true, RANDOM
                 )
-                renderRotatingBuffer(be, getRotatedModel(be, state), ms, consumer, light)
+
+                if (!VisualizationManager.supportsVisualization(be.level))
+                    renderRotatingBuffer(be, getRotatedModel(be, state), ms, consumer, light)
             }
             super.renderSafe(be, partialTicks, ms, buffer, light, overlay)
         }
@@ -66,6 +70,7 @@ class EnchantableDrillRenderer(
             matrices: ContraptionMatrices,
             buffer: MultiBufferSource,
         ) {
+            DrillRenderer.renderInContraption(movementContext, renderWorld, matrices, buffer)
             val state = movementContext.state
             val superBuffer = CachedBuffers.partial(AllPartialModels.DRILL_HEAD, state)
             val facing = state.getValue(DrillBlock.FACING)
