@@ -58,6 +58,8 @@ class CustomRenderType private constructor(
             DefaultVertexFormat.POSITION_TEX,
             VertexFormat.Mode.QUADS,
             1536,
+            false,
+            false,
             CompositeState.builder()
                 .setShaderState(RENDERTYPE_GLINT_SHADER)
                 .setTextureState(TextureStateShard(ItemRenderer.ENCHANTED_GLINT_ITEM, true, false))

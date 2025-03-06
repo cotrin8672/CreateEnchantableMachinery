@@ -1,0 +1,59 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "block/stonecutter_saw"
+	},
+	"elements": [
+		{
+			"name": "Blade",
+			"from": [5, 8, 17],
+			"to": [11, 8.062, 18],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 0, 6]},
+			"color": 5,
+			"faces": {
+				"up": {"uv": [1, 9, 15, 16], "rotation": 180, "texture": "#missing"},
+				"down": {"uv": [15, 9, 1, 16], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "Blade",
+			"from": [3, 8, 16],
+			"to": [13, 8.062, 17],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 5]},
+			"color": 5,
+			"faces": {
+				"up": {"uv": [1, 9, 15, 16], "rotation": 180, "texture": "#missing"},
+				"down": {"uv": [15, 9, 1, 16], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "Blade",
+			"from": [2, 8, 14],
+			"to": [14, 8.062, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 3]},
+			"color": 5,
+			"faces": {
+				"up": {"uv": [1, 9, 15, 16], "rotation": 180, "texture": "#missing"},
+				"down": {"uv": [15, 9, 1, 16], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "Blade",
+			"from": [1, 8, 11],
+			"to": [15, 8.062, 14],
+			"color": 5,
+			"faces": {
+				"up": {"uv": [1, 9, 15, 16], "rotation": 180, "texture": "#missing"},
+				"down": {"uv": [15, 9, 1, 16], "texture": "#missing"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "saw",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

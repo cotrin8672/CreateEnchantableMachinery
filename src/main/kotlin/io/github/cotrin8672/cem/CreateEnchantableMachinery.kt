@@ -37,5 +37,6 @@ class CreateEnchantableMachinery(container: ModContainer) {
 
     private fun registerEnchantableBlockMapping(event: FMLCommonSetupEvent) {
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_DRILL to BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
+        EnchantableBlockMapping.register(AllBlocks.MECHANICAL_SAW to BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
     }
 }

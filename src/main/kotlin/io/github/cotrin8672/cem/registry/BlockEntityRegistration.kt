@@ -10,6 +10,9 @@ import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.EnchantedOrientedRotatingVisual
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillRenderer
+import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
+import io.github.cotrin8672.cem.content.block.saw.EnchantableSawRenderer
+import io.github.cotrin8672.cem.content.block.saw.EnchantableSawVisual
 import net.minecraft.world.level.block.entity.BlockEntity
 
 object BlockEntityRegistration {
@@ -21,6 +24,13 @@ object BlockEntityRegistration {
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
             .renderer { NonNullFunction(::EnchantableDrillRenderer) }
             .register()
+
+    val ENCHANTABLE_MECHANICAL_SAW: BlockEntityEntry<EnchantableSawBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableSawBlockEntity>("enchantable_saw", ::EnchantableSawBlockEntity)
+        .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantableSawVisual) }
+        .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
+        .renderer { NonNullFunction(::EnchantableSawRenderer) }
+        .register()
 
     fun register() {}
 

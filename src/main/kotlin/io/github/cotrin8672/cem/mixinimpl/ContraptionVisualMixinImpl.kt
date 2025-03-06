@@ -9,7 +9,7 @@ import dev.engine_room.flywheel.lib.instance.InstanceTypes
 import dev.engine_room.flywheel.lib.instance.TransformedInstance
 import dev.engine_room.flywheel.lib.material.Materials
 import dev.engine_room.flywheel.lib.model.baked.BlockModelBuilder
-import io.github.cotrin8672.cem.registry.BlockRegistration
+import io.github.cotrin8672.cem.util.EnchantableBlockMapping
 import net.minecraft.core.BlockPos
 import net.minecraft.world.level.block.state.BlockState
 
@@ -27,7 +27,7 @@ object ContraptionVisualMixinImpl {
             }
         }
         val enchantedBlocks = blocks.positions.filter {
-            enchantableBlocks.contains(modelWorld.getBlockState(it).block)
+            EnchantableBlockMapping.getEnchantableBlocks().contains(modelWorld.getBlockState(it).block)
         }.toList()
 
         val enchantedModel = BlockModelBuilder(modelWorld, enchantedBlocks)
@@ -35,8 +35,4 @@ object ContraptionVisualMixinImpl {
             .build()
         return embedding.instancerProvider().instancer(InstanceTypes.TRANSFORMED, enchantedModel)
     }
-
-    private val enchantableBlocks = setOf(
-        BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL.get()
-    )
 }

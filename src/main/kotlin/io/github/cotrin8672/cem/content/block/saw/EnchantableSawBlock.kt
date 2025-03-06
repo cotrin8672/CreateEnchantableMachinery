@@ -1,8 +1,8 @@
-package io.github.cotrin8672.cem.content.block.drill
+package io.github.cotrin8672.cem.content.block.saw
 
 import com.simibubi.create.AllBlocks
-import com.simibubi.create.content.kinetics.drill.DrillBlock
-import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import com.simibubi.create.content.kinetics.saw.SawBlock
+import com.simibubi.create.content.kinetics.saw.SawBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlock
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
@@ -31,21 +31,21 @@ import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import java.util.function.Predicate
 
-class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), EnchantableBlock {
+class EnchantableSawBlock(properties: Properties) : SawBlock(properties), EnchantableBlock {
     companion object {
         private val placementHelperId = PlacementHelpers.register(PlacementHelper())
     }
 
     override fun getName(): MutableComponent {
-        return AllBlocks.MECHANICAL_DRILL.get().name
+        return AllBlocks.MECHANICAL_SAW.get().name
     }
 
-    override fun getBlockEntityType(): BlockEntityType<out DrillBlockEntity> {
-        return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_DRILL.get()
+    override fun getBlockEntityType(): BlockEntityType<out SawBlockEntity> {
+        return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_SAW.get()
     }
 
     override fun asItem(): Item {
-        return AllBlocks.MECHANICAL_DRILL.asItem()
+        return AllBlocks.MECHANICAL_SAW.asItem()
     }
 
     override fun getCloneItemStack(
@@ -56,7 +56,7 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
         player: Player,
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
+        val stack = ItemStack(AllBlocks.MECHANICAL_SAW)
         if (blockEntity is EnchantableBlockEntity) {
             val enchantments = blockEntity.getEnchantments().entrySet()
             enchantments.forEach {
@@ -106,11 +106,11 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
 
     private class PlacementHelper : IPlacementHelper {
         override fun getItemPredicate(): Predicate<ItemStack> {
-            return Predicate { stack -> AllBlocks.MECHANICAL_DRILL.isIn(stack) }
+            return Predicate { stack -> AllBlocks.MECHANICAL_SAW.isIn(stack) }
         }
 
         override fun getStatePredicate(): Predicate<BlockState> {
-            return Predicate { state -> BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL.has(state) }
+            return Predicate { state -> BlockRegistration.ENCHANTABLE_MECHANICAL_SAW.has(state) }
         }
 
         override fun getOffset(
@@ -121,8 +121,7 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
             ray: BlockHitResult,
         ): PlacementOffset {
             val directions = IPlacementHelper.orderedByDistanceExceptAxis(
-                pos,
-                ray.location,
+                pos, ray.location,
                 state.getValue(FACING).axis
             ) { dir: Direction ->
                 world.getBlockState(pos.relative(dir)).canBeReplaced()
@@ -130,10 +129,10 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), En
 
             return if (directions.isEmpty()) PlacementOffset.fail()
             else {
-                PlacementOffset.success(
-                    pos.relative(directions[0])
-                ) { s: BlockState ->
+                PlacementOffset.success(pos.relative(directions[0])) { s: BlockState ->
                     s.setValue(FACING, state.getValue(FACING))
+                        .setValue(AXIS_ALONG_FIRST_COORDINATE, state.getValue(AXIS_ALONG_FIRST_COORDINATE))
+                        .setValue(FLIPPED, state.getValue(FLIPPED))
                 }
             }
         }

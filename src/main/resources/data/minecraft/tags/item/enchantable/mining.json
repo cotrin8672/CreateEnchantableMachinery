@@ -1,5 +1,6 @@
 {
   "values": [
-    "create:mechanical_drill"
+    "create:mechanical_drill",
+    "create:mechanical_saw"
   ]
 }

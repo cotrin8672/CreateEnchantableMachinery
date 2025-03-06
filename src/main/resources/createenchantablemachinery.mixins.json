@@ -10,7 +10,11 @@
     "ContraptionVisualMixin",
     "CreateBlockEntityBuilderMixin",
     "DrillBlockMixin",
-    "ItemMixin"
+    "ItemMixin",
+    "KineticBlockEntityMixin",
+    "SawBlockEntityMixin",
+    "SawBlockMixin",
+    "SmartBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
