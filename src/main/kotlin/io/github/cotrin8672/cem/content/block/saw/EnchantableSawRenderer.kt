@@ -16,6 +16,7 @@ import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRender
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import dev.engine_room.flywheel.lib.model.baked.PartialModel
+import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.registry.PartialModelRegistration
@@ -272,6 +273,21 @@ class EnchantableSawRenderer(
                 .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, context.localPos))
                 .useLevelLight<SuperByteBuffer>(context.world, matrices.world)
                 .renderInto(matrices.viewProjection, consumer)
+
+            if (!VisualizationManager.supportsVisualization(context.world) && CemConfig.CONFIG.renderGlint.get()) {
+                matrices.modelViewProjection.use {
+                    TransformStack.of(matrices.modelViewProjection).translate(context.localPos)
+                    Minecraft.getInstance().blockRenderer.renderBatched(
+                        context.state,
+                        context.localPos,
+                        context.world,
+                        matrices.modelViewProjection,
+                        consumer,
+                        true,
+                        RANDOM
+                    )
+                }
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
+import io.github.cotrin8672.cem.util.nonNullLevel
 import net.createmod.catnip.animation.AnimationTickHolder
 import net.createmod.catnip.math.AngleHelper
 import net.createmod.catnip.math.VecHelper
@@ -29,7 +30,7 @@ import thedarkcolour.kotlinforforge.neoforge.forge.use
 class EnchantableDrillRenderer(
     private val context: BlockEntityRendererProvider.Context,
 ) : KineticBlockEntityRenderer<EnchantableDrillBlockEntity>(context) {
-    override fun getRotatedModel(be: EnchantableDrillBlockEntity, state: BlockState): SuperByteBuffer? {
+    override fun getRotatedModel(be: EnchantableDrillBlockEntity, state: BlockState): SuperByteBuffer {
         return CachedBuffers.partialFacing(AllPartialModels.DRILL_HEAD, state)
     }
 
@@ -41,6 +42,7 @@ class EnchantableDrillRenderer(
         light: Int,
         overlay: Int,
     ) {
+        super.renderSafe(be, partialTicks, ms, buffer, light, overlay)
         val consumer = SheetedDecalTextureGenerator(
             buffer.getBuffer(CustomRenderType.GLINT),
             ms.last(),
@@ -51,13 +53,12 @@ class EnchantableDrillRenderer(
         ms.use {
             if (CemConfig.CONFIG.renderGlint.get()) {
                 context.blockRenderDispatcher.renderBatched(
-                    be.blockState, be.blockPos, be.level!!, ms, consumer, true, RANDOM
+                    be.blockState, be.blockPos, be.nonNullLevel, ms, consumer, true, RANDOM
                 )
 
                 if (!VisualizationManager.supportsVisualization(be.level))
                     renderRotatingBuffer(be, getRotatedModel(be, state), ms, consumer, light)
             }
-            super.renderSafe(be, partialTicks, ms, buffer, light, overlay)
         }
     }
 
@@ -65,13 +66,13 @@ class EnchantableDrillRenderer(
         private val RANDOM = RandomSource.create()
 
         fun renderInContraption(
-            movementContext: MovementContext,
+            context: MovementContext,
             renderWorld: VirtualRenderWorld,
             matrices: ContraptionMatrices,
             buffer: MultiBufferSource,
         ) {
-            DrillRenderer.renderInContraption(movementContext, renderWorld, matrices, buffer)
-            val state = movementContext.state
+            DrillRenderer.renderInContraption(context, renderWorld, matrices, buffer)
+            val state = context.state
             val superBuffer = CachedBuffers.partial(AllPartialModels.DRILL_HEAD, state)
             val facing = state.getValue(DrillBlock.FACING)
 
@@ -82,9 +83,9 @@ class EnchantableDrillRenderer(
             )
 
             val speed = if (
-                movementContext.contraption.stalled ||
-                !VecHelper.isVecPointingTowards(movementContext.relativeMotion, facing.opposite)
-            ) movementContext.animationSpeed else 0f
+                context.contraption.stalled ||
+                !VecHelper.isVecPointingTowards(context.relativeMotion, facing.opposite)
+            ) context.animationSpeed else 0f
             val time = AnimationTickHolder.getRenderTime() / 20
             val angle = (time * speed) % 360
 
@@ -95,16 +96,16 @@ class EnchantableDrillRenderer(
                 .rotateXDegrees(AngleHelper.verticalAngle(facing))
                 .rotateZDegrees(angle)
                 .uncenter()
-                .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, movementContext.localPos))
-                .useLevelLight<SuperByteBuffer>(movementContext.world, matrices.world)
+                .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, context.localPos))
+                .useLevelLight<SuperByteBuffer>(context.world, matrices.world)
                 .renderInto(matrices.viewProjection, consumer)
 
             matrices.modelViewProjection.use {
-                TransformStack.of(matrices.modelViewProjection).translate(movementContext.localPos)
+                TransformStack.of(matrices.modelViewProjection).translate(context.localPos)
                 Minecraft.getInstance().blockRenderer.renderBatched(
-                    movementContext.state,
-                    movementContext.localPos,
-                    movementContext.world,
+                    context.state,
+                    context.localPos,
+                    context.world,
                     matrices.modelViewProjection,
                     consumer,
                     true,

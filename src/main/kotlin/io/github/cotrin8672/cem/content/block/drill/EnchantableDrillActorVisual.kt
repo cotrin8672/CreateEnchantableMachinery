@@ -9,6 +9,7 @@ import dev.engine_room.flywheel.lib.instance.InstanceTypes
 import dev.engine_room.flywheel.lib.material.Materials
 import dev.engine_room.flywheel.lib.model.Models
 import dev.engine_room.flywheel.lib.model.baked.BakedModelBuilder
+import io.github.cotrin8672.cem.registry.PartialModelRegistration
 import net.createmod.catnip.animation.AnimationTickHolder
 import net.createmod.catnip.math.AngleHelper
 import net.createmod.catnip.math.VecHelper
@@ -25,9 +26,10 @@ class EnchantableDrillActorVisual(
     private val enchantedDrillHead =
         instancerProvider.instancer(
             InstanceTypes.TRANSFORMED,
-            BakedModelBuilder(AllPartialModels.DRILL_HEAD.get()).materialFunc { _, _ -> Materials.GLINT }.build()
+            BakedModelBuilder(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE.get()).materialFunc { _, _ -> Materials.GLINT }
+                .build()
         ).createInstance()
-    private var facing = context.state.getValue(DrillBlock.FACING)
+    private val facing = context.state.getValue(DrillBlock.FACING)
 
     private var rotation = 0.0
     private var previousRotation = 0.0
@@ -39,7 +41,7 @@ class EnchantableDrillActorVisual(
 
         val deg = context.animationSpeed
 
-        rotation += (deg / 20).toDouble()
+        rotation += deg / 20.0
 
         rotation %= 360.0
     }

@@ -3,7 +3,6 @@ package io.github.cotrin8672.cem.content.block.saw
 import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.kinetics.saw.SawBlock
 import com.simibubi.create.content.kinetics.saw.SawBlockEntity
-import io.github.cotrin8672.cem.content.block.EnchantableBlock
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
@@ -31,7 +30,7 @@ import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import java.util.function.Predicate
 
-class EnchantableSawBlock(properties: Properties) : SawBlock(properties), EnchantableBlock {
+class EnchantableSawBlock(properties: Properties) : SawBlock(properties) {
     companion object {
         private val placementHelperId = PlacementHelpers.register(PlacementHelper())
     }

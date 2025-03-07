@@ -9,6 +9,8 @@ import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlock
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillMovementBehaviour
+import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterBlock
+import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterMovementBehaviour
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour
 import io.github.cotrin8672.cem.registrate.CemStress
@@ -18,10 +20,8 @@ import java.util.function.Supplier
 
 object BlockRegistration {
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_DRILL: BlockEntry<EnchantableDrillBlock> = REGISTRATE.block<EnchantableDrillBlock>(
-        "enchantable_mechanical_drill",
-        ::EnchantableDrillBlock
-    )
+    val ENCHANTABLE_MECHANICAL_DRILL: BlockEntry<EnchantableDrillBlock> = REGISTRATE
+        .block<EnchantableDrillBlock>("enchantable_mechanical_drill", ::EnchantableDrillBlock)
         .initialProperties(SharedProperties::stone)
         .properties { it.mapColor(MapColor.PODZOL) }
         .transform(axeOrPickaxe())
@@ -31,17 +31,26 @@ object BlockRegistration {
         .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_SAW: BlockEntry<EnchantableSawBlock> = REGISTRATE.block<EnchantableSawBlock>(
-        "enchantable_mechanical_saw",
-        ::EnchantableSawBlock
-    )
+    val ENCHANTABLE_MECHANICAL_SAW: BlockEntry<EnchantableSawBlock> = REGISTRATE
+        .block<EnchantableSawBlock>("enchantable_mechanical_saw", ::EnchantableSawBlock)
         .initialProperties(SharedProperties::stone)
-        .addLayer { Supplier { RenderType.cutoutMipped() } }
+        .addLayer { Supplier(RenderType::cutoutMipped) }
         .properties { it.mapColor(MapColor.PODZOL) }
         .transform(axeOrPickaxe())
         .blockstate(SawGenerator()::generate)
         .transform(CemStress.setImpact(4.0))
         .onRegister(movementBehaviour(EnchantableSawMovementBehaviour()))
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntry<EnchantableHarvesterBlock> = REGISTRATE
+        .block<EnchantableHarvesterBlock>("enchantable_mechanical_harvester", ::EnchantableHarvesterBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.mapColor(MapColor.METAL).forceSolidOn() }
+        .transform(axeOrPickaxe())
+        .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
+        .blockstate(BlockStateGen.horizontalBlockProvider(true))
+        .addLayer { Supplier(RenderType::cutoutMipped) }
         .register()
 
     fun register() {}

@@ -50,7 +50,7 @@ class EnchantableDrillBlockEntity(
         BlockHelper.destroyBlockAs(
             nonNullLevel,
             breakingPos,
-            fakePlayer,
+            null,
             fakePlayer?.mainHandItem,
             1f
         ) { stack: ItemStack ->

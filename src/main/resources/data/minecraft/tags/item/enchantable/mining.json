@@ -1,6 +1,7 @@
 {
   "values": [
     "create:mechanical_drill",
-    "create:mechanical_saw"
+    "create:mechanical_saw",
+    "create:mechanical_harvester"
   ]
 }

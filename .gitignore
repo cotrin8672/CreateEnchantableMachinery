@@ -26,3 +26,4 @@ forge*changelog.txt
 ｆbuild.gradle.kts
 /src/generated/resources/.cache/
 /run
+/.kotlin/
