@@ -10,6 +10,9 @@ import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.EnchantedOrientedRotatingVisual
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillRenderer
+import io.github.cotrin8672.cem.content.block.fan.EnchantableEncasedFanBlockEntity
+import io.github.cotrin8672.cem.content.block.fan.EnchantableEncasedFanRenderer
+import io.github.cotrin8672.cem.content.block.fan.EnchantableFanVisual
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterBlockEntity
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterRenderer
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
@@ -38,6 +41,13 @@ object BlockEntityRegistration {
         .blockEntity<EnchantableHarvesterBlockEntity>("enchantable_harvester", ::EnchantableHarvesterBlockEntity)
         .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
         .renderer { NonNullFunction(::EnchantableHarvesterRenderer) }
+        .register()
+
+    val ENCHANTABLE_ENCASED_FAN: BlockEntityEntry<EnchantableEncasedFanBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableEncasedFanBlockEntity>("enchantable_encased_fan", ::EnchantableEncasedFanBlockEntity)
+        .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantableFanVisual) }
+        .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
+        .renderer { NonNullFunction(::EnchantableEncasedFanRenderer) }
         .register()
 
     fun register() {}

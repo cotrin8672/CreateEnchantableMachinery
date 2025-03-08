@@ -9,6 +9,7 @@ import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlock
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillMovementBehaviour
+import io.github.cotrin8672.cem.content.block.fan.EnchantableEncasedFanBlock
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterBlock
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterMovementBehaviour
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlock
@@ -51,6 +52,17 @@ object BlockRegistration {
         .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
         .blockstate(BlockStateGen.horizontalBlockProvider(true))
         .addLayer { Supplier(RenderType::cutoutMipped) }
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_ENCASED_FAN: BlockEntry<EnchantableEncasedFanBlock> = REGISTRATE
+        .block<EnchantableEncasedFanBlock>("enchantable_encased_fan", ::EnchantableEncasedFanBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.mapColor(MapColor.PODZOL) }
+        .blockstate(BlockStateGen.directionalBlockProvider(true))
+        .addLayer { Supplier(RenderType::cutoutMipped) }
+        .transform(axeOrPickaxe())
+        .transform(CemStress.setImpact(2.0))
         .register()
 
     fun register() {}

@@ -88,7 +88,6 @@ class EnchantableHarvesterRenderer(
             val blockState = movementContext.state
             val facing = blockState.getValue(HORIZONTAL_FACING)
             val superBuffer = CachedBuffers.partial(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE, blockState)
-            val superBufferOriginal = CachedBuffers.partial(AllPartialModels.HARVESTER_BLADE, blockState)
             var speed = if (!VecHelper.isVecPointingTowards(movementContext.relativeMotion, facing.opposite))
                 movementContext.animationSpeed else 0f
             if (movementContext.contraption.stalled) speed = 0f
@@ -118,12 +117,6 @@ class EnchantableHarvesterRenderer(
                 superBuffer
                     .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, movementContext.localPos))
                     .renderInto(matrices.viewProjection, consumer)
-
-//                superBufferOriginal.transform(matrices.model)
-//                HarvesterRenderer.transform(movementContext.world, facing, superBufferOriginal, speed, PIVOT)
-//                superBufferOriginal
-//                    .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, movementContext.localPos))
-//                    .renderInto(matrices.viewProjection, buffers.getBuffer(RenderType.cutout()))
             }
         }
     }

@@ -2,8 +2,8 @@ package io.github.cotrin8672.cem.content.block
 
 import net.minecraft.world.item.enchantment.ItemEnchantments
 
-class EnchantableBlockEntityDelegate : EnchantableBlockEntity {
-    private var enchantments = ItemEnchantments.EMPTY
+open class EnchantableBlockEntityDelegate : EnchantableBlockEntity {
+    private var enchantments: ItemEnchantments = ItemEnchantments.EMPTY
 
     override fun getEnchantments(): ItemEnchantments {
         return enchantments

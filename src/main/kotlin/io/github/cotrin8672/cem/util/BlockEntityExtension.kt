@@ -8,12 +8,18 @@ import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.cem.mixin.KineticBlockEntityMixin
 import io.github.cotrin8672.cem.mixin.SmartBlockEntityMixin
 import net.createmod.catnip.platform.CatnipServices
+import net.minecraft.core.HolderLookup
+import net.minecraft.core.Registry
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.entity.BlockEntity
 
 
 val BlockEntity.nonNullLevel: Level
     get() = checkNotNull(level)
+
+fun <T> BlockEntity.holderLookup(registryKey: ResourceKey<out Registry<out T>>): HolderLookup<T> =
+    checkNotNull(level).holderLookup(registryKey)
 
 fun SmartBlockEntity.smartBlockEntityTick() {
     if (!(this as SmartBlockEntityMixin).initialized && hasLevel()) {
