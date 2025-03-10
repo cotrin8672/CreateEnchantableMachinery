@@ -3,6 +3,8 @@
     "create:mechanical_drill",
     "create:mechanical_saw",
     "create:mechanical_harvester",
-    "create:encased_fan"
+    "create:encased_fan",
+    "create:millstone",
+    "create:mechanical_plough"
   ]
 }

@@ -2,9 +2,11 @@ package io.github.cotrin8672.cem.registry
 
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour
 import com.simibubi.create.content.kinetics.saw.SawGenerator
+import com.simibubi.create.foundation.data.AssetLookup
 import com.simibubi.create.foundation.data.BlockStateGen
 import com.simibubi.create.foundation.data.SharedProperties
 import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
+import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlock
@@ -12,6 +14,9 @@ import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillMovementBeha
 import io.github.cotrin8672.cem.content.block.fan.EnchantableEncasedFanBlock
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterBlock
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterMovementBehaviour
+import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlock
+import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughBlock
+import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour
 import io.github.cotrin8672.cem.registrate.CemStress
@@ -63,6 +68,26 @@ object BlockRegistration {
         .addLayer { Supplier(RenderType::cutoutMipped) }
         .transform(axeOrPickaxe())
         .transform(CemStress.setImpact(2.0))
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MILLSTONE: BlockEntry<EnchantableMillstoneBlock> = REGISTRATE
+        .block<EnchantableMillstoneBlock>("enchantable_millstone", ::EnchantableMillstoneBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.mapColor(MapColor.METAL) }
+        .transform(pickaxeOnly())
+        .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+        .transform(CemStress.setImpact(4.0))
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntry<EnchantablePloughBlock> = REGISTRATE
+        .block<EnchantablePloughBlock>("enchantable_mechanical_plough", ::EnchantablePloughBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.mapColor(MapColor.COLOR_GRAY).forceSolidOn() }
+        .transform(axeOrPickaxe())
+        .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
+        .blockstate(BlockStateGen.horizontalBlockProvider(false))
         .register()
 
     fun register() {}

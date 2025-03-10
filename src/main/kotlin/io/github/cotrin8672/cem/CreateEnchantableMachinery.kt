@@ -10,12 +10,14 @@ import io.github.cotrin8672.cem.util.EnchantableBlockMapping
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.ModLoadingContext
+import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.config.ModConfig
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
 @Mod(CreateEnchantableMachinery.MOD_ID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 class CreateEnchantableMachinery(container: ModContainer) {
     companion object {
         const val MOD_ID = "createenchantablemachinery"
@@ -40,5 +42,7 @@ class CreateEnchantableMachinery(container: ModContainer) {
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_SAW to BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_HARVESTER to BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
         EnchantableBlockMapping.register(AllBlocks.ENCASED_FAN to BlockRegistration.ENCHANTABLE_ENCASED_FAN)
+        EnchantableBlockMapping.register(AllBlocks.MILLSTONE to BlockRegistration.ENCHANTABLE_MILLSTONE)
+        EnchantableBlockMapping.register(AllBlocks.MECHANICAL_PLOUGH to BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
     }
 }
