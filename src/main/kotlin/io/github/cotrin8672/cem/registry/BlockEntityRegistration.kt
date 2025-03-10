@@ -7,8 +7,8 @@ import com.tterrag.registrate.util.nullness.NonNullFunction
 import com.tterrag.registrate.util.nullness.NonNullSupplier
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer
 import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
-import io.github.cotrin8672.cem.content.block.EnchantedOrientedRotatingVisual
-import io.github.cotrin8672.cem.content.block.EnchantedSingleAxisRotatingVisual
+import io.github.cotrin8672.cem.client.visual.EnchantedOrientedRotatingVisual
+import io.github.cotrin8672.cem.client.visual.EnchantedSingleAxisRotatingVisual
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelBlockEntity
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelRenderer
@@ -26,6 +26,9 @@ import io.github.cotrin8672.cem.content.block.mixer.EnchantableMechanicalMixerRe
 import io.github.cotrin8672.cem.content.block.mixer.EnchantableMixerVisual
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughBlockEntity
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughRenderer
+import io.github.cotrin8672.cem.content.block.press.EnchantableMechanicalPressBlockEntity
+import io.github.cotrin8672.cem.content.block.press.EnchantableMechanicalPressRenderer
+import io.github.cotrin8672.cem.content.block.press.EnchantablePressVisual
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawRenderer
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawVisual
@@ -89,6 +92,16 @@ object BlockEntityRegistration {
         .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
         .renderer { NonNullFunction(::EnchantablePloughRenderer) }
         .register()
+
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntityEntry<EnchantableMechanicalPressBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableMechanicalPressBlockEntity>(
+            "enchantable_mechanical_press",
+            ::EnchantableMechanicalPressBlockEntity
+        )
+            .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantablePressVisual) }
+            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
+            .renderer { NonNullFunction(::EnchantableMechanicalPressRenderer) }
+            .register()
 
     val ENCHANTABLE_MECHANICAL_MIXER: BlockEntityEntry<EnchantableMechanicalMixerBlockEntity> = REGISTRATE
         .blockEntity<EnchantableMechanicalMixerBlockEntity>(

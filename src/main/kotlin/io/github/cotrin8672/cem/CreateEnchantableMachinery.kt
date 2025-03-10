@@ -46,5 +46,6 @@ class CreateEnchantableMachinery(container: ModContainer) {
         EnchantableBlockMapping.register(AllBlocks.CRUSHING_WHEEL to BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_PLOUGH to BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_MIXER to BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
+        EnchantableBlockMapping.register(AllBlocks.MECHANICAL_PRESS to BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
     }
 }

@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "BlockEntityBehaviourMixin",
     "BlockItemMixin",
     "ContraptionVisualMixin",
     "CreateBlockEntityBuilderMixin",

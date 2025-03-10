@@ -1,7 +1,7 @@
-package io.github.cotrin8672.cem.content.block
+package io.github.cotrin8672.cem.client.visual
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity
-import com.simibubi.create.content.kinetics.base.OrientedRotatingVisual
+import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual
 import com.simibubi.create.foundation.render.AllInstanceTypes
 import dev.engine_room.flywheel.api.instance.Instance
 import dev.engine_room.flywheel.api.model.Model
@@ -12,37 +12,41 @@ import dev.engine_room.flywheel.lib.model.baked.BakedModelBuilder
 import dev.engine_room.flywheel.lib.model.baked.PartialModel
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer
 import net.minecraft.core.Direction
-import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import java.util.function.Consumer
 
-class EnchantedOrientedRotatingVisual<T : KineticBlockEntity>(
+open class EnchantedSingleAxisRotatingVisual<T : KineticBlockEntity>(
     context: VisualizationContext,
     blockEntity: T,
     partialTick: Float,
-    from: Direction?,
-    to: Direction?,
-    model: Model?,
+    from: Direction,
+    model: Model,
     partialModel: PartialModel,
-) : OrientedRotatingVisual<T>(context, blockEntity, partialTick, from, to, model) {
+) : SingleAxisRotatingVisual<T>(context, blockEntity, partialTick, from, model) {
+    constructor(
+        context: VisualizationContext,
+        blockEntity: T,
+        partialTick: Float,
+        model: Model,
+        partialModel: PartialModel,
+    ) : this(context, blockEntity, partialTick, Direction.UP, model, partialModel)
+
     private val enchantedRotatingModel = instancerProvider().instancer(
         AllInstanceTypes.ROTATING,
         BakedModelBuilder(partialModel.get()).materialFunc { _, _ -> Materials.GLINT }.build()
     )
         .createInstance()
-        .rotateToFace(from, to)
+        .rotateToFace(from, rotationAxis())
         .setup(blockEntity)
         .setPosition(visualPosition)
 
     companion object {
         fun <T : KineticBlockEntity> of(partial: PartialModel): SimpleBlockEntityVisualizer.Factory<T> {
             return SimpleBlockEntityVisualizer.Factory { context: VisualizationContext, blockEntity: T, partialTick: Float ->
-                val facing = blockEntity.blockState.getValue(BlockStateProperties.FACING)
-                EnchantedOrientedRotatingVisual(
+                EnchantedSingleAxisRotatingVisual(
                     context,
                     blockEntity,
                     partialTick,
-                    Direction.SOUTH,
-                    facing,
+                    Direction.UP,
                     Models.partial(partial),
                     partial,
                 )

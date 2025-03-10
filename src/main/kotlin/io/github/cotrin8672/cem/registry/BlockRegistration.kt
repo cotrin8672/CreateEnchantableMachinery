@@ -21,6 +21,7 @@ import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBloc
 import io.github.cotrin8672.cem.content.block.mixer.EnchantableMechanicalMixerBlock
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughBlock
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughMovementBehaviour
+import io.github.cotrin8672.cem.content.block.press.EnchantableMechanicalPressBlock
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour
 import io.github.cotrin8672.cem.registrate.CemStress
@@ -63,6 +64,16 @@ object BlockRegistration {
         .onRegister(movementBehaviour(EnchantableHarvesterMovementBehaviour()))
         .blockstate(BlockStateGen.horizontalBlockProvider(true))
         .addLayer { Supplier(RenderType::cutoutMipped) }
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntry<EnchantablePloughBlock> = REGISTRATE
+        .block<EnchantablePloughBlock>("enchantable_mechanical_plough", ::EnchantablePloughBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.mapColor(MapColor.COLOR_GRAY).forceSolidOn() }
+        .transform(axeOrPickaxe())
+        .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
+        .blockstate(BlockStateGen.horizontalBlockProvider(false))
         .register()
 
     @JvmStatic
@@ -124,15 +135,18 @@ object BlockRegistration {
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntry<EnchantablePloughBlock> = REGISTRATE
-        .block<EnchantablePloughBlock>("enchantable_mechanical_plough", ::EnchantablePloughBlock)
-        .initialProperties(SharedProperties::stone)
-        .properties { it.mapColor(MapColor.COLOR_GRAY).forceSolidOn() }
-        .transform(axeOrPickaxe())
-        .onRegister(movementBehaviour(EnchantablePloughMovementBehaviour()))
-        .blockstate(BlockStateGen.horizontalBlockProvider(false))
-        .register()
-
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> =
+        REGISTRATE.block<EnchantableMechanicalPressBlock>(
+            "enchantable_mechanical_press",
+            ::EnchantableMechanicalPressBlock
+        )
+            .initialProperties(SharedProperties::stone)
+            .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.horizontalBlockProvider(true))
+            .transform(CemStress.setImpact(8.0))
+            .register()
+    
     @JvmStatic
     val ENCHANTABLE_MECHANICAL_MIXER: BlockEntry<EnchantableMechanicalMixerBlock> =
         REGISTRATE.block<EnchantableMechanicalMixerBlock>(
