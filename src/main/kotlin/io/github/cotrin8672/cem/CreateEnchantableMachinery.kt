@@ -43,6 +43,7 @@ class CreateEnchantableMachinery(container: ModContainer) {
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_HARVESTER to BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER)
         EnchantableBlockMapping.register(AllBlocks.ENCASED_FAN to BlockRegistration.ENCHANTABLE_ENCASED_FAN)
         EnchantableBlockMapping.register(AllBlocks.MILLSTONE to BlockRegistration.ENCHANTABLE_MILLSTONE)
+        EnchantableBlockMapping.register(AllBlocks.CRUSHING_WHEEL to BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_PLOUGH to BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_MIXER to BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
     }

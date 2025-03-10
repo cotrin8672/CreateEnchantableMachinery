@@ -9,6 +9,9 @@ import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer
 import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.EnchantedOrientedRotatingVisual
 import io.github.cotrin8672.cem.content.block.EnchantedSingleAxisRotatingVisual
+import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelBlockEntity
+import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
+import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelRenderer
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillRenderer
 import io.github.cotrin8672.cem.content.block.fan.EnchantableEncasedFanBlockEntity
@@ -62,6 +65,24 @@ object BlockEntityRegistration {
         .validBlocks(BlockRegistration.ENCHANTABLE_MILLSTONE)
         .renderer { NonNullFunction(::EnchantableMillstoneRenderer) }
         .register()
+
+    val ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER: BlockEntityEntry<EnchantableCrushingWheelControllerBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableCrushingWheelControllerBlockEntity>(
+            "enchantable_crushing_wheel_controller",
+            ::EnchantableCrushingWheelControllerBlockEntity
+        )
+            .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER)
+            .register()
+
+    val ENCHANTABLE_CRUSHING_WHEEL: BlockEntityEntry<EnchantableCrushingWheelBlockEntity> =
+        REGISTRATE.blockEntity<EnchantableCrushingWheelBlockEntity>(
+            "enchantable_crushing_wheel",
+            ::EnchantableCrushingWheelBlockEntity
+        )
+            .visual(renderNormally = true) { EnchantedSingleAxisRotatingVisual.of(AllPartialModels.CRUSHING_WHEEL) }
+            .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
+            .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
+            .register()
 
     val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntityEntry<EnchantablePloughBlockEntity> = REGISTRATE
         .blockEntity<EnchantablePloughBlockEntity>("enchantable_plough", ::EnchantablePloughBlockEntity)

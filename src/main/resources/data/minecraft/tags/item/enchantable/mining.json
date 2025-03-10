@@ -5,6 +5,7 @@
     "create:mechanical_harvester",
     "create:encased_fan",
     "create:millstone",
+    "create:crushing_wheel",
     "create:mechanical_plough",
     "create:mechanical_mixer"
   ]
