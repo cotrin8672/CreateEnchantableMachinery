@@ -20,6 +20,7 @@ import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.registry.PartialModelRegistration
+import io.github.cotrin8672.cem.util.nonNullLevel
 import net.createmod.catnip.math.AngleHelper
 import net.createmod.catnip.math.VecHelper
 import net.createmod.catnip.render.CachedBuffers
@@ -48,7 +49,7 @@ class EnchantableSawRenderer(
         if (state.getValue(BlockStateProperties.FACING).axis.isHorizontal)
             return CachedBuffers.partialFacing(
                 AllPartialModels.SHAFT_HALF,
-                state.rotate(be.level, be.blockPos, Rotation.CLOCKWISE_180)
+                state.rotate(be.nonNullLevel, be.blockPos, Rotation.CLOCKWISE_180)
             )
         return CachedBuffers.block(KINETIC_BLOCK, getRenderedBlockState(be))
     }
@@ -78,7 +79,7 @@ class EnchantableSawRenderer(
                 )
 
                 context.blockRenderDispatcher.renderBatched(
-                    be.blockState, be.blockPos, be.level, ms, consumer, true, RANDOM
+                    be.blockState, be.blockPos, be.nonNullLevel, ms, consumer, true, RANDOM
                 )
             }
         }

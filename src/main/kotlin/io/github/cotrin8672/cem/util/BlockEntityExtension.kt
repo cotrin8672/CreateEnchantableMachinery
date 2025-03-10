@@ -88,7 +88,7 @@ fun KineticBlockEntity.validateKinetics() {
     }
 }
 
-fun MechanicalMixerBlockEntity.mechanicalMixerBlockEntityTick() {
+fun MechanicalMixerBlockEntity.basinOperatingBlockEntityTick() {
     if (basinRemoved) {
         basinRemoved = false
         if (!running) return

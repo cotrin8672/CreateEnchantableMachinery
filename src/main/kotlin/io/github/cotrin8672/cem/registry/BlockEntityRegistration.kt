@@ -18,6 +18,9 @@ import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterBloc
 import io.github.cotrin8672.cem.content.block.harvester.EnchantableHarvesterRenderer
 import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlockEntity
 import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneRenderer
+import io.github.cotrin8672.cem.content.block.mixer.EnchantableMechanicalMixerBlockEntity
+import io.github.cotrin8672.cem.content.block.mixer.EnchantableMechanicalMixerRenderer
+import io.github.cotrin8672.cem.content.block.mixer.EnchantableMixerVisual
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughBlockEntity
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughRenderer
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
@@ -64,6 +67,16 @@ object BlockEntityRegistration {
         .blockEntity<EnchantablePloughBlockEntity>("enchantable_plough", ::EnchantablePloughBlockEntity)
         .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH)
         .renderer { NonNullFunction(::EnchantablePloughRenderer) }
+        .register()
+
+    val ENCHANTABLE_MECHANICAL_MIXER: BlockEntityEntry<EnchantableMechanicalMixerBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableMechanicalMixerBlockEntity>(
+            "enchantable_mechanical_mixer",
+            ::EnchantableMechanicalMixerBlockEntity
+        )
+        .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantableMixerVisual) }
+        .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
+        .renderer { NonNullFunction(::EnchantableMechanicalMixerRenderer) }
         .register()
 
     fun register() {}
