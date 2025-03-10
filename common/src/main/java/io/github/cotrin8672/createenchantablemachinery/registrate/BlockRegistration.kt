@@ -140,8 +140,8 @@ object BlockRegistration {
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<io.github.cotrin8672.createenchantablemachinery.content.block.press.EnchantableMechanicalPressBlock> =
-        REGISTRATE.block<io.github.cotrin8672.createenchantablemachinery.content.block.press.EnchantableMechanicalPressBlock>(
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> =
+        REGISTRATE.block<EnchantableMechanicalPressBlock>(
             "enchantable_mechanical_press",
             ::EnchantableMechanicalPressBlock
         )
