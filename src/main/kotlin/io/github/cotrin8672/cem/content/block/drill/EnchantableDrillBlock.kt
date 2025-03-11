@@ -12,6 +12,7 @@ import net.createmod.catnip.placement.PlacementHelpers
 import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.component.DataComponentMap
 import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.InteractionHand
@@ -99,7 +100,13 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
         super.setPlacedBy(worldIn, pos, state, placer, stack)
         val blockEntity = worldIn.getBlockEntity(pos)
         if (blockEntity is EnchantableBlockEntity) {
-            blockEntity.setEnchantment(stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+            val enchantments = stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
+            blockEntity.setEnchantment(enchantments)
+            val components = DataComponentMap.builder()
+                .addAll(blockEntity.components())
+                .set(DataComponents.ENCHANTMENTS, stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+                .build()
+            blockEntity.setComponents(components)
         }
     }
 

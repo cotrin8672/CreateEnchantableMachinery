@@ -4,15 +4,13 @@ import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation
 import com.simibubi.create.foundation.blockEntity.SyncedBlockEntity
 import com.simibubi.create.foundation.utility.CreateLang
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
+import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
-import net.minecraft.core.component.DataComponentMap
-import net.minecraft.core.component.DataComponents
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.enchantment.Enchantment.getFullname
-import net.minecraft.world.item.enchantment.ItemEnchantments
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 
@@ -22,7 +20,7 @@ class EnchantablePloughBlockEntity(
     state: BlockState,
 ) : SyncedBlockEntity(type, pos, state),
     IHaveGoggleInformation,
-    EnchantableBlockEntity {
+    EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
 
@@ -45,16 +43,16 @@ class EnchantablePloughBlockEntity(
         super.saveAdditional(tag, registries)
     }
 
-    override fun getEnchantments(): ItemEnchantments {
-        return components().get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
-    }
-
-    override fun setEnchantment(enchantments: ItemEnchantments) {
-        val components = DataComponentMap.builder()
-            .addAll(components())
-            .set(DataComponents.ENCHANTMENTS, enchantments)
-            .build()
-
-        setComponents(components)
-    }
+//    override fun getEnchantments(): ItemEnchantments {
+//        return components().get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
+//    }
+//
+//    override fun setEnchantment(enchantments: ItemEnchantments) {
+//        val components = DataComponentMap.builder()
+//            .addAll(components())
+//            .set(DataComponents.ENCHANTMENTS, enchantments)
+//            .build()
+//
+//        setComponents(components)
+//    }
 }

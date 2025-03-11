@@ -12,6 +12,7 @@ import net.createmod.catnip.placement.PlacementHelpers
 import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.component.DataComponentMap
 import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.InteractionHand
@@ -77,16 +78,35 @@ class EnchantableSawBlock(properties: Properties) : SawBlock(properties) {
         if (!player.getItemInHand(hand).isEnchanted)
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult)
 
-        val heldItem = player.getItemInHand(hand)
         val placementHelper = PlacementHelpers.get(placementHelperId)
         if (!player.isShiftKeyDown && player.mayBuild()) {
-            if (placementHelper.matchesItem(heldItem)) {
-                placementHelper.getOffset(player, level, state, pos, hitResult)
-                    .placeAlternativeBlockInWorld(level, heldItem.item as BlockItem, player, hand, hitResult)
-                return ItemInteractionResult.SUCCESS
-            }
+            if (placementHelper.matchesItem(stack) && placementHelper.getOffset(
+                    player,
+                    level,
+                    state,
+                    pos,
+                    hitResult,
+                )
+                    .placeAlternativeBlockInWorld(level, stack.item as BlockItem, player, hand, hitResult)
+                    .consumesAction()
+            ) return ItemInteractionResult.SUCCESS
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+
+        if (player.isSpectator || !stack.isEmpty)
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+        if (state.getOptionalValue(FACING).orElse(Direction.WEST) != Direction.UP)
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+
+        return onBlockEntityUseItemOn(level, pos) { be: SawBlockEntity ->
+            for (i in 0..<be.inventory.slots) {
+                val heldItemStack = be.inventory.getStackInSlot(i)
+                if (!level.isClientSide && !heldItemStack.isEmpty)
+                    player.inventory.placeItemBackInInventory(heldItemStack)
+            }
+            be.inventory.clear()
+            be.notifyUpdate()
+            ItemInteractionResult.SUCCESS
+        }
     }
 
     override fun setPlacedBy(
@@ -100,6 +120,11 @@ class EnchantableSawBlock(properties: Properties) : SawBlock(properties) {
         val blockEntity = worldIn.getBlockEntity(pos)
         if (blockEntity is EnchantableBlockEntity) {
             blockEntity.setEnchantment(stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+            val components = DataComponentMap.builder()
+                .addAll(blockEntity.components())
+                .set(DataComponents.ENCHANTMENTS, stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+                .build()
+            blockEntity.setComponents(components)
         }
     }
 

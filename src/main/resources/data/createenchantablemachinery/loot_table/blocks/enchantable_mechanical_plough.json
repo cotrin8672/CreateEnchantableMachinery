@@ -11,7 +11,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": [
+                "minecraft:enchantments"
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "create:mechanical_plough"
         }
       ],
       "rolls": 1.0
