@@ -1,8 +1,10 @@
 package io.github.cotrin8672.cem.content.block.drill
 
 import com.simibubi.create.AllBlocks
+import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement
 import com.simibubi.create.content.kinetics.drill.DrillBlock
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
+import com.simibubi.create.content.schematics.requirement.ItemRequirement
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
@@ -25,13 +27,14 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.ItemEnchantments
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
+import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import java.util.function.Predicate
 
-class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
+class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), SpecialBlockItemRequirement {
     companion object {
         private val placementHelperId = PlacementHelpers.register(PlacementHelper())
     }
@@ -143,5 +146,15 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties) {
                 }
             }
         }
+    }
+
+    override fun getRequiredItems(state: BlockState, blockEntity: BlockEntity?): ItemRequirement {
+        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
+        if (blockEntity is EnchantableBlockEntity) {
+            val enchantments = blockEntity.getEnchantments()
+            stack.set(DataComponents.ENCHANTMENTS, enchantments)
+        }
+        val strictRequirement = ItemRequirement.StrictNbtStackRequirement(stack, ItemRequirement.ItemUseType.CONSUME)
+        return ItemRequirement(strictRequirement)
     }
 }

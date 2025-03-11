@@ -78,7 +78,8 @@ class EnchantableRollerBlock(properties: Properties) : RollerBlock(properties), 
         super.setPlacedBy(worldIn, pos, state, placer, stack)
         val blockEntity = worldIn.getBlockEntity(pos)
         if (blockEntity is EnchantableBlockEntity) {
-            blockEntity.setEnchantment(stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+            val enchantments = stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
+            blockEntity.setEnchantment(enchantments)
             val components = DataComponentMap.builder()
                 .addAll(blockEntity.components())
                 .set(DataComponents.ENCHANTMENTS, stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
@@ -131,7 +132,7 @@ class EnchantableRollerBlock(properties: Properties) : RollerBlock(properties), 
     }
 
     override fun getRequiredItems(state: BlockState, blockEntity: BlockEntity?): ItemRequirement {
-        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL).apply {
+        val stack = ItemStack(AllBlocks.MECHANICAL_ROLLER).apply {
             if (blockEntity is EnchantableBlockEntity) {
                 set(DataComponents.ENCHANTMENTS, blockEntity.getEnchantments())
             }

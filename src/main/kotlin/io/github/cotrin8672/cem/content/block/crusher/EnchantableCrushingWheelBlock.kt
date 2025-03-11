@@ -1,10 +1,12 @@
 package io.github.cotrin8672.cem.content.block.crusher
 
 import com.simibubi.create.AllBlocks
+import com.simibubi.create.api.schematic.requirement.SpecialBlockItemRequirement
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock.VALID
+import com.simibubi.create.content.schematics.requirement.ItemRequirement
 import com.simibubi.create.foundation.block.IBE
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
@@ -13,6 +15,7 @@ import io.github.cotrin8672.cem.util.holderLookup
 import net.createmod.catnip.data.Iterate
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.component.DataComponentMap
 import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.MutableComponent
@@ -25,13 +28,15 @@ import net.minecraft.world.item.enchantment.ItemEnchantments
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.HitResult
 import net.minecraft.world.phys.Vec3
 import kotlin.math.sign
 
-class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock(properties) {
+class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock(properties),
+    SpecialBlockItemRequirement {
     @Deprecated("Deprecated in Java")
     override fun onRemove(state: BlockState, level: Level, pos: BlockPos, newState: BlockState, isMoving: Boolean) {
         for (direction in Iterate.directions) {
@@ -180,7 +185,23 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         super.setPlacedBy(worldIn, pos, state, placer, stack)
         val blockEntity = worldIn.getBlockEntity(pos)
         if (blockEntity is EnchantableBlockEntity) {
-            blockEntity.setEnchantment(stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+            val enchantments = stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
+            blockEntity.setEnchantment(enchantments)
+            val components = DataComponentMap.builder()
+                .addAll(blockEntity.components())
+                .set(DataComponents.ENCHANTMENTS, stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
+                .build()
+            blockEntity.setComponents(components)
         }
+    }
+
+    override fun getRequiredItems(state: BlockState, blockEntity: BlockEntity?): ItemRequirement {
+        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
+        if (blockEntity is EnchantableBlockEntity) {
+            val enchantments = blockEntity.getEnchantments()
+            stack.set(DataComponents.ENCHANTMENTS, enchantments)
+        }
+        val strictRequirement = ItemRequirement.StrictNbtStackRequirement(stack, ItemRequirement.ItemUseType.CONSUME)
+        return ItemRequirement(strictRequirement)
     }
 }

@@ -45,6 +45,8 @@ class EnchantableDrillBlockEntity(
     }
 
     override fun onBlockBroken(stateToBreak: BlockState?) {
+        if (optimiseCobbleGen(stateToBreak)) return
+
         val nonNullLevel = checkNotNull(level)
         val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
         BlockHelper.destroyBlockAs(
@@ -56,7 +58,7 @@ class EnchantableDrillBlockEntity(
         ) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
             if (!nonNullLevel.gameRules.getBoolean(GameRules.RULE_DOBLOCKDROPS)) return@destroyBlockAs
-            // if (nonNullLevel.restoringBlockSnapshots) return@destroyBlockAs TODO: Forgeのみの処理
+            if (nonNullLevel.restoringBlockSnapshots) return@destroyBlockAs
 
             val entity = ItemEntity(nonNullLevel, vec.x, vec.y, vec.z, stack)
             entity.setDefaultPickUpDelay()
