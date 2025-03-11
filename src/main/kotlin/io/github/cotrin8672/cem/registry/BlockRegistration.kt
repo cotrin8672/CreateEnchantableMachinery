@@ -22,8 +22,11 @@ import io.github.cotrin8672.cem.content.block.mixer.EnchantableMechanicalMixerBl
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughBlock
 import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughMovementBehaviour
 import io.github.cotrin8672.cem.content.block.press.EnchantableMechanicalPressBlock
+import io.github.cotrin8672.cem.content.block.roller.EnchantableRollerBlock
+import io.github.cotrin8672.cem.content.block.roller.EnchantableRollerMovementBehaviour
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlock
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawMovementBehaviour
+import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlock
 import io.github.cotrin8672.cem.registrate.CemStress
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.state.BlockBehaviour
@@ -98,68 +101,79 @@ object BlockRegistration {
         .register()
 
     @JvmStatic
-    val ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER: BlockEntry<EnchantableCrushingWheelControllerBlock> =
-        REGISTRATE.block<EnchantableCrushingWheelControllerBlock>(
+    val ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER: BlockEntry<EnchantableCrushingWheelControllerBlock> = REGISTRATE
+        .block<EnchantableCrushingWheelControllerBlock>(
             "enchantable_crushing_wheel_controller",
             ::EnchantableCrushingWheelControllerBlock
         )
-            .properties {
-                it.mapColor(MapColor.STONE)
-                    .noOcclusion()
-                    .noLootTable()
-                    .air()
-                    .noCollission()
-                    .pushReaction(PushReaction.BLOCK)
-            }
-            .blockstate { c, p ->
-                p.getVariantBuilder(c.get()).forAllStatesExcept(
-                    BlockStateGen.mapToAir(p),
-                    CrushingWheelControllerBlock.FACING
-                )
-            }
-            .register()
+        .properties {
+            it.mapColor(MapColor.STONE)
+                .noOcclusion()
+                .noLootTable()
+                .air()
+                .noCollission()
+                .pushReaction(PushReaction.BLOCK)
+        }
+        .blockstate { c, p ->
+            p.getVariantBuilder(c.get()).forAllStatesExcept(
+                BlockStateGen.mapToAir(p),
+                CrushingWheelControllerBlock.FACING
+            )
+        }
+        .register()
 
     @JvmStatic
-    val ENCHANTABLE_CRUSHING_WHEEL: BlockEntry<EnchantableCrushingWheelBlock> =
-        REGISTRATE.block<EnchantableCrushingWheelBlock>(
-            "enchantable_crushing_wheel",
-            ::EnchantableCrushingWheelBlock
-        )
-            .properties { it.mapColor(MapColor.METAL) }
-            .initialProperties(SharedProperties::stone)
-            .properties(BlockBehaviour.Properties::noOcclusion)
-            .transform(pickaxeOnly())
-            .blockstate { c, p -> BlockStateGen.axisBlock(c, p) { AssetLookup.partialBaseModel(c, p) } }
-            .addLayer { Supplier { RenderType.cutoutMipped() } }
-            .transform(CemStress.setImpact(8.0))
-            .register()
+    val ENCHANTABLE_CRUSHING_WHEEL: BlockEntry<EnchantableCrushingWheelBlock> = REGISTRATE
+        .block<EnchantableCrushingWheelBlock>("enchantable_crushing_wheel", ::EnchantableCrushingWheelBlock)
+        .properties { it.mapColor(MapColor.METAL) }
+        .initialProperties(SharedProperties::stone)
+        .properties(BlockBehaviour.Properties::noOcclusion)
+        .transform(pickaxeOnly())
+        .blockstate { c, p -> BlockStateGen.axisBlock(c, p) { AssetLookup.partialBaseModel(c, p) } }
+        .addLayer { Supplier { RenderType.cutoutMipped() } }
+        .transform(CemStress.setImpact(8.0))
+        .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> =
-        REGISTRATE.block<EnchantableMechanicalPressBlock>(
-            "enchantable_mechanical_press",
-            ::EnchantableMechanicalPressBlock
-        )
-            .initialProperties(SharedProperties::stone)
-            .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
-            .transform(axeOrPickaxe())
-            .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            .transform(CemStress.setImpact(8.0))
-            .register()
-    
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> = REGISTRATE
+        .block<EnchantableMechanicalPressBlock>("enchantable_mechanical_press", ::EnchantableMechanicalPressBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
+        .transform(axeOrPickaxe())
+        .blockstate(BlockStateGen.horizontalBlockProvider(true))
+        .transform(CemStress.setImpact(8.0))
+        .register()
+
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_MIXER: BlockEntry<EnchantableMechanicalMixerBlock> =
-        REGISTRATE.block<EnchantableMechanicalMixerBlock>(
-            "enchantable_mechanical_mixer",
-            ::EnchantableMechanicalMixerBlock
-        )
-            .initialProperties(SharedProperties::stone)
-            .properties { it.noOcclusion().mapColor(MapColor.STONE) }
-            .transform(axeOrPickaxe())
-            .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
-            .addLayer { Supplier { RenderType.cutoutMipped() } }
-            .transform(CemStress.setImpact(4.0))
-            .register()
+    val ENCHANTABLE_MECHANICAL_MIXER: BlockEntry<EnchantableMechanicalMixerBlock> = REGISTRATE
+        .block<EnchantableMechanicalMixerBlock>("enchantable_mechanical_mixer", ::EnchantableMechanicalMixerBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.noOcclusion().mapColor(MapColor.STONE) }
+        .transform(axeOrPickaxe())
+        .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+        .addLayer { Supplier { RenderType.cutoutMipped() } }
+        .transform(CemStress.setImpact(4.0))
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntry<EnchantableRollerBlock> = REGISTRATE
+        .block<EnchantableRollerBlock>("enchantable_mechanical_roller", ::EnchantableRollerBlock)
+        .initialProperties(SharedProperties::stone)
+        .properties { it.mapColor(MapColor.COLOR_GRAY).noOcclusion() }
+        .transform(axeOrPickaxe())
+        .onRegister(movementBehaviour(EnchantableRollerMovementBehaviour()))
+        .blockstate(BlockStateGen.horizontalBlockProvider(true))
+        .addLayer { Supplier { RenderType.cutoutMipped() } }
+        .register()
+
+    @JvmStatic
+    val ENCHANTABLE_SPOUT: BlockEntry<EnchantableSpoutBlock> = REGISTRATE
+        .block<EnchantableSpoutBlock>("enchantable_spout", ::EnchantableSpoutBlock)
+        .initialProperties(SharedProperties::copperMetal)
+        .transform(pickaxeOnly())
+        .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
+        .addLayer { Supplier { RenderType.cutoutMipped() } }
+        .register()
 
     fun register() {}
 }

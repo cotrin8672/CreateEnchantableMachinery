@@ -29,9 +29,13 @@ import io.github.cotrin8672.cem.content.block.plough.EnchantablePloughRenderer
 import io.github.cotrin8672.cem.content.block.press.EnchantableMechanicalPressBlockEntity
 import io.github.cotrin8672.cem.content.block.press.EnchantableMechanicalPressRenderer
 import io.github.cotrin8672.cem.content.block.press.EnchantablePressVisual
+import io.github.cotrin8672.cem.content.block.roller.EnchantableRollerBlockEntity
+import io.github.cotrin8672.cem.content.block.roller.EnchantableRollerRenderer
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawRenderer
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawVisual
+import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlockEntity
+import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutRenderer
 import net.minecraft.world.level.block.entity.BlockEntity
 
 object BlockEntityRegistration {
@@ -77,15 +81,15 @@ object BlockEntityRegistration {
             .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER)
             .register()
 
-    val ENCHANTABLE_CRUSHING_WHEEL: BlockEntityEntry<EnchantableCrushingWheelBlockEntity> =
-        REGISTRATE.blockEntity<EnchantableCrushingWheelBlockEntity>(
+    val ENCHANTABLE_CRUSHING_WHEEL: BlockEntityEntry<EnchantableCrushingWheelBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableCrushingWheelBlockEntity>(
             "enchantable_crushing_wheel",
             ::EnchantableCrushingWheelBlockEntity
         )
-            .visual(renderNormally = true) { EnchantedSingleAxisRotatingVisual.of(AllPartialModels.CRUSHING_WHEEL) }
-            .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
-            .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
-            .register()
+        .visual(renderNormally = true) { EnchantedSingleAxisRotatingVisual.of(AllPartialModels.CRUSHING_WHEEL) }
+        .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
+        .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
+        .register()
 
     val ENCHANTABLE_MECHANICAL_PLOUGH: BlockEntityEntry<EnchantablePloughBlockEntity> = REGISTRATE
         .blockEntity<EnchantablePloughBlockEntity>("enchantable_plough", ::EnchantablePloughBlockEntity)
@@ -93,15 +97,15 @@ object BlockEntityRegistration {
         .renderer { NonNullFunction(::EnchantablePloughRenderer) }
         .register()
 
-    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntityEntry<EnchantableMechanicalPressBlockEntity> =
-        REGISTRATE.blockEntity<EnchantableMechanicalPressBlockEntity>(
+    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntityEntry<EnchantableMechanicalPressBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableMechanicalPressBlockEntity>(
             "enchantable_mechanical_press",
             ::EnchantableMechanicalPressBlockEntity
         )
-            .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantablePressVisual) }
-            .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
-            .renderer { NonNullFunction(::EnchantableMechanicalPressRenderer) }
-            .register()
+        .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantablePressVisual) }
+        .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
+        .renderer { NonNullFunction(::EnchantableMechanicalPressRenderer) }
+        .register()
 
     val ENCHANTABLE_MECHANICAL_MIXER: BlockEntityEntry<EnchantableMechanicalMixerBlockEntity> = REGISTRATE
         .blockEntity<EnchantableMechanicalMixerBlockEntity>(
@@ -111,6 +115,21 @@ object BlockEntityRegistration {
         .visual(renderNormally = true) { SimpleBlockEntityVisualizer.Factory(::EnchantableMixerVisual) }
         .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
         .renderer { NonNullFunction(::EnchantableMechanicalMixerRenderer) }
+        .register()
+
+    val ENCHANTABLE_MECHANICAL_ROLLER: BlockEntityEntry<EnchantableRollerBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableRollerBlockEntity>(
+            "enchantable_mechanical_roller",
+            ::EnchantableRollerBlockEntity
+        )
+        .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
+        .renderer { NonNullFunction(::EnchantableRollerRenderer) }
+        .register()
+
+    val ENCHANTABLE_SPOUT: BlockEntityEntry<EnchantableSpoutBlockEntity> = REGISTRATE
+        .blockEntity<EnchantableSpoutBlockEntity>("enchantable_spout", ::EnchantableSpoutBlockEntity)
+        .validBlocks(BlockRegistration.ENCHANTABLE_SPOUT)
+        .renderer { NonNullFunction(::EnchantableSpoutRenderer) }
         .register()
 
     fun register() {}

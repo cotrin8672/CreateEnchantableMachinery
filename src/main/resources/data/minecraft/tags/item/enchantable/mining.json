@@ -8,6 +8,8 @@
     "create:crushing_wheel",
     "create:mechanical_plough",
     "create:mechanical_mixer",
-    "create:mechanical_press"
+    "create:mechanical_press",
+    "create:mechanical_roller",
+    "create:spout"
   ]
 }

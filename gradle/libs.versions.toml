@@ -15,7 +15,6 @@ modPublisher = "2.1.6"
 
 [libraries]
 minecraft = { module = "net.minecraft:minecraft", version.ref = "minecraft" }
-parchment = { module = "org.parchmentmc.data:parchment-1.20.1", version.ref = "parchiment" }
 kotlinforforge = { module = "thedarkcolour:kotlinforforge-neoforge", version.ref = "kotlinforforge" }
 create = { module = "com.simibubi.create:create-1.21.1", version.ref = "createForge" }
 flywheel = { module = "dev.engine-room.flywheel:flywheel-neoforge-1.21.1", version.ref = "flywheel" }
