@@ -13,6 +13,7 @@ import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.cem.mixin.CrushingWheelControllerBlockEntityMixin
+import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.util.holderLookup
 import io.github.cotrin8672.cem.util.nonNullLevel
 import io.github.cotrin8672.cem.util.smartBlockEntityTick
@@ -36,6 +37,8 @@ import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.api.distmarker.OnlyIn
+import net.neoforged.neoforge.capabilities.Capabilities
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
 import java.util.*
 import kotlin.math.max
 
@@ -46,6 +49,15 @@ class EnchantableCrushingWheelControllerBlockEntity(
 ) : CrushingWheelControllerBlockEntity(type, pos, state),
     EnchantableBlockEntity by EnchantableBlockEntityDelegate(),
     IHaveGoggleInformation {
+    companion object {
+        fun registerCapabilities(event: RegisterCapabilitiesEvent) {
+            event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                BlockEntityRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.get()
+            ) { be: CrushingWheelControllerBlockEntity, _: Direction? -> be.inventory }
+        }
+    }
+
     private var entityUUID: UUID?
         get() = (this as CrushingWheelControllerBlockEntityMixin).entityUUID
         set(value) {

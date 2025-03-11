@@ -3,6 +3,7 @@ package io.github.cotrin8672.cem
 import com.simibubi.create.AllBlocks
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.config.ModConfigs
+import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
 import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlockEntity
 import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlockEntity
 import io.github.cotrin8672.cem.registrate.KotlinRegistrate
@@ -34,6 +35,7 @@ class CreateEnchantableMachinery(container: ModContainer) {
         @JvmStatic
         @SubscribeEvent
         fun registerCapabilities(event: RegisterCapabilitiesEvent) {
+            EnchantableCrushingWheelControllerBlockEntity.registerCapabilities(event)
             EnchantableMillstoneBlockEntity.registerCapabilities(event)
             EnchantableSpoutBlockEntity.registerCapabilities(event)
         }
