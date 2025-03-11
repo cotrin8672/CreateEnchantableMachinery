@@ -28,5 +28,8 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      - name: Publish Mod
-        run: ./gradlew publishMod
+      - name: Publish to Modrinth
+        run: ./gradlew publishModrinth
+
+      - name: Publish to CurseForge
+        run: ./gradlew publishCurseforge
