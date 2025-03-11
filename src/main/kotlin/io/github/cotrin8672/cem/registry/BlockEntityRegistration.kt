@@ -86,7 +86,7 @@ object BlockEntityRegistration {
             "enchantable_crushing_wheel",
             ::EnchantableCrushingWheelBlockEntity
         )
-        .visual(renderNormally = true) { EnchantedSingleAxisRotatingVisual.of(AllPartialModels.CRUSHING_WHEEL) }
+        .visual(renderNormally = false) { EnchantedSingleAxisRotatingVisual.of(AllPartialModels.CRUSHING_WHEEL) }
         .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
         .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
         .register()
