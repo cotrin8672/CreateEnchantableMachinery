@@ -13,7 +13,7 @@ val modVersion: String by project
 val modGroupId: String by project
 
 group = modGroupId
-version = "${modVersion}+mc${libs.versions.minecraft.get()}"
+version = "${modVersion}+mc${libs.versions.minecraft.get()}-neoforge"
 
 base {
     archivesName = modId
@@ -115,7 +115,7 @@ publisher {
     curseID.set("1061749")
     modrinthID.set("eqrvp4NK")
     versionType.set("release")
-    changelog.set(file("../changelog.md"))
+    changelog.set(file("changelog.md"))
     version.set(project.version.toString())
     displayName.set("$modName $modVersion")
     setGameVersions(libs.versions.minecraft.get())
