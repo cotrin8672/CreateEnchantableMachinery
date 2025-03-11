@@ -117,7 +117,7 @@ publisher {
     versionType.set("release")
     changelog.set(file("changelog.md"))
     version.set(project.version.toString())
-    displayName.set("$modName $modVersion")
+    displayName.set("$modName $modVersion NeoForge")
     setGameVersions(libs.versions.minecraft.get())
     setLoaders(ModLoader.NEOFORGE)
     setCurseEnvironment(CurseEnvironment.BOTH)
