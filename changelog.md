@@ -1,3 +1,5 @@
+### Support for Create update 6
+
 ### Fixed
 
-- Fixed Issue#77
+- Fixed issue#81 related to SchematicCannon.

@@ -13,7 +13,7 @@ val modVersion: String by project
 val modGroupId: String by project
 
 group = modGroupId
-version = "${modVersion}-mc${libs.versions.minecraft.get()}"
+version = "${modVersion}+mc${libs.versions.minecraft.get()}"
 
 base {
     archivesName = modId
