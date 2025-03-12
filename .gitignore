@@ -27,3 +27,4 @@ forge*changelog.txt
 /.kotlin/sessions/
 /src/generated/resources/.cache/
 /run-data/
+/*-dev/
