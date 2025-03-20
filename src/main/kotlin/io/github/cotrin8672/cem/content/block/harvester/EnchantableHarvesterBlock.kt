@@ -44,7 +44,7 @@ class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(propert
         player: Player,
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.MECHANICAL_DRILL)
+        val stack = ItemStack(AllBlocks.MECHANICAL_HARVESTER)
         if (blockEntity is EnchantableBlockEntity) {
             val enchantments = blockEntity.getEnchantments().entrySet()
             enchantments.forEach {

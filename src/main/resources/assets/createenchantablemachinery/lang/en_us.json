@@ -1,0 +1,19 @@
+{
+  "createenchantablemachinery.ponder.mechanical_drill.header": "Enchanting to Mechanical Drill",
+  "createenchantablemachinery.ponder.mechanical_drill.text_1": "Like other tool, Mechanical Drill can be enchanted by enchanting table or anvil",
+  "createenchantablemachinery.ponder.mechanical_drill.text_2": "Efficiency enchantments can increase the mining speed of mechanical drills...",
+  "createenchantablemachinery.ponder.mechanical_drill.text_3": "Silk touch mining can also be used",
+  "createenchantablemachinery.ponder.mechanical_drill.text_4": "Mechanical Drill can grant any enchantment for mining tools",
+  "createenchantablemachinery.ponder.mechanical_drill.text_5": "When wearing Engineers' Goggles, the player can get drill's enchantments",
+  "createenchantablemachinery.ponder.mechanical_saw.header": "Enchanting to Mechanical Saw",
+  "createenchantablemachinery.ponder.mechanical_saw.text_1": "Like other tool, Mechanical Saw can be enchanted by enchanting table or anvil",
+  "createenchantablemachinery.ponder.mechanical_saw.text_2": "Efficiency enchantments can increase the processing efficiency of items",
+  "createenchantablemachinery.ponder.mechanical_saw.text_3": "Of course, enchantments can also be applied to logging.",
+  "createenchantablemachinery.ponder.mechanical_saw.text_4": "Using a mechanical saw with a silk touch...",
+  "createenchantablemachinery.ponder.mechanical_saw.text_5": "The effect of enchantment allows you to cut down trees.",
+  "createenchantablemachinery.ponder.mechanical_saw.text_6": "Mechanical Saw can grant any enchantment for mining tools.",
+  "createenchantablemachinery.ponder.mechanical_saw.text_7": "When wearing Engineers' Goggles, the player can get saw's enchantments.",
+  "createenchantablemachinery.ponder.encased_fan.header": "Enchanting to Encased Fan",
+  "createenchantablemachinery.ponder.encased_fan.text_1": "ケース入りファンには効率強化のエンチャントを付与することができます",
+  "createenchantablemachinery.ponder.encased_fan.text_2": "効率強化が付与されたケース入りファンはアイテムをより早く加工することができます"
+}

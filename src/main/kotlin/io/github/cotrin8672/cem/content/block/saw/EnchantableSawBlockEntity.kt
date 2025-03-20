@@ -16,11 +16,13 @@ import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.cem.content.entity.BlockBreaker
 import io.github.cotrin8672.cem.mixin.SawBlockEntityMixin
+import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.util.holderLookup
 import io.github.cotrin8672.cem.util.nonNullLevel
 import joptsimple.internal.Strings
 import net.createmod.catnip.math.VecHelper
 import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.Registries
 import net.minecraft.nbt.CompoundTag
@@ -38,6 +40,8 @@ import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
+import net.neoforged.neoforge.capabilities.Capabilities
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
 import java.util.stream.Collectors
 import kotlin.math.max
 
@@ -46,6 +50,18 @@ class EnchantableSawBlockEntity(
     pos: BlockPos,
     state: BlockState,
 ) : SawBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
+    companion object {
+        fun registerCapabilities(event: RegisterCapabilitiesEvent) {
+            event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                BlockEntityRegistration.ENCHANTABLE_MECHANICAL_SAW.get()
+            ) { be: SawBlockEntity, context: Direction? ->
+                if (context != Direction.DOWN) return@registerBlockEntity be.inventory
+                null
+            }
+        }
+    }
+
     private val fakePlayer by lazy {
         if (this.level is ServerLevel)
             BlockBreaker(this.level as ServerLevel, this@EnchantableSawBlockEntity) else null

@@ -19,7 +19,8 @@
     "SawBlockMixin",
     "ServerGamePacketListenerImplMixin",
     "SmartBlockEntityMixin",
-    "SpoutBlockEntityMixin"
+    "SpoutBlockEntityMixin",
+    "WorldSectionElementImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1

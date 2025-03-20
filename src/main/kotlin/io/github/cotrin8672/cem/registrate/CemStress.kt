@@ -2,7 +2,7 @@ package io.github.cotrin8672.cem.registrate
 
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator
-import io.github.cotrin8672.cem.CreateEnchantableMachinery
+import io.github.cotrin8672.cem.Cem
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap
 import net.createmod.catnip.config.ConfigBase
@@ -68,7 +68,7 @@ class CemStress : ConfigBase() {
         fun <B : Block, P> setImpact(value: Double): NonNullUnaryOperator<BlockBuilder<B, P>> {
             return NonNullUnaryOperator { builder: BlockBuilder<B, P> ->
                 assertFromCreateEnchantableMachinery(builder)
-                val id = CreateEnchantableMachinery.asResource(builder.name)
+                val id = Cem.asResource(builder.name)
                 DEFAULT_IMPACTS.put(id, value)
                 builder
             }
@@ -77,14 +77,14 @@ class CemStress : ConfigBase() {
         fun <B : Block, P> setCapacity(value: Double): NonNullUnaryOperator<BlockBuilder<B, P>> {
             return NonNullUnaryOperator<BlockBuilder<B, P>> { builder: BlockBuilder<B, P> ->
                 assertFromCreateEnchantableMachinery(builder)
-                val id: ResourceLocation = CreateEnchantableMachinery.asResource(builder.name)
+                val id: ResourceLocation = Cem.asResource(builder.name)
                 DEFAULT_CAPACITIES.put(id, value)
                 builder
             }
         }
 
         private fun assertFromCreateEnchantableMachinery(builder: BlockBuilder<*, *>) {
-            check(builder.owner.modid == CreateEnchantableMachinery.MOD_ID) {
+            check(builder.owner.modid == Cem.MOD_ID) {
                 "Non-Create: Enchantable Machinery blocks cannot be added to Create: Enchantable Machinery's config."
             }
         }

@@ -67,6 +67,7 @@ class CustomRenderType private constructor(
                 .setCullState(NO_CULL)
                 .setDepthTestState(LEQUAL_DEPTH_TEST)
                 .setTransparencyState(GLINT_TRANSPARENCY)
+                .setTexturingState(GLINT_TEXTURING)
                 .setLayeringState(CUSTOM_POLYGON_OFFSET_LAYERING)
                 .createCompositeState(false)
         )
