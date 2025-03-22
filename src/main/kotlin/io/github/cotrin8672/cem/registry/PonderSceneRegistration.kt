@@ -34,16 +34,22 @@ object PonderSceneRegistration {
                 EnchantablePloughPonderScene::enchanting
             )
 
+        registry.forComponents(AllBlocks.ENCASED_FAN)
+            .addStoryBoard(
+                "encased_fan/enchanting",
+                EnchantableEncasedFanPonderScene::enchanting
+            )
+
         registry.forComponents(AllBlocks.MILLSTONE)
             .addStoryBoard(
                 "millstone/enchanting",
                 EnchantableMillstonePonderScene::enchanting
             )
 
-        registry.forComponents(AllBlocks.ENCASED_FAN)
+        registry.forComponents(AllBlocks.CRUSHING_WHEEL)
             .addStoryBoard(
-                "encased_fan/enchanting",
-                EnchantableEncasedFanPonderScene::enchanting
+                "crushing_wheel/enchanting",
+                EnchantableCrushingWheelPonderScene::enchanting
             )
     }
 }

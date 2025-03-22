@@ -31,5 +31,11 @@
   "createenchantablemachinery.ponder.millstone.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます",
   "createenchantablemachinery.ponder.encased_fan.header": "ケース入りファンへのエンチャント",
   "createenchantablemachinery.ponder.encased_fan.text_1": "ケース入りファンには効率強化のエンチャントを付与することができます",
-  "createenchantablemachinery.ponder.encased_fan.text_2": "効率強化が付与されたケース入りファンはアイテムをより早く加工することができます"
+  "createenchantablemachinery.ponder.encased_fan.text_2": "効率強化が付与されたケース入りファンはアイテムをより早く加工することができます",
+  "createenchantablemachinery.ponder.encased_fan.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます",
+  "createenchantablemachinery.ponder.crushing_wheel.header": "破砕ホイールへのエンチャント",
+  "createenchantablemachinery.ponder.crushing_wheel.text_1": "破砕ホイールには効率強化のエンチャントを付与することができます",
+  "createenchantablemachinery.ponder.crushing_wheel.text_2": "効率強化が付与された破砕ホイールはアイテムをより早く粉砕することができます",
+  "createenchantablemachinery.ponder.crushing_wheel.text_3": "粉砕する速度は2つの破砕ホイールのエンチャントレベルの合計値に従って向上します",
+  "createenchantablemachinery.ponder.crushing_wheel.text_4": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます"
 }
