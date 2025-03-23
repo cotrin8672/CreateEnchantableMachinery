@@ -17,12 +17,9 @@ object EnchantablePressPonderScene {
     fun enchanting(builder: SceneBuilder, util: SceneBuildingUtil) {
         val largeCogwheel = util.grid().at(1, 0, 5)
         val cogwheel = util.grid().at(2, 1, 5)
-        val shaft = util.grid().at(2, 1, 4)
         val verticalShaftSection = util.select().fromTo(2, 2, 3, 2, 3, 3)
         val rightBasin = util.grid().at(1, 2, 3)
-        val rightCasing = util.grid().at(1, 1, 3)
         val leftBasin = util.grid().at(3, 2, 3)
-        val leftCasing = util.grid().at(3, 1, 3)
         val underGearbox = util.grid().at(2, 1, 3)
         val topGearbox = util.grid().at(2, 4, 3)
         val enchantedPress = util.grid().at(1, 4, 3)
