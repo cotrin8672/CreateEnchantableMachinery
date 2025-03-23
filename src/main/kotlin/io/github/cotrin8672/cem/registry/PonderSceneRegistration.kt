@@ -63,5 +63,11 @@ object PonderSceneRegistration {
                 "mechanical_mixer/enchanting",
                 EnchantableMixerPonderScene::enchanting
             )
+
+        registry.forComponents(AllBlocks.MECHANICAL_ROLLER)
+            .addStoryBoard(
+                "mechanical_roller/enchanting",
+                EnchantableRollerPonderScene::enchanting
+            )
     }
 }

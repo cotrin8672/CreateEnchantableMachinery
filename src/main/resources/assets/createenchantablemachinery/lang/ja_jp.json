@@ -45,5 +45,9 @@
   "createenchantablemachinery.ponder.mechanical_mixer.header": "メカニカルミキサーへのエンチャント",
   "createenchantablemachinery.ponder.mechanical_mixer.text_1": "メカニカルミキサーには効率強化のエンチャントを付与することができます",
   "createenchantablemachinery.ponder.mechanical_mixer.text_2": "効率強化が付与されたメカニカルミキサーはアイテムをより早く加工することができます",
-  "createenchantablemachinery.ponder.mechanical_mixer.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます"
+  "createenchantablemachinery.ponder.mechanical_mixer.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます",
+  "createenchantablemachinery.ponder.mechanical_roller.header": "メカニカルローラーへのエンチャント",
+  "createenchantablemachinery.ponder.mechanical_roller.text_1": "メカニカルローラーには効率強化のエンチャントを付与することができます",
+  "createenchantablemachinery.ponder.mechanical_roller.text_2": "効率強化が付与されたメカニカルローラーはブロックをより早く破壊することができます",
+  "createenchantablemachinery.ponder.mechanical_roller.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます"
 }
