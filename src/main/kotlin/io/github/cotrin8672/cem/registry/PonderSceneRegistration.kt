@@ -51,5 +51,11 @@ object PonderSceneRegistration {
                 "crushing_wheel/enchanting",
                 EnchantableCrushingWheelPonderScene::enchanting
             )
+
+        registry.forComponents(AllBlocks.MECHANICAL_PRESS)
+            .addStoryBoard(
+                "mechanical_press/enchanting",
+                EnchantablePressPonderScene::enchanting
+            )
     }
 }
