@@ -14,12 +14,14 @@
     "DrillBlockMixin",
     "ItemMixin",
     "KineticBlockEntityMixin",
+    "PonderTagBuilderMixin",
     "RollerBlockMixin",
     "SawBlockEntityMixin",
     "SawBlockMixin",
     "ServerGamePacketListenerImplMixin",
     "SmartBlockEntityMixin",
-    "SpoutBlockEntityMixin"
+    "SpoutBlockEntityMixin",
+    "WorldSectionElementImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1

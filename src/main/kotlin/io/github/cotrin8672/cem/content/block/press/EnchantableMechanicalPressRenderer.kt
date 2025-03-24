@@ -33,42 +33,56 @@ class EnchantableMechanicalPressRenderer(
         light: Int,
         overlay: Int,
     ) {
-        val consumer = SheetedDecalTextureGenerator(
-            buffer.getBuffer(CustomRenderType.GLINT),
-            ms.last(),
-            0.007125f
-        )
-        val blockState = be.blockState
+        super.renderSafe(be, partialTicks, ms, buffer, light, overlay)
+
+        val state = be.blockState
         val headModel = CachedBuffers.partialFacing(
             AllPartialModels.MECHANICAL_PRESS_HEAD,
-            blockState,
-            blockState.getValue(HORIZONTAL_FACING)
+            state,
+            state.getValue(HORIZONTAL_FACING)
         )
         val pressingBehaviour = be.getPressingBehaviour()
         val renderedHeadOffset =
             pressingBehaviour.getRenderedHeadOffset(partialTicks) * pressingBehaviour.mode.headOffset
 
-
         ms.use {
             if (CemConfig.CONFIG.renderGlint.get()) {
+                val consumer = SheetedDecalTextureGenerator(
+                    buffer.getBuffer(CustomRenderType.GLINT),
+                    ms.last(),
+                    0.007125f
+                )
                 context.blockRenderDispatcher.renderBatched(
                     be.blockState, be.blockPos, be.nonNullLevel, ms, consumer, true, Random
                 )
             }
             if (!VisualizationManager.supportsVisualization(be.level)) {
-                headModel
-                    .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
-                    .light<SuperByteBuffer>(light)
-                    .renderInto(ms, consumer)
+
                 headModel
                     .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
                     .light<SuperByteBuffer>(light)
                     .renderInto(ms, buffer.getBuffer(RenderType.solid()))
+//                renderRotatingBuffer(
+//                    be,
+//                    getRotatedModel(be, state),
+//                    ms,
+//                    buffer.getBuffer(RenderType.solid()),
+//                    light
+//                )
+                val consumer = SheetedDecalTextureGenerator(
+                    buffer.getBuffer(CustomRenderType.GLINT),
+                    ms.last(),
+                    0.007125f
+                )
+                headModel
+                    .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
+                    .light<SuperByteBuffer>(light)
+                    .renderInto(ms, consumer)
             }
         }
     }
 
-    override fun getRenderedBlockState(be: EnchantableMechanicalPressBlockEntity?): BlockState {
+    override fun getRenderedBlockState(be: EnchantableMechanicalPressBlockEntity): BlockState {
         return shaft(getRotationAxisOf(be))
     }
 

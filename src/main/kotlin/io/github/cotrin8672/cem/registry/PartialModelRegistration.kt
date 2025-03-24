@@ -1,7 +1,7 @@
 package io.github.cotrin8672.cem.registry
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel
-import io.github.cotrin8672.cem.CreateEnchantableMachinery
+import io.github.cotrin8672.cem.Cem
 
 object PartialModelRegistration {
     @JvmStatic
@@ -14,7 +14,7 @@ object PartialModelRegistration {
     val ENCHANTABLE_MECHANICAL_MIXER_HEAD = block("block/enchantable_mechanical_mixer/head")
 
     fun block(path: String): PartialModel {
-        return PartialModel.of(CreateEnchantableMachinery.asResource(path))
+        return PartialModel.of(Cem.asResource(path))
     }
 
     fun register() {}

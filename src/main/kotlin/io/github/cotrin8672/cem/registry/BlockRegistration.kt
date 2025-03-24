@@ -9,7 +9,7 @@ import com.simibubi.create.foundation.data.SharedProperties
 import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
 import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
 import com.tterrag.registrate.util.entry.BlockEntry
-import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
+import io.github.cotrin8672.cem.Cem.Companion.REGISTRATE
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelBlock
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlock
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlock

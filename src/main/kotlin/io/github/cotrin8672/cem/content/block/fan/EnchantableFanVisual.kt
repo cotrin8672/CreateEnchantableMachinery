@@ -13,6 +13,7 @@ import dev.engine_room.flywheel.lib.model.Models
 import dev.engine_room.flywheel.lib.model.baked.BakedModelBuilder
 import dev.engine_room.flywheel.lib.model.baked.BlockModelBuilder
 import io.github.cotrin8672.cem.util.nonNullLevel
+import net.createmod.ponder.api.level.PonderLevel
 import net.minecraft.core.Direction
 import net.minecraft.util.Mth
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
@@ -39,17 +40,19 @@ class EnchantableFanVisual(
     )
         .createInstance()
 
-    private val blockModel = context.createEmbedding(renderOrigin()).instancerProvider().instancer(
-        InstanceTypes.POSED,
-        BlockModelBuilder(blockEntity.nonNullLevel, setOf(blockEntity.blockPos))
-            .materialFunc { _, _ ->
-                SimpleMaterial.builderOf(Materials.GLINT)
-                    .cardinalLightingMode(CardinalLightingMode.CHUNK)
-                    .polygonOffset(true)
-            }
-            .build()
-    )
-        .createInstance()
+    private val blockModel = if (blockEntity.level !is PonderLevel) {
+        context.createEmbedding(renderOrigin()).instancerProvider().instancer(
+            InstanceTypes.POSED,
+            BlockModelBuilder(blockEntity.nonNullLevel, setOf(blockEntity.blockPos))
+                .materialFunc { _, _ ->
+                    SimpleMaterial.builderOf(Materials.GLINT)
+                        .cardinalLightingMode(CardinalLightingMode.CHUNK)
+                        .polygonOffset(true)
+                }
+                .build()
+        )
+            .createInstance()
+    } else null
     val direction: Direction = blockState.getValue(BlockStateProperties.FACING)
     private val opposite = direction.opposite
 
@@ -70,7 +73,7 @@ class EnchantableFanVisual(
             .setChanged()
 
         blockModel
-            .setChanged()
+            ?.setChanged()
     }
 
     private fun getFanSpeed(): Float {
@@ -86,7 +89,7 @@ class EnchantableFanVisual(
         shaft.setup(blockEntity).setChanged()
         enchantedShaft.setup(blockEntity).setChanged()
         fan.setup(blockEntity, getFanSpeed()).setChanged()
-        blockModel.setChanged()
+        blockModel?.setChanged()
     }
 
     override fun updateLight(partialTick: Float) {
@@ -96,20 +99,20 @@ class EnchantableFanVisual(
 
         val inFront = pos.relative(direction)
         relight(inFront, fan)
-        relight(blockModel)
+        blockModel?.let { relight(it) }
     }
 
     override fun _delete() {
         shaft.delete()
         enchantedShaft.delete()
         fan.delete()
-        blockModel.delete()
+        blockModel?.delete()
     }
 
     override fun collectCrumblingInstances(consumer: Consumer<Instance?>) {
         consumer.accept(shaft)
         consumer.accept(enchantedShaft)
         consumer.accept(fan)
-        consumer.accept(blockModel)
+        blockModel?.let { consumer.accept(it) }
     }
 }

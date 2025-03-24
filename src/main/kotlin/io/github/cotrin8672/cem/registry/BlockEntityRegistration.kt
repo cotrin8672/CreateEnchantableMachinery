@@ -6,7 +6,7 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
 import com.tterrag.registrate.util.nullness.NonNullSupplier
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer
-import io.github.cotrin8672.cem.CreateEnchantableMachinery.Companion.REGISTRATE
+import io.github.cotrin8672.cem.Cem.Companion.REGISTRATE
 import io.github.cotrin8672.cem.client.visual.EnchantedOrientedRotatingVisual
 import io.github.cotrin8672.cem.client.visual.EnchantedSingleAxisRotatingVisual
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelBlockEntity

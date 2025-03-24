@@ -3,8 +3,10 @@ package io.github.cotrin8672.cem.content.block.crusher
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
+import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
+import io.github.cotrin8672.cem.util.nonNullLevel
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import thedarkcolour.kotlinforforge.neoforge.forge.use
@@ -24,7 +26,7 @@ class EnchantableCrushingWheelRenderer(
 
         ms.use {
             super.renderSafe(be, partialTicks, ms, buffer, light, overlay)
-            if (CemConfig.CONFIG.renderGlint.get()) {
+            if (CemConfig.CONFIG.renderGlint.get() && !VisualizationManager.supportsVisualization(be.nonNullLevel)) {
                 val consumer = SheetedDecalTextureGenerator(
                     buffer.getBuffer(CustomRenderType.GLINT),
                     ms.last(),
