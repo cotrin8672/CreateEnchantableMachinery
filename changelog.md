@@ -1,5 +1,7 @@
-### Support for Create update 6
+### Added
+
+- Added Ponder scene of enchanting.
 
 ### Fixed
 
-- Fixed issue#81 related to SchematicCannon.
+- Fixed mechanical saw behaviour bug.

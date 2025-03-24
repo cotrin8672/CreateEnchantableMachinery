@@ -27,7 +27,6 @@
   "createenchantablemachinery.ponder.millstone.header": "石臼へのエンチャント",
   "createenchantablemachinery.ponder.millstone.text_1": "石臼には効率強化のエンチャントを付与することができます",
   "createenchantablemachinery.ponder.millstone.text_2": "効率強化が付与された石臼はアイテムをより早く加工することができます",
-  "createenchantablemachinery.ponder.millstone.text_2": "効率強化が付与された石臼はアイテムをより早く加工することができます",
   "createenchantablemachinery.ponder.millstone.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます",
   "createenchantablemachinery.ponder.encased_fan.header": "ケース入りファンへのエンチャント",
   "createenchantablemachinery.ponder.encased_fan.text_1": "ケース入りファンには効率強化のエンチャントを付与することができます",
@@ -53,5 +52,7 @@
   "createenchantablemachinery.ponder.spout.header": "アイテム注液口へのエンチャント",
   "createenchantablemachinery.ponder.spout.text_1": "アイテム注液口には効率強化のエンチャントを付与することができます",
   "createenchantablemachinery.ponder.spout.text_2": "効率強化が付与されたアイテム注液口はアイテムをより早く液体で満たせます",
-  "createenchantablemachinery.ponder.spout.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます"
+  "createenchantablemachinery.ponder.spout.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます",
+  "createenchantablemachinery.ponder.tag.enchantable_blocks": "エンチャント可能な機械",
+  "createenchantablemachinery.ponder.tag.enchantable_blocks.description": "エンチャントを付与することができる機械"
 }

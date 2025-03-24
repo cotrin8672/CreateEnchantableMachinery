@@ -52,5 +52,7 @@
   "createenchantablemachinery.ponder.spout.header": "Enchanting to Spout",
   "createenchantablemachinery.ponder.spout.text_1": "The Spout can be enchanted with Efficiency enchantments",
   "createenchantablemachinery.ponder.spout.text_2": "A Spout with Efficiency enchantments can fill items with liquids faster",
-  "createenchantablemachinery.ponder.spout.text_3": "When wearing Engineers' Goggles, you can view the applied enchantments"
+  "createenchantablemachinery.ponder.spout.text_3": "When wearing Engineers' Goggles, you can view the applied enchantments",
+  "createenchantablemachinery.ponder.tag.enchantable_blocks": "Enchantable Machinery",
+  "createenchantablemachinery.ponder.tag.enchantable_blocks.description": "Components which can apply some enchantments"
 }
