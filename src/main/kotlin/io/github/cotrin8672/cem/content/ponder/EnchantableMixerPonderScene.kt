@@ -54,7 +54,7 @@ object EnchantableMixerPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedMixer))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("The Mechanical Mixer can be enchanted with Efficiency enchantments")
             idle(60)
 
             val redDye = ItemStack(Items.RED_DYE)
@@ -78,7 +78,7 @@ object EnchantableMixerPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedMixer))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("A Mechanical Mixer with Efficiency enchantments can process items faster")
 
             idle(60)
             world().createItemOnBelt(beltStart.east(), Direction.UP, purpleDye)
@@ -91,7 +91,7 @@ object EnchantableMixerPonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, you can view the applied enchantments")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedMixer))

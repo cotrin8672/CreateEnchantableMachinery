@@ -86,7 +86,7 @@ object EnchantableSawPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedSawPos))
-                .text("Like other tool, Mechanical Saw can be enchanted by enchanting table or anvil.")
+                .text("Like other tools, the Mechanical Saw can be enchanted by an enchanting table or anvil")
             idle(60)
 
             val log = ItemStack(Items.OAK_LOG, 3)
@@ -107,7 +107,7 @@ object EnchantableSawPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedSawPos))
-                .text("Efficiency enchantments can increase the processing efficiency of items.")
+                .text("Efficiency enchantments can increase the processing efficiency of items")
 
             idle(200)
 
@@ -125,7 +125,7 @@ object EnchantableSawPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(sawPos))
-                .text("Of course, enchantments can also be applied to logging.")
+                .text("Of course, enchantments can also be applied to logging")
 
             idle(60)
 
@@ -144,7 +144,7 @@ object EnchantableSawPonderScene {
                         .attachKeyFrame()
                         .placeNearTarget()
                         .pointAt(util.vector().blockSurface(enchantedSawPos, Direction.WEST))
-                        .text("When you cut it down using Mechanical Saw with a silk touch...")
+                        .text("Using a Mechanical Saw with a silk touch enchantment...")
                 }
             }
 
@@ -177,7 +177,7 @@ object EnchantableSawPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().centerOf(1, 1, 1))
-                .text("The effect of enchantment allows you to cut down trees.")
+                .text("The enchantment effect allows you to fell trees")
 
             idle(70)
 
@@ -185,14 +185,14 @@ object EnchantableSawPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().blockSurface(sawPos, Direction.WEST))
-                .text("Mechanical Saw can grant any enchantment for mining tools.")
+                .text("The Mechanical Saw can receive any enchantment applicable to mining tool")
 
             idle(70)
 
             overlay().showControls(util.vector().topOf(sawPos), Pointing.DOWN, 50).withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, the player can view the saw's enchantments")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(sawPos))

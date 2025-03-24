@@ -42,7 +42,7 @@ object EnchantablePloughPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedPloughPos))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("Like other tools, the Mechanical Plough can be enchanted")
             idle(60)
 
             world().showSection(railSection, Direction.DOWN)
@@ -68,7 +68,7 @@ object EnchantablePloughPonderScene {
                             .attachKeyFrame()
                             .placeNearTarget()
                             .pointAt(util.vector().topOf(enchantedPloughPos))
-                            .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                            .text("Efficiency enchantments can increase the mining speed of the Mechanical Plough")
                     }
 
                     4 -> {
@@ -96,7 +96,7 @@ object EnchantablePloughPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().blockSurface(enchantedPloughPos, Direction.WEST))
-                .text("Mechanical Saw can grant any enchantment for mining tools.")
+                .text("Any enchantment for mining tools can be applied to the Mechanical Plough")
 
             idle(70)
 
@@ -104,7 +104,7 @@ object EnchantablePloughPonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, you can view the applied enchantments")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedPloughPos))

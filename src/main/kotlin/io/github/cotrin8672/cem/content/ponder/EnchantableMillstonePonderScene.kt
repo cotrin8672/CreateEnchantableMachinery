@@ -49,7 +49,7 @@ object EnchantableMillstonePonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedMillstonePos))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("The Millstone can be enchanted with Efficiency enchantments")
             idle(60)
 
             world().showSection(funnelSection, Direction.SOUTH)
@@ -84,7 +84,7 @@ object EnchantableMillstonePonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedMillstonePos))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("A Millstone with Efficiency enchantments can process items faster")
             idle(50)
 
             val flour = AllItems.WHEAT_FLOUR.asStack()
@@ -110,7 +110,7 @@ object EnchantableMillstonePonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, the applied enchantments can be viewed")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedMillstonePos))

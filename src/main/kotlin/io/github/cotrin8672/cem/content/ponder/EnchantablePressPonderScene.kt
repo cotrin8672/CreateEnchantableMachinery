@@ -53,7 +53,7 @@ object EnchantablePressPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedPress))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("The Mechanical Press can be enchanted with Efficiency enchantments")
             idle(60)
 
             val ironIngot = ItemStack(Items.IRON_INGOT)
@@ -73,7 +73,7 @@ object EnchantablePressPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedPress))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("A Mechanical Press with Efficiency enchantments can process items faster")
 
             val ironBlock = ItemStack(Items.IRON_BLOCK)
             idle(35)
@@ -92,7 +92,7 @@ object EnchantablePressPonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, you can view the applied enchantments")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedPress))

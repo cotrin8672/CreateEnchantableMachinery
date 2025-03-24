@@ -27,12 +27,12 @@ object EnchantableDrillPonderScene {
 
         scene.idle(20)
 
-        scene.overlay().showText(80)
+        scene.overlay().showText(50)
             .attachKeyFrame()
             .placeNearTarget()
             .pointAt(util.vector().topOf(1, 1, 3))
-            .text("Like other tool, Mechanical Drill can be enchanted by enchanting table or anvil.")
-        scene.idle(80)
+            .text("Like other tools, the Mechanical Drill can be enchanted by an enchanting table or anvil")
+        scene.idle(60)
 
         scene.world().showSection(util.select().fromTo(1, 1, 2, 3, 1, 2), Direction.DOWN)
         scene.idle(5)
@@ -86,7 +86,7 @@ object EnchantableDrillPonderScene {
             .attachKeyFrame()
             .placeNearTarget()
             .pointAt(util.vector().topOf(1, 1, 3))
-            .text("Mechanical Drill can grant any enchantment for mining tools")
+            .text("The Mechanical Drill can receive any enchantment applicable to mining tools")
 
         scene.idle(100)
 
@@ -95,7 +95,7 @@ object EnchantableDrillPonderScene {
         scene.overlay().showControls(enchantedDrill, Pointing.DOWN, 80).withItem(AllItems.GOGGLES.asStack())
         scene.idle(7)
         scene.overlay().showText(80)
-            .text("When wearing Engineers' Goggles, the player can get drill's enchantments.")
+            .text("When wearing Engineers' Goggles, the player can view the drill's enchantments")
             .attachKeyFrame()
             .colored(PonderPalette.MEDIUM)
             .pointAt(enchantedDrill)

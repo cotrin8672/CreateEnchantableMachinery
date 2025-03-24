@@ -50,7 +50,7 @@ object EnchantableSpoutPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedSpout))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("The Spout can be enchanted with Efficiency enchantments")
             idle(60)
 
             val bottle = ItemStack(Items.GLASS_BOTTLE)
@@ -84,7 +84,7 @@ object EnchantableSpoutPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedSpout))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("A Spout with Efficiency enchantments can fill items with liquids faster")
             idle(30)
 
             world().stallBeltItem(normalBeltItem, true)
@@ -135,7 +135,7 @@ object EnchantableSpoutPonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, you can view the applied enchantments")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedSpout))

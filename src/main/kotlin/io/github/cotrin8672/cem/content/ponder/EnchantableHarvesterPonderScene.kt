@@ -43,7 +43,7 @@ object EnchantableHarvesterPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedHarvesterPos))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("Like other tools, the Mechanical Harvester can be enchanted by an enchanting table or anvil")
             idle(60)
 
             world().showSection(util.select().position(leafPos), Direction.UP)
@@ -91,7 +91,7 @@ object EnchantableHarvesterPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().centerOf(leafPos))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("It can be enchanted with silk touch effects, and...")
             idle(60)
 
             world().modifyEntity(leafItemEntity, Entity::discard)
@@ -151,7 +151,7 @@ object EnchantableHarvesterPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().centerOf(leafPos))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("Fortune enchantments can yield more crops")
 
             idle(70)
 
@@ -159,7 +159,7 @@ object EnchantableHarvesterPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().blockSurface(enchantedHarvesterPos, Direction.WEST))
-                .text("Mechanical Saw can grant any enchantment for mining tools.")
+                .text("The Mechanical Harvester can receive any enchantment applicable to mining tools")
 
             idle(70)
 
@@ -167,7 +167,7 @@ object EnchantableHarvesterPonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, the applied enchantments can be viewed")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedHarvesterPos))

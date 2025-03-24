@@ -76,7 +76,7 @@ object EnchantableRollerPonderScene {
                 .attachKeyFrame()
                 .placeNearTarget()
                 .pointAt(util.vector().topOf(enchantedRoller))
-                .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                .text("The Mechanical Roller can be enchanted with Efficiency enchantment")
             idle(60)
 
             world().showSection(util.select().fromTo(rightStone, leftStone), Direction.UP)
@@ -102,7 +102,7 @@ object EnchantableRollerPonderScene {
                         .attachKeyFrame()
                         .placeNearTarget()
                         .pointAt(util.vector().topOf(rightStone))
-                        .text("Like other tool, Mechanical Harvester can be enchanted by enchanting table or anvil.")
+                        .text("A Mechanical Roller with Efficiency enchantments can break blocks faster")
                 }
             }
 
@@ -122,7 +122,7 @@ object EnchantableRollerPonderScene {
                 .withItem(AllItems.GOGGLES.asStack())
             idle(7)
             overlay().showText(50)
-                .text("When wearing Engineers' Goggles, the player can get saw1's enchantments.")
+                .text("When wearing Engineers' Goggles, you can view the applied enchantments")
                 .attachKeyFrame()
                 .colored(PonderPalette.MEDIUM)
                 .pointAt(util.vector().topOf(enchantedRoller))
