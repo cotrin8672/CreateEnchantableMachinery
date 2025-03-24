@@ -69,5 +69,11 @@ object PonderSceneRegistration {
                 "mechanical_roller/enchanting",
                 EnchantableRollerPonderScene::enchanting
             )
+
+        registry.forComponents(AllBlocks.SPOUT)
+            .addStoryBoard(
+                "spout/enchanting",
+                EnchantableSpoutPonderScene::enchanting
+            )
     }
 }

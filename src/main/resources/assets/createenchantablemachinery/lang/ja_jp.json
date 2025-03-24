@@ -49,5 +49,9 @@
   "createenchantablemachinery.ponder.mechanical_roller.header": "メカニカルローラーへのエンチャント",
   "createenchantablemachinery.ponder.mechanical_roller.text_1": "メカニカルローラーには効率強化のエンチャントを付与することができます",
   "createenchantablemachinery.ponder.mechanical_roller.text_2": "効率強化が付与されたメカニカルローラーはブロックをより早く破壊することができます",
-  "createenchantablemachinery.ponder.mechanical_roller.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます"
+  "createenchantablemachinery.ponder.mechanical_roller.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます",
+  "createenchantablemachinery.ponder.spout.header": "アイテム注液口へのエンチャント",
+  "createenchantablemachinery.ponder.spout.text_1": "アイテム注液口には効率強化のエンチャントを付与することができます",
+  "createenchantablemachinery.ponder.spout.text_2": "効率強化が付与されたアイテム注液口はアイテムをより早く液体で満たせます",
+  "createenchantablemachinery.ponder.spout.text_3": "エンジニアのゴーグルを装着していると、付与されているエンチャントを確認できます"
 }
