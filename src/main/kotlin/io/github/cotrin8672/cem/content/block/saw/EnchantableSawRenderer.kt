@@ -86,14 +86,6 @@ class EnchantableSawRenderer(
 
         if (!VisualizationManager.supportsVisualization(be.level)) {
             renderShaft(be, ms, buffer, light)
-            if (CemConfig.CONFIG.renderGlint.get()) {
-                val consumer = SheetedDecalTextureGenerator(
-                    buffer.getBuffer(CustomRenderType.GLINT),
-                    ms.last(),
-                    0.007125f
-                )
-                renderShaft(be, ms, buffer, light)
-            }
         }
     }
 

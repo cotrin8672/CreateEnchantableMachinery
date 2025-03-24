@@ -5,6 +5,7 @@ import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.config.ModConfigs
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
 import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlockEntity
+import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlockEntity
 import io.github.cotrin8672.cem.registrate.KotlinRegistrate
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
@@ -21,9 +22,9 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
-@EventBusSubscriber(modid = CreateEnchantableMachinery.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-@Mod(CreateEnchantableMachinery.MOD_ID)
-class CreateEnchantableMachinery(container: ModContainer) {
+@EventBusSubscriber(modid = Cem.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@Mod(Cem.MOD_ID)
+class Cem(container: ModContainer) {
     companion object {
         const val MOD_ID = "createenchantablemachinery"
         val REGISTRATE = KotlinRegistrate.create(MOD_ID)
@@ -35,6 +36,7 @@ class CreateEnchantableMachinery(container: ModContainer) {
         @JvmStatic
         @SubscribeEvent
         fun registerCapabilities(event: RegisterCapabilitiesEvent) {
+            EnchantableSawBlockEntity.registerCapabilities(event)
             EnchantableCrushingWheelControllerBlockEntity.registerCapabilities(event)
             EnchantableMillstoneBlockEntity.registerCapabilities(event)
             EnchantableSpoutBlockEntity.registerCapabilities(event)

@@ -55,27 +55,25 @@ class EnchantableSpoutRenderer(
         processingProgress = Mth.clamp(processingProgress, 0f, 1f)
         var radius = 0f
 
-        if (processingTicks != -1) {
+        if (!fluidStack.isEmpty && processingTicks != -1) {
             radius = (((2 * processingProgress) - 1).toDouble().pow(2.0) - 1).toFloat()
             val bb = AABB(0.5, 0.5, 0.5, 0.5, -1.2, 0.5).inflate((radius / 32f).toDouble())
-            ms.use {
-                FluidRenderer.renderFluidBox(
-                    fluidStack.fluid,
-                    fluidStack.amount.toLong(),
-                    bb.minX.toFloat(),
-                    bb.minY.toFloat(),
-                    bb.minZ.toFloat(),
-                    bb.maxX.toFloat(),
-                    bb.maxY.toFloat(),
-                    bb.maxZ.toFloat(),
-                    buffer,
-                    ms,
-                    light,
-                    false,
-                    true,
-                    fluidStack.componentsPatch
-                )
-            }
+            FluidRenderer.renderFluidBox(
+                fluidStack.fluid,
+                fluidStack.amount.toLong(),
+                bb.minX.toFloat(),
+                bb.minY.toFloat(),
+                bb.minZ.toFloat(),
+                bb.maxX.toFloat(),
+                bb.maxY.toFloat(),
+                bb.maxZ.toFloat(),
+                buffer,
+                ms,
+                light,
+                false,
+                true,
+                fluidStack.componentsPatch
+            )
         }
 
         val squeeze = when {

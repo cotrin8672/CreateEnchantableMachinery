@@ -5,7 +5,7 @@ import com.tterrag.registrate.AbstractRegistrate
 import com.tterrag.registrate.builders.BuilderCallback
 import com.tterrag.registrate.util.OneTimeEventReceiver
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer
-import io.github.cotrin8672.cem.CreateEnchantableMachinery
+import io.github.cotrin8672.cem.Cem
 import io.github.cotrin8672.cem.mixin.CreateBlockEntityBuilderMixin
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
@@ -33,7 +33,7 @@ private constructor(
 
     override fun registerVisualizer() {
         OneTimeEventReceiver.addModListener(
-            CreateEnchantableMachinery.REGISTRATE,
+            Cem.REGISTRATE,
             FMLClientSetupEvent::class.java
         ) { _ ->
             val visualFactory = (this as CreateBlockEntityBuilderMixin<T>).visualFactory

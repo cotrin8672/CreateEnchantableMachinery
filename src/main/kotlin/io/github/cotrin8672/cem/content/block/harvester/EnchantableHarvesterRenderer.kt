@@ -92,31 +92,33 @@ class EnchantableHarvesterRenderer(
                 movementContext.animationSpeed else 0f
             if (movementContext.contraption.stalled) speed = 0f
 
-            val consumer = SheetedDecalTextureGenerator(
-                buffers.getBuffer(CustomRenderType.GLINT),
-                matrices.model.last(),
-                0.007125f
-            )
-
-            matrices.modelViewProjection.use {
-                TransformStack.of(matrices.modelViewProjection).translate(movementContext.localPos)
-                Minecraft.getInstance().blockRenderer.renderBatched(
-                    movementContext.state,
-                    movementContext.localPos,
-                    movementContext.world,
-                    matrices.modelViewProjection,
-                    consumer,
-                    true,
-                    RANDOM
+            if (CemConfig.CONFIG.renderGlint.get()) {
+                val consumer = SheetedDecalTextureGenerator(
+                    buffers.getBuffer(CustomRenderType.GLINT),
+                    matrices.model.last(),
+                    0.007125f
                 )
-            }
 
-            matrices.viewProjection.use {
-                superBuffer.transform(matrices.model)
-                HarvesterRenderer.transform(movementContext.world, facing, superBuffer, speed, PIVOT)
-                superBuffer
-                    .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, movementContext.localPos))
-                    .renderInto(matrices.viewProjection, consumer)
+                matrices.modelViewProjection.use {
+                    TransformStack.of(matrices.modelViewProjection).translate(movementContext.localPos)
+                    Minecraft.getInstance().blockRenderer.renderBatched(
+                        movementContext.state,
+                        movementContext.localPos,
+                        movementContext.world,
+                        matrices.modelViewProjection,
+                        consumer,
+                        true,
+                        RANDOM
+                    )
+                }
+
+                matrices.viewProjection.use {
+                    superBuffer.transform(matrices.model)
+                    HarvesterRenderer.transform(movementContext.world, facing, superBuffer, speed, PIVOT)
+                    superBuffer
+                        .light<SuperByteBuffer>(LevelRenderer.getLightColor(renderWorld, movementContext.localPos))
+                        .renderInto(matrices.viewProjection, consumer)
+                }
             }
         }
     }
