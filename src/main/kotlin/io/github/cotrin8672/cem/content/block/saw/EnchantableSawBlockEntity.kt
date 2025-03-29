@@ -14,9 +14,10 @@ import com.simibubi.create.foundation.utility.CreateLang
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
-import io.github.cotrin8672.cem.content.entity.BlockBreaker
 import io.github.cotrin8672.cem.mixin.SawBlockEntityMixin
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
+import io.github.cotrin8672.cem.util.EnchantedItemFactory
+import io.github.cotrin8672.cem.util.destroyBlocks
 import io.github.cotrin8672.cem.util.holderLookup
 import io.github.cotrin8672.cem.util.nonNullLevel
 import joptsimple.internal.Strings
@@ -24,10 +25,10 @@ import net.createmod.catnip.math.VecHelper
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.HolderLookup
+import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.Registries
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
-import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Recipe
@@ -62,11 +63,6 @@ class EnchantableSawBlockEntity(
         }
     }
 
-    private val fakePlayer by lazy {
-        if (this.level is ServerLevel)
-            BlockBreaker(this.level as ServerLevel, this@EnchantableSawBlockEntity) else null
-    }
-
     private val filtering: FilteringBehaviour
         get() = (this as SawBlockEntityMixin).filtering
     private var recipeIndex: Int
@@ -86,7 +82,11 @@ class EnchantableSawBlockEntity(
     override fun onBlockBroken(stateToBreak: BlockState) {
         val dynamicTree = TreeCutter.findDynamicTree(stateToBreak.block, breakingPos)
         if (dynamicTree.isPresent) {
-            dynamicTree.get().destroyBlocks(nonNullLevel, fakePlayer, this::dropItemFromCutTree)
+            dynamicTree.get().destroyBlocks(
+                nonNullLevel,
+                EnchantedItemFactory.getPickaxeItemStack(getEnchantments().entrySet()),
+                this::dropItemFromCutTree
+            )
             return
         }
 
@@ -104,7 +104,13 @@ class EnchantableSawBlockEntity(
         }
 
         TreeCutter.findTree(nonNullLevel, breakingPos, stateToBreak)
-            .destroyBlocks(nonNullLevel, fakePlayer, this::dropItemFromCutTree)
+            .destroyBlocks(
+                nonNullLevel,
+                EnchantedItemFactory.getPickaxeItemStack(
+                    components().get(DataComponents.ENCHANTMENTS)?.entrySet() ?: setOf()
+                ),
+                this::dropItemFromCutTree
+            )
     }
 
     override fun start(inserted: ItemStack) {

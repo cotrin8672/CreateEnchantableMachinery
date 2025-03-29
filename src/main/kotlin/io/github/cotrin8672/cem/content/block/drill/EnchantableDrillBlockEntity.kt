@@ -5,7 +5,7 @@ import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.CreateLang
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
-import io.github.cotrin8672.cem.content.entity.BlockBreaker
+import io.github.cotrin8672.cem.util.EnchantedItemFactory
 import io.github.cotrin8672.cem.util.holderLookup
 import joptsimple.internal.Strings
 import net.createmod.catnip.math.VecHelper
@@ -14,7 +14,6 @@ import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.Registries
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
-import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantment.getFullname
@@ -29,11 +28,6 @@ class EnchantableDrillBlockEntity(
     pos: BlockPos,
     state: BlockState,
 ) : DrillBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
-    private val fakePlayer by lazy {
-        if (this.level is ServerLevel)
-            BlockBreaker(this.level as ServerLevel, this@EnchantableDrillBlockEntity) else null
-    }
-
     override fun getBreakSpeed(): Float {
         val efficiency = holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
         val efficiencyLevel = getEnchantmentLevel(efficiency)
@@ -53,7 +47,7 @@ class EnchantableDrillBlockEntity(
             nonNullLevel,
             breakingPos,
             null,
-            fakePlayer?.mainHandItem,
+            EnchantedItemFactory.getPickaxeItemStack(getEnchantments().entrySet()),
             1f
         ) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs

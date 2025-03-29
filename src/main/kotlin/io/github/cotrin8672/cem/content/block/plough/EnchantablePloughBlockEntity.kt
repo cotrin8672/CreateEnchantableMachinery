@@ -42,17 +42,4 @@ class EnchantablePloughBlockEntity(
         writeEnchantments(tag, registries)
         super.saveAdditional(tag, registries)
     }
-
-//    override fun getEnchantments(): ItemEnchantments {
-//        return components().get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
-//    }
-//
-//    override fun setEnchantment(enchantments: ItemEnchantments) {
-//        val components = DataComponentMap.builder()
-//            .addAll(components())
-//            .set(DataComponents.ENCHANTMENTS, enchantments)
-//            .build()
-//
-//        setComponents(components)
-//    }
 }
