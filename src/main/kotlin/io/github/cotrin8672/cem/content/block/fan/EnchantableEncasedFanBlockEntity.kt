@@ -20,8 +20,7 @@ class EnchantableEncasedFanBlockEntity(
     type: BlockEntityType<*>,
     pos: BlockPos,
     state: BlockState,
-    private val delegate: EnchantableBlockEntityDelegate = EnchantableBlockEntityDelegate(),
-) : EncasedFanBlockEntity(type, pos, state), EnchantableBlockEntity by delegate {
+) : EncasedFanBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
 
