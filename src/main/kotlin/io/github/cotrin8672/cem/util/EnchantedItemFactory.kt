@@ -1,28 +1,26 @@
 package io.github.cotrin8672.cem.util
 
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
-import it.unimi.dsi.fastutil.objects.Object2IntMap
-import net.minecraft.core.Holder
+import net.minecraft.core.component.DataComponents
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtOps
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraft.world.item.enchantment.Enchantment
+import net.minecraft.world.item.component.Unbreakable
 import net.minecraft.world.item.enchantment.ItemEnchantments
 
 object EnchantedItemFactory {
-    private val pickaxeCache: MutableMap<Set<Object2IntMap.Entry<Holder<Enchantment>>>, ItemStack> = mutableMapOf()
-    private val hoeCache: MutableMap<Set<Object2IntMap.Entry<Holder<Enchantment>>>, ItemStack> = mutableMapOf()
+    private val pickaxeCache: MutableMap<ItemEnchantments, ItemStack> = mutableMapOf()
+    private val hoeCache: MutableMap<ItemEnchantments, ItemStack> = mutableMapOf()
 
-    fun getPickaxeItemStack(enchantmentSet: Set<Object2IntMap.Entry<Holder<Enchantment>>>): ItemStack {
+    fun getPickaxeItemStack(enchantmentSet: ItemEnchantments): ItemStack {
         return if (pickaxeCache.containsKey(enchantmentSet)) {
             pickaxeCache[enchantmentSet]!!
         } else {
             val stack = ItemStack(Items.NETHERITE_PICKAXE).apply {
-                if (enchantmentSet.isEmpty()) return@apply
-                for (instance in enchantmentSet) {
-                    enchant(instance.key, instance.intValue)
-                }
+                if (enchantmentSet.isEmpty) return@apply
+                set(DataComponents.UNBREAKABLE, Unbreakable(false))
+                set(DataComponents.ENCHANTMENTS, enchantmentSet)
             }
             pickaxeCache[enchantmentSet] = stack
             stack
@@ -30,8 +28,10 @@ object EnchantedItemFactory {
     }
 
     fun getPickaxeItemStack(tag: CompoundTag?, context: MovementContext?): ItemStack {
-        if (tag == null) return getPickaxeItemStack(setOf())
-        if (context == null) return getPickaxeItemStack(setOf())
+        if (tag == null) return getPickaxeItemStack(ItemEnchantments.EMPTY)
+        if (context == null) return getPickaxeItemStack(ItemEnchantments.EMPTY)
+        if (context.temporaryData is ItemStack) return context.temporaryData as ItemStack
+
         var enchantments: ItemEnchantments = ItemEnchantments.EMPTY
         val registryOps = context.world.registryAccess().createSerializationContext(NbtOps.INSTANCE)
         ItemEnchantments.CODEC
@@ -39,20 +39,8 @@ object EnchantedItemFactory {
             .resultOrPartial()
             .ifPresent { enchantments = it }
 
-        return getPickaxeItemStack(enchantments.entrySet())
-    }
-
-    fun getHoeItemStack(enchantmentSet: Set<Object2IntMap.Entry<Holder<Enchantment>>>): ItemStack {
-        return if (hoeCache.containsKey(enchantmentSet)) {
-            hoeCache[enchantmentSet]!!
-        } else {
-            val stack = ItemStack(Items.NETHERITE_HOE).apply {
-                for (instance in enchantmentSet) {
-                    enchant(instance.key, instance.intValue)
-                }
-            }
-            hoeCache[enchantmentSet] = stack
-            stack
-        }
+        val stack = getPickaxeItemStack(enchantments)
+        context.temporaryData = stack
+        return stack
     }
 }

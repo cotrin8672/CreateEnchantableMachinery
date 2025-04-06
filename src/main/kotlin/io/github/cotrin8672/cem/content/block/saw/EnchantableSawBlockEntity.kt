@@ -37,6 +37,7 @@ import net.minecraft.world.item.crafting.RecipeInput
 import net.minecraft.world.item.crafting.RecipeType
 import net.minecraft.world.item.enchantment.Enchantment.getFullname
 import net.minecraft.world.item.enchantment.Enchantments
+import net.minecraft.world.item.enchantment.ItemEnchantments
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
@@ -84,7 +85,7 @@ class EnchantableSawBlockEntity(
         if (dynamicTree.isPresent) {
             dynamicTree.get().destroyBlocks(
                 nonNullLevel,
-                EnchantedItemFactory.getPickaxeItemStack(getEnchantments().entrySet()),
+                EnchantedItemFactory.getPickaxeItemStack(getEnchantments()),
                 this::dropItemFromCutTree
             )
             return
@@ -107,7 +108,7 @@ class EnchantableSawBlockEntity(
             .destroyBlocks(
                 nonNullLevel,
                 EnchantedItemFactory.getPickaxeItemStack(
-                    components().get(DataComponents.ENCHANTMENTS)?.entrySet() ?: setOf()
+                    components().get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
                 ),
                 this::dropItemFromCutTree
             )

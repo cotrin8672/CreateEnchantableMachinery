@@ -47,7 +47,7 @@ class EnchantableDrillBlockEntity(
             nonNullLevel,
             breakingPos,
             null,
-            EnchantedItemFactory.getPickaxeItemStack(getEnchantments().entrySet()),
+            EnchantedItemFactory.getPickaxeItemStack(getEnchantments()),
             1f
         ) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
