@@ -1,13 +1,13 @@
 package io.github.cotrin8672.cem
 
 import com.simibubi.create.AllBlocks
+import com.simibubi.create.foundation.data.CreateRegistrate
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.config.ModConfigs
 import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
 import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlockEntity
 import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
 import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlockEntity
-import io.github.cotrin8672.cem.registrate.KotlinRegistrate
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
 import io.github.cotrin8672.cem.util.EnchantableBlockMapping
@@ -27,7 +27,7 @@ import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 class Cem(container: ModContainer) {
     companion object {
         const val MOD_ID = "createenchantablemachinery"
-        val REGISTRATE = KotlinRegistrate.create(MOD_ID)
+        val REGISTRATE: CreateRegistrate = CreateRegistrate.create(MOD_ID)
 
         fun asResource(path: String): ResourceLocation {
             return ResourceLocation.fromNamespaceAndPath(MOD_ID, path)

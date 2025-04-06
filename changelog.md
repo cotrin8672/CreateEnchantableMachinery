@@ -1,3 +1,3 @@
 ### Fixed
 
-- Improve enchantable blocks' performance.
+- Fixed Issue #86 and #89
