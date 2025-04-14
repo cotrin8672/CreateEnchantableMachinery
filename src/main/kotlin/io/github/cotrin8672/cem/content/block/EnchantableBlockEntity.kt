@@ -1,40 +1,22 @@
 package io.github.cotrin8672.cem.content.block
 
-import net.minecraft.core.Holder
-import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.NbtOps
+import net.minecraft.nbt.ListTag
 import net.minecraft.world.item.enchantment.Enchantment
-import net.minecraft.world.item.enchantment.ItemEnchantments
+import net.minecraft.world.item.enchantment.EnchantmentInstance
 
 interface EnchantableBlockEntity {
-    fun getEnchantments(): ItemEnchantments
+    fun getEnchantments(): List<EnchantmentInstance>
 
-    fun setEnchantment(enchantments: ItemEnchantments)
+    fun getEnchantmentTag(): ListTag?
 
-    fun getEnchantmentLevel(enchantment: Holder<Enchantment>): Int {
-        return getEnchantments().getLevel(enchantment)
+    fun setEnchantment(listTag: ListTag)
+
+    fun getEnchantmentLevel(enchantment: Enchantment): Int {
+        return getEnchantments().find { it.enchantment == enchantment }?.level ?: 0
     }
 
-    fun readEnchantments(tag: CompoundTag, provider: HolderLookup.Provider) {
-        if (tag.contains("Enchantments")) {
-            val registryOps = provider.createSerializationContext(NbtOps.INSTANCE)
-            ItemEnchantments.CODEC
-                .parse(registryOps, tag.get("Enchantments"))
-                .resultOrPartial()
-                .ifPresent {
-                    setEnchantment(it)
-                }
-        }
-    }
+    fun readEnchantments(compound: CompoundTag)
 
-    fun writeEnchantments(tag: CompoundTag, provider: HolderLookup.Provider) {
-        if (!getEnchantments().isEmpty) {
-            val registryOps = provider.createSerializationContext(NbtOps.INSTANCE)
-            ItemEnchantments.CODEC
-                .encodeStart(registryOps, getEnchantments())
-                .resultOrPartial()
-                .ifPresent { tag.put("Enchantments", it) }
-        }
-    }
+    fun writeEnchantments(compound: CompoundTag)
 }

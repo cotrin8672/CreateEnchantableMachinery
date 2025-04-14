@@ -25,7 +25,7 @@ class EnchantableDrillActorVisual(
     private val enchantedDrillHead =
         instancerProvider.instancer(
             InstanceTypes.TRANSFORMED,
-            BakedModelBuilder(AllPartialModels.DRILL_HEAD.get()).materialFunc { _, _ -> Materials.GLINT }
+            BakedModelBuilder.create(AllPartialModels.DRILL_HEAD.get()).materialFunc { _, _ -> Materials.GLINT }
                 .build()
         ).createInstance()
     private val facing = context.state.getValue(DrillBlock.FACING)

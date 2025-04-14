@@ -29,7 +29,7 @@ class EnchantableSawVisual(
                 val align = facing.opposite
                 instancerProvider.instancer(
                     AllInstanceTypes.ROTATING,
-                    BakedModelBuilder(AllPartialModels.SHAFT_HALF.get()).materialFunc { _, _ -> Materials.GLINT }
+                    BakedModelBuilder.create(AllPartialModels.SHAFT_HALF.get()).materialFunc { _, _ -> Materials.GLINT }
                         .build()
                 )
                     .createInstance()
@@ -37,7 +37,8 @@ class EnchantableSawVisual(
             } else {
                 instancerProvider.instancer(
                     AllInstanceTypes.ROTATING,
-                    BakedModelBuilder(AllPartialModels.SHAFT.get()).materialFunc { _, _ -> Materials.GLINT }.build()
+                    BakedModelBuilder.create(AllPartialModels.SHAFT.get()).materialFunc { _, _ -> Materials.GLINT }
+                        .build()
                 )
                     .createInstance()
                     .rotateToFace(if (state.getValue(SawBlock.AXIS_ALONG_FIRST_COORDINATE)) Direction.Axis.X else Direction.Axis.Z)

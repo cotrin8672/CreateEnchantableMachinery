@@ -31,7 +31,7 @@ class EnchantableFanVisual(
         .createInstance()
     private val enchantedShaft = instancerProvider().instancer(
         AllInstanceTypes.ROTATING,
-        BakedModelBuilder(AllPartialModels.SHAFT_HALF.get()).materialFunc { _, _ -> Materials.GLINT }.build()
+        BakedModelBuilder.create(AllPartialModels.SHAFT_HALF.get()).materialFunc { _, _ -> Materials.GLINT }.build()
     )
         .createInstance()
     private val fan = instancerProvider().instancer(
@@ -43,7 +43,7 @@ class EnchantableFanVisual(
     private val blockModel = if (blockEntity.level !is PonderLevel) {
         context.createEmbedding(renderOrigin()).instancerProvider().instancer(
             InstanceTypes.POSED,
-            BlockModelBuilder(blockEntity.nonNullLevel, setOf(blockEntity.blockPos))
+            BlockModelBuilder.create(blockEntity.nonNullLevel, setOf(blockEntity.blockPos))
                 .materialFunc { _, _ ->
                     SimpleMaterial.builderOf(Materials.GLINT)
                         .cardinalLightingMode(CardinalLightingMode.CHUNK)

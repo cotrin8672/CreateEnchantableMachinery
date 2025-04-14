@@ -7,10 +7,9 @@ import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
 import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
-import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
-import net.minecraft.world.item.enchantment.Enchantment.getFullname
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 
@@ -23,36 +22,23 @@ class EnchantablePloughBlockEntity(
     EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
     override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
-
-        if (getEnchantments().entrySet().isEmpty()) return false
-        for (instance in getEnchantments().entrySet()) {
+        for (instance in getEnchantments()) {
+            val level = instance.level
             CreateLang.text(Strings.repeat(' ', 0))
-                .add(getFullname(instance.key, instance.intValue))
+                .add(instance.enchantment.getFullname(level).copy())
                 .forGoggles(tooltip)
         }
         return true
     }
 
-    override fun loadAdditional(tag: CompoundTag, registries: HolderLookup.Provider) {
-        readEnchantments(tag, registries)
-        super.loadAdditional(tag, registries)
+    override fun load(tag: CompoundTag) {
+        readEnchantments(tag)
+        super.load(tag)
     }
 
-    override fun saveAdditional(tag: CompoundTag, registries: HolderLookup.Provider) {
-        writeEnchantments(tag, registries)
-        super.saveAdditional(tag, registries)
+    override fun saveAdditional(tag: CompoundTag) {
+        tag.remove(ItemStack.TAG_ENCH)
+        writeEnchantments(tag)
+        super.saveAdditional(tag)
     }
-
-//    override fun getEnchantments(): ItemEnchantments {
-//        return components().get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
-//    }
-//
-//    override fun setEnchantment(enchantments: ItemEnchantments) {
-//        val components = DataComponentMap.builder()
-//            .addAll(components())
-//            .set(DataComponents.ENCHANTMENTS, enchantments)
-//            .build()
-//
-//        setComponents(components)
-//    }
 }

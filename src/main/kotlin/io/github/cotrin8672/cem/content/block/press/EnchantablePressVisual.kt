@@ -29,7 +29,7 @@ class EnchantablePressVisual(
 
     private val enchantedPressHead = instancerProvider().instancer(
         InstanceTypes.ORIENTED,
-        BakedModelBuilder(AllPartialModels.MECHANICAL_PRESS_HEAD.get())
+        BakedModelBuilder.create(AllPartialModels.MECHANICAL_PRESS_HEAD.get())
             .materialFunc { _, _ -> Materials.GLINT }
             .build()
     ).createInstance()

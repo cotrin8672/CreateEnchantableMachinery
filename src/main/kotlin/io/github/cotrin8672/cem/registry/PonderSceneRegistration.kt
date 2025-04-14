@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation
 
 object PonderSceneRegistration {
     fun register(helper: PonderSceneRegistrationHelper<ResourceLocation>) {
-        val registry = helper.withKeyFunction { obj: ItemProviderEntry<*, *> -> obj.id }
+        val registry = helper.withKeyFunction { obj: ItemProviderEntry<*> -> obj.id }
 
         registry.forComponents(AllBlocks.MECHANICAL_DRILL)
             .addStoryBoard(

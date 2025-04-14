@@ -7,7 +7,7 @@ object EnchantableBlockMapping {
     private val mappings: MutableMap<Block, Block> = mutableMapOf()
 
     fun register(map: Pair<BlockEntry<*>, BlockEntry<*>>) {
-        mappings[map.first.value()] = map.second.value()
+        mappings[map.first.get()] = map.second.get()
     }
 
     @JvmStatic

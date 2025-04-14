@@ -4,9 +4,8 @@ import com.simibubi.create.content.kinetics.saw.SawBlock;
 import io.github.cotrin8672.cem.registry.BlockRegistration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -17,20 +16,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SawBlock.class)
 public class SawBlockMixin {
-    @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void createenchantablemachinery$use(
-            ItemStack stack,
             BlockState state,
-            Level level,
+            Level worldIn,
             BlockPos pos,
             Player player,
-            InteractionHand hand,
-            BlockHitResult hitResult,
-            CallbackInfoReturnable<ItemInteractionResult> cir
+            InteractionHand handIn,
+            BlockHitResult hit,
+            CallbackInfoReturnable<InteractionResult> cir
     ) {
-        if (player.getItemInHand(hand).isEnchanted()) {
-            ItemInteractionResult result = BlockRegistration.getENCHANTABLE_MECHANICAL_SAW().get()
-                    .useItemOn(stack, state, level, pos, player, hand, hitResult);
+        if (player.getItemInHand(handIn).isEnchanted()) {
+            InteractionResult result =
+                    BlockRegistration.getENCHANTABLE_MECHANICAL_SAW().get().use(state, worldIn, pos, player, handIn, hit);
             cir.setReturnValue(result);
             cir.cancel();
         }

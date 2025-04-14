@@ -8,12 +8,12 @@ import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import dev.engine_room.flywheel.api.visualization.VisualizationContext
 import dev.engine_room.flywheel.api.visualization.VisualizationManager
-import io.github.cotrin8672.cem.content.entity.ContraptionBlockBreaker
-import io.github.cotrin8672.cem.util.getEnchantmentLevel
+import io.github.cotrin8672.cem.util.EnchantedItemFactory
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
-import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
 
 class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
@@ -34,15 +34,13 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
                         || blockState.`is`(BlockTags.NEEDS_DIAMOND_TOOL)
                 )
 
-        val level = context.world
-        val fakePlayer = if (level is ServerLevel) {
-            ContraptionBlockBreaker.getBlockBreakerForMovementContext(level, context)
-        } else null
-        BlockHelper.destroyBlockAs(context.world, breakingPos, fakePlayer, fakePlayer?.mainHandItem, 1f) {
-            if (
-                getEnchantmentLevel(context, Enchantments.SILK_TOUCH) == 0 &&
-                (noHarvest || context.world.random.nextBoolean())
-            )
+        if (context.temporaryData == null) {
+            context.temporaryData = EnchantedItemFactory.getPickaxeItemStack(context)
+        }
+
+        val stack = context.temporaryData as ItemStack
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, stack, 1f) {
+            if ((noHarvest || context.world.random.nextBoolean()))
                 return@destroyBlockAs
             this.dropItem(context, it)
         }
@@ -51,7 +49,10 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        return super.getBlockBreakingSpeed(context) * (getEnchantmentLevel(context, Enchantments.EFFICIENCY) + 1)
+        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
+            tag = context.blockEntityData
+        })
+        return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
     }
 
     override fun renderInContraption(

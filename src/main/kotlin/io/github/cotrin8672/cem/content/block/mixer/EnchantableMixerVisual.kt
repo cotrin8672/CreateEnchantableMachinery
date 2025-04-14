@@ -27,7 +27,7 @@ class EnchantableMixerVisual(
 ), SimpleDynamicVisual {
     private val enchantedCogwheel = instancerProvider().instancer(
         AllInstanceTypes.ROTATING,
-        BakedModelBuilder(AllPartialModels.SHAFTLESS_COGWHEEL.get())
+        BakedModelBuilder.create(AllPartialModels.SHAFTLESS_COGWHEEL.get())
             .materialFunc { _, _ -> Materials.GLINT }
             .build()
     ).createInstance()
@@ -47,7 +47,7 @@ class EnchantableMixerVisual(
 
     private val enchantedMixerPole = instancerProvider().instancer(
         InstanceTypes.ORIENTED,
-        BakedModelBuilder(AllPartialModels.MECHANICAL_MIXER_POLE.get())
+        BakedModelBuilder.create(AllPartialModels.MECHANICAL_MIXER_POLE.get())
             .materialFunc { _, _ -> Materials.GLINT }
             .build()
     ).createInstance()

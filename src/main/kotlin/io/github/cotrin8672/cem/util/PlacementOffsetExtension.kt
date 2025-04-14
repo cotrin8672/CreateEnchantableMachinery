@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundSource
 import net.minecraft.stats.Stats
 import net.minecraft.world.InteractionHand
-import net.minecraft.world.ItemInteractionResult
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.context.BlockPlaceContext
@@ -24,15 +24,15 @@ fun PlacementOffset.placeAlternativeBlockInWorld(
     player: Player,
     hand: InteractionHand,
     ray: BlockHitResult,
-): ItemInteractionResult {
-    if (!isReplaceable(world)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
-    if (world.isClientSide) return ItemInteractionResult.SUCCESS
+): InteractionResult {
+    if (!isReplaceable(world)) return InteractionResult.PASS
+    if (world.isClientSide) return InteractionResult.SUCCESS
 
     val context = UseOnContext(player, hand, ray)
     val newPos = BlockPos(pos)
     val stackBefore = player.getItemInHand(hand).copy()
 
-    if (!world.mayInteract(player, newPos)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+    if (!world.mayInteract(player, newPos)) return InteractionResult.PASS
 
     var state = transform.apply(
         EnchantableBlockMapping.getAlternativeBlock(blockItem.block)?.getStateForPlacement(
@@ -50,7 +50,7 @@ fun PlacementOffset.placeAlternativeBlockInWorld(
     }
 
     if (CatnipServices.HOOKS.playerPlaceSingleBlock(player, world, newPos, state)) {
-        return ItemInteractionResult.FAIL
+        return InteractionResult.FAIL
     }
 
     val newState = world.getBlockState(newPos)
@@ -70,5 +70,5 @@ fun PlacementOffset.placeAlternativeBlockInWorld(
     if (player is ServerPlayer) CriteriaTriggers.PLACED_BLOCK.trigger(player, newPos, context.itemInHand)
     if (!player.isCreative) context.itemInHand.shrink(1)
 
-    return ItemInteractionResult.SUCCESS
+    return InteractionResult.SUCCESS
 }

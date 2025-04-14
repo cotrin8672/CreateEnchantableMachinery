@@ -13,16 +13,12 @@ import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.cem.mixin.CrushingWheelControllerBlockEntityMixin
-import io.github.cotrin8672.cem.registry.BlockEntityRegistration
-import io.github.cotrin8672.cem.util.holderLookup
 import io.github.cotrin8672.cem.util.nonNullLevel
 import io.github.cotrin8672.cem.util.smartBlockEntityTick
 import net.createmod.catnip.math.VecHelper
 import net.createmod.catnip.platform.CatnipServices
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.core.HolderLookup
-import net.minecraft.core.registries.Registries
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtUtils
 import net.minecraft.util.Mth
@@ -35,10 +31,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
-import net.neoforged.api.distmarker.Dist
-import net.neoforged.api.distmarker.OnlyIn
-import net.neoforged.neoforge.capabilities.Capabilities
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.api.distmarker.OnlyIn
 import java.util.*
 import kotlin.math.max
 
@@ -49,15 +43,6 @@ class EnchantableCrushingWheelControllerBlockEntity(
 ) : CrushingWheelControllerBlockEntity(type, pos, state),
     EnchantableBlockEntity by EnchantableBlockEntityDelegate(),
     IHaveGoggleInformation {
-    companion object {
-        fun registerCapabilities(event: RegisterCapabilitiesEvent) {
-            event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                BlockEntityRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.get()
-            ) { be: CrushingWheelControllerBlockEntity, _: Direction? -> be.inventory }
-        }
-    }
-
     private var entityUUID: UUID?
         get() = (this as CrushingWheelControllerBlockEntityMixin).entityUUID
         set(value) {
@@ -105,8 +90,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
             if (facing.axis == Direction.Axis.Z) 0.55 * offset else 0.0
         )
         if (!hasEntity()) {
-            val efficiency = holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
-            val efficiencyModifier = 1 + 0.2f * getEnchantmentLevel(efficiency)
+            val efficiencyModifier = 1 + 0.2f * getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
             val processingSpeed = Mth.clamp(
                 speed * efficiencyModifier / (if (!inventory.appliedRecipe) Mth.log2(inventory.getStackInSlot(0).count) else 1),
                 0.25f,
@@ -234,14 +218,15 @@ class EnchantableCrushingWheelControllerBlockEntity(
         nonNullLevel.sendBlockUpdated(worldPosition, blockState, blockState, 2 or 16)
     }
 
-    override fun read(compound: CompoundTag, registries: HolderLookup.Provider, clientPacket: Boolean) {
-        readEnchantments(compound, registries)
-        super.read(compound, registries, clientPacket)
+    override fun read(compound: CompoundTag, clientPacket: Boolean) {
+        readEnchantments(compound)
+        super.read(compound, clientPacket)
     }
 
-    override fun write(compound: CompoundTag, registries: HolderLookup.Provider, clientPacket: Boolean) {
-        writeEnchantments(compound, registries)
-        super.write(compound, registries, clientPacket)
+    override fun write(compound: CompoundTag, clientPacket: Boolean) {
+        compound.remove(ItemStack.TAG_ENCH)
+        writeEnchantments(compound)
+        super.write(compound, clientPacket)
         if (hasEntity()) entityUUID?.let { compound.put("Entity", NbtUtils.createUUID(it)) }
     }
 
@@ -263,7 +248,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
             val rolls = inventory.getStackInSlot(0).count
             inventory.clear()
             for (roll in 0 until rolls) {
-                val rolledResults = recipe.get().value.rollResults()
+                val rolledResults = recipe.get().rollResults()
                 for (stack in rolledResults) {
                     ItemHelper.addToList(stack, list)
                 }
@@ -280,7 +265,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
 
     private fun itemInserted(stack: ItemStack) {
         val recipe = findRecipe()
-        inventory.remainingTime = if (recipe.isPresent) recipe.get().value.processingDuration.toFloat() else 100f
+        inventory.remainingTime = if (recipe.isPresent) recipe.get().processingDuration.toFloat() else 100f
         inventory.appliedRecipe = false
     }
 }

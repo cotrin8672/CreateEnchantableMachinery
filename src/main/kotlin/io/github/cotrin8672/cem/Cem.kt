@@ -1,45 +1,44 @@
 package io.github.cotrin8672.cem
 
 import com.simibubi.create.AllBlocks
+import com.simibubi.create.foundation.data.CreateRegistrate
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.config.ModConfigs
-import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
-import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlockEntity
-import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
-import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlockEntity
-import io.github.cotrin8672.cem.registrate.KotlinRegistrate
+import io.github.cotrin8672.cem.content.ponder.CemPonderPlugin
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
+import io.github.cotrin8672.cem.registry.PartialModelRegistration
 import io.github.cotrin8672.cem.util.EnchantableBlockMapping
+import net.createmod.ponder.foundation.PonderIndex
 import net.minecraft.resources.ResourceLocation
-import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.ModLoadingContext
-import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.fml.common.Mod
-import net.neoforged.fml.config.ModConfig
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
+import net.minecraftforge.api.distmarker.Dist
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
+import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.DistExecutor
+import net.minecraftforge.fml.ModLoadingContext
+import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.config.ModConfig
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
+import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
-@EventBusSubscriber(modid = Cem.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Cem.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @Mod(Cem.MOD_ID)
-class Cem(container: ModContainer) {
+class Cem {
     companion object {
         const val MOD_ID = "createenchantablemachinery"
-        val REGISTRATE = KotlinRegistrate.create(MOD_ID)
+        val REGISTRATE: CreateRegistrate = CreateRegistrate.create(MOD_ID)
 
         fun asResource(path: String): ResourceLocation {
-            return ResourceLocation.fromNamespaceAndPath(MOD_ID, path)
+            return ResourceLocation(MOD_ID, path)
         }
 
         @JvmStatic
         @SubscribeEvent
         fun registerCapabilities(event: RegisterCapabilitiesEvent) {
-            EnchantableSawBlockEntity.registerCapabilities(event)
-            EnchantableCrushingWheelControllerBlockEntity.registerCapabilities(event)
-            EnchantableMillstoneBlockEntity.registerCapabilities(event)
-            EnchantableSpoutBlockEntity.registerCapabilities(event)
+//            EnchantableSawBlockEntity.registerCapabilities(event)
+//            EnchantableCrushingWheelControllerBlockEntity.registerCapabilities(event)
+//            EnchantableMillstoneBlockEntity.registerCapabilities(event)
+//            EnchantableSpoutBlockEntity.registerCapabilities(event)
         }
     }
 
@@ -49,8 +48,14 @@ class Cem(container: ModContainer) {
         REGISTRATE.registerEventListeners(MOD_BUS)
         BlockRegistration.register()
         BlockEntityRegistration.register()
-        container.registerConfig(ModConfig.Type.CLIENT, CemConfig.CONFIG_SPEC)
-        ModConfigs.register(ModLoadingContext.get(), container)
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, CemConfig.CONFIG_SPEC)
+        ModConfigs.register(ModLoadingContext.get())
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT) {
+            Runnable {
+                PartialModelRegistration.register()
+                PonderIndex.addPlugin(CemPonderPlugin)
+            }
+        }
     }
 
     private fun registerEnchantableBlockMapping(event: FMLCommonSetupEvent) {

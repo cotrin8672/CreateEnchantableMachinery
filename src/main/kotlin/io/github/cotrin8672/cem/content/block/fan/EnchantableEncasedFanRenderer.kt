@@ -33,7 +33,8 @@ class EnchantableEncasedFanRenderer(
         if (CemConfig.CONFIG.renderGlint.get()) {
             val consumer = SheetedDecalTextureGenerator(
                 buffer.getBuffer(CustomRenderType.GLINT),
-                ms.last(),
+                ms.last().pose(),
+                ms.last().normal(),
                 0.007125f
             )
 

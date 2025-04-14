@@ -15,6 +15,7 @@ import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.registry.PartialModelRegistration
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.createmod.catnip.math.VecHelper
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
@@ -56,7 +57,8 @@ class EnchantableHarvesterRenderer(
             if (CemConfig.CONFIG.renderGlint.get()) {
                 val consumer = SheetedDecalTextureGenerator(
                     buffer.getBuffer(CustomRenderType.GLINT),
-                    ms.last(),
+                    ms.last().pose(),
+                    ms.last().normal(),
                     0.007125f
                 )
 
@@ -95,7 +97,8 @@ class EnchantableHarvesterRenderer(
             if (CemConfig.CONFIG.renderGlint.get()) {
                 val consumer = SheetedDecalTextureGenerator(
                     buffers.getBuffer(CustomRenderType.GLINT),
-                    matrices.model.last(),
+                    matrices.viewProjection.last().pose(),
+                    matrices.viewProjection.last().normal(),
                     0.007125f
                 )
 

@@ -13,18 +13,18 @@ val modVersion: String by project
 val modGroupId: String by project
 
 group = modGroupId
-version = "${modVersion}+mc${libs.versions.minecraft.get()}-neoforge"
+version = "${modVersion}+mc${libs.versions.minecraft.get()}-forge"
 
 base {
     archivesName = modId
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
 
-neoForge {
-    version = libs.versions.neoforge.get()
+legacyForge {
+    version = libs.versions.forge.get()
 
     parchment {
         mappingsVersion = libs.versions.parchiment.get()
@@ -34,13 +34,13 @@ neoForge {
     runs {
         create("client") {
             client()
-            systemProperty("neoforge.enabledGameTestNamespaces", modId)
+            systemProperty("forge.enabledGameTestNamespaces", modId)
         }
 
         create("server") {
             server()
             programArgument("--nogui")
-            systemProperty("neoforge.enabledGameTestNamespaces", modId)
+            systemProperty("forge.enabledGameTestNamespaces", modId)
         }
 
         create("data") {
@@ -86,7 +86,7 @@ repositories {
     }
     maven("https://maven.blamejared.com/") // JEI
     maven("https://maven.createmod.net") // Create, Ponder, Flywheel
-    maven("https://mvn.devos.one/snapshots") // Registrate
+    maven("https://maven.tterrag.com") // Registrate
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
     maven("https://api.modrinth.com/maven") // Modrinth Maven
     maven("https://maven.theillusivec4.top/") // Curios API
@@ -94,7 +94,7 @@ repositories {
 
 dependencies {
     implementation(libs.kotlinforforge)
-    implementation(libs.create) {
+    implementation("com.simibubi.create:create-1.20.1:6.0.4-79:slim") {
         isTransitive = false
     }
     implementation(libs.ponder)
@@ -102,8 +102,8 @@ dependencies {
     runtimeOnly(libs.flywheel)
     implementation(libs.registrate)
 
-    runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1")
-    compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
+//    compileOnly(annotationProcessor(libs.mixin.common)!!)
+//    implementation(libs.mixin.forge)
 }
 
 publisher {
@@ -117,9 +117,9 @@ publisher {
     versionType.set("release")
     changelog.set(file("changelog.md"))
     version.set(project.version.toString())
-    displayName.set("$modName $modVersion NeoForge")
+    displayName.set("$modName $modVersion Forge")
     setGameVersions(libs.versions.minecraft.get())
-    setLoaders(ModLoader.NEOFORGE)
+    setLoaders(ModLoader.FORGE)
     setCurseEnvironment(CurseEnvironment.BOTH)
     artifact.set("build/libs/${base.archivesName.get()}-${project.version}.jar")
 
@@ -139,8 +139,8 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
     val replaceProperties = mapOf(
         "minecraftVersion" to libs.versions.minecraft.get(),
         "minecraftVersionRage" to "[${libs.versions.minecraft.get()},)",
-        "neoforgeVersion" to libs.versions.neoforge.get(),
-        "neoforgeVersionRange" to "[21.1.0,)",
+        "forgeVersion" to libs.versions.forge.get(),
+        "forgeVersionRange" to "[21.1.0,)",
         "loaderVersionRange" to "[${libs.versions.kotlinforforge.get()},)",
         "createVersionRange" to "[6.0.0,)",
         "modId" to modId,
@@ -152,7 +152,7 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
     )
 
     inputs.properties(replaceProperties)
-    filesMatching(listOf("META-INF/neoforge.mods.toml")) {
+    filesMatching(listOf("META-INF/mods.toml")) {
         expand(replaceProperties)
     }
 }
@@ -162,7 +162,7 @@ tasks.processResources {
 }
 
 sourceSets.main.get().resources.srcDir("src/generated/resources")
-neoForge.ideSyncTask(tasks.processResources)
+legacyForge.ideSyncTask(tasks.processResources)
 
 tasks.named<Wrapper>("wrapper").configure {
     distributionType = Wrapper.DistributionType.BIN

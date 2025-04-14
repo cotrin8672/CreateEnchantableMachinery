@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.Mth
 import net.minecraft.util.RandomSource
 import net.minecraft.world.phys.AABB
-import net.neoforged.neoforge.client.model.data.ModelData
+import net.minecraftforge.client.model.data.ModelData
 import kotlin.math.max
 import kotlin.math.pow
 
@@ -35,7 +35,8 @@ class EnchantableSpoutRenderer(
         if (CemConfig.CONFIG.renderGlint.get()) {
             val consumer = SheetedDecalTextureGenerator(
                 buffer.getBuffer(CustomRenderType.GLINT),
-                ms.last(),
+                ms.last().pose(),
+                ms.last().normal(),
                 0.007125f
             )
             context.blockRenderDispatcher.renderBatched(
@@ -72,7 +73,7 @@ class EnchantableSpoutRenderer(
                 light,
                 false,
                 true,
-                fluidStack.componentsPatch
+                fluidStack.tag
             )
         }
 
@@ -91,7 +92,8 @@ class EnchantableSpoutRenderer(
                 if (CemConfig.CONFIG.renderGlint.get()) {
                     val consumer = SheetedDecalTextureGenerator(
                         buffer.getBuffer(CustomRenderType.GLINT),
-                        ms.last(),
+                        ms.last().pose(),
+                        ms.last().normal(),
                         0.007125f
                     )
                     CachedBuffers.partial(bit, be.blockState)
@@ -119,7 +121,7 @@ class EnchantableSpoutRenderer(
                     fluidStack.fluid, fluidStack.amount.toLong(),
                     min, min - yOffset, min,
                     max, min, max,
-                    buffer, ms, light, false, true, fluidStack.componentsPatch
+                    buffer, ms, light, false, true, fluidStack.tag
                 )
             }
         }

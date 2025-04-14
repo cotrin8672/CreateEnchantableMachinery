@@ -26,7 +26,7 @@ class EnchantedOrientedRotatingVisual<T : KineticBlockEntity>(
 ) : OrientedRotatingVisual<T>(context, blockEntity, partialTick, from, to, model) {
     private val enchantedRotatingModel = instancerProvider().instancer(
         AllInstanceTypes.ROTATING,
-        BakedModelBuilder(partialModel.get()).materialFunc { _, _ -> Materials.GLINT }.build()
+        BakedModelBuilder.create(partialModel.get()).materialFunc { _, _ -> Materials.GLINT }.build()
     )
         .createInstance()
         .rotateToFace(from, to)

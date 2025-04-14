@@ -8,35 +8,37 @@ import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock.VALID
 import com.simibubi.create.content.schematics.requirement.ItemRequirement
 import com.simibubi.create.foundation.block.IBE
+import io.github.cotrin8672.cem.content.block.EnchantableBlock
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
-import io.github.cotrin8672.cem.util.holderLookup
 import net.createmod.catnip.data.Iterate
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.core.component.DataComponentMap
-import net.minecraft.core.component.DataComponents
-import net.minecraft.core.registries.Registries
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.ListTag
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.Enchantment
+import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
-import net.minecraft.world.item.enchantment.ItemEnchantments
+import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.HitResult
 import net.minecraft.world.phys.Vec3
 import kotlin.math.sign
 
 class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock(properties),
-    SpecialBlockItemRequirement {
+    SpecialBlockItemRequirement, EnchantableBlock {
     @Deprecated("Deprecated in Java")
     override fun onRemove(state: BlockState, level: Level, pos: BlockPos, newState: BlockState, isMoving: Boolean) {
         for (direction in Iterate.directions) {
@@ -124,18 +126,25 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
             val ownBe = level.getBlockEntity(pos)
             val otherBe = level.getBlockEntity(otherWheelPos)
             val controllerBe = level.getBlockEntity(controllerPos)
-            val efficiency = ownBe!!.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
             val ownEfficiencyLevel = if (ownBe is EnchantableBlockEntity) {
-                ownBe.getEnchantmentLevel(efficiency)
+                ownBe.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
             } else 0
             val otherEfficiencyLevel = if (otherBe is EnchantableBlockEntity) {
-                otherBe.getEnchantmentLevel(efficiency)
+                otherBe.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
             } else 0
 
-            val itemEnchantments = ItemEnchantments.Mutable(ItemEnchantments.EMPTY).apply {
-                set(efficiency, ownEfficiencyLevel + otherEfficiencyLevel)
-            }.toImmutable()
-            if (controllerBe is EnchantableBlockEntity) controllerBe.setEnchantment(itemEnchantments)
+            val tag = ListTag().apply {
+                val efficiencyTag = CompoundTag()
+                if (ownEfficiencyLevel + otherEfficiencyLevel > 0) {
+                    efficiencyTag.putShort("lvl", (ownEfficiencyLevel + otherEfficiencyLevel).toShort())
+                    efficiencyTag.putString(
+                        "id",
+                        EnchantmentHelper.getEnchantmentId(Enchantments.BLOCK_EFFICIENCY)?.toString() ?: "null"
+                    )
+                    add(efficiencyTag)
+                }
+            }
+            if (controllerBe is EnchantableBlockEntity) controllerBe.setEnchantment(tag)
         }
 
         BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.get().updateSpeed(
@@ -153,6 +162,18 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         return BlockEntityRegistration.ENCHANTABLE_CRUSHING_WHEEL.get()
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun getDrops(blockState: BlockState, builder: LootParams.Builder): MutableList<ItemStack> {
+        val blockEntity = builder.getParameter(LootContextParams.BLOCK_ENTITY)
+        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
+        if (blockEntity is EnchantableBlockEntity) {
+            blockEntity.getEnchantments().forEach {
+                stack.enchant(it.enchantment, it.level)
+            }
+        }
+        return mutableListOf(stack)
+    }
+
     override fun asItem(): Item {
         return AllBlocks.CRUSHING_WHEEL.asItem()
     }
@@ -160,16 +181,16 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
     override fun getCloneItemStack(
         state: BlockState,
         target: HitResult,
-        level: LevelReader,
+        level: BlockGetter,
         pos: BlockPos,
         player: Player,
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
         val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
         if (blockEntity is EnchantableBlockEntity) {
-            val enchantments = blockEntity.getEnchantments().entrySet()
+            val enchantments = blockEntity.getEnchantments()
             enchantments.forEach {
-                stack.enchant(it.key, it.intValue)
+                stack.enchant(it.enchantment, it.level)
             }
         }
         return stack
@@ -185,13 +206,7 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         super.setPlacedBy(worldIn, pos, state, placer, stack)
         val blockEntity = worldIn.getBlockEntity(pos)
         if (blockEntity is EnchantableBlockEntity) {
-            val enchantments = stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
-            blockEntity.setEnchantment(enchantments)
-            val components = DataComponentMap.builder()
-                .addAll(blockEntity.components())
-                .set(DataComponents.ENCHANTMENTS, stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
-                .build()
-            blockEntity.setComponents(components)
+            blockEntity.setEnchantment(stack.enchantmentTags)
         }
     }
 
@@ -199,9 +214,15 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
         if (blockEntity is EnchantableBlockEntity) {
             val enchantments = blockEntity.getEnchantments()
-            stack.set(DataComponents.ENCHANTMENTS, enchantments)
+            enchantments.forEach {
+                stack.enchant(it.enchantment, it.level)
+            }
         }
         val strictRequirement = ItemRequirement.StrictNbtStackRequirement(stack, ItemRequirement.ItemUseType.CONSUME)
         return ItemRequirement(strictRequirement)
+    }
+
+    override fun canApply(enchantment: Enchantment): Boolean {
+        return enchantment == Enchantments.BLOCK_EFFICIENCY
     }
 }

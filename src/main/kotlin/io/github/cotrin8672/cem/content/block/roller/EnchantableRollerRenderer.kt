@@ -13,6 +13,7 @@ import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.createmod.catnip.math.AngleHelper
 import net.createmod.catnip.math.VecHelper
 import net.createmod.catnip.render.CachedBuffers
@@ -26,8 +27,7 @@ import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
-import net.neoforged.neoforge.client.model.data.ModelData
-import thedarkcolour.kotlinforforge.neoforge.forge.use
+import net.minecraftforge.client.model.data.ModelData
 
 class EnchantableRollerRenderer(
     private val context: BlockEntityRendererProvider.Context,
@@ -65,7 +65,8 @@ class EnchantableRollerRenderer(
             if (CemConfig.CONFIG.renderGlint.get()) {
                 val consumer = SheetedDecalTextureGenerator(
                     buffer.getBuffer(CustomRenderType.GLINT),
-                    ms.last(),
+                    ms.last().pose(),
+                    ms.last().normal(),
                     0.007125f
                 )
                 context.blockRenderDispatcher.renderBatched(
@@ -108,7 +109,8 @@ class EnchantableRollerRenderer(
             val contraptionWorldLight = LevelRenderer.getLightColor(renderWorld, context.localPos)
             val consumer = SheetedDecalTextureGenerator(
                 buffers.getBuffer(CustomRenderType.GLINT),
-                viewProjection.last(),
+                matrices.viewProjection.last().pose(),
+                matrices.viewProjection.last().normal(),
                 0.007125f
             )
 

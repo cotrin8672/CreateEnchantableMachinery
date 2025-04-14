@@ -1,15 +1,15 @@
 package io.github.cotrin8672.cem.config
 
-import net.neoforged.neoforge.common.ModConfigSpec
+import net.minecraftforge.common.ForgeConfigSpec
 
-class CemConfig private constructor(builder: ModConfigSpec.Builder) {
+class CemConfig private constructor(builder: ForgeConfigSpec.Builder) {
     companion object {
-        private val pair = ModConfigSpec.Builder().configure(::CemConfig)
+        private val pair = ForgeConfigSpec.Builder().configure(::CemConfig)
         val CONFIG: CemConfig = pair.left
-        val CONFIG_SPEC: ModConfigSpec = pair.right
+        val CONFIG_SPEC: ForgeConfigSpec = pair.right
     }
 
-    val renderGlint: ModConfigSpec.ConfigValue<Boolean> = builder
+    val renderGlint: ForgeConfigSpec.ConfigValue<Boolean> = builder
         .translation("config.renderGlint")
         .define("renderGlint", true)
 

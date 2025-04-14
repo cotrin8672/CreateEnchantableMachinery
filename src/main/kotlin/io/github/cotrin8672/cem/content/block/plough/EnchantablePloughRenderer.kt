@@ -8,11 +8,11 @@ import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRender
 import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
+import io.github.cotrin8672.cem.util.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantablePloughRenderer(
     private val context: BlockEntityRendererProvider.Context,
@@ -27,7 +27,8 @@ class EnchantablePloughRenderer(
     ) {
         val consumer = SheetedDecalTextureGenerator(
             buffer.getBuffer(CustomRenderType.GLINT),
-            ms.last(),
+            ms.last().pose(),
+            ms.last().normal(),
             0.007125f
         )
         ms.use {
@@ -48,8 +49,9 @@ class EnchantablePloughRenderer(
         ) {
             val consumer = SheetedDecalTextureGenerator(
                 buffers.getBuffer(CustomRenderType.GLINT),
-                matrices.viewProjection.last(),
-                0.0078125f
+                matrices.viewProjection.last().pose(),
+                matrices.viewProjection.last().normal(),
+                0.007125f
             )
 
             matrices.modelViewProjection.use {

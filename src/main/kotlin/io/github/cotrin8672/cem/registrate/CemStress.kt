@@ -6,17 +6,17 @@ import io.github.cotrin8672.cem.Cem
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap
 import net.createmod.catnip.config.ConfigBase
-import net.createmod.catnip.registry.RegisteredObjectsHelper
+import net.createmod.catnip.platform.CatnipServices
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.block.Block
-import net.neoforged.neoforge.common.ModConfigSpec
+import net.minecraftforge.common.ForgeConfigSpec
 import java.util.function.DoubleSupplier
 
 class CemStress : ConfigBase() {
-    private val capacities: MutableMap<ResourceLocation, ModConfigSpec.ConfigValue<Double>> = HashMap()
-    private val impacts: MutableMap<ResourceLocation, ModConfigSpec.ConfigValue<Double>> = HashMap()
+    private val capacities: MutableMap<ResourceLocation, ForgeConfigSpec.ConfigValue<Double>> = HashMap()
+    private val impacts: MutableMap<ResourceLocation, ForgeConfigSpec.ConfigValue<Double>> = HashMap()
 
-    override fun registerAll(builder: ModConfigSpec.Builder) {
+    override fun registerAll(builder: ForgeConfigSpec.Builder) {
         builder.comment(".", Comments.su, Comments.impact).push("impact")
         DEFAULT_IMPACTS.forEach { (id: ResourceLocation, value: Double) ->
             impacts[id] = builder.define(id.path, value)
@@ -35,13 +35,13 @@ class CemStress : ConfigBase() {
     }
 
     fun getImpact(block: Block): DoubleSupplier? {
-        val id = RegisteredObjectsHelper.getKeyOrThrow(block)
+        val id = CatnipServices.REGISTRIES.getKeyOrThrow(block)
         val value = impacts[id]
         return if (value == null) null else DoubleSupplier { value.get() }
     }
 
     fun getCapacity(block: Block): DoubleSupplier? {
-        val id = RegisteredObjectsHelper.getKeyOrThrow(block)
+        val id = CatnipServices.REGISTRIES.getKeyOrThrow(block)
         val value = capacities[id]
         return if (value == null) null else DoubleSupplier { value.get() }
     }

@@ -6,20 +6,20 @@ import io.github.cotrin8672.cem.Cem
 import io.github.cotrin8672.cem.mixin.PonderTagBuilderMixin
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper
 import net.createmod.ponder.api.registration.TagBuilder
-import net.minecraft.core.component.DataComponents
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.enchantment.Enchantments
 
 object PonderTagsRegistration {
-    val ENCHANTABLE_BLOCKS = Cem.asResource("enchantable_blocks")
+    private val ENCHANTABLE_BLOCKS = Cem.asResource("enchantable_blocks")
 
     fun register(helper: PonderTagRegistrationHelper<ResourceLocation>) {
-        val registry = helper.withKeyFunction { obj: RegistryEntry<*, *> -> obj.id }
+        val registry = helper.withKeyFunction { obj: RegistryEntry<*> -> obj.id }
 
         registry.registerTag(ENCHANTABLE_BLOCKS)
             .addToIndex()
             .itemStack(AllBlocks.MECHANICAL_DRILL.asStack().apply {
-                set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
+                enchant(Enchantments.MENDING, 1)
             })
             .title("Enchantable Blocks")
             .description("Components which can apply some enchantments")

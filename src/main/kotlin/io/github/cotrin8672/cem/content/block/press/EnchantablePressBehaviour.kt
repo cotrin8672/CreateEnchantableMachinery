@@ -8,8 +8,6 @@ import com.simibubi.create.content.kinetics.press.PressingBehaviour.PressingBeha
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.mixin.BlockEntityBehaviourMixin
-import io.github.cotrin8672.cem.util.holderLookup
-import net.minecraft.core.registries.Registries
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.item.enchantment.Enchantments
@@ -104,8 +102,7 @@ class EnchantablePressBehaviour<T>(
         }
 
         prevRunningTicks = runningTicks
-        val efficiency = be.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
-        val efficiencyModifier = 1 + 0.2f * be.getEnchantmentLevel(efficiency)
+        val efficiencyModifier = 1 + 0.2f * be.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
         runningTicks += (runningTickSpeed * efficiencyModifier).toInt()
         if (CYCLE / 2 in (prevRunningTicks + 1)..runningTicks) {
             runningTicks = CYCLE / 2

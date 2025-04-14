@@ -36,7 +36,7 @@ class EnchantableHarvesterActorVisual(
     ).createInstance()
     private val enchantedHarvester = instancerProvider.instancer(
         InstanceTypes.TRANSFORMED,
-        BakedModelBuilder(AllPartialModels.DRILL_HEAD.get()).materialFunc { _, _ -> Materials.GLINT }.build()
+        BakedModelBuilder.create(AllPartialModels.DRILL_HEAD.get()).materialFunc { _, _ -> Materials.GLINT }.build()
     ).createInstance()
 
 

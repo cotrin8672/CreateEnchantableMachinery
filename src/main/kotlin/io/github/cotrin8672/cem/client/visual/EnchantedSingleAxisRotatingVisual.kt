@@ -32,7 +32,7 @@ open class EnchantedSingleAxisRotatingVisual<T : KineticBlockEntity>(
 
     private val enchantedRotatingModel = instancerProvider().instancer(
         AllInstanceTypes.ROTATING,
-        BakedModelBuilder(partialModel.get()).materialFunc { _, _ -> Materials.GLINT }.build()
+        BakedModelBuilder.create(partialModel.get()).materialFunc { _, _ -> Materials.GLINT }.build()
     )
         .createInstance()
         .rotateToFace(from, rotationAxis())

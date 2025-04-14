@@ -19,7 +19,7 @@ class EnchantableRollerActorVisual(
 ) : HarvesterActorVisual(visualizationContext, simulationWorld, movementContext) {
     private val enchantedWheel = instancerProvider.instancer(
         InstanceTypes.TRANSFORMED,
-        BakedModelBuilder(rollingPartial.get())
+        BakedModelBuilder.create(rollingPartial.get())
             .materialFunc { _, _ -> Materials.GLINT }
             .build()
     ).createInstance().apply {
@@ -36,7 +36,7 @@ class EnchantableRollerActorVisual(
 
     private val enchantedFrame = instancerProvider.instancer(
         InstanceTypes.TRANSFORMED,
-        BakedModelBuilder(AllPartialModels.ROLLER_FRAME.get())
+        BakedModelBuilder.create(AllPartialModels.ROLLER_FRAME.get())
             .materialFunc { _, _ -> Materials.GLINT }
             .build()
     ).createInstance().apply {

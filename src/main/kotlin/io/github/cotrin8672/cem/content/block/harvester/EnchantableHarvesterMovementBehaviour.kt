@@ -40,7 +40,7 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             else return
         }
 
-        var item = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+        var item = EnchantedItemFactory.getPickaxeItemStack(context)
         var effectChance = 1f
 
         if (stateVisited.`is`(BlockTags.LEAVES)) {

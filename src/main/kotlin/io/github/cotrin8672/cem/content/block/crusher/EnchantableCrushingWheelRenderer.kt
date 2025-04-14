@@ -7,9 +7,9 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantableCrushingWheelRenderer(
     context: BlockEntityRendererProvider.Context,
@@ -29,7 +29,8 @@ class EnchantableCrushingWheelRenderer(
             if (CemConfig.CONFIG.renderGlint.get() && !VisualizationManager.supportsVisualization(be.nonNullLevel)) {
                 val consumer = SheetedDecalTextureGenerator(
                     buffer.getBuffer(CustomRenderType.GLINT),
-                    ms.last(),
+                    ms.last().pose(),
+                    ms.last().normal(),
                     0.007125f
                 )
                 renderRotatingBuffer(be, getRotatedModel(be, state), ms, consumer, light)

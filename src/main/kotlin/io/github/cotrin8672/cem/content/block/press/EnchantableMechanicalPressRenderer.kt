@@ -9,6 +9,7 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.renderer.MultiBufferSource
@@ -16,7 +17,6 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.BlockState
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantableMechanicalPressRenderer(
     private val context: Context,
@@ -49,7 +49,8 @@ class EnchantableMechanicalPressRenderer(
             if (CemConfig.CONFIG.renderGlint.get()) {
                 val consumer = SheetedDecalTextureGenerator(
                     buffer.getBuffer(CustomRenderType.GLINT),
-                    ms.last(),
+                    ms.last().pose(),
+                    ms.last().normal(),
                     0.007125f
                 )
                 context.blockRenderDispatcher.renderBatched(
@@ -71,7 +72,8 @@ class EnchantableMechanicalPressRenderer(
 //                )
                 val consumer = SheetedDecalTextureGenerator(
                     buffer.getBuffer(CustomRenderType.GLINT),
-                    ms.last(),
+                    ms.last().pose(),
+                    ms.last().normal(),
                     0.007125f
                 )
                 headModel
