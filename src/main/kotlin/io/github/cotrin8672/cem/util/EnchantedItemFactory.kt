@@ -6,7 +6,6 @@ import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.Tag
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraft.world.item.enchantment.EnchantmentHelper
 
 object EnchantedItemFactory {
     private val pickaxeCache: MutableMap<ListTag, ItemStack> = mutableMapOf()
@@ -16,13 +15,12 @@ object EnchantedItemFactory {
         return if (pickaxeCache.containsKey(enchantmentTag)) {
             pickaxeCache[enchantmentTag]!!
         } else {
-            val stack = ItemStack(Items.NETHERITE_PICKAXE).apply {
-                EnchantmentHelper.deserializeEnchantments(enchantmentTag).forEach {
-                    enchant(it.key, it.value)
-                }
-                val nbt = CompoundTag().apply { putByte("Unbreakable", 1) }
-                tag = nbt
+            val stack = ItemStack(Items.NETHERITE_PICKAXE)
+            val nbt = CompoundTag().apply {
+                putByte("Unbreakable", 1)
+                put("Enchantments", enchantmentTag)
             }
+            stack.tag = nbt
             stack
         }
     }

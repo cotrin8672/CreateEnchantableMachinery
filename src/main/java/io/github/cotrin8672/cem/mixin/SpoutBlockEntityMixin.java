@@ -5,7 +5,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTank
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(SpoutBlockEntity.class)
+@Mixin(value = SpoutBlockEntity.class, remap = false)
 public interface SpoutBlockEntityMixin {
     @Accessor("tank")
     SmartFluidTankBehaviour getTank();
