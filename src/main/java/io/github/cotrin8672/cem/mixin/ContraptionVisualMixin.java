@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ContraptionVisual.class)
+@Mixin(value = ContraptionVisual.class, remap = false)
 public class ContraptionVisualMixin {
     @Shadow
     protected VirtualRenderWorld virtualRenderWorld;

@@ -75,12 +75,16 @@ mixin {
     add(sourceSets.main.get(), "${modId}.refmap.json")
 }
 
-configurations {
-    val localRuntime by configurations.creating
+val localRuntime: Configuration by configurations.creating
 
+configurations {
     configurations.named("runtimeClasspath") {
         extendsFrom(localRuntime)
     }
+}
+
+obfuscation {
+    createRemappingConfiguration(localRuntime)
 }
 
 repositories {
@@ -109,6 +113,8 @@ dependencies {
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1")!!)
     implementation(libs.mixin.forge)
+
+    annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 }
 
 publisher {
@@ -136,7 +142,11 @@ publisher {
     }
 }
 
-val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
+tasks.jar {
+    manifest.attributes(mapOf("MixinConfigs" to "${modId}.mixins.json"))
+}
+
+val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
     val modLicense: String by project
     val modAuthors: String by project
     val modDescription: String by project
@@ -145,7 +155,7 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
         "minecraftVersion" to libs.versions.minecraft.get(),
         "minecraftVersionRage" to "[${libs.versions.minecraft.get()},)",
         "forgeVersion" to libs.versions.forge.get(),
-        "forgeVersionRange" to "[21.1.0,)",
+        "forgeVersionRange" to "[47.1.3,)",
         "loaderVersionRange" to "[${libs.versions.kotlinforforge.get()},)",
         "createVersionRange" to "[6.0.0,)",
         "modId" to modId,
@@ -157,9 +167,9 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
     )
 
     inputs.properties(replaceProperties)
-    filesMatching(listOf("META-INF/mods.toml")) {
-        expand(replaceProperties)
-    }
+    expand(replaceProperties)
+    from("src/main/templates")
+    into("build/generated/sources/modMetadata")
 }
 
 tasks.processResources {
@@ -167,7 +177,8 @@ tasks.processResources {
 }
 
 sourceSets.main.get().resources.srcDir("src/generated/resources")
-legacyForge.ideSyncTask(tasks.processResources)
+sourceSets.main.get().resources.srcDir(generateModMetadata)
+legacyForge.ideSyncTask(generateModMetadata)
 
 tasks.named<Wrapper>("wrapper").configure {
     distributionType = Wrapper.DistributionType.BIN

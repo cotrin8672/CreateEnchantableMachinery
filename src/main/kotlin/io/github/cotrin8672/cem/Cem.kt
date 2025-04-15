@@ -12,8 +12,6 @@ import io.github.cotrin8672.cem.util.EnchantableBlockMapping
 import net.createmod.ponder.foundation.PonderIndex
 import net.minecraft.resources.ResourceLocation
 import net.minecraftforge.api.distmarker.Dist
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent
-import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.ModLoadingContext
 import net.minecraftforge.fml.common.Mod
@@ -30,15 +28,6 @@ class Cem {
 
         fun asResource(path: String): ResourceLocation {
             return ResourceLocation(MOD_ID, path)
-        }
-
-        @JvmStatic
-        @SubscribeEvent
-        fun registerCapabilities(event: RegisterCapabilitiesEvent) {
-//            EnchantableSawBlockEntity.registerCapabilities(event)
-//            EnchantableCrushingWheelControllerBlockEntity.registerCapabilities(event)
-//            EnchantableMillstoneBlockEntity.registerCapabilities(event)
-//            EnchantableSpoutBlockEntity.registerCapabilities(event)
         }
     }
 
