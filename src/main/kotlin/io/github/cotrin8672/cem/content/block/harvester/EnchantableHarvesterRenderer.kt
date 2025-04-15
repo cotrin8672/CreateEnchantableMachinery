@@ -26,7 +26,6 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
 import net.minecraft.world.phys.Vec3
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantableHarvesterRenderer(
     private val context: BlockEntityRendererProvider.Context,

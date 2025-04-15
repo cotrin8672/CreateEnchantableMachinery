@@ -1,10 +1,10 @@
 package io.github.cotrin8672.cem
 
 import com.simibubi.create.AllBlocks
-import com.simibubi.create.foundation.data.CreateRegistrate
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.config.ModConfigs
 import io.github.cotrin8672.cem.content.ponder.CemPonderPlugin
+import io.github.cotrin8672.cem.registrate.KotlinRegistrate
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
 import io.github.cotrin8672.cem.registry.PartialModelRegistration
@@ -26,7 +26,7 @@ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 class Cem {
     companion object {
         const val MOD_ID = "createenchantablemachinery"
-        val REGISTRATE: CreateRegistrate = CreateRegistrate.create(MOD_ID)
+        val REGISTRATE = KotlinRegistrate.create(MOD_ID)
 
         fun asResource(path: String): ResourceLocation {
             return ResourceLocation(MOD_ID, path)

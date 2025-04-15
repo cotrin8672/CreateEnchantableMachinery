@@ -70,6 +70,11 @@ legacyForge {
     }
 }
 
+mixin {
+    config("${modId}.mixins.json")
+    add(sourceSets.main.get(), "${modId}.refmap.json")
+}
+
 configurations {
     val localRuntime by configurations.creating
 
@@ -94,16 +99,16 @@ repositories {
 
 dependencies {
     implementation(libs.kotlinforforge)
-    implementation("com.simibubi.create:create-1.20.1:6.0.4-79:slim") {
+    modImplementation("com.simibubi.create:create-1.20.1:6.0.4-79:slim") {
         isTransitive = false
     }
-    implementation(libs.ponder)
-    compileOnly(libs.flywheel.api)
-    runtimeOnly(libs.flywheel)
-    implementation(libs.registrate)
+    modImplementation(libs.ponder)
+    modCompileOnly(libs.flywheel.api)
+    modRuntimeOnly(libs.flywheel)
+    modImplementation(libs.registrate)
 
-//    compileOnly(annotationProcessor(libs.mixin.common)!!)
-//    implementation(libs.mixin.forge)
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1")!!)
+    implementation(libs.mixin.forge)
 }
 
 publisher {

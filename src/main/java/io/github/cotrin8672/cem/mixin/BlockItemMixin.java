@@ -1,9 +1,12 @@
 package io.github.cotrin8672.cem.mixin;
 
+import io.github.cotrin8672.cem.content.block.EnchantableBlock;
 import io.github.cotrin8672.cem.util.EnchantableBlockMapping;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -35,6 +38,16 @@ public abstract class BlockItemMixin extends Item {
             BlockState blockState = alternativeBlock.getStateForPlacement(context);
             BlockState state = blockState != null && this.canPlace(context, blockState) ? blockState : null;
             cir.setReturnValue(state);
+        }
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        Block alternateBlock = EnchantableBlockMapping.getAlternativeBlock(getBlock());
+        if (alternateBlock instanceof EnchantableBlock) {
+            return ((EnchantableBlock) alternateBlock).canApply(enchantment);
+        } else {
+            return super.canApplyAtEnchantingTable(stack, enchantment);
         }
     }
 }

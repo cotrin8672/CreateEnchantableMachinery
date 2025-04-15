@@ -11,21 +11,21 @@ description='''${modDescription}'''
 
 [[dependencies.${modId}]]
 modId="forge"
-type="required"
+mandatory=true
 versionRange="${forgeVersionRange}"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.${modId}]]
 modId="minecraft"
-type="required"
+mandatory=true
 versionRange="${minecraftVersionRage}"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.${modId}]]
 modId="create"
-type="required"
+mandatory=true
 versionRange="${createVersionRange}"
 ordering="AFTER"
 side="BOTH"
