@@ -17,11 +17,8 @@ import net.minecraft.world.item.enchantment.Enchantments
 class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos?) {
         context ?: return
-        if (context.temporaryData == null) {
-            context.temporaryData = EnchantedItemFactory.getPickaxeItemStack(context)
-        }
 
-        val stack = context.temporaryData as ItemStack
+        val stack = EnchantedItemFactory.getPickaxeItemStack(context)
 
         BlockHelper.destroyBlockAs(context.world, breakingPos, null, stack, 1f) {
             this.dropItem(context, it)

@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
+import net.minecraftforge.client.model.data.ModelData
 
 class EnchantablePloughRenderer(
     private val context: BlockEntityRendererProvider.Context,
@@ -34,7 +35,7 @@ class EnchantablePloughRenderer(
         ms.use {
             if (!CemConfig.CONFIG.renderGlint.get()) return@use
             context.blockRenderDispatcher.renderBatched(
-                be.blockState, be.blockPos, be.level!!, ms, consumer, true, RANDOM
+                be.blockState, be.blockPos, be.level!!, ms, consumer, true, RANDOM, ModelData.EMPTY, null
             )
         }
     }
