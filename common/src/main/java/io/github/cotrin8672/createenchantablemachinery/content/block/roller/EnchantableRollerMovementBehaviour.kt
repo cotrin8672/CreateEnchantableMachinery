@@ -14,6 +14,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
 
@@ -43,7 +44,7 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
         val fakePlayer = if (level is ServerLevel) {
             ContraptionBlockBreaker(level, context)
         } else null
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
+        val enchantments = EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply {
             tag = context.blockEntityData
         })
         BlockHelper.destroyBlockAs(context.world, breakingPos, fakePlayer, fakePlayer?.mainHandItem, 1f) {
@@ -57,7 +58,7 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
 
     override fun getBlockBreakingSpeed(context: MovementContext?): Float {
         val speed = super.getBlockBreakingSpeed(context)
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
+        val enchantments = EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply {
             tag = context?.blockEntityData
         })
         return speed * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)

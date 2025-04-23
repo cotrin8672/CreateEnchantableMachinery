@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.EnchantmentInstance
 import net.minecraft.world.item.enchantment.Enchantments
@@ -20,7 +21,7 @@ class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos?) {
         val level = context?.world
         val enchantedItem = EnchantedItemFactory.getHoeItemStack(
-            *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context?.blockEntityData })
+            *EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply { tag = context?.blockEntityData })
                 .map { EnchantmentInstance(it.key, it.value) }
                 .toTypedArray()
         )
@@ -33,7 +34,7 @@ class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext?): Float {
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
+        val enchantments = EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply {
             tag = context?.blockEntityData
         })
         return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
