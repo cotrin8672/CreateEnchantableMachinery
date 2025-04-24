@@ -10,17 +10,26 @@ import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import dev.engine_room.flywheel.api.visualization.VisualizationContext
 import io.github.cotrin8672.cem.util.EnchantedItemFactory
 import io.github.cotrin8672.cem.util.destroyBlocks
-import io.github.cotrin8672.cem.util.getEnchantmentLevel
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
+import net.minecraft.core.registries.Registries
 import net.minecraft.tags.BlockTags
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.block.state.BlockState
+import java.util.*
+import kotlin.jvm.optionals.getOrNull
 
 class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
+    private val enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
+
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
-        val stack = EnchantedItemFactory.getPickaxeItemStack(context?.blockEntityData, context)
-        BlockHelper.destroyBlockAs(context?.world, breakingPos, null, stack, 1f) {
+        context ?: return
+
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             this.dropItem(context, it)
         }
     }
@@ -29,23 +38,34 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
         context ?: return
         if (brokenState.`is`(BlockTags.LEAVES)) return
 
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+
         val dynamicTree = TreeCutter.findDynamicTree(brokenState.block, pos)
         if (dynamicTree.isPresent) {
-            val tool = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
-            dynamicTree.get().destroyBlocks(context.world, tool) { stack, dropPos ->
+            dynamicTree.get().destroyBlocks(context.world, enchantedTools[context]!!) { stack, dropPos ->
                 dropItemFromCutTree(context, stack, dropPos)
             }
             return
         }
 
-        val tool = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
-        TreeCutter.findTree(context.world, pos, brokenState).destroyBlocks(context.world, tool) { stack, dropPos ->
-            dropItemFromCutTree(context, stack, dropPos)
-        }
+        TreeCutter.findTree(context.world, pos, brokenState)
+            .destroyBlocks(context.world, enchantedTools[context]!!) { stack, dropPos ->
+                dropItemFromCutTree(context, stack, dropPos)
+            }
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        return super.getBlockBreakingSpeed(context) * (getEnchantmentLevel(context, Enchantments.EFFICIENCY) + 1)
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+
+        val holderLookup = context.world.holderLookup(Registries.ENCHANTMENT)
+        val holder =
+            holderLookup.get(Enchantments.EFFICIENCY).getOrNull() ?: return super.getBlockBreakingSpeed(context)
+        val efficiencyLevel =
+            enchantedTools[context]?.getEnchantmentLevel(holder) ?: return super.getBlockBreakingSpeed(context)
+
+        return super.getBlockBreakingSpeed(context) * (efficiencyLevel + 1)
     }
 
     override fun createVisual(

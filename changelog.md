@@ -1,3 +1,3 @@
 ### Fixed
 
-- Fixed Issue #86 and #89
+- Improved performance of contraption behaviour. 
