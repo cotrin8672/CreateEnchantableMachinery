@@ -16,9 +16,10 @@ import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
+import java.util.*
 
 class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
-    private var enchantedTool: ItemStack? = null
+    private var enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
 
     override fun createVisual(
         visualizationContext: VisualizationContext,
@@ -37,11 +38,11 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
                         || blockState.`is`(BlockTags.NEEDS_DIAMOND_TOOL)
                 )
 
-        if (enchantedTool == null) {
-            enchantedTool = EnchantedItemFactory.getPickaxeItemStack(context)
+        if (enchantedTools[context] == null) {
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
         }
 
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTool, 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             if ((noHarvest || context.world.random.nextBoolean()))
                 return@destroyBlockAs
             this.dropItem(context, it)
@@ -51,11 +52,12 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
+        val enchantedTool = enchantedTools[context]
         val efficiencyLevel = if (enchantedTool == null) {
             val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
             EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
         } else {
-            enchantedTool?.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+            enchantedTool.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
         }
 
         return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
