@@ -18,14 +18,16 @@ import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.block.state.BlockState
 
 class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
+    private var enchantedTool: ItemStack? = null
+
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
         context ?: return
-        if (context.temporaryData == null) {
-            context.temporaryData = EnchantedItemFactory.getPickaxeItemStack(context)
+
+        if (enchantedTool == null) {
+            enchantedTool = EnchantedItemFactory.getPickaxeItemStack(context)
         }
 
-        val stack = context.temporaryData as ItemStack
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, stack, 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTool, 1f) {
             this.dropItem(context, it)
         }
     }
@@ -33,22 +35,20 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
     override fun onBlockBroken(context: MovementContext?, pos: BlockPos?, brokenState: BlockState) {
         if (brokenState.`is`(BlockTags.LEAVES)) return
         context ?: return
-        if (context.temporaryData == null) {
-            context.temporaryData = EnchantedItemFactory.getPickaxeItemStack(context)
+        if (enchantedTool == null) {
+            enchantedTool = EnchantedItemFactory.getPickaxeItemStack(context)
         }
-
-        val enchantedItem = context.temporaryData as ItemStack
 
         val dynamicTree = TreeCutter.findDynamicTree(brokenState.block, pos)
         if (dynamicTree.isPresent) {
-            dynamicTree.get().destroyBlocks(context.world, enchantedItem, null) { stack, dropPos ->
+            dynamicTree.get().destroyBlocks(context.world, enchantedTool, null) { stack, dropPos ->
                 dropItemFromCutTree(context, stack, dropPos)
             }
             return
         }
 
         TreeCutter.findTree(context.world, pos, brokenState)
-            .destroyBlocks(context.world, enchantedItem, null) { stack, dropPos ->
+            .destroyBlocks(context.world, enchantedTool, null) { stack, dropPos ->
                 dropItemFromCutTree(context, stack, dropPos)
             }
     }

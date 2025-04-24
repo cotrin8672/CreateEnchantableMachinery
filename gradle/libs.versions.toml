@@ -2,7 +2,7 @@
 kotlin = "2.0.0"
 minecraft = "1.20.1"
 parchiment = "2023.09.03"
-forge = "1.20.1-47.3.0"
+forge = "1.20.1-47.4.0"
 modDevGradle = "2.0.80"
 kotlinforforge = "4.11.0"
 create = "6.0.4-79"

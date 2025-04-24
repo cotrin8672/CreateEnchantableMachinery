@@ -1,4 +1,3 @@
 ### Fixed
 
-- Fixed enchantable mechanical plough bug.
-- Fixed contraption rendering
+- Fixed issue#103

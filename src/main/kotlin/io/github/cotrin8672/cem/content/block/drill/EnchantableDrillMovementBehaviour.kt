@@ -11,6 +11,7 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.util.EnchantedItemFactory
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
+import net.minecraft.nbt.Tag
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
@@ -18,23 +19,28 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.api.distmarker.OnlyIn
 
 class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
+    private var enchantedTool: ItemStack? = null
+
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
         context ?: return
-        if (context.temporaryData == null) {
-            context.temporaryData = EnchantedItemFactory.getPickaxeItemStack(context)
+        if (enchantedTool == null) {
+            enchantedTool = EnchantedItemFactory.getPickaxeItemStack(context)
         }
 
-        val stack = context.temporaryData as ItemStack
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, stack, 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTool, 1f) {
             this.dropItem(context, it)
         }
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
-            tag = context.blockEntityData
-        })
-        return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
+        val efficiencyLevel = if (enchantedTool == null) {
+            val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
+            EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
+        } else {
+            enchantedTool?.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+        }
+
+        return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
     }
 
     override fun createVisual(
