@@ -11,12 +11,16 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.util.EnchantedItemFactory
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
+import net.minecraft.nbt.Tag
 import net.minecraft.tags.BlockTags
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
+import java.util.*
 
 class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
+    private var enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
+
     override fun createVisual(
         visualizationContext: VisualizationContext,
         simulationWorld: VirtualRenderWorld,
@@ -34,12 +38,11 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
                         || blockState.`is`(BlockTags.NEEDS_DIAMOND_TOOL)
                 )
 
-        if (context.temporaryData == null) {
-            context.temporaryData = EnchantedItemFactory.getPickaxeItemStack(context)
+        if (enchantedTools[context] == null) {
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
         }
 
-        val stack = context.temporaryData as ItemStack
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, stack, 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             if ((noHarvest || context.world.random.nextBoolean()))
                 return@destroyBlockAs
             this.dropItem(context, it)
@@ -49,10 +52,15 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
-            tag = context.blockEntityData
-        })
-        return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
+        val enchantedTool = enchantedTools[context]
+        val efficiencyLevel = if (enchantedTool == null) {
+            val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
+            EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
+        } else {
+            enchantedTool.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+        }
+
+        return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
     }
 
     override fun renderInContraption(

@@ -10,26 +10,37 @@ import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.EnchantedItemFactory
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
+import net.minecraft.nbt.Tag
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
+import java.util.*
 
 class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
+    private var enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
+
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos?) {
         context ?: return
 
-        val stack = EnchantedItemFactory.getPickaxeItemStack(context)
+        if (enchantedTools[context] == null) {
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
+        }
 
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, stack, 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             this.dropItem(context, it)
         }
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
-            tag = context.blockEntityData
-        })
-        return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
+        val enchantedTool = enchantedTools[context]
+        val efficiencyLevel = if (enchantedTool == null) {
+            val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
+            EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
+        } else {
+            enchantedTool.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+        }
+
+        return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
     }
 
     override fun renderInContraption(
