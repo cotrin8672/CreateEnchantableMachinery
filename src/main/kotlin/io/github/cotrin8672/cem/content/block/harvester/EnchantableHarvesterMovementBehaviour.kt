@@ -26,8 +26,11 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.IntegerProperty
 import org.apache.commons.lang3.mutable.MutableBoolean
+import java.util.*
 
 class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
+    private val enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
+
     override fun visitNewPosition(context: MovementContext, pos: BlockPos) {
         val world = context.world
         val stateVisited = world.getBlockState(pos)
@@ -40,7 +43,10 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             else return
         }
 
-        var item = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+
+        var item = enchantedTools[context]
         var effectChance = 1f
 
         if (stateVisited.`is`(BlockTags.LEAVES)) {

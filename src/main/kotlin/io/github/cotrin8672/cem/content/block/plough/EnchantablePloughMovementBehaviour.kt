@@ -8,21 +8,39 @@ import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.EnchantedItemFactory
-import io.github.cotrin8672.cem.util.getEnchantmentLevel
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
+import net.minecraft.core.registries.Registries
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.enchantment.Enchantments
+import java.util.*
+import kotlin.jvm.optionals.getOrNull
 
 class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
+    private val enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
+
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos?) {
-        val stack = EnchantedItemFactory.getPickaxeItemStack(context?.blockEntityData, context)
-        BlockHelper.destroyBlockAs(context?.world, breakingPos, null, stack, 1f) {
+        context ?: return
+
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             this.dropItem(context, it)
         }
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        return super.getBlockBreakingSpeed(context) * (getEnchantmentLevel(context, Enchantments.EFFICIENCY) + 1)
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
+
+        val holderLookup = context.world.holderLookup(Registries.ENCHANTMENT)
+        val holder =
+            holderLookup.get(Enchantments.EFFICIENCY).getOrNull() ?: return super.getBlockBreakingSpeed(context)
+        val efficiencyLevel =
+            enchantedTools[context]?.getEnchantmentLevel(holder) ?: return super.getBlockBreakingSpeed(context)
+
+        return super.getBlockBreakingSpeed(context) * (efficiencyLevel + 1)
     }
 
     override fun renderInContraption(
