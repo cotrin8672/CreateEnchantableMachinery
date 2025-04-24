@@ -90,6 +90,15 @@ repositories {
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
     maven("https://api.modrinth.com/maven") // Modrinth Maven
     maven("https://maven.theillusivec4.top/") // Curios API
+
+    exclusiveContent {
+        forRepository {
+            maven("https://cursemaven.com")
+        }
+        filter {
+            includeGroup("curse.maven")
+        }
+    }
 }
 
 dependencies {
@@ -101,6 +110,9 @@ dependencies {
     compileOnly(libs.flywheel.api)
     runtimeOnly(libs.flywheel)
     implementation(libs.registrate)
+
+    compileOnly("curse.maven:cobblemon-687131:6125026")
+    runtimeOnly("curse.maven:cobblemon-687131:6125026")
 
     runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1")
     compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
