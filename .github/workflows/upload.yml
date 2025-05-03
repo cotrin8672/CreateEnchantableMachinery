@@ -28,5 +28,8 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      - name: Upload Fabric version
-        run: ./gradlew fabric:publishMod
+      - name: Upload Fabric version to CurseForge
+        run: ./gradlew fabric:publishCurseForge
+
+      - name: Upload Fabric version to Modrinth
+        run: ./gradlew fabric:publishModrinth
