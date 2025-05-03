@@ -5,6 +5,7 @@ import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import io.github.cotrin8672.createenchantablemachinery.util.EnchantedItemFactory
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.EnchantmentInstance
 import net.minecraft.world.phys.Vec3
@@ -16,7 +17,7 @@ private constructor(
     level: ServerLevel,
     private var context: MovementContext?,
     private val heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(
-        *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context?.blockEntityData })
+        *EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply { tag = context?.blockEntityData })
             .map { EnchantmentInstance(it.key, it.value) }
             .toTypedArray()
     ),
@@ -34,7 +35,7 @@ private constructor(
             level: ServerLevel,
             context: MovementContext?,
             heldItem: ItemStack = EnchantedItemFactory.getPickaxeItemStack(
-                *EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply { tag = context?.blockEntityData })
+                *EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply { tag = context?.blockEntityData })
                     .map { EnchantmentInstance(it.key, it.value) }
                     .toTypedArray()
             ),
