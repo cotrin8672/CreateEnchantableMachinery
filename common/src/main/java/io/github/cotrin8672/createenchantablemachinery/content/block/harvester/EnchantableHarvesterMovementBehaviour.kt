@@ -53,7 +53,7 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             else return
         }
 
-        val enchantments = EnchantmentHelper.getEnchantments(ItemStack.EMPTY.apply {
+        val enchantments = EnchantmentHelper.getEnchantments(ItemStack(Items.AIR).apply {
             tag = context.blockEntityData
         }).map { EnchantmentInstance(it.key, it.value) }
         var item = EnchantedItemFactory.getPickaxeItemStack(*enchantments.toTypedArray())
