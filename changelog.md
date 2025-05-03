@@ -1,3 +1,3 @@
-### Fixed
+### Added
 
-- Improved performance of contraption behaviour. 
+- Added ru_ru.json by mpustovoi.
