@@ -111,9 +111,6 @@ dependencies {
     runtimeOnly(libs.flywheel)
     implementation(libs.registrate)
 
-    compileOnly("curse.maven:cobblemon-687131:6125026")
-    runtimeOnly("curse.maven:cobblemon-687131:6125026")
-
     runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1")
     compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
 }

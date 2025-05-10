@@ -11,8 +11,9 @@ import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 @Mod(value = Cem.MOD_ID, dist = [Dist.CLIENT])
 class CemClient {
     init {
+        PartialModelRegistration.register()
+
         MOD_BUS.addListener<FMLClientSetupEvent> {
-            PartialModelRegistration.register()
             PonderIndex.addPlugin(CemPonderPlugin)
         }
     }

@@ -1,3 +1,3 @@
-### Added
+### Fixed
 
-- Added ru_ru.json by mpustovoi.
+- Fixed issue#92
