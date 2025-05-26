@@ -59,6 +59,7 @@ legacyForge {
 
         configureEach {
             systemProperty("forge.logging.markers", "REGISTRIES")
+            gameDirectory.set(project.file("run-$name"))
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
