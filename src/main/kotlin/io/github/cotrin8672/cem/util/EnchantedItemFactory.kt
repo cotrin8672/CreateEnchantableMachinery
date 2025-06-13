@@ -11,7 +11,6 @@ import net.minecraft.world.item.enchantment.ItemEnchantments
 
 object EnchantedItemFactory {
     private val pickaxeCache: MutableMap<ItemEnchantments, ItemStack> = mutableMapOf()
-    private val hoeCache: MutableMap<ItemEnchantments, ItemStack> = mutableMapOf()
 
     fun getPickaxeItemStack(enchantmentSet: ItemEnchantments): ItemStack {
         return if (pickaxeCache.containsKey(enchantmentSet)) {

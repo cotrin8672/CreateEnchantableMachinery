@@ -1,5 +1,6 @@
 package io.github.cotrin8672.cem.content.block.saw
 
+import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ActorVisual
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
@@ -74,6 +75,10 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
         movementContext: MovementContext,
     ): ActorVisual {
         return EnchantableSawActorVisual(visualizationContext, simulationWorld, movementContext)
+    }
+
+    override fun canBeDisabledVia(context: MovementContext?): ItemStack? {
+        return AllBlocks.MECHANICAL_SAW.asStack()
     }
 
     override fun renderInContraption(

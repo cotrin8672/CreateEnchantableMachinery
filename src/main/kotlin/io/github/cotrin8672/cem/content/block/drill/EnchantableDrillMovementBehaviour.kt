@@ -1,5 +1,6 @@
 package io.github.cotrin8672.cem.content.block.drill
 
+import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ActorVisual
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
@@ -52,6 +53,10 @@ class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
         movementContext: MovementContext,
     ): ActorVisual {
         return EnchantableDrillActorVisual(visualizationContext, simulationWorld, movementContext)
+    }
+
+    override fun canBeDisabledVia(context: MovementContext?): ItemStack? {
+        return AllBlocks.MECHANICAL_DRILL.asStack()
     }
 
     @OnlyIn(Dist.CLIENT)
