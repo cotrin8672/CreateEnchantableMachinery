@@ -1,5 +1,6 @@
 package io.github.cotrin8672.cem.content.block.roller
 
+import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.contraptions.actors.roller.RollerMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ActorVisual
@@ -61,6 +62,10 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
         }
 
         return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
+    }
+
+    override fun canBeDisabledVia(context: MovementContext?): ItemStack? {
+        return AllBlocks.MECHANICAL_ROLLER.asStack()
     }
 
     override fun renderInContraption(
