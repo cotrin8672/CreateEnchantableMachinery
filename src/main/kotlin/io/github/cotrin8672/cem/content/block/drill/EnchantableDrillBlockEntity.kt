@@ -1,11 +1,11 @@
 package io.github.cotrin8672.cem.content.block.drill
 
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
-import com.simibubi.create.foundation.utility.BlockHelper
 import com.simibubi.create.foundation.utility.CreateLang
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.cem.util.EnchantedItemFactory
+import io.github.cotrin8672.cem.util.destroyBlockAs
 import joptsimple.internal.Strings
 import net.createmod.catnip.math.VecHelper
 import net.minecraft.core.BlockPos
@@ -39,7 +39,7 @@ class EnchantableDrillBlockEntity(
         val nonNullLevel = checkNotNull(level)
         val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
         val enchantedItem = EnchantedItemFactory.getPickaxeItemStack(getEnchantmentTag())
-        BlockHelper.destroyBlockAs(nonNullLevel, breakingPos, null, enchantedItem, 1f) { stack: ItemStack ->
+        destroyBlockAs(nonNullLevel, breakingPos, null, enchantedItem, 1f) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
             if (!nonNullLevel.gameRules.getBoolean(GameRules.RULE_DOBLOCKDROPS)) return@destroyBlockAs
             if (nonNullLevel.restoringBlockSnapshots) return@destroyBlockAs
