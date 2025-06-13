@@ -1,5 +1,6 @@
 package io.github.cotrin8672.cem.content.block.plough
 
+import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.contraptions.actors.plough.PloughMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
@@ -41,6 +42,10 @@ class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
             enchantedTools[context]?.getEnchantmentLevel(holder) ?: return super.getBlockBreakingSpeed(context)
 
         return super.getBlockBreakingSpeed(context) * (efficiencyLevel + 1)
+    }
+
+    override fun canBeDisabledVia(context: MovementContext?): ItemStack? {
+        return AllBlocks.MECHANICAL_PLOUGH.asStack()
     }
 
     override fun renderInContraption(

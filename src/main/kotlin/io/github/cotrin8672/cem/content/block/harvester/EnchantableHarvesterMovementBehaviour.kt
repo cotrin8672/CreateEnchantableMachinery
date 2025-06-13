@@ -1,5 +1,6 @@
 package io.github.cotrin8672.cem.content.block.harvester
 
+import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMovementBehaviour
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
@@ -105,6 +106,10 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
         movementContext: MovementContext,
     ): ActorVisual? {
         return null
+    }
+
+    override fun canBeDisabledVia(context: MovementContext?): ItemStack? {
+        return AllBlocks.MECHANICAL_HARVESTER.asStack()
     }
 
     override fun renderInContraption(
