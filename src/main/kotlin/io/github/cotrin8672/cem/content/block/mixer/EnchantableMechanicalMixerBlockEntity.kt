@@ -47,8 +47,8 @@ class EnchantableMechanicalMixerBlockEntity(
             if ((!nonNullLevel.isClientSide || isVirtual) && runningTicks == 20) {
                 if (processingTicks < 0) {
                     var recipeSpeed = 1f
-                    if (currentRecipe is ProcessingRecipe) {
-                        val t = (currentRecipe as ProcessingRecipe<*>).processingDuration
+                    if (currentRecipe is ProcessingRecipe<*, *>) {
+                        val t = (currentRecipe as ProcessingRecipe<*, *>).processingDuration
                         if (t != 0) recipeSpeed = t / 100f
                     }
 
