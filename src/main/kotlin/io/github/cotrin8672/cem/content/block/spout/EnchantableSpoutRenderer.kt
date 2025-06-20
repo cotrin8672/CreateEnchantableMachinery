@@ -4,11 +4,11 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer
-import com.simibubi.create.foundation.fluid.FluidRenderer
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.nonNullLevel
 import io.github.cotrin8672.cem.util.use
+import net.createmod.catnip.platform.ForgeCatnipServices
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.renderer.MultiBufferSource
@@ -59,9 +59,8 @@ class EnchantableSpoutRenderer(
         if (!fluidStack.isEmpty && processingTicks != -1) {
             radius = (((2 * processingProgress) - 1).toDouble().pow(2.0) - 1).toFloat()
             val bb = AABB(0.5, 0.5, 0.5, 0.5, -1.2, 0.5).inflate((radius / 32f).toDouble())
-            FluidRenderer.renderFluidBox(
-                fluidStack.fluid,
-                fluidStack.amount.toLong(),
+            ForgeCatnipServices.FLUID_RENDERER.renderFluidBox(
+                fluidStack,
                 bb.minX.toFloat(),
                 bb.minY.toFloat(),
                 bb.minZ.toFloat(),
@@ -72,8 +71,7 @@ class EnchantableSpoutRenderer(
                 ms,
                 light,
                 false,
-                true,
-                fluidStack.tag
+                true
             )
         }
 
@@ -117,11 +115,11 @@ class EnchantableSpoutRenderer(
                     ms.translate(0f, yOffset, 0f)
                 else
                     ms.translate(0f, max - min, 0f)
-                FluidRenderer.renderFluidBox(
-                    fluidStack.fluid, fluidStack.amount.toLong(),
+                ForgeCatnipServices.FLUID_RENDERER.renderFluidBox(
+                    fluidStack,
                     min, min - yOffset, min,
                     max, min, max,
-                    buffer, ms, light, false, true, fluidStack.tag
+                    buffer, ms, light, false, true
                 )
             }
         }
