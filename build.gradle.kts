@@ -158,7 +158,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
         "forgeVersion" to libs.versions.forge.get(),
         "forgeVersionRange" to "[47.1.3,)",
         "loaderVersionRange" to "[${libs.versions.kotlinforforge.get()},)",
-        "createVersionRange" to "[6.0.0,)",
+        "createVersionRange" to "[6.0.6,)",
         "modId" to modId,
         "modName" to modName,
         "modLicense" to modLicense,
