@@ -152,7 +152,7 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
         "neoforgeVersion" to libs.versions.neoforge.get(),
         "neoforgeVersionRange" to "[21.1.0,)",
         "loaderVersionRange" to "[${libs.versions.kotlinforforge.get()},)",
-        "createVersionRange" to "[6.0.0,)",
+        "createVersionRange" to "[6.0.6,)",
         "modId" to modId,
         "modName" to modName,
         "modLicense" to modLicense,
