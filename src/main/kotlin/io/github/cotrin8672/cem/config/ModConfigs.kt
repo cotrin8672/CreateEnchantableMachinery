@@ -12,8 +12,8 @@ import net.neoforged.neoforge.common.ModConfigSpec
 import java.util.*
 import java.util.function.Supplier
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 class ModConfigs {
+    @EventBusSubscriber
     companion object {
         private val CONFIGS = EnumMap<ModConfig.Type, ConfigBase>(ModConfig.Type::class.java)
         private lateinit var common: CemCommonConfig

@@ -8,11 +8,11 @@ import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRender
 import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
+import io.github.cotrin8672.cem.util.use
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantablePloughRenderer(
     private val context: BlockEntityRendererProvider.Context,
