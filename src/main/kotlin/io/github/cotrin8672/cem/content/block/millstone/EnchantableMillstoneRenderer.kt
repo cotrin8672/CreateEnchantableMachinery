@@ -8,13 +8,13 @@ import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.BlockState
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantableMillstoneRenderer(
     private val context: BlockEntityRendererProvider.Context,

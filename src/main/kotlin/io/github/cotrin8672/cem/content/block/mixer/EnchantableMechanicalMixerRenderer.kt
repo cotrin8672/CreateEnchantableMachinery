@@ -9,6 +9,7 @@ import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.registry.PartialModelRegistration
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.createmod.catnip.animation.AnimationTickHolder
 import net.createmod.catnip.render.CachedBuffers
 import net.createmod.catnip.render.SuperByteBuffer
@@ -17,7 +18,6 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.core.Direction
 import net.minecraft.util.RandomSource
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 import kotlin.math.PI
 
 class EnchantableMechanicalMixerRenderer(

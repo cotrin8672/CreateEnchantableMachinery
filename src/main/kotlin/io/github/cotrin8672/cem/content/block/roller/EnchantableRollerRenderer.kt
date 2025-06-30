@@ -13,6 +13,7 @@ import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.cem.client.CustomRenderType
 import io.github.cotrin8672.cem.config.CemConfig
 import io.github.cotrin8672.cem.util.nonNullLevel
+import io.github.cotrin8672.cem.util.use
 import net.createmod.catnip.math.AngleHelper
 import net.createmod.catnip.math.VecHelper
 import net.createmod.catnip.render.CachedBuffers
@@ -27,7 +28,6 @@ import net.minecraft.util.RandomSource
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
 import net.neoforged.neoforge.client.model.data.ModelData
-import thedarkcolour.kotlinforforge.neoforge.forge.use
 
 class EnchantableRollerRenderer(
     private val context: BlockEntityRendererProvider.Context,
