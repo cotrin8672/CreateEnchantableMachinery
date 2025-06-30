@@ -104,7 +104,7 @@ repositories {
 
 dependencies {
     implementation(libs.kotlinforforge)
-    modImplementation("com.simibubi.create:create-1.20.1:6.0.4-79:slim") {
+    modImplementation("com.simibubi.create:create-1.20.1:6.0.6-150:slim") {
         isTransitive = false
     }
     modImplementation(libs.ponder)

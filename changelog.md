@@ -1,1 +1,3 @@
-# Support for Create v6.0.6
+# Fixed
+
+- fixed issue#130

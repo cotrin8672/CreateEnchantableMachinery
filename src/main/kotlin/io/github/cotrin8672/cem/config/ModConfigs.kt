@@ -41,15 +41,15 @@ class ModConfigs {
 
             BlockStressValues.IMPACTS.registerProvider(common().kinetics.stressValues::getImpact)
         }
+    }
+    
+    @SubscribeEvent
+    fun onLoad(event: ModConfigEvent.Loading) {
+        for (config in CONFIGS.values) if (config.specification === event.config.getSpec()) config.onLoad()
+    }
 
-        @SubscribeEvent
-        fun onLoad(event: ModConfigEvent.Loading) {
-            for (config in CONFIGS.values) if (config.specification === event.config.getSpec()) config.onLoad()
-        }
-
-        @SubscribeEvent
-        fun onReload(event: ModConfigEvent.Reloading) {
-            for (config in CONFIGS.values) if (config.specification === event.config.getSpec()) config.onReload()
-        }
+    @SubscribeEvent
+    fun onReload(event: ModConfigEvent.Reloading) {
+        for (config in CONFIGS.values) if (config.specification === event.config.getSpec()) config.onReload()
     }
 }
