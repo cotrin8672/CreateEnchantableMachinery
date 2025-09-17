@@ -27,3 +27,12 @@ forge*changelog.txt
 /src/generated/resources/.cache/
 /run
 /.kotlin/
+/.mcp.json
+
+# Claude and Serena
+.claude/
+.serena/
+CLAUDE.md
+
+# Modified config file
+src/main/kotlin/io/github/cotrin8672/cem/config/ModConfigs.kt

@@ -11,8 +11,9 @@ import net.minecraftforge.fml.event.config.ModConfigEvent
 import java.util.*
 import java.util.function.Supplier
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+
 class ModConfigs {
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     companion object {
         private val CONFIGS = EnumMap<ModConfig.Type, ConfigBase>(ModConfig.Type::class.java)
         private lateinit var common: CemCommonConfig
@@ -42,7 +43,7 @@ class ModConfigs {
             BlockStressValues.IMPACTS.registerProvider(common().kinetics.stressValues::getImpact)
         }
     }
-    
+
     @SubscribeEvent
     fun onLoad(event: ModConfigEvent.Loading) {
         for (config in CONFIGS.values) if (config.specification === event.config.getSpec()) config.onLoad()
