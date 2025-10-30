@@ -1,6 +1,6 @@
 package io.github.cotrin8672.cem.mixinimpl
 
-import com.simibubi.create.content.contraptions.Contraption
+import com.simibubi.create.content.contraptions.render.ClientContraption
 import com.simibubi.create.foundation.utility.worldWrappers.WrappedBlockAndTintGetter
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import dev.engine_room.flywheel.api.instance.Instancer
@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.state.BlockState
 
 object ContraptionVisualMixinImpl {
     @JvmStatic
-    fun setupModel(
-        contraption: Contraption,
+    fun setupStructure(
+        contraption: ClientContraption,
         virtualRenderWorld: VirtualRenderWorld?,
         embedding: VisualEmbedding,
     ): Instancer<TransformedInstance> {

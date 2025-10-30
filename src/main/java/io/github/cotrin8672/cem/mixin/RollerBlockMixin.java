@@ -32,7 +32,6 @@ public class RollerBlockMixin {
             ItemInteractionResult result = BlockRegistration.getENCHANTABLE_MECHANICAL_ROLLER().get()
                     .useItemOn(stack, state, level, pos, player, hand, hitResult);
             cir.setReturnValue(result);
-            cir.cancel();
         }
     }
 }
