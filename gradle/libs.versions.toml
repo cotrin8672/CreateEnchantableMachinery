@@ -10,7 +10,6 @@ flywheel = "1.0.5"
 ponder = "1.0.63"
 registrate = "MC1.21-1.3.0+67"
 modPublisher = "2.1.8"
-copycats = "3.0.2+mc.1.21.1-neoforge"
 
 [libraries]
 minecraft = { module = "net.minecraft:minecraft", version.ref = "minecraft" }
@@ -20,7 +19,6 @@ flywheel = { module = "dev.engine-room.flywheel:flywheel-neoforge-1.21.1", versi
 flywheel-api = { module = "dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1", version.ref = "flywheel" }
 ponder = { module = "net.createmod.ponder:Ponder-NeoForge-1.21.1", version.ref = "ponder" }
 registrate = { module = "com.tterrag.registrate:Registrate", version.ref = "registrate" }
-copycats = { module = "maven.modrinth:copycats", version.ref = "copycats" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

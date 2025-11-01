@@ -110,7 +110,6 @@ dependencies {
     runtimeOnly(libs.flywheel)
     implementation(libs.ponder)
     implementation(libs.registrate)
-    implementation(libs.copycats)
 
     runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1")
     compileOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api")
@@ -150,9 +149,9 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
         "minecraftVersion" to libs.versions.minecraft.get(),
         "minecraftVersionRage" to "[${libs.versions.minecraft.get()},)",
         "neoforgeVersion" to libs.versions.neoforge.get(),
-        "neoforgeVersionRange" to "[21.1.186,)",
-        "loaderVersionRange" to "[5.9,)",
-        "createVersionRange" to "[6.0.6,)",
+        "neoforgeVersionRange" to "[21.1.200,)",
+        "loaderVersionRange" to "[5.10,)",
+        "createVersionRange" to "[6.0.7,6.1.0)",
         "modId" to modId,
         "modName" to modName,
         "modLicense" to modLicense,
