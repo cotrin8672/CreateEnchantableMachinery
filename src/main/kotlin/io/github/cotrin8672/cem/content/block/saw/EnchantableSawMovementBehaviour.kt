@@ -57,13 +57,8 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        val enchantedTool = enchantedTools[context]
-        val efficiencyLevel = if (enchantedTool == null) {
-            val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
-            EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
-        } else {
-            enchantedTool.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
-        }
+        val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
+        val efficiencyLevel = EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
 
         return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
     }
