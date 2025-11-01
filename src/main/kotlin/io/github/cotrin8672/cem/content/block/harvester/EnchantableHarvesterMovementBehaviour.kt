@@ -44,7 +44,7 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
             else return
         }
 
-        if (enchantedTools[context] == null) enchantedTools[context] = EnchantedItemFactory.getToolForBlock(context, pos)
+        if (enchantedTools[context] == null) enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
 
         var item = enchantedTools[context]
         var effectChance = 1f

@@ -62,7 +62,7 @@ class EnchantableSawBlockEntity(
 
     override fun onBlockBroken(stateToBreak: BlockState) {
         val dynamicTree = TreeCutter.findDynamicTree(stateToBreak.block, breakingPos)
-        val enchantedItem = EnchantedItemFactory.getToolForBlock(nonNullLevel, breakingPos, getEnchantmentTag())
+        val enchantedItem = EnchantedItemFactory.getPickaxeItemStack(getEnchantmentTag())
 
         if (dynamicTree.isPresent) {
             dynamicTree.get().destroyBlocks(nonNullLevel, enchantedItem, null, this::dropItemFromCutTree)

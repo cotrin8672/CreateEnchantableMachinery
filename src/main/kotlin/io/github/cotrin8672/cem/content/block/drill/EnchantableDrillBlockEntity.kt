@@ -38,7 +38,7 @@ class EnchantableDrillBlockEntity(
 
         val nonNullLevel = checkNotNull(level)
         val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
-        val enchantedItem = EnchantedItemFactory.getToolForBlock(nonNullLevel, breakingPos, getEnchantmentTag())
+        val enchantedItem = EnchantedItemFactory.getPickaxeItemStack(getEnchantmentTag())
         destroyBlockAs(nonNullLevel, breakingPos, null, enchantedItem, 1f) { stack: ItemStack ->
             if (stack.isEmpty) return@destroyBlockAs
             if (!nonNullLevel.gameRules.getBoolean(GameRules.RULE_DOBLOCKDROPS)) return@destroyBlockAs

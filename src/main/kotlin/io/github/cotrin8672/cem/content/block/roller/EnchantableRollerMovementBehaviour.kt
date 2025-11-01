@@ -20,7 +20,7 @@ import net.minecraft.world.item.enchantment.Enchantments
 import java.util.*
 
 class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
-    private var enchantedTools: MutableMap<Pair<MovementContext, BlockPos>, ItemStack> = WeakHashMap()
+    private var enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
 
     override fun createVisual(
         visualizationContext: VisualizationContext,
@@ -39,12 +39,11 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
                         || blockState.`is`(BlockTags.NEEDS_DIAMOND_TOOL)
                 )
 
-        val toolKey = context to breakingPos
-        if (enchantedTools[toolKey] == null) {
-            enchantedTools[toolKey] = EnchantedItemFactory.getToolForBlock(context, breakingPos)
+        if (enchantedTools[context] == null) {
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
         }
 
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[toolKey], 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             if ((noHarvest || context.world.random.nextBoolean()))
                 return@destroyBlockAs
             this.dropItem(context, it)
@@ -54,8 +53,13 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
-        val efficiencyLevel = EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
+        val enchantedTool = enchantedTools[context]
+        val efficiencyLevel = if (enchantedTool == null) {
+            val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
+            EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
+        } else {
+            enchantedTool.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
+        }
 
         return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
     }
