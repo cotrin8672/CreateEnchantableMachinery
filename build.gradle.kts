@@ -27,7 +27,7 @@ legacyForge {
     version = libs.versions.forge.get()
 
     parchment {
-        mappingsVersion = libs.versions.parchiment.get()
+        mappingsVersion = libs.versions.parchment.get()
         minecraftVersion = libs.versions.minecraft.get()
     }
 
@@ -97,6 +97,7 @@ repositories {
     maven("https://maven.blamejared.com/") // JEI
     maven("https://maven.createmod.net") // Create, Ponder, Flywheel
     maven("https://maven.tterrag.com") // Registrate
+    maven("https://maven.ithundxr.dev/mirror")
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
     maven("https://api.modrinth.com/maven") // Modrinth Maven
     maven("https://maven.theillusivec4.top/") // Curios API
@@ -104,7 +105,7 @@ repositories {
 
 dependencies {
     implementation(libs.kotlinforforge)
-    modImplementation("com.simibubi.create:create-1.20.1:6.0.6-150:slim") {
+    modImplementation("com.simibubi.create:create-1.20.1:6.0.7-281:slim") {
         isTransitive = false
     }
     modImplementation(libs.ponder)
@@ -158,7 +159,7 @@ val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata"
         "forgeVersion" to libs.versions.forge.get(),
         "forgeVersionRange" to "[47.1.3,)",
         "loaderVersionRange" to "[${libs.versions.kotlinforforge.get()},)",
-        "createVersionRange" to "[6.0.6,)",
+        "createVersionRange" to "[6.0.7,)",
         "modId" to modId,
         "modName" to modName,
         "modLicense" to modLicense,

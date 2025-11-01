@@ -1,8 +1,7 @@
 package io.github.cotrin8672.cem.mixin;
 
-import com.simibubi.create.content.contraptions.Contraption;
+import com.simibubi.create.content.contraptions.render.ClientContraption;
 import com.simibubi.create.content.contraptions.render.ContraptionVisual;
-import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld;
 import dev.engine_room.flywheel.api.visualization.VisualEmbedding;
 import dev.engine_room.flywheel.lib.instance.TransformedInstance;
 import io.github.cotrin8672.cem.mixinimpl.ContraptionVisualMixinImpl;
@@ -17,18 +16,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = ContraptionVisual.class, remap = false)
 public class ContraptionVisualMixin {
     @Shadow
-    protected VirtualRenderWorld virtualRenderWorld;
-
-    @Shadow
     @Final
     protected VisualEmbedding embedding;
 
     @Unique
     protected TransformedInstance cem$enchantedStructure;
 
-    @Inject(method = "setupModel", at = @At("TAIL"))
-    private void cem$setupModel(Contraption contraption, CallbackInfo ci) {
-        var enchantedInstancer = ContraptionVisualMixinImpl.setupModel(contraption, virtualRenderWorld, embedding);
+    @Inject(method = "setupStructure", at = @At("TAIL"))
+    private void cem$setupStructure(ClientContraption clientContraption, CallbackInfo ci) {
+        var enchantedInstancer = ContraptionVisualMixinImpl.setupStructure(clientContraption, clientContraption.getRenderLevel(), embedding);
 
         if (cem$enchantedStructure == null) {
             cem$enchantedStructure = enchantedInstancer.createInstance();

@@ -17,28 +17,25 @@ import net.minecraft.world.item.enchantment.Enchantments
 import java.util.*
 
 class EnchantablePloughMovementBehaviour : PloughMovementBehaviour() {
-    private var enchantedTools: MutableMap<MovementContext, ItemStack> = WeakHashMap()
+    private var enchantedTools: MutableMap<Pair<MovementContext, BlockPos>, ItemStack> = WeakHashMap()
 
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos?) {
         context ?: return
+        breakingPos ?: return
 
-        if (enchantedTools[context] == null) {
-            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
+        val toolKey = context to breakingPos
+        if (enchantedTools[toolKey] == null) {
+            enchantedTools[toolKey] = EnchantedItemFactory.getToolForBlock(context, breakingPos)
         }
 
-        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
+        BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[toolKey], 1f) {
             this.dropItem(context, it)
         }
     }
 
     override fun getBlockBreakingSpeed(context: MovementContext): Float {
-        val enchantedTool = enchantedTools[context]
-        val efficiencyLevel = if (enchantedTool == null) {
-            val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
-            EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
-        } else {
-            enchantedTool.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY)
-        }
+        val enchantmentTag = context.blockEntityData.getList("Enchantments", Tag.TAG_COMPOUND.toInt())
+        val efficiencyLevel = EnchantmentHelper.deserializeEnchantments(enchantmentTag)[Enchantments.BLOCK_EFFICIENCY]
 
         return super.getBlockBreakingSpeed(context) * ((efficiencyLevel ?: 0) + 1)
     }
