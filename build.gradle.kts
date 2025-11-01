@@ -27,7 +27,7 @@ neoForge {
     version = libs.versions.neoforge.get()
 
     parchment {
-        mappingsVersion = libs.versions.parchiment.get()
+        mappingsVersion = libs.versions.parchment.get()
         minecraftVersion = libs.versions.minecraft.get()
     }
 
@@ -106,14 +106,14 @@ dependencies {
     implementation(libs.create) {
         isTransitive = false
     }
-    implementation(libs.ponder)
     compileOnly(libs.flywheel.api)
     runtimeOnly(libs.flywheel)
+    implementation(libs.ponder)
     implementation(libs.registrate)
     implementation(libs.copycats)
 
-    runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1")
-    compileOnly("top.theillusivec4.curios:curios-neoforge:9.2.2+1.21.1:api")
+    runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1")
+    compileOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api")
 }
 
 publisher {

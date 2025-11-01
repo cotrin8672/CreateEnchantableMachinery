@@ -16,7 +16,6 @@ public class ItemMixin {
         Item item = (Item) (Object) this;
         if (item instanceof BlockItem blockItem && EnchantableBlockMapping.getOriginalBlocks().contains(blockItem.getBlock())) {
             cir.setReturnValue(14);
-            cir.cancel();
         }
     }
 
@@ -24,7 +23,6 @@ public class ItemMixin {
     private void cem$isEnchantable(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if (stack.getItem() instanceof BlockItem blockItem && EnchantableBlockMapping.getOriginalBlocks().contains(blockItem.getBlock())) {
             cir.setReturnValue(true);
-            cir.cancel();
         }
     }
 }

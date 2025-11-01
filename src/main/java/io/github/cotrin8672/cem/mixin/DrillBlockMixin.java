@@ -32,7 +32,6 @@ public class DrillBlockMixin {
             ItemInteractionResult result = BlockRegistration.getENCHANTABLE_MECHANICAL_DRILL().get()
                     .useItemOn(stack, state, level, pos, player, hand, hitResult);
             cir.setReturnValue(result);
-            cir.cancel();
         }
     }
 }

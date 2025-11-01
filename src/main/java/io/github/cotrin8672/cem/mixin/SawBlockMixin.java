@@ -32,7 +32,6 @@ public class SawBlockMixin {
             ItemInteractionResult result = BlockRegistration.getENCHANTABLE_MECHANICAL_SAW().get()
                     .useItemOn(stack, state, level, pos, player, hand, hitResult);
             cir.setReturnValue(result);
-            cir.cancel();
         }
     }
 }
