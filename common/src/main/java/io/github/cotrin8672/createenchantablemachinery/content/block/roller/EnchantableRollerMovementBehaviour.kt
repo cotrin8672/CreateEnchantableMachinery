@@ -1,14 +1,16 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.roller
 
-import com.jozufozu.flywheel.api.MaterialManager
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.actors.roller.RollerMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
-import com.simibubi.create.content.contraptions.render.ActorInstance
+import com.simibubi.create.content.contraptions.render.ActorVisual
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.utility.BlockHelper
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
+import dev.engine_room.flywheel.api.visualization.VisualizationContext
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.platform.ContraptionBlockBreaker
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
@@ -19,16 +21,19 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper
 import net.minecraft.world.item.enchantment.Enchantments
 
 class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
-    override fun createInstance(
-        materialManager: MaterialManager?,
-        simulationWorld: VirtualRenderWorld?,
-        context: MovementContext?,
-    ): ActorInstance? {
-        return null
-    }
 
-    override fun hasSpecialInstancedRendering(): Boolean {
-        return false
+    // TODO: Verify
+    @Environment(EnvType.CLIENT)
+    override fun createVisual(
+        visualizationContext: VisualizationContext,
+        simulationWorld: VirtualRenderWorld,
+        movementContext: MovementContext
+    ): ActorVisual {
+        return EnchantableRollerActorVisual(
+            visualizationContext,
+            simulationWorld,
+            movementContext
+        )
     }
 
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
@@ -75,3 +80,19 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
             EnchantableRollerRenderer.renderInContraption(context, renderWorld, matrices, buffers)
     }
 }
+
+class EnchantableRollerActorVisual(
+    visualizationContext: VisualizationContext,
+    simulationWorld: VirtualRenderWorld,
+    movementContext: MovementContext
+) : ActorVisual(visualizationContext, simulationWorld, movementContext) {
+
+    override fun beginFrame() {
+        // optional
+    }
+
+    override fun _delete() {
+        TODO("Not yet implemented")
+    }
+}
+

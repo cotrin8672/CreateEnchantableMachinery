@@ -1,6 +1,6 @@
 package io.github.cotrin8672.createenchantablemachinery.platform
 
-import com.simibubi.create.foundation.placement.PlacementOffset
+import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player

@@ -4,14 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
 import io.github.cotrin8672.createenchantablemachinery.mixin.SpoutBlockEntityMixin
 import io.github.cotrin8672.createenchantablemachinery.platform.FluidRendererHelper
 import io.github.cotrin8672.createenchantablemachinery.platform.FluidVariantAttributesHelper
 import io.github.cotrin8672.createenchantablemachinery.platform.SmartFluidTankHelper
+import io.github.cotrin8672.createenchantablemachinery.util.SuperBufferUtil
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.render.CachedBuffers
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
@@ -76,17 +77,21 @@ class EnchantableSpoutRenderer(
 
         ms.use {
             for (bit in BITS) {
+
                 if (Config.renderGlint.get()) {
-                    CachedBufferer.partial(bit, be.blockState)
-                        .light(light)
-                        .renderInto(ms, consumer)
+                    val glintBuf = CachedBuffers.partial(bit, be.blockState)
+                    SuperBufferUtil.applyPackedLight(glintBuf, light)
+                    glintBuf.renderInto(ms, consumer)
                 }
-                CachedBufferer.partial(bit, be.blockState)
-                    .light(light)
-                    .renderInto(ms, buffer.getBuffer(RenderType.solid()))
+
+                val solidBuf = CachedBuffers.partial(bit, be.blockState)
+                SuperBufferUtil.applyPackedLight(solidBuf, light)
+                solidBuf.renderInto(ms, buffer.getBuffer(RenderType.solid()))
+
                 translate(0f, -3 * squeeze / 32f, 0f)
             }
         }
+
 
         if (!fluidStack.isEmpty && level != 0f) {
             val top = FluidVariantAttributesHelper().isLighterThanAir(fluidStack)

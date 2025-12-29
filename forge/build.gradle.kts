@@ -71,7 +71,7 @@ repositories {
     maven("https://maven.shedaniel.me/")
     maven("https://maven.theillusivec4.top/")
     maven("https://maven.squiddev.cc")
-    maven("https://maven.tterrag.com/")
+    maven("https://maven.ithundxr.dev/mirror")
     maven("https://maven.parchmentmc.org")
     maven {
         url = uri("https://cursemaven.com")
@@ -94,7 +94,6 @@ dependencies {
         artifact { classifier = "slim" }
     }
     modImplementation(libs.registrate)
-    modImplementation(libs.flywheel)
 
     modCompileOnly(libs.majrusz.library.forge)
 

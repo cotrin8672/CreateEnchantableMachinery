@@ -1,6 +1,6 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.crusher
 
-import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation
+import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation
 import com.simibubi.create.content.kinetics.belt.behaviour.DirectBeltInputBehaviour
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity
@@ -9,7 +9,6 @@ import com.simibubi.create.foundation.damageTypes.CreateDamageSources
 import com.simibubi.create.foundation.item.ItemHelper
 import com.simibubi.create.foundation.sound.SoundScapes
 import com.simibubi.create.foundation.sound.SoundScapes.AmbienceGroup
-import com.simibubi.create.foundation.utility.VecHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntityDelegate
@@ -20,6 +19,7 @@ import io.github.cotrin8672.createenchantablemachinery.util.Side
 import io.github.cotrin8672.createenchantablemachinery.util.extension.entityPersistentData
 import io.github.cotrin8672.createenchantablemachinery.util.extension.nonNullLevel
 import io.github.cotrin8672.createenchantablemachinery.util.extension.smartBlockEntityTick
+import net.createmod.catnip.math.VecHelper
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.core.BlockPos

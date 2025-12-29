@@ -1,7 +1,7 @@
 package io.github.cotrin8672.createenchantablemachinery.util.extension
 
-import com.simibubi.create.foundation.placement.PlacementOffset
 import io.github.cotrin8672.createenchantablemachinery.platform.AlternativePlacementHelper
+import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player

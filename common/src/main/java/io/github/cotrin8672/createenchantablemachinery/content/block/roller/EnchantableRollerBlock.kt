@@ -3,13 +3,13 @@ package io.github.cotrin8672.createenchantablemachinery.content.block.roller
 import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.contraptions.actors.roller.RollerBlock
 import com.simibubi.create.content.contraptions.actors.roller.RollerBlockEntity
-import com.simibubi.create.foundation.placement.PlacementHelpers
 import com.simibubi.create.foundation.placement.PoleHelper
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlock
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockEntityRegistration
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockRegistration
 import io.github.cotrin8672.createenchantablemachinery.util.extension.placeAlternativeBlockInWorld
+import net.createmod.catnip.placement.PlacementHelpers
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.MutableComponent

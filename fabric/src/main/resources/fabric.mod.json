@@ -7,6 +7,9 @@
   "authors": [
     "${modAuthors}"
   ],
+  "contributors": [
+    "Michael Bartosh"
+  ],
   "contact": {
     "sources": "https://github.com/cotrin8672/CreateEnchantableMachinery"
   },
@@ -38,6 +41,6 @@
     "minecraft": "${minecraftVersion}",
     "fabricloader": ">=${fabricLoaderVersion}",
     "fabric-api": ">=${fabricApiVersion}",
-    "create": ">=0.5.1-f-build.1335+mc1.20.1"
+    "create": ">=6.0.7.0+build.1728-mc1.20.1"
   }
 }

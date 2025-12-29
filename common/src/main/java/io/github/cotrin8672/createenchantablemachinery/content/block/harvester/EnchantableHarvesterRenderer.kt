@@ -1,7 +1,5 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.harvester
 
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
-import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
@@ -9,16 +7,20 @@ import com.simibubi.create.content.contraptions.actors.harvester.HarvesterBlock
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRenderer
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
-import com.simibubi.create.content.contraptions.render.ContraptionRenderDispatcher
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
-import com.simibubi.create.foundation.utility.VecHelper
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
+import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
 import io.github.cotrin8672.createenchantablemachinery.registrate.PartialModelRegistration
+import io.github.cotrin8672.createenchantablemachinery.util.SuperBufferUtil
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.math.VecHelper
+import net.createmod.catnip.render.CachedBuffers
+import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.LevelRenderer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
@@ -37,7 +39,13 @@ class EnchantableHarvesterRenderer(
         overlay: Int,
     ) {
         val blockState = be.blockState
-        val superBuffer = CachedBufferer.partial(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE, blockState)
+
+        val superBuffer =
+            CachedBuffers.partial(
+                PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE,
+                blockState
+            ) as SuperByteBuffer
+
         val consumer = SheetedDecalTextureGenerator(
             buffer.getBuffer(EnchantedRenderType.GLINT),
             ms.last().pose(),
@@ -48,8 +56,15 @@ class EnchantableHarvesterRenderer(
         ms.use {
             if (Config.renderGlint.get()) {
                 context.blockRenderDispatcher.renderBatched(
-                    be.blockState, be.blockPos, be.level!!, ms, consumer, true, RANDOM
+                    be.blockState,
+                    be.blockPos,
+                    be.level!!,
+                    ms,
+                    consumer,
+                    true,
+                    RANDOM
                 )
+
                 HarvesterRenderer.transform(
                     be.level!!,
                     blockState.getValue(HarvesterBlock.FACING),
@@ -57,9 +72,18 @@ class EnchantableHarvesterRenderer(
                     be.animatedSpeed,
                     PIVOT
                 )
-                superBuffer.light(light).renderInto(ms, consumer)
+
+                // Java interop call — REQUIRED
+                SuperBufferUtil.applyPackedLight(superBuffer, light)
+                superBuffer.renderInto(ms, consumer)
             }
-            val superBufferOriginal = CachedBufferer.partial(AllPartialModels.HARVESTER_BLADE, blockState)
+
+            val superBufferOriginal =
+                CachedBuffers.partial(
+                    AllPartialModels.HARVESTER_BLADE,
+                    blockState
+                ) as SuperByteBuffer
+
             HarvesterRenderer.transform(
                 be.level!!,
                 blockState.getValue(HarvesterBlock.FACING),
@@ -67,7 +91,13 @@ class EnchantableHarvesterRenderer(
                 be.animatedSpeed,
                 PIVOT
             )
-            superBufferOriginal.light(light).renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
+
+            // Java interop call — REQUIRED
+            SuperBufferUtil.applyPackedLight(superBufferOriginal, light)
+            superBufferOriginal.renderInto(
+                ms,
+                buffer.getBuffer(RenderType.cutoutMipped())
+            )
         }
     }
 
@@ -83,8 +113,8 @@ class EnchantableHarvesterRenderer(
         ) {
             val blockState = movementContext.state
             val facing = blockState.getValue(HORIZONTAL_FACING)
-            val superBuffer = CachedBufferer.partial(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE, blockState)
-            val superBufferOriginal = CachedBufferer.partial(AllPartialModels.HARVESTER_BLADE, blockState)
+            val superBuffer = CachedBuffers.partial(PartialModelRegistration.ENCHANTABLE_HARVESTER_BLADE, blockState)
+            val superBufferOriginal = CachedBuffers.partial(AllPartialModels.HARVESTER_BLADE, blockState)
             var speed = if (!VecHelper.isVecPointingTowards(movementContext.relativeMotion, facing.opposite))
                 movementContext.animationSpeed else 0f
             if (movementContext.contraption.stalled) speed = 0f
@@ -97,7 +127,7 @@ class EnchantableHarvesterRenderer(
             )
 
             matrices.modelViewProjection.use {
-                TransformStack.cast(matrices.modelViewProjection).translate(movementContext.localPos)
+                TransformStack.of(matrices.modelViewProjection).translate(movementContext.localPos)
                 Minecraft.getInstance().blockRenderer.renderBatched(
                     movementContext.state,
                     movementContext.localPos,
@@ -112,21 +142,20 @@ class EnchantableHarvesterRenderer(
             matrices.viewProjection.use {
                 superBuffer.transform(matrices.model)
                 HarvesterRenderer.transform(movementContext.world, facing, superBuffer, speed, PIVOT)
-                superBuffer
-                    .light(
-                        matrices.world,
-                        ContraptionRenderDispatcher.getContraptionWorldLight(movementContext, renderWorld)
-                    )
-                    .renderInto(matrices.viewProjection, consumer)
+                SuperBufferUtil.applyPackedLight(
+                    superBuffer,
+                    LevelRenderer.getLightColor(renderWorld, movementContext.localPos)
+                )
+                superBuffer.renderInto(matrices.viewProjection, consumer)
 
                 superBufferOriginal.transform(matrices.model)
                 HarvesterRenderer.transform(movementContext.world, facing, superBufferOriginal, speed, PIVOT)
-                superBufferOriginal
-                    .light(
-                        matrices.world,
-                        ContraptionRenderDispatcher.getContraptionWorldLight(movementContext, renderWorld)
-                    )
-                    .renderInto(matrices.viewProjection, buffers.getBuffer(RenderType.cutout()))
+
+                SuperBufferUtil.applyPackedLight(
+                    superBuffer,
+                    LevelRenderer.getLightColor(renderWorld, movementContext.localPos)
+                )
+                superBufferOriginal.renderInto(matrices.viewProjection, buffers.getBuffer(RenderType.cutout()))
             }
         }
     }

@@ -2,15 +2,12 @@ package io.github.cotrin8672.createenchantablemachinery.content.block.mixer
 
 import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe
-import com.simibubi.create.foundation.utility.Lang
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.createenchantablemachinery.util.extension.mechanicalMixerBlockEntityTick
 import io.github.cotrin8672.createenchantablemachinery.util.extension.nonNullLevel
-import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.Tag
 import net.minecraft.network.chat.Component
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
@@ -83,14 +80,17 @@ class EnchantableMechanicalMixerBlockEntity(
         }
     }
 
-    override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
+    override fun addToGoggleTooltip(
+        tooltip: MutableList<Component>,
+        isPlayerSneaking: Boolean
+    ): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
+
         for (instance in getEnchantments()) {
             val level = instance.level
-            Lang.text(Strings.repeat(' ', 0))
-                .add(instance.enchantment.getFullname(level).copy())
-                .forGoggles(tooltip)
+            tooltip.add(instance.enchantment.getFullname(level).copy())
         }
+
         return true
     }
 

@@ -4,9 +4,9 @@ import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity
 import com.simibubi.create.foundation.advancement.AllAdvancements
-import com.simibubi.create.foundation.utility.Iterate
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockEntityRegistration
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockRegistration
+import net.createmod.catnip.data.Iterate
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.world.item.Item

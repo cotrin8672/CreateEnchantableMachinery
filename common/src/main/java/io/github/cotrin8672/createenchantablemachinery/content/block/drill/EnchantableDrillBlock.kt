@@ -3,14 +3,14 @@ package io.github.cotrin8672.createenchantablemachinery.content.block.drill
 import com.simibubi.create.AllBlocks
 import com.simibubi.create.content.kinetics.drill.DrillBlock
 import com.simibubi.create.content.kinetics.drill.DrillBlockEntity
-import com.simibubi.create.foundation.placement.IPlacementHelper
-import com.simibubi.create.foundation.placement.PlacementHelpers
-import com.simibubi.create.foundation.placement.PlacementOffset
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlock
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockEntityRegistration
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockRegistration
 import io.github.cotrin8672.createenchantablemachinery.util.extension.placeAlternativeBlockInWorld
+import net.createmod.catnip.placement.IPlacementHelper
+import net.createmod.catnip.placement.PlacementHelpers
+import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.MutableComponent

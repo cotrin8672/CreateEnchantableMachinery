@@ -4,11 +4,11 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
-import com.simibubi.create.foundation.render.SuperByteBuffer
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.render.CachedBuffers
+import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
@@ -18,7 +18,7 @@ class EnchantableMillstoneRenderer(
     private val context: BlockEntityRendererProvider.Context,
 ) : KineticBlockEntityRenderer<EnchantableMillstoneBlockEntity>(context) {
     override fun getRotatedModel(be: EnchantableMillstoneBlockEntity, state: BlockState?): SuperByteBuffer? {
-        return CachedBufferer.partial(AllPartialModels.MILLSTONE_COG, state)
+        return CachedBuffers.partial(AllPartialModels.MILLSTONE_COG, state)
     }
 
     override fun renderSafe(

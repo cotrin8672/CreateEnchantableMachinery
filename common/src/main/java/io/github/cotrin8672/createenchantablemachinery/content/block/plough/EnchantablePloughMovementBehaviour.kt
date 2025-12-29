@@ -1,10 +1,10 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.plough
 
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.actors.plough.PloughMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.utility.BlockHelper
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.platform.ContraptionBlockBreaker
 import io.github.cotrin8672.createenchantablemachinery.util.EnchantedItemFactory

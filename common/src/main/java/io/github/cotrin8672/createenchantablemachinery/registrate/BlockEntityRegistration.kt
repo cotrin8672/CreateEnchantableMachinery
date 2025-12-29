@@ -1,15 +1,5 @@
 package io.github.cotrin8672.createenchantablemachinery.registrate
 
-import com.jozufozu.flywheel.api.MaterialManager
-import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
-import com.simibubi.create.content.kinetics.base.CutoutRotatingInstance
-import com.simibubi.create.content.kinetics.drill.DrillInstance
-import com.simibubi.create.content.kinetics.fan.FanInstance
-import com.simibubi.create.content.kinetics.millstone.MillstoneCogInstance
-import com.simibubi.create.content.kinetics.mixer.MixerInstance
-import com.simibubi.create.content.kinetics.press.PressInstance
-import com.simibubi.create.content.kinetics.saw.SawInstance
-import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
 import io.github.cotrin8672.createenchantablemachinery.CreateEnchantableMachinery.REGISTRATE
@@ -36,15 +26,13 @@ import io.github.cotrin8672.createenchantablemachinery.content.block.saw.Enchant
 import io.github.cotrin8672.createenchantablemachinery.content.block.saw.EnchantableSawRenderer
 import io.github.cotrin8672.createenchantablemachinery.content.block.spout.EnchantableSpoutBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.spout.EnchantableSpoutRenderer
-import net.minecraft.world.level.block.entity.BlockEntity
-import java.util.function.BiFunction
 
 object BlockEntityRegistration {
     val ENCHANTABLE_MECHANICAL_DRILL: BlockEntityEntry<EnchantableDrillBlockEntity> =
         REGISTRATE.blockEntity<EnchantableDrillBlockEntity>("enchantable_drill") { type, pos, state ->
             EnchantableDrillBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::DrillInstance }
+            //.instance(renderNormally = true) { ::DrillInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL)
             .renderer { NonNullFunction(::EnchantableDrillRenderer) }
             .register()
@@ -61,7 +49,7 @@ object BlockEntityRegistration {
         REGISTRATE.blockEntity<EnchantableSawBlockEntity>("enchantable_saw") { type, pos, state ->
             EnchantableSawBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::SawInstance }
+            //.instance(renderNormally = true) { ::SawInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_SAW)
             .renderer { NonNullFunction(::EnchantableSawRenderer) }
             .register()
@@ -78,7 +66,7 @@ object BlockEntityRegistration {
         REGISTRATE.blockEntity<EnchantableEncasedFanBlockEntity>("enchantable_encase_fan") { type, pos, state ->
             EnchantableEncasedFanBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::FanInstance }
+            //.instance(renderNormally = true) { ::FanInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_ENCASED_FAN)
             .renderer { NonNullFunction(::EnchantableEncasedFanRenderer) }
             .register()
@@ -87,7 +75,7 @@ object BlockEntityRegistration {
         REGISTRATE.blockEntity<EnchantableMillstoneBlockEntity>("enchantable_millstone") { type, pos, state ->
             EnchantableMillstoneBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::MillstoneCogInstance }
+            //.instance(renderNormally = true) { ::MillstoneCogInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MILLSTONE)
             .renderer { NonNullFunction(::EnchantableMillstoneRenderer) }
             .register()
@@ -105,7 +93,7 @@ object BlockEntityRegistration {
         REGISTRATE.blockEntity<EnchantableCrushingWheelBlockEntity>("enchantable_crushing_wheel") { type, pos, state ->
             EnchantableCrushingWheelBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::CutoutRotatingInstance }
+            //.instance(renderNormally = true) { ::CutoutRotatingInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL)
             .renderer { NonNullFunction(::EnchantableCrushingWheelRenderer) }
             .register()
@@ -114,7 +102,7 @@ object BlockEntityRegistration {
         REGISTRATE.blockEntity<EnchantableMechanicalPressBlockEntity>("enchantable_mechanical_press") { type, pos, state ->
             EnchantableMechanicalPressBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::PressInstance }
+            //.instance(renderNormally = true) { ::PressInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
             .renderer { NonNullFunction(::EnchantableMechanicalPressRenderer) }
             .register()
@@ -123,7 +111,7 @@ object BlockEntityRegistration {
         REGISTRATE.blockEntity<EnchantableMechanicalMixerBlockEntity>("enchantable_mechanical_mixer") { type, pos, state ->
             EnchantableMechanicalMixerBlockEntity(type, pos, state)
         }
-            .instance(renderNormally = true) { ::MixerInstance }
+            //.instance(renderNormally = true) { ::MixerInstance }
             .validBlocks(BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER)
             .renderer { NonNullFunction(::EnchantableMechanicalMixerRenderer) }
             .register()
@@ -145,15 +133,4 @@ object BlockEntityRegistration {
             .register()
 
     fun register() {}
-
-    private inline fun <T : BlockEntity, P> CreateBlockEntityBuilder<T, P>.instance(
-        renderNormally: Boolean = false,
-        crossinline instanceFactory: () -> ((MaterialManager, T) -> BlockEntityInstance<in T>),
-    ): CreateBlockEntityBuilder<T, P> {
-        return this.instance({
-            BiFunction { materialManager: MaterialManager, be: T ->
-                instanceFactory()(materialManager, be)
-            }
-        }, renderNormally)
-    }
 }
