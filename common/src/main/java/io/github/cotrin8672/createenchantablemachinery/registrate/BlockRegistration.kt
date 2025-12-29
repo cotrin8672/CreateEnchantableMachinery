@@ -1,15 +1,16 @@
 package io.github.cotrin8672.createenchantablemachinery.registrate
 
-import com.simibubi.create.AllBlocks
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour
 import com.simibubi.create.api.stress.BlockStressValues
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.saw.SawGenerator
 import com.simibubi.create.foundation.data.AssetLookup
 import com.simibubi.create.foundation.data.BlockStateGen
+import com.simibubi.create.foundation.data.CreateRegistrate
 import com.simibubi.create.foundation.data.SharedProperties
 import com.simibubi.create.foundation.data.TagGen.axeOrPickaxe
 import com.simibubi.create.foundation.data.TagGen.pickaxeOnly
+import com.simibubi.create.infrastructure.config.CStress
 import com.tterrag.registrate.util.entry.BlockEntry
 import io.github.cotrin8672.createenchantablemachinery.CreateEnchantableMachinery.REGISTRATE
 import io.github.cotrin8672.createenchantablemachinery.content.block.crusher.EnchantableCrushingWheelBlock
@@ -47,12 +48,7 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.directionalBlockProvider(true))
             .onRegister { block ->
-                val mixer = AllBlocks.MECHANICAL_DRILL.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 4.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 4.0 }
             }
             .onRegister(movementBehaviour(EnchantableDrillMovementBehaviour()))
             .register()
@@ -77,12 +73,7 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .blockstate(SawGenerator()::generate)
             .onRegister { block ->
-                val mixer = AllBlocks.MECHANICAL_SAW.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 4.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 4.0 }
             }
             .onRegister(movementBehaviour(EnchantableSawMovementBehaviour()))
             .register()
@@ -106,12 +97,7 @@ object BlockRegistration {
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .transform(axeOrPickaxe())
             .onRegister { block ->
-                val mixer = AllBlocks.ENCASED_FAN.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 2.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 2.0 }
             }
             .register()
 
@@ -123,12 +109,7 @@ object BlockRegistration {
             .transform(pickaxeOnly())
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .onRegister { block ->
-                val mixer = AllBlocks.MILLSTONE.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 4.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 4.0 }
             }
             .register()
 
@@ -167,12 +148,7 @@ object BlockRegistration {
             .blockstate { c, p -> BlockStateGen.axisBlock(c, p) { AssetLookup.partialBaseModel(c, p) } }
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .onRegister { block ->
-                val mixer = AllBlocks.CRUSHING_WHEEL.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 8.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 8.0 }
             }
             .register()
 
@@ -187,12 +163,7 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
             .onRegister { block ->
-                val mixer = AllBlocks.MECHANICAL_PRESS.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 8.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 8.0 }
             }
             .register()
 
@@ -208,12 +179,7 @@ object BlockRegistration {
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .onRegister { block ->
-                val mixer = AllBlocks.MECHANICAL_MIXER.get()
-                val impact = BlockStressValues.IMPACTS.get(mixer)
-
-                BlockStressValues.IMPACTS.register(block) {
-                    impact?.asDouble ?: 4.0
-                }
+                BlockStressValues.IMPACTS.register(block) { 4.0 }
             }
             .register()
 
