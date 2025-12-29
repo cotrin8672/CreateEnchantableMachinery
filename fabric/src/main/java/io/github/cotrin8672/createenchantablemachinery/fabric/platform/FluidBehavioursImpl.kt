@@ -1,9 +1,8 @@
 package io.github.cotrin8672.createenchantablemachinery.fabric.platform
 
-import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
 import com.simibubi.create.AllRecipeTypes
-import com.simibubi.create.api.behaviour.BlockSpoutingBehaviour
+import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour
 import com.simibubi.create.content.fluids.FluidFX
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity
 import com.simibubi.create.content.fluids.transfer.FillingRecipe
@@ -12,9 +11,11 @@ import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour
 import com.simibubi.create.foundation.fluid.FluidRenderer
 import com.simibubi.create.foundation.fluid.SmartFluidTank
-import com.simibubi.create.foundation.utility.Iterate
+import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.createenchantablemachinery.platform.*
 import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer
+import net.createmod.catnip.data.Iterate
+import net.createmod.catnip.render.FluidRenderHelper
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes
@@ -167,7 +168,7 @@ class FluidRendererHelperImpl : FluidRendererHelper {
         val blockLightIn = (light shr 4) and 0xF
         val luminosity =
             max(blockLightIn.toDouble(), FluidVariantAttributes.getLuminance(fluidVariant).toDouble()).toInt()
-        val builder = FluidRenderer.getFluidBuilder(buffer)
+        val builder = FluidRenderHelper.getFluidBuilder(buffer)
         val newLight = (light and 0xF00000) or (luminosity shl 4)
 
         val center = Vec3(
@@ -176,9 +177,9 @@ class FluidRendererHelperImpl : FluidRendererHelper {
             (zMin + (zMax - zMin) / 2).toDouble()
         )
         ms.pushPose()
-        if (FluidVariantAttributes.isLighterThanAir(fluidVariant)) TransformStack.cast(ms)
+        if (FluidVariantAttributes.isLighterThanAir(fluidVariant)) TransformStack.of(ms)
             .translate(center)
-            .rotateX(180.0)
+            .rotateX(180.0F)
             .translateBack(center)
 
         for (side in Iterate.directions) {
@@ -189,18 +190,18 @@ class FluidRendererHelperImpl : FluidRendererHelper {
                     .isHorizontal
             ) {
                 if (side.axis === Direction.Axis.X) {
-                    FluidRenderer.renderStillTiledFace(
+                    FluidRenderer.renderFlowingTiledFace(
                         side, zMin, yMin, zMax, yMax, if (positive) xMax else xMin, builder, ms, newLight,
                         color, fluidTexture
                     )
                 } else {
-                    FluidRenderer.renderStillTiledFace(
+                    FluidRenderer.renderFlowingTiledFace(
                         side, xMin, yMin, xMax, yMax, if (positive) zMax else zMin, builder, ms, newLight,
                         color, fluidTexture
                     )
                 }
             } else {
-                FluidRenderer.renderStillTiledFace(
+                FluidRenderer.renderFlowingTiledFace(
                     side, xMin, zMin, xMax, zMax, if (positive) yMax else yMin, builder, ms, newLight, color,
                     fluidTexture
                 )

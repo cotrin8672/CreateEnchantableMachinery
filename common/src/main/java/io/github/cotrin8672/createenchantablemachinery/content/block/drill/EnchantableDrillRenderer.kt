@@ -1,24 +1,25 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.drill
 
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
-import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
-import com.simibubi.create.content.contraptions.render.ContraptionRenderDispatcher
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
 import com.simibubi.create.content.kinetics.drill.DrillBlock
-import com.simibubi.create.foundation.render.CachedBufferer
-import com.simibubi.create.foundation.render.SuperByteBuffer
-import com.simibubi.create.foundation.utility.AngleHelper
-import com.simibubi.create.foundation.utility.AnimationTickHolder
-import com.simibubi.create.foundation.utility.VecHelper
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
+import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
+import io.github.cotrin8672.createenchantablemachinery.util.SuperBufferUtil
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.animation.AnimationTickHolder
+import net.createmod.catnip.math.AngleHelper
+import net.createmod.catnip.math.VecHelper
+import net.createmod.catnip.render.CachedBuffers
+import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.LevelRenderer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 import net.minecraft.util.RandomSource
@@ -28,7 +29,7 @@ class EnchantableDrillRenderer(
     private val context: BlockEntityRendererProvider.Context,
 ) : KineticBlockEntityRenderer<EnchantableDrillBlockEntity>(context) {
     override fun getRotatedModel(be: EnchantableDrillBlockEntity, state: BlockState?): SuperByteBuffer? {
-        return CachedBufferer.partialFacing(AllPartialModels.DRILL_HEAD, state)
+        return CachedBuffers.partialFacing(AllPartialModels.DRILL_HEAD, state)
     }
 
     override fun renderSafe(
@@ -68,9 +69,9 @@ class EnchantableDrillRenderer(
             buffer: MultiBufferSource,
         ) {
             val state = movementContext.state
-            val superBuffer = CachedBufferer.partial(AllPartialModels.DRILL_HEAD, state)
             val facing = state.getValue(DrillBlock.FACING)
-
+            val superBuffer =
+                CachedBuffers.partial(AllPartialModels.DRILL_HEAD, state) as SuperByteBuffer
             val time = AnimationTickHolder.getRenderTime() / 20
             val consumer = SheetedDecalTextureGenerator(
                 buffer.getBuffer(EnchantedRenderType.GLINT),
@@ -79,27 +80,31 @@ class EnchantableDrillRenderer(
                 0.0078125f
             )
 
-            superBuffer
-                .transform(matrices.model)
-                .centre()
-                .rotateY(AngleHelper.horizontalAngle(facing).toDouble())
-                .rotateX(AngleHelper.verticalAngle(facing).toDouble())
+            superBuffer.transform(matrices.model.last())
+                .center()
+                .rotateY(AngleHelper.horizontalAngle(facing))
+                .rotateX(AngleHelper.verticalAngle(facing))
                 .rotateZ(
-                    ((time * (if (movementContext.contraption.stalled || !VecHelper.isVecPointingTowards(
-                            movementContext.relativeMotion,
-                            facing.opposite
-                        )
-                    ) movementContext.animationSpeed else 0f)) % 360).toDouble()
+                    (
+                            time * if (
+                                movementContext.contraption.stalled ||
+                                !VecHelper.isVecPointingTowards(
+                                    movementContext.relativeMotion,
+                                    facing.opposite
+                                )
+                            ) movementContext.animationSpeed else 0f
+                            ) % 360f
                 )
-                .unCentre()
-                .light(
-                    matrices.world,
-                    ContraptionRenderDispatcher.getContraptionWorldLight(movementContext, renderWorld)
-                )
-                .renderInto(matrices.viewProjection, consumer)
+                .uncenter()
+
+            SuperBufferUtil.applyPackedLight(
+                superBuffer,
+                LevelRenderer.getLightColor(renderWorld, movementContext.localPos)
+            )
+            superBuffer.renderInto(matrices.viewProjection, consumer)
 
             matrices.modelViewProjection.use {
-                TransformStack.cast(matrices.modelViewProjection).translate(movementContext.localPos)
+                TransformStack.of(matrices.modelViewProjection).translate(movementContext.localPos)
                 Minecraft.getInstance().blockRenderer.renderBatched(
                     movementContext.state,
                     movementContext.localPos,

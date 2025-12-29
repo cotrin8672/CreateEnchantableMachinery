@@ -1,10 +1,10 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.fan
 
+import com.simibubi.create.api.registry.CreateBuiltInRegistries
 import com.simibubi.create.content.kinetics.belt.behaviour.TransportedItemStackHandlerBehaviour.TransportedResult
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack
 import com.simibubi.create.content.kinetics.fan.processing.AllFanProcessingTypes
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType
-import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.createenchantablemachinery.util.extension.entityPersistentData
 import net.minecraft.nbt.CompoundTag
@@ -86,7 +86,10 @@ class EnchantableFanProcessing(private val efficiencyLevel: Int) {
         val processing = createData.getCompound("Processing")
 
         if (!processing.contains("Type") || AllFanProcessingTypes.parseLegacy(processing.getString("Type")) !== type) {
-            processing.putString("Type", FanProcessingTypeRegistry.getIdOrThrow(type).toString())
+            val id = CreateBuiltInRegistries.FAN_PROCESSING_TYPE.getKey(type)
+                ?: error("Unregistered FanProcessingType: $type")
+
+            processing.putString("Type", id.toString())
             val timeModifierForStackSize = ((entity.item.count - 1) / 16) + 1
             val efficiencyLevelModifier = if (efficiencyLevel == 0) 1.0 else efficiencyLevel.toDouble().pow(1.5)
             val processingTime =

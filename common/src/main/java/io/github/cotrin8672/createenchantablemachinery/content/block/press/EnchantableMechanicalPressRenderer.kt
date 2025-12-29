@@ -1,15 +1,16 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.press
 
-import com.jozufozu.flywheel.backend.Backend
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.kinetics.base.HorizontalKineticBlock.HORIZONTAL_FACING
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
+import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
+import io.github.cotrin8672.createenchantablemachinery.util.SuperBufferUtil
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.render.CachedBuffers
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context
@@ -37,35 +38,44 @@ class EnchantableMechanicalPressRenderer(
             ms.last().normal(),
             0.007125f
         )
+
         val blockState = be.blockState
-        val headModel = CachedBufferer.partialFacing(
+        val headModel = CachedBuffers.partialFacing(
             AllPartialModels.MECHANICAL_PRESS_HEAD,
             blockState,
             blockState.getValue(HORIZONTAL_FACING)
         )
+
         val pressingBehaviour = be.getPressingBehaviour()
         val renderedHeadOffset =
-            pressingBehaviour.getRenderedHeadOffset(partialTicks) * pressingBehaviour.mode.headOffset
-
+            pressingBehaviour.getRenderedHeadOffset(partialTicks) *
+                    pressingBehaviour.mode.headOffset
 
         ms.use {
             if (Config.renderGlint.get()) {
                 context.blockRenderDispatcher.renderBatched(
-                    be.blockState, be.blockPos, be.level!!, ms, consumer, true, Random
+                    be.blockState,
+                    be.blockPos,
+                    be.level!!,
+                    ms,
+                    consumer,
+                    true,
+                    Random
                 )
-                headModel
-                    .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
-                    .light(light)
-                    .renderInto(ms, consumer)
+
+                headModel.translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
+                SuperBufferUtil.applyPackedLight(headModel, light)
+                headModel.renderInto(ms, consumer)
             }
-            if (!Backend.canUseInstancing(be.level)) {
-                headModel
-                    .translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
-                    .light(light)
-                    .renderInto(ms, buffer.getBuffer(RenderType.solid()))
+
+            if (!VisualizationManager.supportsVisualization(be.level)) {
+                headModel.translate(0.0, -renderedHeadOffset.toDouble(), 0.0)
+                SuperBufferUtil.applyPackedLight(headModel, light)
+                headModel.renderInto(ms, buffer.getBuffer(RenderType.solid()))
             }
         }
     }
+
 
     override fun getRenderedBlockState(be: EnchantableMechanicalPressBlockEntity?): BlockState {
         return shaft(getRotationAxisOf(be))

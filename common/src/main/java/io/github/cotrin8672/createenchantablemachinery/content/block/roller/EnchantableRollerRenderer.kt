@@ -1,7 +1,5 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.roller
 
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
-import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.AllPartialModels
@@ -9,14 +7,16 @@ import com.simibubi.create.content.contraptions.actors.harvester.HarvesterRender
 import com.simibubi.create.content.contraptions.actors.roller.RollerBlock
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
-import com.simibubi.create.content.contraptions.render.ContraptionRenderDispatcher
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
-import com.simibubi.create.foundation.utility.AngleHelper
-import com.simibubi.create.foundation.utility.VecHelper
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
+import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
+import io.github.cotrin8672.createenchantablemachinery.util.SuperBufferUtil
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.math.AngleHelper
+import net.createmod.catnip.math.VecHelper
+import net.createmod.catnip.render.CachedBuffers
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
@@ -41,22 +41,26 @@ class EnchantableRollerRenderer(
 
         val blockState = be.blockState
         val facing = blockState.getValue(RollerBlock.FACING)
-        val superBuffer = CachedBufferer.partial(AllPartialModels.ROLLER_WHEEL, blockState)
+        val wheel = CachedBuffers.partial(AllPartialModels.ROLLER_WHEEL, blockState)
 
         ms.use {
             translate(0.0, -0.25, 0.0)
-            superBuffer.translate(Vec3.atLowerCornerOf(facing.normal).scale((17 / 16f).toDouble()))
-            HarvesterRenderer.transform(be.level, facing, superBuffer, be.animatedSpeed, Vec3.ZERO)
-            superBuffer.translate(0.0, -0.5, 0.5)
-                .rotateY(90.0)
-                .light(light)
-                .renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
+
+            wheel.translate(Vec3.atLowerCornerOf(facing.normal).scale((17 / 16f).toDouble()))
+            HarvesterRenderer.transform(be.level, facing, wheel, be.animatedSpeed, Vec3.ZERO)
+            wheel.translate(0.0, -0.5, 0.5)
+            wheel.rotateY(90.0F)
+            SuperBufferUtil.applyPackedLight(wheel, light)
+            wheel.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
         }
 
-        CachedBufferer.partial(AllPartialModels.ROLLER_FRAME, blockState)
-            .rotateCentered(Direction.UP, AngleHelper.rad((AngleHelper.horizontalAngle(facing) + 180.0)))
-            .light(light)
-            .renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
+        val frame = CachedBuffers.partial(AllPartialModels.ROLLER_FRAME, blockState)
+        frame.rotateCentered(
+            AngleHelper.rad(AngleHelper.horizontalAngle(facing) + 180.0),
+            Direction.UP
+        )
+        SuperBufferUtil.applyPackedLight(frame, light)
+        frame.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
 
         ms.use {
             if (Config.renderGlint.get()) {
@@ -66,22 +70,35 @@ class EnchantableRollerRenderer(
                     ms.last().normal(),
                     0.007125f
                 )
+
                 context.blockRenderDispatcher.renderBatched(
-                    be.blockState, be.blockPos, be.level!!, ms, consumer, true, RANDOM
+                    be.blockState,
+                    be.blockPos,
+                    be.level!!,
+                    ms,
+                    consumer,
+                    true,
+                    RANDOM
                 )
+
                 ms.use {
                     translate(0.0, -0.25, 0.0)
-                    superBuffer.translate(Vec3.atLowerCornerOf(facing.normal).scale((17 / 16f).toDouble()))
-                    HarvesterRenderer.transform(be.level, facing, superBuffer, be.animatedSpeed, Vec3.ZERO)
-                    superBuffer.translate(0.0, -0.5, 0.5)
-                        .rotateY(90.0)
-                        .light(light)
-                        .renderInto(ms, consumer)
+
+                    wheel.translate(Vec3.atLowerCornerOf(facing.normal).scale((17 / 16f).toDouble()))
+                    HarvesterRenderer.transform(be.level, facing, wheel, be.animatedSpeed, Vec3.ZERO)
+                    wheel.translate(0.0, -0.5, 0.5)
+                    wheel.rotateY(90.0F)
+                    SuperBufferUtil.applyPackedLight(wheel, light)
+                    wheel.renderInto(ms, consumer)
                 }
-                CachedBufferer.partial(AllPartialModels.ROLLER_FRAME, blockState)
-                    .rotateCentered(Direction.UP, AngleHelper.rad((AngleHelper.horizontalAngle(facing) + 180.0)))
-                    .light(light)
-                    .renderInto(ms, consumer)
+
+                val glintFrame = CachedBuffers.partial(AllPartialModels.ROLLER_FRAME, blockState)
+                glintFrame.rotateCentered(
+                    AngleHelper.rad(AngleHelper.horizontalAngle(facing) + 180.0),
+                    Direction.UP
+                )
+                SuperBufferUtil.applyPackedLight(glintFrame, light)
+                glintFrame.renderInto(ms, consumer)
             }
         }
     }
@@ -97,13 +114,18 @@ class EnchantableRollerRenderer(
         ) {
             val blockState = context.state
             val facing = blockState.getValue(BlockStateProperties.HORIZONTAL_FACING)
-            val superBuffer = CachedBufferer.partial(AllPartialModels.ROLLER_WHEEL, blockState)
-            var speed = if (!VecHelper.isVecPointingTowards(context.relativeMotion, facing.opposite))
-                context.animationSpeed else 0f
-            if (context.contraption.stalled) speed = 0f
+            val wheel = CachedBuffers.partial(AllPartialModels.ROLLER_WHEEL, blockState)
+
+            var speed =
+                if (!VecHelper.isVecPointingTowards(context.relativeMotion, facing.opposite))
+                    context.animationSpeed
+                else 0f
+
+            if (context.contraption.stalled)
+                speed = 0f
 
             val viewProjection = matrices.viewProjection
-            val contraptionWorldLight = ContraptionRenderDispatcher.getContraptionWorldLight(context, renderWorld)
+
             val consumer = SheetedDecalTextureGenerator(
                 buffers.getBuffer(EnchantedRenderType.GLINT),
                 viewProjection.last().pose(),
@@ -112,7 +134,9 @@ class EnchantableRollerRenderer(
             )
 
             matrices.modelViewProjection.use {
-                TransformStack.cast(matrices.modelViewProjection).translate(context.localPos)
+                TransformStack.of(matrices.modelViewProjection)
+                    .translate(context.localPos)
+
                 Minecraft.getInstance().blockRenderer.renderBatched(
                     context.state,
                     context.localPos,
@@ -125,42 +149,45 @@ class EnchantableRollerRenderer(
             }
 
             viewProjection.use {
-                superBuffer
-                    .transform(matrices.model)
-                    .translate(Vec3.atLowerCornerOf(facing.normal).scale((17.0 / 16)))
-                HarvesterRenderer.transform(context.world, facing, superBuffer, speed, Vec3.ZERO)
+                wheel.transform(matrices.model)
+                wheel.translate(Vec3.atLowerCornerOf(facing.normal).scale(17.0 / 16.0))
+                HarvesterRenderer.transform(context.world, facing, wheel, speed, Vec3.ZERO)
                 translate(0.0, -0.25, 0.0)
-
-                superBuffer.translate(0.0, -0.5, 0.5)
-                    .rotateY(90.0)
-                    .light(matrices.world, contraptionWorldLight)
-                    .renderInto(this, consumer)
+                wheel.translate(0.0, -0.5, 0.5)
+                wheel.rotateY(90.0F)
+                SuperBufferUtil.applyWorldLight(wheel, context.world, matrices.world)
+                wheel.renderInto(this, consumer)
             }
 
             viewProjection.use {
-                superBuffer
-                    .transform(matrices.model)
-                    .translate(Vec3.atLowerCornerOf(facing.normal).scale((17.0 / 16)))
-                HarvesterRenderer.transform(context.world, facing, superBuffer, speed, Vec3.ZERO)
+                wheel.transform(matrices.model)
+                wheel.translate(Vec3.atLowerCornerOf(facing.normal).scale(17.0 / 16.0))
+                HarvesterRenderer.transform(context.world, facing, wheel, speed, Vec3.ZERO)
                 translate(0.0, -0.25, 0.0)
-
-                superBuffer.translate(0.0, -0.5, 0.5)
-                    .rotateY(90.0)
-                    .light(matrices.world, contraptionWorldLight)
-                    .renderInto(this, buffers.getBuffer(RenderType.cutoutMipped()))
+                wheel.translate(0.0, -0.5, 0.5)
+                wheel.rotateY(90.0F)
+                SuperBufferUtil.applyWorldLight(wheel, context.world, matrices.world)
+                wheel.renderInto(this, buffers.getBuffer(RenderType.cutoutMipped()))
             }
 
             viewProjection.use {
-                CachedBufferer.partial(AllPartialModels.ROLLER_FRAME, blockState)
-                    .transform(matrices.model)
-                    .rotateCentered(Direction.UP, AngleHelper.rad((AngleHelper.horizontalAngle(facing) + 180.0)))
-                    .light(matrices.world, contraptionWorldLight)
-                    .renderInto(viewProjection, consumer)
-                CachedBufferer.partial(AllPartialModels.ROLLER_FRAME, blockState)
-                    .transform(matrices.model)
-                    .rotateCentered(Direction.UP, AngleHelper.rad((AngleHelper.horizontalAngle(facing) + 180.0)))
-                    .light(matrices.world, contraptionWorldLight)
-                    .renderInto(viewProjection, buffers.getBuffer(RenderType.cutoutMipped()))
+                val frame = CachedBuffers.partial(AllPartialModels.ROLLER_FRAME, blockState)
+                frame.transform(matrices.model)
+                frame.rotateCentered(
+                    AngleHelper.rad(AngleHelper.horizontalAngle(facing) + 180.0),
+                    Direction.UP
+                )
+                SuperBufferUtil.applyWorldLight(frame, context.world, matrices.world)
+                frame.renderInto(viewProjection, consumer)
+
+                val frameCutout = CachedBuffers.partial(AllPartialModels.ROLLER_FRAME, blockState)
+                frameCutout.transform(matrices.model)
+                frameCutout.rotateCentered(
+                    AngleHelper.rad(AngleHelper.horizontalAngle(facing) + 180.0),
+                    Direction.UP
+                )
+                SuperBufferUtil.applyWorldLight(frame, context.world, matrices.world)
+                frameCutout.renderInto(viewProjection, buffers.getBuffer(RenderType.cutoutMipped()))
             }
         }
     }

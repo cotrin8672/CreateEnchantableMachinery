@@ -5,12 +5,11 @@ import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack
 import com.simibubi.create.content.kinetics.fan.AirCurrent
 import com.simibubi.create.content.kinetics.fan.AirCurrentSound
 import com.simibubi.create.content.kinetics.fan.IAirCurrentSource
-import com.simibubi.create.content.kinetics.fan.processing.AllFanProcessingTypes
 import com.simibubi.create.foundation.advancement.AllAdvancements
-import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.createenchantablemachinery.mixin.ServerGamePacketListenerImplMixin
 import io.github.cotrin8672.createenchantablemachinery.platform.SideExecutor
 import io.github.cotrin8672.createenchantablemachinery.util.Side
+import net.createmod.catnip.math.VecHelper
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.Minecraft
@@ -101,7 +100,7 @@ class EnchantableAirCurrent(source: IAirCurrentSource, efficiencyLevel: Int) : A
 
             val processingType = getTypeAt(entityDistance.toFloat())
 
-            if (processingType === AllFanProcessingTypes.NONE) continue
+            if (processingType == null) continue;
 
             if (entity is ItemEntity) {
                 if (world != null && world.isClientSide) {

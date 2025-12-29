@@ -1,11 +1,11 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.plough
 
-import com.jozufozu.flywheel.util.transform.TransformStack
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer
+import dev.engine_room.flywheel.lib.transform.TransformStack
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
@@ -55,7 +55,7 @@ class EnchantablePloughRenderer(
             )
 
             matrices.modelViewProjection.use {
-                TransformStack.cast(matrices.modelViewProjection).translate(movementContext.localPos)
+                TransformStack.of(matrices.modelViewProjection).translate(movementContext.localPos)
                 Minecraft.getInstance().blockRenderer.renderBatched(
                     movementContext.state,
                     movementContext.localPos,

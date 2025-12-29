@@ -1,13 +1,11 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.harvester
 
-import com.jozufozu.flywheel.api.MaterialManager
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.actors.harvester.HarvesterMovementBehaviour
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
-import com.simibubi.create.content.contraptions.render.ActorInstance
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.foundation.item.ItemHelper
 import com.simibubi.create.foundation.utility.BlockHelper
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.util.EnchantedItemFactory
@@ -29,17 +27,18 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty
 import org.apache.commons.lang3.mutable.MutableBoolean
 
 class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
-    override fun createInstance(
-        materialManager: MaterialManager?,
-        simulationWorld: VirtualRenderWorld?,
-        context: MovementContext?,
-    ): ActorInstance? {
-        return null
-    }
-
-    override fun hasSpecialInstancedRendering(): Boolean {
-        return false
-    }
+    // TODO: FIX
+    // override fun createInstance(
+    //     materialManager: MaterialManager?,
+    //     simulationWorld: VirtualRenderWorld?,
+    //     context: MovementContext?,
+    // ): ActorInstance? {
+    //     return null
+    // }
+//
+    // override fun hasSpecialInstancedRendering(): Boolean {
+    //     return false
+    // }
 
     override fun visitNewPosition(context: MovementContext, pos: BlockPos) {
         val world = context.world

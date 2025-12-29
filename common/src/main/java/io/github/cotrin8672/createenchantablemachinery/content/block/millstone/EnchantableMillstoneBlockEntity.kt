@@ -1,10 +1,8 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.millstone
 
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity
-import com.simibubi.create.foundation.utility.Lang
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntityDelegate
-import joptsimple.internal.Strings
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
@@ -19,14 +17,17 @@ class EnchantableMillstoneBlockEntity(
     pos: BlockPos,
     state: BlockState,
 ) : MillstoneBlockEntity(type, pos, state), EnchantableBlockEntity by EnchantableBlockEntityDelegate() {
-    override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
+    override fun addToGoggleTooltip(
+        tooltip: MutableList<Component>,
+        isPlayerSneaking: Boolean
+    ): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
+
         for (instance in getEnchantments()) {
             val level = instance.level
-            Lang.text(Strings.repeat(' ', 0))
-                .add(instance.enchantment.getFullname(level).copy())
-                .forGoggles(tooltip)
+            tooltip.add(instance.enchantment.getFullname(level).copy())
         }
+
         return true
     }
 

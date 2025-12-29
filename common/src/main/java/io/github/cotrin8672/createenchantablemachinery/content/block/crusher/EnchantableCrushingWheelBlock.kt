@@ -6,11 +6,11 @@ import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock.VALID
 import com.simibubi.create.foundation.block.IBE
-import com.simibubi.create.foundation.utility.Iterate
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlock
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockEntityRegistration
 import io.github.cotrin8672.createenchantablemachinery.registrate.BlockRegistration
+import net.createmod.catnip.data.Iterate
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.nbt.CompoundTag

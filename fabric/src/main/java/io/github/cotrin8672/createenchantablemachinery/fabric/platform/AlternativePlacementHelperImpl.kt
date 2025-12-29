@@ -1,8 +1,8 @@
 package io.github.cotrin8672.createenchantablemachinery.fabric.platform
 
-import com.simibubi.create.foundation.placement.PlacementOffset
 import io.github.cotrin8672.createenchantablemachinery.platform.AlternativePlacementHelper
 import io.github.cotrin8672.createenchantablemachinery.util.EnchantableBlockMapping
+import net.createmod.catnip.placement.PlacementOffset
 import net.minecraft.advancements.CriteriaTriggers
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerPlayer
@@ -26,7 +26,7 @@ class AlternativePlacementHelperImpl : AlternativePlacementHelper {
         blockItem: BlockItem,
         player: Player,
         hand: InteractionHand,
-        ray: BlockHitResult,
+        ray: BlockHitResult
     ): InteractionResult {
         with(placementOffset) {
             if (!isReplaceable(world)) return InteractionResult.PASS

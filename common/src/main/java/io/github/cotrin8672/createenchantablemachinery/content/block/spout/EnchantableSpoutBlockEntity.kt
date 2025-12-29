@@ -1,7 +1,7 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.spout
 
 import com.simibubi.create.AllItems
-import com.simibubi.create.api.behaviour.BlockSpoutingBehaviour
+import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour
 import com.simibubi.create.content.fluids.spout.FillingBySpout
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity
 import com.simibubi.create.content.kinetics.belt.behaviour.BeltProcessingBehaviour
@@ -9,15 +9,13 @@ import com.simibubi.create.content.kinetics.belt.behaviour.TransportedItemStackH
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack
 import com.simibubi.create.foundation.advancement.AdvancementBehaviour
 import com.simibubi.create.foundation.advancement.AllAdvancements
-import com.simibubi.create.foundation.utility.Lang
-import com.simibubi.create.foundation.utility.VecHelper
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.createenchantablemachinery.mixin.SpoutBlockEntityMixin
 import io.github.cotrin8672.createenchantablemachinery.platform.*
 import io.github.cotrin8672.createenchantablemachinery.util.extension.nonNullLevel
 import io.github.cotrin8672.createenchantablemachinery.util.extension.smartBlockEntityTick
-import joptsimple.internal.Strings
+import net.createmod.catnip.math.VecHelper
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
@@ -27,6 +25,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import kotlin.math.ceil
 import kotlin.math.max
+import io.github.fabricators_of_create.porting_lib.fluids.FluidStack as PortingFluidStack
 
 class EnchantableSpoutBlockEntity(
     type: BlockEntityType<*>,
@@ -109,23 +108,39 @@ class EnchantableSpoutBlockEntity(
 
     override fun tick() {
         smartBlockEntityTick()
+
         val currentFluidInTank = getCurrentFluidInTank()
-        if (processingTicks == -1 && (isVirtual || !level!!.isClientSide()) && !currentFluidInTank.isEmpty) {
-            BlockSpoutingBehaviour.forEach { behaviour: BlockSpoutingBehaviour ->
-                if (customProcess != null) return@forEach
-                val amount = BlockSpoutingBehaviourHelper().fillBlock(
-                    behaviour,
-                    nonNullLevel,
-                    worldPosition.below(2),
-                    this@EnchantableSpoutBlockEntity,
-                    currentFluidInTank,
-                    true
-                )
-                if (amount > 0) {
-                    processingTicks = enchantedFillingTime
-                    customProcess = behaviour
-                    notifyUpdate()
-                }
+
+        if (processingTicks == -1 &&
+            (isVirtual || !level!!.isClientSide) &&
+            !currentFluidInTank.isEmpty
+        ) {
+            val behaviour = BlockSpoutingBehaviour.get(
+                nonNullLevel,
+                worldPosition.below(2)
+            ) ?: return
+
+            if (customProcess != null)
+                return
+
+            val portingStack = PortingFluidStack(
+                currentFluidInTank.fluid,
+                currentFluidInTank.amount,
+                currentFluidInTank.tag
+            )
+
+            val amount = behaviour.fillBlock(
+                nonNullLevel,
+                worldPosition.below(2),
+                this,
+                portingStack,
+                true
+            )
+
+            if (amount > 0) {
+                processingTicks = enchantedFillingTime
+                customProcess = behaviour
+                notifyUpdate()
             }
         }
 
@@ -170,14 +185,17 @@ class EnchantableSpoutBlockEntity(
         return getBehaviour(AdvancementBehaviour.TYPE).isOwnerPresent
     }
 
-    override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
+    override fun addToGoggleTooltip(
+        tooltip: MutableList<Component>,
+        isPlayerSneaking: Boolean
+    ): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
+
         for (instance in getEnchantments()) {
             val level = instance.level
-            Lang.text(Strings.repeat(' ', 0))
-                .add(instance.enchantment.getFullname(level).copy())
-                .forGoggles(tooltip)
+            tooltip.add(instance.enchantment.getFullname(level).copy())
         }
+
         return true
     }
 
@@ -192,3 +210,4 @@ class EnchantableSpoutBlockEntity(
         super.write(compound, clientPacket)
     }
 }
+

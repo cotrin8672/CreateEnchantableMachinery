@@ -15,7 +15,7 @@ subprojects {
         maven("https://maven.shedaniel.me/") // Cloth Config, REI
         maven("https://maven.blamejared.com/") // JEI
         maven("https://maven.quiltmc.org/repository/release") // Quilt Mappings
-        maven("https://maven.tterrag.com/")
+        maven("https://maven.createmod.net/")
     }
 }
 

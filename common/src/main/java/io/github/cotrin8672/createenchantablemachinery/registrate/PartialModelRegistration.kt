@@ -1,6 +1,6 @@
 package io.github.cotrin8672.createenchantablemachinery.registrate
 
-import com.jozufozu.flywheel.core.PartialModel
+import dev.engine_room.flywheel.lib.model.baked.PartialModel
 import io.github.cotrin8672.createenchantablemachinery.CreateEnchantableMachinery
 
 object PartialModelRegistration {
@@ -11,7 +11,7 @@ object PartialModelRegistration {
     val ENCHANTABLE_MECHANICAL_MIXER_HEAD = block("block/enchantable_mechanical_mixer/head")
 
     fun block(path: String): PartialModel {
-        return PartialModel(CreateEnchantableMachinery.id(path))
+        return PartialModel.of(CreateEnchantableMachinery.id(path))
     }
 
     fun register() {}

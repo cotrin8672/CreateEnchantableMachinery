@@ -4,19 +4,17 @@ import com.google.common.collect.ImmutableList
 import com.simibubi.create.AllRecipeTypes
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe
 import com.simibubi.create.content.kinetics.saw.SawBlockEntity
+import com.simibubi.create.content.kinetics.saw.TreeCutter
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe
 import com.simibubi.create.foundation.recipe.RecipeConditions
 import com.simibubi.create.foundation.recipe.RecipeFinder
 import com.simibubi.create.foundation.utility.BlockHelper
-import com.simibubi.create.foundation.utility.Lang
-import com.simibubi.create.foundation.utility.TreeCutter
-import com.simibubi.create.foundation.utility.VecHelper
 import com.simibubi.create.infrastructure.config.AllConfigs
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.createenchantablemachinery.content.block.EnchantableBlockEntityDelegate
 import io.github.cotrin8672.createenchantablemachinery.mixin.SawBlockEntityMixin
 import io.github.cotrin8672.createenchantablemachinery.platform.BlockBreaker
-import joptsimple.internal.Strings
+import net.createmod.catnip.math.VecHelper
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
@@ -79,9 +77,10 @@ class EnchantableSawBlockEntity(
             }
             level!!.addFreshEntity(itemEntity)
         }
-        TreeCutter.findTree(level, breakingPos).destroyBlocks(level, fakePlayer) { pos: BlockPos, stack: ItemStack ->
-            this.dropItemFromCutTree(pos, stack)
-        }
+        TreeCutter.findTree(level, breakingPos, stateToBreak)
+            .destroyBlocks(level, fakePlayer) { pos: BlockPos, stack: ItemStack ->
+                this.dropItemFromCutTree(pos, stack)
+            }
     }
 
     override fun start(inserted: ItemStack) {
@@ -132,8 +131,11 @@ class EnchantableSawBlockEntity(
 
         val types = RecipeConditions.isOfType(
             AllRecipeTypes.CUTTING.getType(),
-            if (AllConfigs.server().recipes.allowStonecuttingOnSaw.get()) RecipeType.STONECUTTING else null,
-            if (AllConfigs.server().recipes.allowWoodcuttingOnSaw.get()) woodcuttingRecipeType.get() else null
+            if (AllConfigs.server().recipes.allowStonecuttingOnSaw.get())
+                RecipeType.STONECUTTING
+            else
+                null,
+            woodcuttingRecipeType.get()
         )
 
         val startedSearch = RecipeFinder.get(cuttingRecipesKey, level, types)
@@ -144,14 +146,17 @@ class EnchantableSawBlockEntity(
             .collect(Collectors.toList())
     }
 
-    override fun addToGoggleTooltip(tooltip: MutableList<Component>, isPlayerSneaking: Boolean): Boolean {
+    override fun addToGoggleTooltip(
+        tooltip: MutableList<Component>,
+        isPlayerSneaking: Boolean
+    ): Boolean {
         super.addToGoggleTooltip(tooltip, isPlayerSneaking)
+
         for (instance in getEnchantments()) {
             val level = instance.level
-            Lang.text(Strings.repeat(' ', 0))
-                .add(instance.enchantment.getFullname(level).copy())
-                .forGoggles(tooltip)
+            tooltip.add(instance.enchantment.getFullname(level).copy())
         }
+
         return true
     }
 

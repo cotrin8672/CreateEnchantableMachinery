@@ -1,11 +1,11 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.saw
 
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld
 import com.simibubi.create.content.contraptions.behaviour.MovementContext
 import com.simibubi.create.content.contraptions.render.ContraptionMatrices
 import com.simibubi.create.content.kinetics.saw.SawMovementBehaviour
+import com.simibubi.create.content.kinetics.saw.TreeCutter
 import com.simibubi.create.foundation.utility.BlockHelper
-import com.simibubi.create.foundation.utility.TreeCutter
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld
 import io.github.cotrin8672.createenchantablemachinery.platform.ContraptionBlockBreaker
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.core.BlockPos
@@ -43,7 +43,10 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
             return
         }
 
-        TreeCutter.findTree(context?.world, pos).destroyBlocks(context?.world, fakePlayer) { stack, dropPos ->
+        TreeCutter.findTree(context?.world, pos, brokenState).destroyBlocks(
+            context?.world,
+            fakePlayer
+        ) { stack, dropPos ->
             dropItemFromCutTree(context, stack, dropPos)
         }
     }
@@ -55,9 +58,9 @@ class EnchantableSawMovementBehaviour : SawMovementBehaviour() {
         return super.getBlockBreakingSpeed(context) * ((enchantments[Enchantments.BLOCK_EFFICIENCY] ?: 0) + 1)
     }
 
-    override fun renderAsNormalBlockEntity(): Boolean {
-        return true
-    }
+//    override fun renderAsNormalBlockEntity(): Boolean {
+//        return true
+//    }
 
     override fun renderInContraption(
         context: MovementContext,

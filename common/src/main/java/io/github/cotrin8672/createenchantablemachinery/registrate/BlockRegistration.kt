@@ -1,7 +1,8 @@
 package io.github.cotrin8672.createenchantablemachinery.registrate
 
-import com.simibubi.create.AllMovementBehaviours.movementBehaviour
-import com.simibubi.create.content.kinetics.BlockStressDefaults
+import com.simibubi.create.AllBlocks
+import com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour
+import com.simibubi.create.api.stress.BlockStressValues
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.kinetics.saw.SawGenerator
 import com.simibubi.create.foundation.data.AssetLookup
@@ -36,17 +37,25 @@ import java.util.function.Supplier
 
 object BlockRegistration {
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_DRILL: BlockEntry<EnchantableDrillBlock> = REGISTRATE.block<EnchantableDrillBlock>(
-        "enchantable_mechanical_drill",
-        ::EnchantableDrillBlock
-    )
-        .initialProperties(SharedProperties::stone)
-        .properties { it.mapColor(MapColor.PODZOL) }
-        .transform(axeOrPickaxe())
-        .blockstate(BlockStateGen.directionalBlockProvider(true))
-        .transform(BlockStressDefaults.setImpact(4.0))
-        .onRegister(movementBehaviour(EnchantableDrillMovementBehaviour()))
-        .register()
+    val ENCHANTABLE_MECHANICAL_DRILL =
+        REGISTRATE.block<EnchantableDrillBlock>(
+            "enchantable_mechanical_drill",
+            ::EnchantableDrillBlock
+        )
+            .initialProperties(SharedProperties::stone)
+            .properties { it.mapColor(MapColor.PODZOL) }
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.directionalBlockProvider(true))
+            .onRegister { block ->
+                val mixer = AllBlocks.MECHANICAL_DRILL.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 4.0
+                }
+            }
+            .onRegister(movementBehaviour(EnchantableDrillMovementBehaviour()))
+            .register()
 
     @JvmStatic
     val ENCHANTABLE_MECHANICAL_HARVESTER: BlockEntry<EnchantableHarvesterBlock> =
@@ -60,14 +69,21 @@ object BlockRegistration {
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_SAW: BlockEntry<EnchantableSawBlock> =
+    val ENCHANTABLE_MECHANICAL_SAW =
         REGISTRATE.block<EnchantableSawBlock>("enchantable_mechanical_saw", ::EnchantableSawBlock)
             .initialProperties(SharedProperties::stone)
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .properties { it.mapColor(MapColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(SawGenerator()::generate)
-            .transform(BlockStressDefaults.setImpact(4.0))
+            .onRegister { block ->
+                val mixer = AllBlocks.MECHANICAL_SAW.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 4.0
+                }
+            }
             .onRegister(movementBehaviour(EnchantableSawMovementBehaviour()))
             .register()
 
@@ -82,24 +98,38 @@ object BlockRegistration {
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_ENCASED_FAN: BlockEntry<EnchantableEncasedFanBlock> =
+    val ENCHANTABLE_ENCASED_FAN =
         REGISTRATE.block<EnchantableEncasedFanBlock>("enchantable_encased_fan", ::EnchantableEncasedFanBlock)
             .initialProperties(SharedProperties::stone)
             .properties { it.mapColor(MapColor.PODZOL) }
             .blockstate(BlockStateGen.directionalBlockProvider(true))
             .addLayer { Supplier { RenderType.cutoutMipped() } }
             .transform(axeOrPickaxe())
-            .transform(BlockStressDefaults.setImpact(2.0))
+            .onRegister { block ->
+                val mixer = AllBlocks.ENCASED_FAN.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 2.0
+                }
+            }
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_MILLSTONE: BlockEntry<EnchantableMillstoneBlock> =
+    val ENCHANTABLE_MILLSTONE =
         REGISTRATE.block<EnchantableMillstoneBlock>("enchantable_millstone", ::EnchantableMillstoneBlock)
             .initialProperties(SharedProperties::stone)
             .properties { it.mapColor(MapColor.METAL) }
             .transform(pickaxeOnly())
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
-            .transform(BlockStressDefaults.setImpact(4.0))
+            .onRegister { block ->
+                val mixer = AllBlocks.MILLSTONE.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 4.0
+                }
+            }
             .register()
 
     @JvmStatic
@@ -125,7 +155,7 @@ object BlockRegistration {
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_CRUSHING_WHEEL: BlockEntry<EnchantableCrushingWheelBlock> =
+    val ENCHANTABLE_CRUSHING_WHEEL =
         REGISTRATE.block<EnchantableCrushingWheelBlock>(
             "enchantable_crushing_wheel",
             ::EnchantableCrushingWheelBlock
@@ -136,11 +166,18 @@ object BlockRegistration {
             .transform(pickaxeOnly())
             .blockstate { c, p -> BlockStateGen.axisBlock(c, p) { AssetLookup.partialBaseModel(c, p) } }
             .addLayer { Supplier { RenderType.cutoutMipped() } }
-            .transform(BlockStressDefaults.setImpact(8.0))
+            .onRegister { block ->
+                val mixer = AllBlocks.CRUSHING_WHEEL.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 8.0
+                }
+            }
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_PRESS: BlockEntry<EnchantableMechanicalPressBlock> =
+    val ENCHANTABLE_MECHANICAL_PRESS =
         REGISTRATE.block<EnchantableMechanicalPressBlock>(
             "enchantable_mechanical_press",
             ::EnchantableMechanicalPressBlock
@@ -149,11 +186,18 @@ object BlockRegistration {
             .properties { it.noOcclusion().mapColor(MapColor.PODZOL) }
             .transform(axeOrPickaxe())
             .blockstate(BlockStateGen.horizontalBlockProvider(true))
-            .transform(BlockStressDefaults.setImpact(8.0))
+            .onRegister { block ->
+                val mixer = AllBlocks.MECHANICAL_PRESS.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 8.0
+                }
+            }
             .register()
 
     @JvmStatic
-    val ENCHANTABLE_MECHANICAL_MIXER: BlockEntry<EnchantableMechanicalMixerBlock> =
+    val ENCHANTABLE_MECHANICAL_MIXER =
         REGISTRATE.block<EnchantableMechanicalMixerBlock>(
             "enchantable_mechanical_mixer",
             ::EnchantableMechanicalMixerBlock
@@ -163,7 +207,14 @@ object BlockRegistration {
             .transform(axeOrPickaxe())
             .blockstate { c, p -> p.simpleBlock(c.entry, AssetLookup.partialBaseModel(c, p)) }
             .addLayer { Supplier { RenderType.cutoutMipped() } }
-            .transform(BlockStressDefaults.setImpact(4.0))
+            .onRegister { block ->
+                val mixer = AllBlocks.MECHANICAL_MIXER.get()
+                val impact = BlockStressValues.IMPACTS.get(mixer)
+
+                BlockStressValues.IMPACTS.register(block) {
+                    impact?.asDouble ?: 4.0
+                }
+            }
             .register()
 
     @JvmStatic

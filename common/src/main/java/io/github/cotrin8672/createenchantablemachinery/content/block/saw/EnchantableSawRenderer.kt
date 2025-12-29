@@ -1,7 +1,5 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.saw
 
-import com.jozufozu.flywheel.backend.Backend
-import com.jozufozu.flywheel.core.PartialModel
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.mojang.math.Axis
@@ -13,13 +11,15 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer.rend
 import com.simibubi.create.content.kinetics.saw.SawBlock
 import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringRenderer
 import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
-import com.simibubi.create.foundation.render.SuperByteBuffer
-import com.simibubi.create.foundation.utility.AngleHelper
+import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
 import io.github.cotrin8672.createenchantablemachinery.platform.ItemStackHandlerHelper
+import io.github.cotrin8672.createenchantablemachinery.util.SuperBufferUtil
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.math.AngleHelper
+import net.createmod.catnip.render.CachedBuffers
+import net.createmod.catnip.render.SuperByteBuffer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
@@ -39,11 +39,11 @@ class EnchantableSawRenderer(
     private fun getRotatedModel(be: EnchantableSawBlockEntity): SuperByteBuffer {
         val state = be.blockState
         if (state.getValue(BlockStateProperties.FACING).axis.isHorizontal)
-            return CachedBufferer.partialFacing(
+            return CachedBuffers.partialFacing(
                 AllPartialModels.SHAFT_HALF,
                 state.rotate(Rotation.CLOCKWISE_180)
             )
-        return CachedBufferer.block(KINETIC_BLOCK, getRenderedBlockState(be))
+        return CachedBuffers.block(KINETIC_BLOCK, getRenderedBlockState(be))
     }
 
     private fun getRenderedBlockState(be: KineticBlockEntity?): BlockState {
@@ -85,39 +85,39 @@ class EnchantableSawRenderer(
         light: Int,
     ) {
         val blockState = be.blockState
-        val partial: PartialModel
         val speed = be.speed
         var rotate = false
 
-        if (SawBlock.isHorizontal(blockState)) {
-            partial = if (speed > 0) {
-                AllPartialModels.SAW_BLADE_HORIZONTAL_ACTIVE
-            } else if (speed < 0) {
-                AllPartialModels.SAW_BLADE_HORIZONTAL_REVERSED
-            } else {
-                AllPartialModels.SAW_BLADE_HORIZONTAL_INACTIVE
+        val partial = if (SawBlock.isHorizontal(blockState)) {
+            when {
+                speed > 0 -> AllPartialModels.SAW_BLADE_HORIZONTAL_ACTIVE
+                speed < 0 -> AllPartialModels.SAW_BLADE_HORIZONTAL_REVERSED
+                else -> AllPartialModels.SAW_BLADE_HORIZONTAL_INACTIVE
             }
         } else {
-            partial = if (be.speed > 0) {
-                AllPartialModels.SAW_BLADE_VERTICAL_ACTIVE
-            } else if (speed < 0) {
-                AllPartialModels.SAW_BLADE_VERTICAL_REVERSED
-            } else {
-                AllPartialModels.SAW_BLADE_VERTICAL_INACTIVE
+            if (blockState.getValue(SawBlock.AXIS_ALONG_FIRST_COORDINATE)) {
+                rotate = true
             }
 
-            if (blockState.getValue(SawBlock.AXIS_ALONG_FIRST_COORDINATE)) rotate = true
+            when {
+                speed > 0 -> AllPartialModels.SAW_BLADE_VERTICAL_ACTIVE
+                speed < 0 -> AllPartialModels.SAW_BLADE_VERTICAL_REVERSED
+                else -> AllPartialModels.SAW_BLADE_VERTICAL_INACTIVE
+            }
         }
 
-        val superBuffer = CachedBufferer.partialFacing(partial, blockState)
+        val superBuffer = CachedBuffers.partialFacing(partial, blockState)
+
         if (rotate) {
-            superBuffer.rotateCentered(Direction.UP, AngleHelper.rad(90.0))
+            superBuffer.rotateCentered(AngleHelper.rad(90.0), Direction.UP)
         }
-        superBuffer
-            .color(0xFFFFFF)
-            .light(light)
-            .renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
+
+        // ❗ break the chain
+        SuperBufferUtil.applyColor(superBuffer, 0xFFFFFF)
+        SuperBufferUtil.applyPackedLight(superBuffer, light)
+        superBuffer.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()))
     }
+
 
     private fun renderShaft(
         be: EnchantableSawBlockEntity,
@@ -125,7 +125,7 @@ class EnchantableSawRenderer(
         buffer: MultiBufferSource,
         light: Int,
     ) {
-        if (!Backend.canUseInstancing(be.level))
+        if (!VisualizationManager.supportsVisualization(be.level))
             renderRotatingBuffer(be, getRotatedModel(be), ms, buffer.getBuffer(RenderType.solid()), light)
     }
 

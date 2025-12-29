@@ -1,7 +1,7 @@
 package io.github.cotrin8672.createenchantablemachinery.platform
 
 import com.mojang.blaze3d.vertex.PoseStack
-import com.simibubi.create.api.behaviour.BlockSpoutingBehaviour
+import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour
 import com.simibubi.create.foundation.fluid.SmartFluidTank

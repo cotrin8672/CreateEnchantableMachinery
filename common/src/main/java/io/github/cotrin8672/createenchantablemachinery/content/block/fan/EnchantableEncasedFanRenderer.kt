@@ -1,16 +1,16 @@
 package io.github.cotrin8672.createenchantablemachinery.content.block.fan
 
-import com.jozufozu.flywheel.backend.Backend
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator
 import com.mojang.blaze3d.vertex.VertexConsumer
 import com.simibubi.create.AllPartialModels
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer
-import com.simibubi.create.foundation.render.CachedBufferer
-import com.simibubi.create.foundation.utility.AnimationTickHolder
+import dev.engine_room.flywheel.api.visualization.VisualizationManager
 import io.github.cotrin8672.createenchantablemachinery.config.Config
 import io.github.cotrin8672.createenchantablemachinery.content.EnchantedRenderType
 import io.github.cotrin8672.createenchantablemachinery.util.extension.use
+import net.createmod.catnip.animation.AnimationTickHolder
+import net.createmod.catnip.render.CachedBuffers
 import net.minecraft.client.renderer.LevelRenderer
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
@@ -53,7 +53,7 @@ class EnchantableEncasedFanRenderer(
         buffer: MultiBufferSource,
         consumer: VertexConsumer? = null,
     ) {
-        if (Backend.canUseInstancing(be.level)) return
+        if (VisualizationManager.supportsVisualization(be.level)) return
 
         val direction = be.blockState.getValue(BlockStateProperties.FACING)
         val vb = consumer ?: buffer.getBuffer(RenderType.cutoutMipped())
@@ -62,9 +62,9 @@ class EnchantableEncasedFanRenderer(
         val lightInFront = LevelRenderer.getLightColor(be.level!!, be.blockPos.relative(direction))
 
         val shaftHalf =
-            CachedBufferer.partialFacing(AllPartialModels.SHAFT_HALF, be.blockState, direction.opposite)
+            CachedBuffers.partialFacing(AllPartialModels.SHAFT_HALF, be.blockState, direction.opposite)
         val fanInner =
-            CachedBufferer.partialFacing(AllPartialModels.ENCASED_FAN_INNER, be.blockState, direction.opposite)
+            CachedBuffers.partialFacing(AllPartialModels.ENCASED_FAN_INNER, be.blockState, direction.opposite)
 
         val time = AnimationTickHolder.getRenderTime(be.level)
         var speed = be.speed * 5
