@@ -110,7 +110,6 @@ dependencies {
     runtimeOnly(libs.flywheel)
     implementation(libs.ponder)
     implementation(libs.registrate)
-    implementation(libs.copycats)
 
     runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1")
     compileOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api")
