@@ -22,7 +22,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
-@EventBusSubscriber(modid = Cem.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Cem.MOD_ID)
 @Mod(Cem.MOD_ID)
 class Cem(container: ModContainer) {
     companion object {
