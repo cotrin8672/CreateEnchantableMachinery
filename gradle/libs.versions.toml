@@ -1,51 +1,75 @@
 [versions]
 kotlin = "2.0.0"
-loom = "1.6-SNAPSHOT"
-architecturyPlugin = "3.4-SNAPSHOT"
-shadow = "8.1.1"
 minecraft = "1.20.1"
-parchiment = "2023.09.03@zip"
-forge = "1.20.1-47.3.0"
+# parchiment = "2023.09.03@zip"
+forge = "47.3.0"
 forgeKotlin = "4.11.0"
-fabricLoader = "0.16.5"
-fabricApi = "0.92.2+1.20.1"
-fabricKotlin = "1.11.0+kotlin.2.0.0"
-architectury = "9.2.14"
-createForge = "0.5.1.f-26"
-createFabric = "0.5.1-f-build.1335+mc1.20.1"
-flywheel = "0.6.10-7"
+fabricLoader = "0.18.4"
+fabricApi = "0.92.2"
+# fabricKotlin = "1.11.0+kotlin.2.0.0"
+# architectury = "9.2.14"
+createForge = "6.0.8-289"
+createFabric = "6.0.8.1+build.1744-mc1.20.1"
+porting_lib = "2.3.13+1.20.1"
+ponder = "1.0.91"
+flywheel = "1.0.5"
 registrate = "MC1.20-1.3.3"
-majruszLibForge = "5302100"
-majruszLibFabric = "5301915"
-modMenu = "7.2.2"
-koin = "3.5.6"
+# majruszLibForge = "5302100"
+# majruszLibFabric = "5301915"
+# modMenu = "7.2.2"
 modPublisher = "2.1.6"
-zenith = "1.2.4-1.20.1"
+# zenith = "1.2.4-1.20.1"
+cloche = "0.17.4"
 
 [libraries]
-minecraft = { module = "net.minecraft:minecraft", version.ref = "minecraft" }
-parchment = { module = "org.parchmentmc.data:parchment-1.20.1", version.ref = "parchiment" }
-forge = { module = "net.minecraftforge:forge", version.ref = "forge" }
+# minecraft = { module = "net.minecraft:minecraft", version.ref = "minecraft" }
+# parchment = { module = "org.parchmentmc.data:parchment-1.20.1", version.ref = "parchiment" }
+# forge = { module = "net.minecraftforge:forge", version.ref = "forge" }
 forge-kotlin = { module = "thedarkcolour:kotlinforforge", version.ref = "forgeKotlin" }
-fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
+# fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
 fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabricApi" }
-fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabricKotlin" }
-architectury = { module = "dev.architectury:architectury", version.ref = "architectury" }
-architectury-forge = { module = "dev.architectury:architectury-forge", version.ref = "architectury" }
-architectury-fabric = { module = "dev.architectury:architectury-fabric", version.ref = "architectury" }
+# fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabricKotlin" }
+# architectury = { module = "dev.architectury:architectury", version.ref = "architectury" }
+# architectury-forge = { module = "dev.architectury:architectury-forge", version.ref = "architectury" }
+# architectury-fabric = { module = "dev.architectury:architectury-fabric", version.ref = "architectury" }
 create-forge = { module = "com.simibubi.create:create-1.20.1", version.ref = "createForge" }
-create-fabric = { module = "com.simibubi.create:create-fabric-1.20.1", version.ref = "createFabric" }
-flywheel = { module = "com.jozufozu.flywheel:flywheel-forge-1.20.1", version.ref = "flywheel" }
-registrate = { module = "com.tterrag.registrate:Registrate", version.ref = "registrate" }
-majrusz-library-forge = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibForge" }
-majrusz-library-fabric = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibFabric" }
-modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modMenu" }
-koin = { module = "io.insert-koin:koin-core-jvm", version.ref = "koin" }
-zenith = { module = "maven.modrinth:zenith", version.ref = "zenith" }
+create-fabric = { module = "com.simibubi.create:create-fabric", version.ref = "createFabric" }
+ponder-forge = { module = "net.createmod.ponder:Ponder-Forge-1.20.1", version.ref = "ponder" }
+ponder-fabric = { module = "net.createmod.ponder:Ponder-Fabric-1.20.1", version.ref = "ponder" }
+flywheel-forge = { module = "dev.engine-room.flywheel:flywheel-forge-1.20.1", version.ref = "flywheel" }
+flywheel-api-forge = { module = "dev.engine-room.flywheel:flywheel-forge-api-1.20.1", version.ref = "flywheel" }
+flywheel-fabric = { module = "dev.engine-room.flywheel:flywheel-fabric-1.20.1", version.ref = "flywheel" }
+flywheel-api-fabric = { module = "dev.engine-room.flywheel:flywheel-fabric-api-1.20.1", version.ref = "flywheel" }
+registrate-forge = { module = "com.tterrag.registrate:Registrate", version.ref = "registrate" }
+registrate-fabric = { module = "com.tterrag.registrate_fabric:Registrate", version.ref = "registrate" }
+# majrusz-library-forge = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibForge" }
+# majrusz-library-fabric = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibFabric" }
+# modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modMenu" }
+# koin = { module = "io.insert-koin:koin-core-jvm", version.ref = "koin" }
+# zenith = { module = "maven.modrinth:zenith", version.ref = "zenith" }
+
+porting_lib_accessors = { module = "io.github.fabricators_of_create.Porting-Lib:accessors", version.ref = "porting_lib" }
+porting_lib_base = { module = "io.github.fabricators_of_create.Porting-Lib:base", version.ref = "porting_lib" }
+porting_lib_entity = { module = "io.github.fabricators_of_create.Porting-Lib:entity", version.ref = "porting_lib" }
+porting_lib_extensions = { module = "io.github.fabricators_of_create.Porting-Lib:extensions", version.ref = "porting_lib" }
+porting_lib_networking = { module = "io.github.fabricators_of_create.Porting-Lib:networking", version.ref = "porting_lib" }
+porting_lib_obj_loader = { module = "io.github.fabricators_of_create.Porting-Lib:obj_loader", version.ref = "porting_lib" }
+porting_lib_tags = { module = "io.github.fabricators_of_create.Porting-Lib:tags", version.ref = "porting_lib" }
+porting_lib_transfer = { module = "io.github.fabricators_of_create.Porting-Lib:transfer", version.ref = "porting_lib" }
+porting_lib_models = { module = "io.github.fabricators_of_create.Porting-Lib:models", version.ref = "porting_lib" }
+porting_lib_model_generators = { module = "io.github.fabricators_of_create.Porting-Lib:model_generators", version.ref = "porting_lib" }
+porting_lib_tool_actions = { module = "io.github.fabricators_of_create.Porting-Lib:tool_actions", version.ref = "porting_lib" }
+porting_lib_client_events = { module = "io.github.fabricators_of_create.Porting-Lib:client_events", version.ref = "porting_lib" }
+porting_lib_brewing = { module = "io.github.fabricators_of_create.Porting-Lib:brewing", version.ref = "porting_lib" }
+
+[bundles]
+porting_lib = [
+    "porting_lib_accessors", "porting_lib_base", "porting_lib_entity", "porting_lib_extensions",
+    "porting_lib_networking", "porting_lib_obj_loader", "porting_lib_tags", "porting_lib_transfer",
+    "porting_lib_models", "porting_lib_model_generators", "porting_lib_tool_actions", "porting_lib_client_events", "porting_lib_brewing"
+]
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-loom = { id = "dev.architectury.loom", version.ref = "loom" }
-architectury = { id = "architectury-plugin", version.ref = "architecturyPlugin" }
-shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
 modPublisher = { id = "com.hypherionmc.modutils.modpublisher", version.ref = "modPublisher" }
+cloche = { id = "earth.terrarium.cloche", version.ref = "cloche" }

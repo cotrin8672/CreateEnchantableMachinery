@@ -5,12 +5,9 @@ pluginManagement {
         maven("https://maven.minecraftforge.net/")
         maven("https://maven.quiltmc.org/repository/release")
         maven("https://maven.firstdark.dev/releases")
+        maven("https://maven.msrandom.net/repository/cloche/")
         gradlePluginPortal()
     }
 }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-include("common")
-include("fabric")
-include("forge")
