@@ -5,14 +5,27 @@ plugins {
 }
 
 buildscript {
-    configurations.classpath {
-        resolutionStrategy {
-            force("org.apache.logging.log4j:log4j-api:2.17.1")
-            force("org.apache.logging.log4j:log4j-core:2.17.1")
-        }
+    val v = "2.23.1"
+
+    configurations.configureEach {
+        resolutionStrategy.force(
+            "org.apache.logging.log4j:log4j-api:$v",
+            "org.apache.logging.log4j:log4j-core:$v"
+        )
     }
 }
 
+allprojects {
+    val v = "2.23.1"
+
+    configurations.configureEach {
+        resolutionStrategy.force(
+            "org.apache.logging.log4j:log4j-api:$v",
+            "org.apache.logging.log4j:log4j-core:$v",
+            "org.apache.logging.log4j:log4j-slf4j2-impl:$v"
+        )
+    }
+}
 
 group = "io.github.cotrin8672"
 version = "1.0.0"
@@ -83,7 +96,7 @@ cloche {
     }
 
     forge {
-        loaderVersion = "47.4.13"
+        loaderVersion = "47.3.7"
 
         dependencies {
             modImplementation(libs.forge.kotlin)
@@ -176,6 +189,12 @@ extensions.configure<SourceSetContainer>("sourceSets") {
 //    }
 //}
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
+
