@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.cloche)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.modPublisher)
+    alias(libs.plugins.metro)
 }
 
 group = "io.github.cotrin8672"
