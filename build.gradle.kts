@@ -1,44 +1,27 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.cloche)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.modPublisher)
 }
 
-buildscript {
-    val v = "2.23.1"
-
-    configurations.configureEach {
-        resolutionStrategy.force(
-            "org.apache.logging.log4j:log4j-api:$v",
-            "org.apache.logging.log4j:log4j-core:$v"
-        )
-    }
-}
-
-allprojects {
-    val v = "2.23.1"
-
-    configurations.configureEach {
-        resolutionStrategy.force(
-            "org.apache.logging.log4j:log4j-api:$v",
-            "org.apache.logging.log4j:log4j-core:$v",
-            "org.apache.logging.log4j:log4j-slf4j2-impl:$v"
-        )
-    }
-}
-
 group = "io.github.cotrin8672"
 version = "1.0.0"
 
 kotlin.jvmToolchain(17)
-java.toolchain {
-    languageVersion.set(JavaLanguageVersion.of(17))
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        freeCompilerArgs.add("-Xmulti-platform")
+    }
 }
 
 repositories {
     cloche.librariesMinecraft()
 
     mavenCentral()
+    mavenLocal()
 
     cloche {
         main()
@@ -57,8 +40,6 @@ repositories {
     maven("https://mvn.devos.one/snapshots/")
     maven("https://mvn.devos.one/releases/")
     maven("https://maven.jamieswhiteshirt.com/libs-release")
-    maven("com.jamieswhiteshirt")
-    maven("fuzs.forgeconfigapiport")
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven")
     maven("https://thedarkcolour.github.io/KotlinForForge/")
 }
@@ -87,25 +68,38 @@ cloche {
 
     common {
         dependencies {
-//            modImplementation(libs.create.forge) { isTransitive = false }
-//            modImplementation(libs.ponder.forge)
-//            modCompileOnly(libs.flywheel.api.forge)
-//            modRuntimeOnly(libs.flywheel.forge)
-//            modImplementation(libs.registrate.forge)
+            modCompileOnly("com.simibubi.create:create-1.20.1:${libs.versions.createForge.get()}:slim")
+            modCompileOnly(libs.ponder.forge)
+            modCompileOnly(libs.flywheel.api.forge)
+            modCompileOnly(libs.registrate.forge)
+
         }
     }
 
     forge {
-        loaderVersion = "47.3.7"
+        loaderVersion = libs.versions.forge.get()
+
+        metadata {
+            modLoader.set("kotlinforforge")
+            loaderVersion {
+                start = libs.versions.forgeKotlin.get()
+            }
+        }
 
         dependencies {
             modImplementation(libs.forge.kotlin)
-//            modImplementation(libs.create.forge) { isTransitive = false }
-//            modImplementation(libs.ponder.forge)
-//            modCompileOnly(libs.flywheel.api.forge)
-//            modRuntimeOnly(libs.flywheel.forge)
-//            modImplementation(libs.registrate.forge)
+            modImplementation("com.simibubi.create:create-1.20.1:${libs.versions.createForge.get()}:slim") {
+                isTransitive = false
+            }
+            modImplementation(libs.ponder.forge)
+            modCompileOnly(libs.flywheel.api.forge)
+            modRuntimeOnly(libs.flywheel.forge)
+            modImplementation(libs.registrate.forge)
+
+            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
         }
+
+        datagenDirectory.set(file("src/commonMain/generated"))
 
         runs {
             client {
@@ -124,12 +118,12 @@ cloche {
 
         dependencies {
             fabricApi(libs.versions.fabricApi.get())
-//            modImplementation(libs.create.fabric)
-//            libs.bundles.porting.lib.get().forEach { modApi(it) }
-//            modImplementation(libs.ponder.fabric)
-//            modCompileOnly(libs.flywheel.api.fabric)
-//            modRuntimeOnly(libs.flywheel.fabric)
-//            modImplementation(libs.registrate.fabric)
+            modImplementation(libs.create.fabric)
+            libs.bundles.porting.lib.get().forEach { modApi(it) }
+            modImplementation(libs.ponder.fabric)
+            modCompileOnly(libs.flywheel.api.fabric)
+            modRuntimeOnly(libs.flywheel.fabric)
+            modImplementation(libs.registrate.fabric)
         }
 
         runs {
@@ -144,11 +138,31 @@ cloche {
     }
 }
 
+configurations.matching { it.name == "forgeImplementation" }.configureEach {
+    extendsFrom(configurations.getByName("modForgeImplementation"))
+}
+
+configurations.matching { it.name == "forgeCompileOnly" }.configureEach {
+    extendsFrom(configurations.getByName("modForgeCompileOnly"))
+}
+
+configurations.matching { it.name == "forgeRuntimeOnly" }.configureEach {
+    extendsFrom(configurations.getByName("modForgeRuntimeOnly"))
+}
+
+configurations.matching { it.name == "forgeCompileClasspath" }.configureEach {
+    extendsFrom(configurations.getByName("modForgeCompileClasspath"))
+}
+
+configurations.matching { it.name == "forgeRuntimeClasspath" }.configureEach {
+    extendsFrom(configurations.getByName("modForgeRuntimeClasspath"))
+}
+
 extensions.configure<SourceSetContainer>("sourceSets") {
     named("main") {
         java.setSrcDirs(listOf("src/commonMain/java"))
         kotlin.setSrcDirs(listOf("src/commonMain/kotlin"))
-        resources.setSrcDirs(listOf("src/commonMain/resources"))
+        resources.setSrcDirs(listOf("src/commonMain/resources", "src/commonMain/generated"))
     }
 
     named("forge") {
@@ -161,6 +175,76 @@ extensions.configure<SourceSetContainer>("sourceSets") {
         java.setSrcDirs(listOf("src/fabricMain/java"))
         kotlin.setSrcDirs(listOf("src/fabricMain/kotlin"))
         resources.setSrcDirs(listOf("src/fabricMain/resources"))
+    }
+}
+
+tasks.register("printForgeCompileClasspath") {
+    doLast {
+        val files = configurations.getByName("forgeCompileClasspath").resolve()
+        val sorted = files.sortedBy { it.absolutePath }
+        println("forgeCompileClasspathCount=${sorted.size}")
+        sorted.take(20).forEach { f ->
+            println("cpFile=${f.name} -> ${f.absolutePath}")
+        }
+
+        val create = sorted.filter { f ->
+            val p = f.absolutePath
+            p.contains("\\com.simibubi.create\\", ignoreCase = true) ||
+                    p.contains("create-1.20.1", ignoreCase = true) ||
+                    p.contains("6.0.8-289", ignoreCase = true)
+        }
+        println("forgeCompileClasspathCreateCount=${create.size}")
+        create.take(5).forEach { f ->
+            println("cpCreateFile=${f.name} -> ${f.absolutePath}")
+        }
+    }
+}
+
+tasks.register("printCompileForgeKotlinClasspath") {
+    doLast {
+        val raw = tasks.named("compileForgeKotlin").get()
+        println("compileForgeKotlinTaskClass=${raw.javaClass.name}")
+        val t = raw as org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+        val all = t.libraries.files.sortedBy { it.name }
+        println("librariesCount=${all.size}")
+        all.take(10).forEach { f -> println("libFile=${f.name}") }
+
+        val create = t.libraries.files
+            .sortedBy { it.absolutePath }
+            .filter { f ->
+                val p = f.absolutePath
+                p.contains("\\com.simibubi.create\\", ignoreCase = true) ||
+                        p.contains("create-1.20.1", ignoreCase = true) ||
+                        p.contains("6.0.8-289", ignoreCase = true)
+            }
+
+        println("createLibrariesCount=${create.size}")
+        create.take(5).forEach { f -> println("createLibFile=${f.name} -> ${f.absolutePath}") }
+    }
+}
+
+tasks.register("printForgeCreateArtifacts") {
+    doLast {
+        val cfg = configurations.getByName("forgeCompileClasspath")
+        val artifacts = cfg.resolvedConfiguration.resolvedArtifacts
+        val related = artifacts.filter { a ->
+            val id = a.moduleVersion.id
+            id.group.contains("simibubi", ignoreCase = true) ||
+                    id.group.contains("create", ignoreCase = true) ||
+                    id.name.contains("create", ignoreCase = true)
+        }
+
+        println("forgeRelatedArtifactsCount=${related.size}")
+        related.forEach { a ->
+            val id = a.moduleVersion.id
+            println("forgeRelatedArtifact=${id.group}:${id.name}:${id.version} -> ${a.file.name}")
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileForgeKotlin").configure {
+        libraries.setFrom(configurations.getByName("forgeCompileClasspath"))
     }
 }
 
@@ -197,4 +281,3 @@ java {
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
-
