@@ -42,6 +42,7 @@ repositories {
     maven("https://maven.jamieswhiteshirt.com/libs-release")
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven")
     maven("https://thedarkcolour.github.io/KotlinForForge/")
+    maven("https://maven.terraformersmc.com/")
 }
 
 val modId: String by project
@@ -64,6 +65,7 @@ cloche {
 
     mappings {
         official()
+        parchment(libs.versions.parchiment.get())
     }
 
     common {
@@ -96,7 +98,7 @@ cloche {
             modRuntimeOnly(libs.flywheel.forge)
             modImplementation(libs.registrate.forge)
 
-            implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
+            implementation(libs.mixinExtra)
         }
 
         datagenDirectory.set(file("src/commonMain/generated"))
@@ -118,12 +120,14 @@ cloche {
 
         dependencies {
             fabricApi(libs.versions.fabricApi.get())
+            modImplementation(libs.fabric.kotlin)
             modImplementation(libs.create.fabric)
             libs.bundles.porting.lib.get().forEach { modApi(it) }
             modImplementation(libs.ponder.fabric)
             modCompileOnly(libs.flywheel.api.fabric)
             modRuntimeOnly(libs.flywheel.fabric)
             modImplementation(libs.registrate.fabric)
+            modImplementation(libs.modmenu)
         }
 
         runs {
@@ -136,26 +140,6 @@ cloche {
             }
         }
     }
-}
-
-configurations.matching { it.name == "forgeImplementation" }.configureEach {
-    extendsFrom(configurations.getByName("modForgeImplementation"))
-}
-
-configurations.matching { it.name == "forgeCompileOnly" }.configureEach {
-    extendsFrom(configurations.getByName("modForgeCompileOnly"))
-}
-
-configurations.matching { it.name == "forgeRuntimeOnly" }.configureEach {
-    extendsFrom(configurations.getByName("modForgeRuntimeOnly"))
-}
-
-configurations.matching { it.name == "forgeCompileClasspath" }.configureEach {
-    extendsFrom(configurations.getByName("modForgeCompileClasspath"))
-}
-
-configurations.matching { it.name == "forgeRuntimeClasspath" }.configureEach {
-    extendsFrom(configurations.getByName("modForgeRuntimeClasspath"))
 }
 
 extensions.configure<SourceSetContainer>("sourceSets") {

@@ -1,13 +1,12 @@
 [versions]
-kotlin = "2.0.0"
+kotlin = "2.2.21"
 minecraft = "1.20.1"
-# parchiment = "2023.09.03@zip"
+parchiment = "2023.09.03"
 forge = "47.4.15"
 forgeKotlin = "4.12.0"
 fabricLoader = "0.18.4"
-fabricApi = "0.92.2"
-# fabricKotlin = "1.11.0+kotlin.2.0.0"
-# architectury = "9.2.14"
+fabricApi = "0.92.7"
+fabricKotlin = "1.13.7+kotlin.2.2.21"
 createForge = "6.0.8-289"
 createFabric = "6.0.8.1+build.1744-mc1.20.1"
 porting_lib = "2.3.13+1.20.1"
@@ -16,19 +15,19 @@ flywheel = "1.0.5"
 registrate = "MC1.20-1.3.11"
 # majruszLibForge = "5302100"
 # majruszLibFabric = "5301915"
-# modMenu = "7.2.2"
+modMenu = "7.2.2"
 modPublisher = "2.1.6"
 # zenith = "1.2.4-1.20.1"
-cloche = "0.17.6"
+cloche = "0.17.7"
+mixinExtra = "0.5.3"
 
 [libraries]
 # minecraft = { module = "net.minecraft:minecraft", version.ref = "minecraft" }
 # parchment = { module = "org.parchmentmc.data:parchment-1.20.1", version.ref = "parchiment" }
-forgeApi = { module = "net.minecraftforge:forge", version.ref = "forge" }
 forge-kotlin = { module = "thedarkcolour:kotlinforforge", version.ref = "forgeKotlin" }
 # fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
 fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabricApi" }
-# fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabricKotlin" }
+fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabricKotlin" }
 # architectury = { module = "dev.architectury:architectury", version.ref = "architectury" }
 # architectury-forge = { module = "dev.architectury:architectury-forge", version.ref = "architectury" }
 # architectury-fabric = { module = "dev.architectury:architectury-fabric", version.ref = "architectury" }
@@ -44,9 +43,10 @@ registrate-forge = { module = "com.tterrag.registrate:Registrate", version.ref =
 registrate-fabric = { module = "com.tterrag.registrate_fabric:Registrate", version.ref = "registrate" }
 # majrusz-library-forge = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibForge" }
 # majrusz-library-fabric = { module = "curse.maven:majrusz-library-437409", version.ref = "majruszLibFabric" }
-# modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modMenu" }
+modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modMenu" }
 # koin = { module = "io.insert-koin:koin-core-jvm", version.ref = "koin" }
 # zenith = { module = "maven.modrinth:zenith", version.ref = "zenith" }
+mixinExtra = { module = "io.github.llamalad7:mixinextras-forge", version.ref = "mixinExtra" }
 
 porting_lib_accessors = { module = "io.github.fabricators_of_create.Porting-Lib:accessors", version.ref = "porting_lib" }
 porting_lib_base = { module = "io.github.fabricators_of_create.Porting-Lib:base", version.ref = "porting_lib" }
