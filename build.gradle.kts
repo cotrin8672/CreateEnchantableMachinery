@@ -71,10 +71,11 @@ cloche {
 
     common {
         dependencies {
-            modCompileOnly("com.simibubi.create:create-1.20.1:${libs.versions.createForge.get()}:slim")
-            modCompileOnly(libs.ponder.forge)
+            modImplementation("com.simibubi.create:create-1.20.1:${libs.versions.createForge.get()}:slim")
+            modImplementation(libs.ponder.forge)
             modCompileOnly(libs.flywheel.api.forge)
-            modCompileOnly(libs.registrate.forge)
+            modRuntimeOnly(libs.flywheel.forge)
+            modImplementation(libs.registrate.forge)
 
         }
     }
