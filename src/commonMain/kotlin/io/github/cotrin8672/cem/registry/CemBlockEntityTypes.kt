@@ -4,12 +4,13 @@ import com.simibubi.create.AllPartialModels
 import com.simibubi.create.foundation.data.CreateBlockEntityBuilder
 import com.tterrag.registrate.util.entry.BlockEntityEntry
 import com.tterrag.registrate.util.nullness.NonNullFunction
-import com.tterrag.registrate.util.nullness.NonNullSupplier
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer
 import io.github.cotrin8672.cem.Cem.REGISTRATE
 import io.github.cotrin8672.cem.client.visual.EnchantedOrientedRotatingVisual
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillRenderer
+import io.github.cotrin8672.cem.platform.PlatformGraph
+import dev.zacsweers.metro.createGraph
 import net.minecraft.world.level.block.entity.BlockEntity
 
 object CemBlockEntityTypes {
@@ -26,7 +27,6 @@ object CemBlockEntityTypes {
         renderNormally: Boolean = false,
         instanceFactory: () -> SimpleBlockEntityVisualizer.Factory<T>,
     ): CreateBlockEntityBuilder<T, P> {
-        this.visual(NonNullSupplier { instanceFactory() }, renderNormally)
-        return this
+        return createGraph<PlatformGraph>().applyVisual(this, renderNormally, instanceFactory)
     }
 }

@@ -1,6 +1,7 @@
 package io.github.cotrin8672.cem
 
 import com.simibubi.create.foundation.data.CreateRegistrate
+import com.simibubi.create.infrastructure.fabric.SimpleBlockEntityVisualFactory
 import net.fabricmc.api.ModInitializer
 
 object FabricCem : ModInitializer {
@@ -11,4 +12,8 @@ object FabricCem : ModInitializer {
     }
 
     fun registrate(): CreateRegistrate = REGISTRATE
+
+    init {
+        SimpleBlockEntityVisualFactory
+    }
 }
