@@ -9,8 +9,7 @@ import io.github.cotrin8672.cem.Cem.REGISTRATE
 import io.github.cotrin8672.cem.client.visual.EnchantedOrientedRotatingVisual
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillBlockEntity
 import io.github.cotrin8672.cem.content.block.drill.EnchantableDrillRenderer
-import io.github.cotrin8672.cem.platform.PlatformGraph
-import dev.zacsweers.metro.createGraph
+import io.github.cotrin8672.cem.platform.BlockEntityBuilderHelper
 import net.minecraft.world.level.block.entity.BlockEntity
 
 object CemBlockEntityTypes {
@@ -23,10 +22,10 @@ object CemBlockEntityTypes {
 
     fun register() {}
 
-    private fun <T : BlockEntity, P> CreateBlockEntityBuilder<T, P>.visual(
-        renderNormally: Boolean = false,
+    fun <T : BlockEntity, P> CreateBlockEntityBuilder<T, P>.visual(
+        renderNormally: Boolean,
         instanceFactory: () -> SimpleBlockEntityVisualizer.Factory<T>,
     ): CreateBlockEntityBuilder<T, P> {
-        return createGraph<PlatformGraph>().applyVisual(this, renderNormally, instanceFactory)
+        return BlockEntityBuilderHelper().visual(this, renderNormally, instanceFactory)
     }
 }

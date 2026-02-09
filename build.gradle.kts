@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.cloche)
     alias(libs.plugins.kotlin)
@@ -11,12 +9,6 @@ group = "io.github.cotrin8672"
 version = "1.0.0"
 
 kotlin.jvmToolchain(17)
-
-tasks.withType<KotlinCompile> {
-    compilerOptions {
-        freeCompilerArgs.add("-Xmulti-platform")
-    }
-}
 
 repositories {
     cloche.librariesMinecraft()
@@ -76,7 +68,8 @@ cloche {
             modCompileOnly(libs.flywheel.api.forge)
             modRuntimeOnly(libs.flywheel.forge)
             modImplementation(libs.registrate.forge)
-
+            implementation(platform(libs.koin.bom))
+            implementation(libs.koin.core)
         }
     }
 
@@ -101,6 +94,12 @@ cloche {
             modImplementation(libs.registrate.forge)
 
             implementation(libs.mixinExtra)
+
+            implementation(platform(libs.koin.bom))
+            implementation(libs.koin.core)
+
+            externalRuntime(libs.koin.core)
+            include(libs.koin.core)
         }
 
         datagenDirectory.set(file("src/commonMain/generated"))
@@ -130,6 +129,9 @@ cloche {
             modRuntimeOnly(libs.flywheel.fabric)
             modImplementation(libs.registrate.fabric)
             modImplementation(libs.modmenu)
+
+            implementation(platform(libs.koin.bom))
+            implementation(libs.koin.core)
         }
 
         runs {
@@ -225,12 +227,6 @@ tasks.register("printForgeCreateArtifacts") {
             val id = a.moduleVersion.id
             println("forgeRelatedArtifact=${id.group}:${id.name}:${id.version} -> ${a.file.name}")
         }
-    }
-}
-
-afterEvaluate {
-    tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileForgeKotlin").configure {
-        libraries.setFrom(configurations.getByName("forgeCompileClasspath"))
     }
 }
 
