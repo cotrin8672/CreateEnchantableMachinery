@@ -55,5 +55,6 @@ dependencies {
     })
     modImplementation(libs.fabric.loader)
     modCompileOnly(libs.create.fabric)
+    modImplementation(libs.ponder.common)
     compileOnly(libs.koin)
 }

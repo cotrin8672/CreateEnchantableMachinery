@@ -103,6 +103,8 @@ dependencies {
     modImplementation(libs.fabric.api)
     modImplementation(libs.fabric.kotlin)
     modImplementation(libs.create.fabric)
+    modCompileOnly(libs.flywheel.fabric.api)
+    modRuntimeOnly(libs.flywheel.fabric)
 
     modLocalRuntime(libs.modmenu)
     modCompileOnly(libs.majrusz.library.fabric)

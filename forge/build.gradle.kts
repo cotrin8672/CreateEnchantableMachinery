@@ -73,6 +73,8 @@ repositories {
     maven("https://maven.squiddev.cc")
     maven("https://maven.tterrag.com/")
     maven("https://maven.parchmentmc.org")
+    maven("https://maven.createmod.net/")
+    maven("https://maven.ithundxr.dev/mirror")
     maven {
         url = uri("https://cursemaven.com")
         content { includeGroup("curse.maven") }
@@ -94,7 +96,8 @@ dependencies {
         artifact { classifier = "slim" }
     }
     modImplementation(libs.registrate)
-    modImplementation(libs.flywheel)
+    modCompileOnly(libs.flywheel.forge.api)
+    modRuntimeOnly(libs.flywheel.forge)
 
     modCompileOnly(libs.majrusz.library.forge)
 
