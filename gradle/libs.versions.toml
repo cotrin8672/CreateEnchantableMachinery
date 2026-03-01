@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.1.0"
 minecraft = "1.21.1"
-parchiment = "2024.11.17"
+parchment = "2024.11.17"
 neoforge = "21.1.206"
 modDevGradle = "2.0.140"
 kotlinforforge = "5.9.0"
