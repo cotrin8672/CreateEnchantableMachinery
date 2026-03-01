@@ -1,6 +1,7 @@
 modLoader="kotlinforforge"
 loaderVersion="${loaderVersionRange}"
 license='${modLicense}'
+logoFile = "logo.png"
 
 [[mods]]
 modId="${modId}"
