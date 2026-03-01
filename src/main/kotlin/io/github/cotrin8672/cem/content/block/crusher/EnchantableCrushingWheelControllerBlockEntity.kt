@@ -263,7 +263,7 @@ class EnchantableCrushingWheelControllerBlockEntity(
             val rolls = inventory.getStackInSlot(0).count
             inventory.clear()
             for (roll in 0 until rolls) {
-                val rolledResults = recipe.get().value.rollResults()
+                val rolledResults = recipe.get().value.rollResults(nonNullLevel.random)
                 for (stack in rolledResults) {
                     ItemHelper.addToList(stack, list)
                 }

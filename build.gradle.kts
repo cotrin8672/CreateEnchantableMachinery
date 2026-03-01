@@ -106,7 +106,7 @@ dependencies {
     implementation(libs.create) {
         isTransitive = false
     }
-    implementation(libs.ponder)
+    implementation("net.createmod.ponder:ponder-neoforge:1.0.81+mc1.21.1")
     compileOnly(libs.flywheel.api)
     runtimeOnly(libs.flywheel)
     implementation(libs.registrate)
