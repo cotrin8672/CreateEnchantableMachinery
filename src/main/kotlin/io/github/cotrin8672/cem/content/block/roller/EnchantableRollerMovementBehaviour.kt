@@ -39,9 +39,8 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
                         || blockState.`is`(BlockTags.NEEDS_DIAMOND_TOOL)
                 )
 
-        if (enchantedTools[context] == null) {
-            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
-        }
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
 
         BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             if ((noHarvest || context.world.random.nextBoolean()))
