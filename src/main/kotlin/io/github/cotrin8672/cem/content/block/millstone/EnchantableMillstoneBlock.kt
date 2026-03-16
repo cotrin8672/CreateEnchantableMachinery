@@ -28,6 +28,10 @@ class EnchantableMillstoneBlock(properties: Properties) : MillstoneBlock(propert
         return AllBlocks.MILLSTONE.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MILLSTONE.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out MillstoneBlockEntity?> {
         return BlockEntityRegistration.ENCHANTABLE_MILLSTONE.get()
     }

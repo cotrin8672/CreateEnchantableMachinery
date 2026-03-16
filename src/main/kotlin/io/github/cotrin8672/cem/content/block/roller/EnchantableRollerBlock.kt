@@ -42,6 +42,10 @@ class EnchantableRollerBlock(properties: Properties) : RollerBlock(properties), 
         return AllBlocks.MECHANICAL_ROLLER.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_ROLLER.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out RollerBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_ROLLER.get()
     }

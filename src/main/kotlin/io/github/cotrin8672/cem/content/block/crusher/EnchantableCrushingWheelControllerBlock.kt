@@ -51,6 +51,10 @@ class EnchantableCrushingWheelControllerBlock(
         return AllBlocks.CRUSHING_WHEEL_CONTROLLER.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.CRUSHING_WHEEL_CONTROLLER.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out CrushingWheelControllerBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.get()
     }

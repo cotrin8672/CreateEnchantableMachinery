@@ -28,6 +28,10 @@ class EnchantablePloughBlock(properties: Properties) : PloughBlock(properties), 
         return AllBlocks.MECHANICAL_PLOUGH.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_PLOUGH.get().descriptionId
+    }
+
     override fun getBlockEntityClass(): Class<EnchantablePloughBlockEntity> {
         return EnchantablePloughBlockEntity::class.java
     }
