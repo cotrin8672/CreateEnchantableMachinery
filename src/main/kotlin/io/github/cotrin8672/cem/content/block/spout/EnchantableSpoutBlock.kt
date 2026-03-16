@@ -31,6 +31,10 @@ class EnchantableSpoutBlock(properties: Properties) : SpoutBlock(properties), Sp
         return AllBlocks.SPOUT.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.SPOUT.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out SpoutBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_SPOUT.get()
     }

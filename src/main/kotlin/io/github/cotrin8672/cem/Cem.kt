@@ -9,6 +9,7 @@ import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
 import io.github.cotrin8672.cem.registry.PartialModelRegistration
 import io.github.cotrin8672.cem.util.EnchantableBlockMapping
+import io.github.cotrin8672.cem.util.EnchantedItemFactoryEvents
 import net.createmod.ponder.foundation.PonderIndex
 import net.minecraft.resources.ResourceLocation
 import net.minecraftforge.api.distmarker.Dist
@@ -34,6 +35,7 @@ class Cem {
     init {
         MOD_BUS.addListener(this::registerEnchantableBlockMapping)
         MOD_BUS.register(this::class.java)
+        EnchantedItemFactoryEvents.register()
         REGISTRATE.registerEventListeners(MOD_BUS)
         BlockRegistration.register()
         BlockEntityRegistration.register()
@@ -41,6 +43,7 @@ class Cem {
         ModConfigs.register(ModLoadingContext.get())
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT) {
             Runnable {
+                EnchantedItemFactoryEvents.registerClient()
                 PartialModelRegistration.register()
                 PonderIndex.addPlugin(CemPonderPlugin)
             }

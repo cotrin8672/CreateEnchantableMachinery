@@ -51,6 +51,10 @@ class EnchantablePloughBlock(properties: Properties) : PloughBlock(properties), 
         return AllBlocks.MECHANICAL_PLOUGH.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_PLOUGH.get().descriptionId
+    }
+
     override fun getCloneItemStack(
         state: BlockState,
         target: HitResult,

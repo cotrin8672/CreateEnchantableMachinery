@@ -31,6 +31,10 @@ class EnchantableEncasedFanBlock(properties: Properties) : EncasedFanBlock(prope
         return AllBlocks.ENCASED_FAN.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.ENCASED_FAN.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out EncasedFanBlockEntity?> {
         return BlockEntityRegistration.ENCHANTABLE_ENCASED_FAN.get()
     }

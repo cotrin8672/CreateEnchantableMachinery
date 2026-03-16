@@ -25,9 +25,8 @@ class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
 
     override fun destroyBlock(context: MovementContext?, breakingPos: BlockPos) {
         context ?: return
-        if (enchantedTools[context] == null) {
-            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context)
-        }
+        if (enchantedTools[context] == null)
+            enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
 
         destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             this.dropItem(context, it)

@@ -32,6 +32,10 @@ class EnchantableHarvesterBlock(properties: Properties) : HarvesterBlock(propert
         return AllBlocks.MECHANICAL_HARVESTER.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_HARVESTER.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out HarvesterBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_HARVESTER.get()
     }

@@ -158,6 +158,10 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         return AllBlocks.CRUSHING_WHEEL.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.CRUSHING_WHEEL.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out CrushingWheelBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_CRUSHING_WHEEL.get()
     }
