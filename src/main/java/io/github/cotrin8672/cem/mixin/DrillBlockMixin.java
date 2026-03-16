@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,7 +29,10 @@ public class DrillBlockMixin {
             BlockHitResult hitResult,
             CallbackInfoReturnable<ItemInteractionResult> cir
     ) {
-        if (player.getItemInHand(hand).isEnchanted()) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        if (heldItem.isEnchanted()
+                && heldItem.getItem() instanceof BlockItem blockItem
+                && blockItem.getBlock() == state.getBlock()) {
             ItemInteractionResult result = BlockRegistration.getENCHANTABLE_MECHANICAL_DRILL().get()
                     .useItemOn(stack, state, level, pos, player, hand, hitResult);
             cir.setReturnValue(result);
