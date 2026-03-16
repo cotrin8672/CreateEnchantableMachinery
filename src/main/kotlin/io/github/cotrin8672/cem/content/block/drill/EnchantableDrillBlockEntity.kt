@@ -39,25 +39,25 @@ class EnchantableDrillBlockEntity(
     }
 
     override fun onBlockBroken(stateToBreak: BlockState?) {
-        if (optimiseCobbleGen(stateToBreak)) return
+        if (!optimiseCobbleGen(stateToBreak)) {
+            val nonNullLevel = checkNotNull(level)
+            val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
+            BlockHelper.destroyBlockAs(
+                nonNullLevel,
+                breakingPos,
+                null,
+                EnchantedItemFactory.getPickaxeItemStack(getEnchantments()),
+                1f
+            ) { stack: ItemStack ->
+                if (stack.isEmpty) return@destroyBlockAs
+                if (!nonNullLevel.gameRules.getBoolean(GameRules.RULE_DOBLOCKDROPS)) return@destroyBlockAs
+                if (nonNullLevel.restoringBlockSnapshots) return@destroyBlockAs
 
-        val nonNullLevel = checkNotNull(level)
-        val vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), nonNullLevel.random, .125f)
-        BlockHelper.destroyBlockAs(
-            nonNullLevel,
-            breakingPos,
-            null,
-            EnchantedItemFactory.getPickaxeItemStack(getEnchantments()),
-            1f
-        ) { stack: ItemStack ->
-            if (stack.isEmpty) return@destroyBlockAs
-            if (!nonNullLevel.gameRules.getBoolean(GameRules.RULE_DOBLOCKDROPS)) return@destroyBlockAs
-            if (nonNullLevel.restoringBlockSnapshots) return@destroyBlockAs
-
-            val entity = ItemEntity(nonNullLevel, vec.x, vec.y, vec.z, stack)
-            entity.setDefaultPickUpDelay()
-            entity.deltaMovement = Vec3.ZERO
-            nonNullLevel.addFreshEntity(entity)
+                val entity = ItemEntity(nonNullLevel, vec.x, vec.y, vec.z, stack)
+                entity.setDefaultPickUpDelay()
+                entity.deltaMovement = Vec3.ZERO
+                nonNullLevel.addFreshEntity(entity)
+            }
         }
     }
 
