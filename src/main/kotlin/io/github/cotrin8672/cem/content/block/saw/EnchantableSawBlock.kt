@@ -47,6 +47,10 @@ class EnchantableSawBlock(properties: Properties) : SawBlock(properties), Specia
         return AllBlocks.MECHANICAL_SAW.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_SAW.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out SawBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_SAW.get()
     }

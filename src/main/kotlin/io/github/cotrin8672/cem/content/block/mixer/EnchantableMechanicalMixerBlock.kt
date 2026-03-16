@@ -31,6 +31,10 @@ class EnchantableMechanicalMixerBlock(properties: Properties) : MechanicalMixerB
         return AllBlocks.MECHANICAL_MIXER.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_MIXER.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out MechanicalMixerBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_MIXER.get()
     }
