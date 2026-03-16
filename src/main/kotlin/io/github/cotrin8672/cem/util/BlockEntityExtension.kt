@@ -58,7 +58,7 @@ fun KineticBlockEntity.kineticBlockEntityTick() {
 
     if (this.validationCountdown-- <= 0) {
         validationCountdown = AllConfigs.server().kinetics.kineticValidationFrequency.get()
-        validateKinetics()
+        (this as KineticBlockEntityMixin).invokeValidateKinetics()
     }
 
     if (flickerScore > 0) {
@@ -68,34 +68,6 @@ fun KineticBlockEntity.kineticBlockEntityTick() {
     if (networkDirty) {
         if (hasNetwork()) orCreateNetwork.updateNetwork()
         networkDirty = false
-    }
-}
-
-fun KineticBlockEntity.validateKinetics() {
-    if (hasSource()) {
-        if (!hasNetwork()) {
-            removeSource()
-            return
-        }
-
-        if (source == null) return
-        if (!nonNullLevel.isLoaded(source)) return
-
-        val blockEntity = nonNullLevel.getBlockEntity(source)
-        val sourceBE = blockEntity as? KineticBlockEntity
-
-        if (sourceBE == null || sourceBE.speed == 0f) {
-            removeSource()
-            detachKinetics()
-            return
-        }
-
-        return
-    }
-
-    if (speed != 0f) {
-        if (generatedSpeed == 0f)
-            speed = 0f
     }
 }
 
