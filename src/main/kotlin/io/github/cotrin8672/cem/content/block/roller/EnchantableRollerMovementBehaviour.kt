@@ -45,7 +45,7 @@ class EnchantableRollerMovementBehaviour : RollerMovementBehaviour() {
         BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
             if ((noHarvest || context.world.random.nextBoolean()))
                 return@destroyBlockAs
-            this.dropItem(context, it)
+            this.collectOrDropItem(context, it)
         }
 
         super.destroyBlock(context, breakingPos)

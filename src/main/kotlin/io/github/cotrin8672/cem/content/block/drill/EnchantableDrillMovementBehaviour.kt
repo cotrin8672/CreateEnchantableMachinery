@@ -30,7 +30,7 @@ class EnchantableDrillMovementBehaviour : DrillMovementBehaviour() {
             enchantedTools[context] = EnchantedItemFactory.getPickaxeItemStack(context.blockEntityData, context)
 
         BlockHelper.destroyBlockAs(context.world, breakingPos, null, enchantedTools[context], 1f) {
-            this.dropItem(context, it)
+            this.collectOrDropItem(context, it)
         }
     }
 
