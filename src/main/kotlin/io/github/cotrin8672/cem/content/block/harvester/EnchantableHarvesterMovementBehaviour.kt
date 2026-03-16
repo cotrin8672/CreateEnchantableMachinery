@@ -64,7 +64,7 @@ class EnchantableHarvesterMovementBehaviour : HarvesterMovementBehaviour() {
                 stack.shrink(1)
                 seedSubtracted.setTrue()
             }
-            if (!stack.isEmpty) dropItem(context, stack)
+            if (!stack.isEmpty) collectOrDropItem(context, stack)
         }
 
         val cutCrop = cutCrop(world, pos, stateVisited)

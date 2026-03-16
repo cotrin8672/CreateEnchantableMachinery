@@ -1,6 +1,7 @@
 package io.github.cotrin8672.cem.content.block.spout
 
 import com.simibubi.create.AllItems
+import com.simibubi.create.AllSoundEvents
 import com.simibubi.create.api.behaviour.spouting.BlockSpoutingBehaviour
 import com.simibubi.create.content.fluids.spout.FillingBySpout
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity
@@ -134,6 +135,14 @@ class EnchantableSpoutBlockEntity(
         if (processingTicks == -1) {
             processingTicks = enchantedFillingTime
             notifyUpdate()
+            val efficiency = holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
+            val efficiencyLevel = getEnchantmentLevel(efficiency)
+            AllSoundEvents.SPOUTING.playOnServer(
+                level,
+                worldPosition,
+                0.75f,
+                0.9f + 0.2f * Math.random().toFloat() + 0.1f * efficiencyLevel,
+            )
             return ProcessingResult.HOLD
         }
 

@@ -29,6 +29,10 @@ class EnchantableMechanicalPressBlock(properties: Properties) : MechanicalPressB
         return AllBlocks.MECHANICAL_PRESS.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_PRESS.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out MechanicalPressBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_PRESS.get()
     }

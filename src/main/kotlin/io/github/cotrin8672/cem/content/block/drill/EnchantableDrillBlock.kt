@@ -43,6 +43,10 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), Sp
         return AllBlocks.MECHANICAL_DRILL.get().name
     }
 
+    override fun getDescriptionId(): String {
+        return AllBlocks.MECHANICAL_DRILL.get().descriptionId
+    }
+
     override fun getBlockEntityType(): BlockEntityType<out DrillBlockEntity> {
         return BlockEntityRegistration.ENCHANTABLE_MECHANICAL_DRILL.get()
     }
