@@ -124,18 +124,31 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
             val ownBe = level.getBlockEntity(pos)
             val otherBe = level.getBlockEntity(otherWheelPos)
             val controllerBe = level.getBlockEntity(controllerPos)
-            val efficiency = ownBe!!.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
-            val ownEfficiencyLevel = if (ownBe is EnchantableBlockEntity) {
-                ownBe.getEnchantmentLevel(efficiency)
-            } else 0
-            val otherEfficiencyLevel = if (otherBe is EnchantableBlockEntity) {
-                otherBe.getEnchantmentLevel(efficiency)
-            } else 0
 
-            val itemEnchantments = ItemEnchantments.Mutable(ItemEnchantments.EMPTY).apply {
-                set(efficiency, ownEfficiencyLevel + otherEfficiencyLevel)
-            }.toImmutable()
+            val enchantmentLookup = ownBe!!.holderLookup(Registries.ENCHANTMENT)
+            val efficiency = enchantmentLookup.getOrThrow(Enchantments.EFFICIENCY)
+            val fortune = enchantmentLookup.getOrThrow(Enchantments.FORTUNE)
+
+            val ownEfficiencyLevel = if (ownBe is EnchantableBlockEntity) ownBe.getEnchantmentLevel(efficiency) else 0
+            val otherEfficiencyLevel = if (otherBe is EnchantableBlockEntity) otherBe.getEnchantmentLevel(efficiency) else 0
+            val ownFortuneLevel = if (ownBe is EnchantableBlockEntity) ownBe.getEnchantmentLevel(fortune) else 0
+            val otherFortuneLevel = if (otherBe is EnchantableBlockEntity) otherBe.getEnchantmentLevel(fortune) else 0
+
+            val effectiveFortune = (ownFortuneLevel + otherFortuneLevel) / 2.0
+            val effectiveFortuneRounded = (kotlin.math.round(effectiveFortune * 100) / 100.0).toFloat()
+            val displayFortuneLevel = effectiveFortuneRounded.toInt().coerceIn(0, 3)
+
+            val itemEnchantments =
+                ItemEnchantments.Mutable(ItemEnchantments.EMPTY).apply {
+                    set(efficiency, ownEfficiencyLevel + otherEfficiencyLevel)
+                    if (displayFortuneLevel > 0) {
+                        set(fortune, displayFortuneLevel)
+                    }
+                }.toImmutable()
             if (controllerBe is EnchantableBlockEntity) controllerBe.setEnchantment(itemEnchantments)
+            if (controllerBe is EnchantableCrushingWheelControllerBlockEntity) {
+                controllerBe.setEffectiveFortuneLevel(effectiveFortuneRounded)
+            }
         }
 
         BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.get().updateSpeed(

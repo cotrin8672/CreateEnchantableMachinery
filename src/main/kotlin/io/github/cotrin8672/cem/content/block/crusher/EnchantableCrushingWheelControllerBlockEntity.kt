@@ -40,6 +40,8 @@ import net.neoforged.api.distmarker.OnlyIn
 import net.neoforged.neoforge.capabilities.Capabilities
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
 import java.util.*
+import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.max
 
 class EnchantableCrushingWheelControllerBlockEntity(
@@ -63,6 +65,14 @@ class EnchantableCrushingWheelControllerBlockEntity(
         set(value) {
             (this as CrushingWheelControllerBlockEntityMixin).entityUUID = value
         }
+
+    /** Effective Fortune level (average of both wheels, rounded to 2 decimals). Used for output formula. */
+    var effectiveFortuneLevel: Float = 0f
+        private set
+
+    fun setEffectiveFortuneLevel(value: Float) {
+        effectiveFortuneLevel = value
+    }
 
     override fun addBehaviours(behaviours: MutableList<BlockEntityBehaviour>) {
         behaviours.add(DirectBeltInputBehaviour(this).onlyInsertWhen(this::supportsDirectBeltInput))
@@ -236,11 +246,13 @@ class EnchantableCrushingWheelControllerBlockEntity(
 
     override fun read(compound: CompoundTag, registries: HolderLookup.Provider, clientPacket: Boolean) {
         readEnchantments(compound, registries)
+        effectiveFortuneLevel = compound.getFloat("EffectiveFortuneLevel")
         super.read(compound, registries, clientPacket)
     }
 
     override fun write(compound: CompoundTag, registries: HolderLookup.Provider, clientPacket: Boolean) {
         writeEnchantments(compound, registries)
+        compound.putFloat("EffectiveFortuneLevel", effectiveFortuneLevel)
         super.write(compound, registries, clientPacket)
         if (hasEntity()) entityUUID?.let { compound.put("Entity", NbtUtils.createUUID(it)) }
     }
@@ -258,14 +270,34 @@ class EnchantableCrushingWheelControllerBlockEntity(
     private fun applyRecipe() {
         val recipe = findRecipe()
 
-        val list = mutableListOf<ItemStack>()
         if (recipe.isPresent) {
+            val list = mutableListOf<ItemStack>()
             val rolls = inventory.getStackInSlot(0).count
             inventory.clear()
+            val level = effectiveFortuneLevel.toDouble()
+
             for (roll in 0 until rolls) {
-                val rolledResults = recipe.get().value.rollResults(nonNullLevel.random)
-                for (stack in rolledResults) {
-                    ItemHelper.addToList(stack, list)
+                // Vanilla-style average: 1/(L+2) + (L+1)/2. We use 20% less; L is fractional (sum of wheels/2).
+                val times =
+                    if (level <= 0.0) 1
+                    else {
+                        val vanillaAvg = 1.0 / (level + 2) + (level + 1) / 2.0
+                        val targetMean = 0.8 * vanillaAvg
+                        val extraMean = (targetMean - 1.0).coerceAtLeast(0.0)
+                        if (extraMean <= 0.0) 1
+                        else {
+                            val floorEM = floor(extraMean).toInt()
+                            val ceilEM = ceil(extraMean).toInt()
+                            val frac = extraMean - floorEM
+                            val extra = if (nonNullLevel.random.nextDouble() < frac) ceilEM else floorEM
+                            1 + extra
+                        }
+                    }
+                for (i in 0 until times) {
+                    val rolledResults = recipe.get().value.rollResults(nonNullLevel.random)
+                    for (stack in rolledResults) {
+                        ItemHelper.addToList(stack, list)
+                    }
                 }
             }
             var slot = 0
