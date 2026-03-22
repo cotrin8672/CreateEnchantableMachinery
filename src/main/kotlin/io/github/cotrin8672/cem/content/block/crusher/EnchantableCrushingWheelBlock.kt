@@ -125,29 +125,48 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
             val otherBe = level.getBlockEntity(otherWheelPos)
             val controllerBe = level.getBlockEntity(controllerPos)
 
-            val enchantmentLookup = ownBe!!.holderLookup(Registries.ENCHANTMENT)
-            val efficiency = enchantmentLookup.getOrThrow(Enchantments.EFFICIENCY)
-            val fortune = enchantmentLookup.getOrThrow(Enchantments.FORTUNE)
+            val ownEnchantable = ownBe as? EnchantableBlockEntity
+            val otherEnchantable = otherBe as? EnchantableBlockEntity
+            val mayHaveAnyEnchantments = ownEnchantable?.getEnchantments()?.isEmpty == false
+                    || otherEnchantable?.getEnchantments()?.isEmpty == false
+            var effectiveFortuneRounded = 0f
+            var silkTouchWheelCount = 0
 
-            val ownEfficiencyLevel = if (ownBe is EnchantableBlockEntity) ownBe.getEnchantmentLevel(efficiency) else 0
-            val otherEfficiencyLevel = if (otherBe is EnchantableBlockEntity) otherBe.getEnchantmentLevel(efficiency) else 0
-            val ownFortuneLevel = if (ownBe is EnchantableBlockEntity) ownBe.getEnchantmentLevel(fortune) else 0
-            val otherFortuneLevel = if (otherBe is EnchantableBlockEntity) otherBe.getEnchantmentLevel(fortune) else 0
+            val itemEnchantments = ItemEnchantments.Mutable(ItemEnchantments.EMPTY).apply {
+                if (mayHaveAnyEnchantments) {
+                    val enchantmentLookup = ownBe!!.holderLookup(Registries.ENCHANTMENT)
+                    val efficiency = enchantmentLookup.getOrThrow(Enchantments.EFFICIENCY)
+                    val fortune = enchantmentLookup.getOrThrow(Enchantments.FORTUNE)
+                    val silkTouch = enchantmentLookup.getOrThrow(Enchantments.SILK_TOUCH)
 
-            val effectiveFortune = (ownFortuneLevel + otherFortuneLevel) / 2.0
-            val effectiveFortuneRounded = (kotlin.math.round(effectiveFortune * 100) / 100.0).toFloat()
-            val displayFortuneLevel = effectiveFortuneRounded.toInt().coerceIn(0, 3)
+                    val ownEfficiencyLevel = ownEnchantable?.getEnchantmentLevel(efficiency) ?: 0
+                    val otherEfficiencyLevel = otherEnchantable?.getEnchantmentLevel(efficiency) ?: 0
+                    val totalEfficiencyLevel = ownEfficiencyLevel + otherEfficiencyLevel
+                    if (totalEfficiencyLevel > 0) {
+                        set(efficiency, totalEfficiencyLevel)
+                    }
 
-            val itemEnchantments =
-                ItemEnchantments.Mutable(ItemEnchantments.EMPTY).apply {
-                    set(efficiency, ownEfficiencyLevel + otherEfficiencyLevel)
+                    val ownFortuneLevel = ownEnchantable?.getEnchantmentLevel(fortune) ?: 0
+                    val otherFortuneLevel = otherEnchantable?.getEnchantmentLevel(fortune) ?: 0
+                    val effectiveFortune = (ownFortuneLevel + otherFortuneLevel) / 2.0
+                    effectiveFortuneRounded = (kotlin.math.round(effectiveFortune * 100) / 100.0).toFloat()
+                    val displayFortuneLevel = effectiveFortuneRounded.toInt().coerceIn(0, 3)
                     if (displayFortuneLevel > 0) {
                         set(fortune, displayFortuneLevel)
                     }
-                }.toImmutable()
+
+                    val ownSilkTouchLevel = ownEnchantable?.getEnchantmentLevel(silkTouch) ?: 0
+                    val otherSilkTouchLevel = otherEnchantable?.getEnchantmentLevel(silkTouch) ?: 0
+                    silkTouchWheelCount = (if (ownSilkTouchLevel > 0) 1 else 0) + (if (otherSilkTouchLevel > 0) 1 else 0)
+                    if (silkTouchWheelCount > 0) {
+                        set(silkTouch, 1)
+                    }
+                }
+            }.toImmutable()
             if (controllerBe is EnchantableBlockEntity) controllerBe.setEnchantment(itemEnchantments)
             if (controllerBe is EnchantableCrushingWheelControllerBlockEntity) {
                 controllerBe.setEffectiveFortuneLevel(effectiveFortuneRounded)
+                controllerBe.setSilkTouchWheelCount(silkTouchWheelCount)
             }
         }
 

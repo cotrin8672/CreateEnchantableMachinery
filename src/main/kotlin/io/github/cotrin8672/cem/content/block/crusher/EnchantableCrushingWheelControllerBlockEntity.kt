@@ -74,6 +74,13 @@ class EnchantableCrushingWheelControllerBlockEntity(
         effectiveFortuneLevel = value
     }
 
+    var silkTouchWheelCount: Int = 0
+        private set
+
+    fun setSilkTouchWheelCount(value: Int) {
+        silkTouchWheelCount = value.coerceIn(0, 2)
+    }
+
     override fun addBehaviours(behaviours: MutableList<BlockEntityBehaviour>) {
         behaviours.add(DirectBeltInputBehaviour(this).onlyInsertWhen(this::supportsDirectBeltInput))
     }
@@ -247,12 +254,14 @@ class EnchantableCrushingWheelControllerBlockEntity(
     override fun read(compound: CompoundTag, registries: HolderLookup.Provider, clientPacket: Boolean) {
         readEnchantments(compound, registries)
         effectiveFortuneLevel = compound.getFloat("EffectiveFortuneLevel")
+        silkTouchWheelCount = compound.getInt("SilkTouchWheelCount").coerceIn(0, 2)
         super.read(compound, registries, clientPacket)
     }
 
     override fun write(compound: CompoundTag, registries: HolderLookup.Provider, clientPacket: Boolean) {
         writeEnchantments(compound, registries)
         compound.putFloat("EffectiveFortuneLevel", effectiveFortuneLevel)
+        compound.putInt("SilkTouchWheelCount", silkTouchWheelCount)
         super.write(compound, registries, clientPacket)
         if (hasEntity()) entityUUID?.let { compound.put("Entity", NbtUtils.createUUID(it)) }
     }
@@ -272,9 +281,15 @@ class EnchantableCrushingWheelControllerBlockEntity(
 
         if (recipe.isPresent) {
             val list = mutableListOf<ItemStack>()
+            val inputTemplate = inventory.getStackInSlot(0).copyWithCount(1)
             val rolls = inventory.getStackInSlot(0).count
             inventory.clear()
             val level = effectiveFortuneLevel.toDouble()
+            val silkTouchReturnChance = when (silkTouchWheelCount) {
+                1 -> 0.05
+                2 -> 0.10
+                else -> 0.0
+            }
 
             for (roll in 0 until rolls) {
                 // Vanilla-style average: 1/(L+2) + (L+1)/2. We use 20% less; L is fractional (sum of wheels/2).
@@ -298,6 +313,9 @@ class EnchantableCrushingWheelControllerBlockEntity(
                     for (stack in rolledResults) {
                         ItemHelper.addToList(stack, list)
                     }
+                }
+                if (silkTouchReturnChance > 0.0 && nonNullLevel.random.nextDouble() < silkTouchReturnChance) {
+                    ItemHelper.addToList(inputTemplate.copy(), list)
                 }
             }
             var slot = 0
