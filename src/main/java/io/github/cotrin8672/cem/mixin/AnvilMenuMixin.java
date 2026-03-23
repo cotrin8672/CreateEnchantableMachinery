@@ -28,6 +28,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnvilMenuMixin {
     private static final TagKey<Item> CEM_ENCHANTABLE_BLOCKS_TAG =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("createenchantablemachinery", "enchantable_blocks"));
+    private static final TagKey<Item> C_CREATE_CRUSHING_WHEELS_TAG =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "create/crushing_wheels"));
 
     @Unique
     private int cem$compatContextDepth = 0;
@@ -58,14 +60,14 @@ public class AnvilMenuMixin {
 
         ItemStack left = self.getSlot(0).getItem();
         ItemStack right = self.getSlot(1).getItem();
+        boolean isCrushingWheel = isCrushingWheelItem(left);
 
         if (left.isEmpty()) {
             return;
         }
-        if (!isMachineBlockItem(left)) {
+        if (!isMachineBlockItem(left) && !isCrushingWheel) {
             return;
         }
-        boolean isCrushingWheel = isCrushingWheelItem(left);
         if (right.isEmpty()) {
             return;
         }
@@ -142,6 +144,7 @@ public class AnvilMenuMixin {
     }
 
     private static boolean isCrushingWheelItem(ItemStack stack) {
+        if (stack.is(C_CREATE_CRUSHING_WHEELS_TAG)) return true;
         ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (itemId == null) return false;
         if (itemId.equals(ResourceLocation.fromNamespaceAndPath("create", "crushing_wheel"))) return true;
