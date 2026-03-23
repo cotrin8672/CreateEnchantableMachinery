@@ -78,6 +78,8 @@ public class AnvilMenuMixin {
             if (!resultSlot.getItem().isEmpty()) {
                 resultSlot.set(ItemStack.EMPTY);
             }
+            // Prevent stale vanilla cost display ("Too Expensive!") when stack enchanting is blocked.
+            self.setMaximumCost(0);
             return;
         }
 

@@ -13,6 +13,7 @@
     "CrushingWheelControllerBlockEntityMixin",
     "DrillBlockMixin",
     "EnchantmentMixin",
+    "IItemExtensionMixin",
     "ItemMixin",
     "KineticBlockEntityMixin",
     "PonderTagBuilderMixin",
