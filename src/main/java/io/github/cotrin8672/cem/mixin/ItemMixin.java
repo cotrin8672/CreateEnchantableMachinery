@@ -1,6 +1,5 @@
 package io.github.cotrin8672.cem.mixin;
 
-import io.github.cotrin8672.cem.util.EnchantableBlockMapping;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -20,21 +19,19 @@ public class ItemMixin {
     @Inject(method = "getEnchantmentValue", at = @At("HEAD"), cancellable = true)
     private void cem$getEnchantmentValue(CallbackInfoReturnable<Integer> cir) {
         Item item = (Item) (Object) this;
-        if (item instanceof BlockItem blockItem && isCemEnchantableBlockItem(new ItemStack(item), blockItem)) {
+        if (item instanceof BlockItem && isCemEnchantableBlockItem(new ItemStack(item))) {
             cir.setReturnValue(14);
         }
     }
 
     @Inject(method = "isEnchantable", at = @At("HEAD"), cancellable = true)
     private void cem$isEnchantable(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.getItem() instanceof BlockItem blockItem && isCemEnchantableBlockItem(stack, blockItem)) {
+        if (stack.getItem() instanceof BlockItem && isCemEnchantableBlockItem(stack)) {
             cir.setReturnValue(true);
         }
     }
 
-    private static boolean isCemEnchantableBlockItem(ItemStack stack, BlockItem blockItem) {
-        if (stack.is(CEM_ENCHANTABLE_BLOCKS_TAG)) return true;
-        return EnchantableBlockMapping.getOriginalBlocks().contains(blockItem.getBlock())
-                || EnchantableBlockMapping.getEnchantableBlocks().contains(blockItem.getBlock());
+    private static boolean isCemEnchantableBlockItem(ItemStack stack) {
+        return stack.is(CEM_ENCHANTABLE_BLOCKS_TAG);
     }
 }

@@ -10,10 +10,6 @@ object EnchantableBlockMapping {
         mappings[map.first.value()] = map.second.value()
     }
 
-    fun register(originalBlock: Block, enchantableBlock: BlockEntry<*>) {
-        mappings[originalBlock] = enchantableBlock.value()
-    }
-
     @JvmStatic
     fun getAlternativeBlock(originalBlock: Block): Block? {
         return mappings[originalBlock]

@@ -12,7 +12,6 @@ import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
 import io.github.cotrin8672.cem.util.EnchantableBlockMapping
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.core.registries.BuiltInRegistries
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.ModContainer
 import net.neoforged.fml.ModLoadingContext
@@ -66,32 +65,5 @@ class Cem(container: ModContainer) {
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_PRESS to BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS)
         EnchantableBlockMapping.register(AllBlocks.MECHANICAL_ROLLER to BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER)
         EnchantableBlockMapping.register(AllBlocks.SPOUT to BlockRegistration.ENCHANTABLE_SPOUT)
-        registerCreateCasingCompatMappings()
-    }
-
-    private fun registerCreateCasingCompatMappings() {
-        for (block in BuiltInRegistries.BLOCK) {
-            val id = BuiltInRegistries.BLOCK.getKey(block)
-            if (!id.namespace.startsWith("createcasing")) continue
-
-            val mappedEntry = when {
-                id.path.endsWith("_mechanical_drill") -> BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL
-                id.path.endsWith("_mechanical_saw") -> BlockRegistration.ENCHANTABLE_MECHANICAL_SAW
-                id.path.endsWith("_mechanical_harvester") -> BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER
-                id.path.endsWith("_encased_fan") -> BlockRegistration.ENCHANTABLE_ENCASED_FAN
-                id.path.endsWith("_millstone") -> BlockRegistration.ENCHANTABLE_MILLSTONE
-                id.path.endsWith("_crushing_wheel") -> BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL
-                id.path.endsWith("_mechanical_plough") -> BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH
-                id.path.endsWith("_mechanical_mixer") -> BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER
-                id.path.endsWith("_mechanical_press") -> BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS
-                id.path.endsWith("_mechanical_roller") -> BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER
-                id.path.endsWith("_spout") -> BlockRegistration.ENCHANTABLE_SPOUT
-                else -> null
-            }
-
-            if (mappedEntry != null) {
-                EnchantableBlockMapping.register(block, mappedEntry)
-            }
-        }
     }
 }
