@@ -5,10 +5,9 @@ import io.github.cotrin8672.cem.util.EnchantableBlockMapping;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -28,8 +27,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AnvilMenuMixin {
     private static final TagKey<Item> CEM_ENCHANTABLE_BLOCKS_TAG =
             TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("createenchantablemachinery", "enchantable_blocks"));
-    private static final TagKey<Item> C_CREATE_CRUSHING_WHEELS_TAG =
-            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "create/crushing_wheels"));
+    private static final TagKey<Item> CEM_ALLOW_FORTUNE_SILK_PAIR_TAG =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("createenchantablemachinery", "allow_fortune_silk_pair"));
 
     @Unique
     private int cem$compatContextDepth = 0;
@@ -146,11 +145,7 @@ public class AnvilMenuMixin {
     }
 
     private static boolean isCrushingWheelItem(ItemStack stack) {
-        if (stack.is(C_CREATE_CRUSHING_WHEELS_TAG)) return true;
-        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        if (itemId == null) return false;
-        if (itemId.equals(ResourceLocation.fromNamespaceAndPath("create", "crushing_wheel"))) return true;
-        return itemId.equals(ResourceLocation.fromNamespaceAndPath("createenchantablemachinery", "enchantable_crushing_wheel"));
+        return stack.is(CEM_ALLOW_FORTUNE_SILK_PAIR_TAG);
     }
 
     private static int combineAnvilLevel(int existingLevel, int incomingLevel, int maxLevel) {
