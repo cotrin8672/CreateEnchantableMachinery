@@ -1,6 +1,9 @@
 package io.github.cotrin8672.cem.mixin;
 
 import io.github.cotrin8672.cem.util.EnchantableBlockMapping;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -14,6 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockItem.class)
 public abstract class BlockItemMixin extends Item {
+    private static final TagKey<Item> CEM_ENCHANTABLE_BLOCKS_TAG =
+            TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("createenchantablemachinery", "enchantable_blocks"));
+
     public BlockItemMixin(Properties properties) {
         super(properties);
     }
@@ -30,11 +36,14 @@ public abstract class BlockItemMixin extends Item {
             cancellable = true
     )
     public void cem$getPlacementState(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
+        if (!context.getItemInHand().isEnchanted()) return;
+        if (!context.getItemInHand().is(CEM_ENCHANTABLE_BLOCKS_TAG)) return;
+
         Block alternativeBlock = EnchantableBlockMapping.getAlternativeBlock(getBlock());
-        if (alternativeBlock != null && context.getItemInHand().isEnchanted()) {
-            BlockState blockState = alternativeBlock.getStateForPlacement(context);
-            BlockState state = blockState != null && this.canPlace(context, blockState) ? blockState : null;
-            cir.setReturnValue(state);
-        }
+        if (alternativeBlock == null) return;
+
+        BlockState blockState = alternativeBlock.getStateForPlacement(context);
+        BlockState state = blockState != null && this.canPlace(context, blockState) ? blockState : null;
+        cir.setReturnValue(state);
     }
 }
