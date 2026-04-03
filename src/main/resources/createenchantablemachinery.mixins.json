@@ -6,11 +6,13 @@
   "client": [
   ],
   "mixins": [
+    "AnvilMenuMixin",
     "BlockEntityBehaviourMixin",
     "BlockItemMixin",
     "ContraptionVisualMixin",
     "CrushingWheelControllerBlockEntityMixin",
     "DrillBlockMixin",
+    "EnchantmentMixin",
     "ItemMixin",
     "KineticBlockEntityMixin",
     "PonderTagBuilderMixin",

@@ -11,6 +11,7 @@ import com.simibubi.create.foundation.block.IBE
 import io.github.cotrin8672.cem.content.block.EnchantableBlockEntity
 import io.github.cotrin8672.cem.registry.BlockEntityRegistration
 import io.github.cotrin8672.cem.registry.BlockRegistration
+import io.github.cotrin8672.cem.util.handleSneakWrenchWithSourceItem
 import io.github.cotrin8672.cem.util.holderLookup
 import net.createmod.catnip.data.Iterate
 import net.minecraft.core.BlockPos
@@ -19,10 +20,12 @@ import net.minecraft.core.component.DataComponentMap
 import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.MutableComponent
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.item.enchantment.ItemEnchantments
 import net.minecraft.world.level.Level
@@ -124,18 +127,50 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
             val ownBe = level.getBlockEntity(pos)
             val otherBe = level.getBlockEntity(otherWheelPos)
             val controllerBe = level.getBlockEntity(controllerPos)
-            val efficiency = ownBe!!.holderLookup(Registries.ENCHANTMENT).getOrThrow(Enchantments.EFFICIENCY)
-            val ownEfficiencyLevel = if (ownBe is EnchantableBlockEntity) {
-                ownBe.getEnchantmentLevel(efficiency)
-            } else 0
-            val otherEfficiencyLevel = if (otherBe is EnchantableBlockEntity) {
-                otherBe.getEnchantmentLevel(efficiency)
-            } else 0
+
+            val ownEnchantable = ownBe as? EnchantableBlockEntity
+            val otherEnchantable = otherBe as? EnchantableBlockEntity
+            val mayHaveAnyEnchantments = ownEnchantable?.getEnchantments()?.isEmpty == false
+                    || otherEnchantable?.getEnchantments()?.isEmpty == false
+            var effectiveFortuneRounded = 0f
+            var silkTouchWheelCount = 0
 
             val itemEnchantments = ItemEnchantments.Mutable(ItemEnchantments.EMPTY).apply {
-                set(efficiency, ownEfficiencyLevel + otherEfficiencyLevel)
+                if (mayHaveAnyEnchantments) {
+                    val enchantmentLookup = ownBe!!.holderLookup(Registries.ENCHANTMENT)
+                    val efficiency = enchantmentLookup.getOrThrow(Enchantments.EFFICIENCY)
+                    val fortune = enchantmentLookup.getOrThrow(Enchantments.FORTUNE)
+                    val silkTouch = enchantmentLookup.getOrThrow(Enchantments.SILK_TOUCH)
+
+                    val ownEfficiencyLevel = ownEnchantable?.getEnchantmentLevel(efficiency) ?: 0
+                    val otherEfficiencyLevel = otherEnchantable?.getEnchantmentLevel(efficiency) ?: 0
+                    val totalEfficiencyLevel = ownEfficiencyLevel + otherEfficiencyLevel
+                    if (totalEfficiencyLevel > 0) {
+                        set(efficiency, totalEfficiencyLevel)
+                    }
+
+                    val ownFortuneLevel = ownEnchantable?.getEnchantmentLevel(fortune) ?: 0
+                    val otherFortuneLevel = otherEnchantable?.getEnchantmentLevel(fortune) ?: 0
+                    val effectiveFortune = (ownFortuneLevel + otherFortuneLevel) / 2.0
+                    effectiveFortuneRounded = (kotlin.math.round(effectiveFortune * 100) / 100.0).toFloat()
+                    val displayFortuneLevel = effectiveFortuneRounded.toInt().coerceIn(0, 3)
+                    if (displayFortuneLevel > 0) {
+                        set(fortune, displayFortuneLevel)
+                    }
+
+                    val ownSilkTouchLevel = ownEnchantable?.getEnchantmentLevel(silkTouch) ?: 0
+                    val otherSilkTouchLevel = otherEnchantable?.getEnchantmentLevel(silkTouch) ?: 0
+                    silkTouchWheelCount = (if (ownSilkTouchLevel > 0) 1 else 0) + (if (otherSilkTouchLevel > 0) 1 else 0)
+                    if (silkTouchWheelCount > 0) {
+                        set(silkTouch, 1)
+                    }
+                }
             }.toImmutable()
             if (controllerBe is EnchantableBlockEntity) controllerBe.setEnchantment(itemEnchantments)
+            if (controllerBe is EnchantableCrushingWheelControllerBlockEntity) {
+                controllerBe.setEffectiveFortuneLevel(effectiveFortuneRounded)
+                controllerBe.setSilkTouchWheelCount(silkTouchWheelCount)
+            }
         }
 
         BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL_CONTROLLER.get().updateSpeed(
@@ -169,7 +204,8 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         player: Player,
     ): ItemStack {
         val blockEntity = level.getBlockEntity(pos)
-        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
+        val sourceItem = (blockEntity as? EnchantableBlockEntity)?.getSourceItem() ?: AllBlocks.CRUSHING_WHEEL.asItem()
+        val stack = ItemStack(sourceItem)
         if (blockEntity is EnchantableBlockEntity) {
             val enchantments = blockEntity.getEnchantments().entrySet()
             enchantments.forEach {
@@ -191,6 +227,7 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
         if (blockEntity is EnchantableBlockEntity) {
             val enchantments = stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY
             blockEntity.setEnchantment(enchantments)
+            blockEntity.setSourceItem(stack.item)
             val components = DataComponentMap.builder()
                 .addAll(blockEntity.components())
                 .set(DataComponents.ENCHANTMENTS, stack.get(DataComponents.ENCHANTMENTS) ?: ItemEnchantments.EMPTY)
@@ -200,12 +237,17 @@ class EnchantableCrushingWheelBlock(properties: Properties) : CrushingWheelBlock
     }
 
     override fun getRequiredItems(state: BlockState, blockEntity: BlockEntity?): ItemRequirement {
-        val stack = ItemStack(AllBlocks.CRUSHING_WHEEL)
+        val sourceItem = (blockEntity as? EnchantableBlockEntity)?.getSourceItem() ?: AllBlocks.CRUSHING_WHEEL.asItem()
+        val stack = ItemStack(sourceItem)
         if (blockEntity is EnchantableBlockEntity) {
             val enchantments = blockEntity.getEnchantments()
             stack.set(DataComponents.ENCHANTMENTS, enchantments)
         }
         val strictRequirement = ItemRequirement.StrictNbtStackRequirement(stack, ItemRequirement.ItemUseType.CONSUME)
         return ItemRequirement(strictRequirement)
+    }
+
+    override fun onSneakWrenched(state: BlockState, context: UseOnContext): InteractionResult {
+        return handleSneakWrenchWithSourceItem(state, context)
     }
 }
