@@ -89,8 +89,13 @@ class EnchantableDrillBlock(properties: Properties) : DrillBlock(properties), Sp
         val placementHelper = PlacementHelpers.get(placementHelperId)
         if (!player.isShiftKeyDown && player.mayBuild()) {
             if (placementHelper.matchesItem(heldItem)) {
-                placementHelper.getOffset(player, level, state, pos, hitResult)
-                    .placeAlternativeBlockInWorld(level, heldItem.item as BlockItem, player, hand, hitResult)
+                placementHelper.getOffset(
+                    player,
+                    level,
+                    state,
+                    pos,
+                    hitResult
+                ).placeAlternativeBlockInWorld(level, heldItem.item as BlockItem, player, hand, hitResult)
                 return ItemInteractionResult.SUCCESS
             }
         }

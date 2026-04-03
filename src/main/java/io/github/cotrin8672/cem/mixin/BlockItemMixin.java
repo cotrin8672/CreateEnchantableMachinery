@@ -24,11 +24,7 @@ public abstract class BlockItemMixin extends Item {
     @Shadow
     protected abstract boolean canPlace(BlockPlaceContext context, BlockState state);
 
-    @Inject(
-            method = "getPlacementState",
-            at = @At("HEAD"),
-            cancellable = true
-    )
+    @Inject(method = "getPlacementState", at = @At("HEAD"), cancellable = true)
     public void cem$getPlacementState(BlockPlaceContext context, CallbackInfoReturnable<BlockState> cir) {
         Block alternativeBlock = EnchantableBlockMapping.getAlternativeBlock(getBlock());
         if (alternativeBlock != null && context.getItemInHand().isEnchanted()) {
