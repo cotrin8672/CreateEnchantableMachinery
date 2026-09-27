@@ -5,8 +5,8 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(PonderTagBuilder.class)
+@Mixin(value = PonderTagBuilder.class, remap = false)
 public interface PonderTagBuilderMixin {
-    @Accessor("itemIcon")
+    @Accessor(value = "itemIcon", remap = false)
     void setItemIcon(ItemStack value);
 }

@@ -16,9 +16,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(SawBlock.class)
+@Mixin(value = SawBlock.class, remap = false)
 public class SawBlockMixin {
-    @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true, remap = false)
     private void createenchantablemachinery$use(
             ItemStack stack,
             BlockState state,

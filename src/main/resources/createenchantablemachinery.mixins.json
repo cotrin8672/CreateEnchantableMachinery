@@ -1,28 +1,38 @@
 {
-  "required": true,
-  "package": "io.github.cotrin8672.cem.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "minVersion": "0.8",
-  "client": [
-  ],
-  "mixins": [
-    "BlockEntityBehaviourMixin",
-    "BlockItemMixin",
-    "ContraptionVisualMixin",
-    "CrushingWheelControllerBlockEntityMixin",
-    "DrillBlockMixin",
-    "ItemMixin",
-    "KineticBlockEntityMixin",
-    "PonderTagBuilderMixin",
-    "RollerBlockMixin",
-    "SawBlockEntityMixin",
-    "SawBlockMixin",
-    "ServerGamePacketListenerImplMixin",
-    "SmartBlockEntityMixin",
-    "SpoutBlockEntityMixin",
-    "WorldSectionElementImplMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "package": "io.github.cotrin8672.cem.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "minVersion": "0.8",
+    "client": [
+        "ContraptionVisualMixin",
+        "DrillActorVisualMixin",
+        "DrillRendererMixin",
+        "OrientedRotatingVisualMixin"
+    ],
+    "mixins": [
+        "BlockBreakingKineticBlockEntityMixin",
+        "BlockBreakingMovementBehaviourMixin",
+        "BlockEntityBehaviourMixin",
+        "BlockItemMixin",
+        "CrushingWheelControllerBlockEntityMixin",
+        "DrillBlockEntityMixin",
+        "DrillBlockMixin",
+        "EnchantmentsMixin",
+        "ItemMixin",
+        "KineticBlockEntityAccessor",
+        "KineticBlockEntityMixin",
+        "PlacementOffsetMixin",
+        "PonderTagBuilderMixin",
+        "RollerBlockMixin",
+        "SawBlockEntityMixin",
+        "SawBlockMixin",
+        "ServerGamePacketListenerImplMixin",
+        "SmartBlockEntityAccessor",
+        "SmartBlockEntityMixin",
+        "SpoutBlockEntityMixin",
+        "WorldSectionElementImplMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

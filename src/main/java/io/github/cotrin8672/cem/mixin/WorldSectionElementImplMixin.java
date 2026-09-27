@@ -12,15 +12,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(WorldSectionElementImpl.class)
+@Mixin(value = WorldSectionElementImpl.class, remap = false)
 public abstract class WorldSectionElementImplMixin {
-    @Shadow
+    @Shadow(remap = false)
     protected abstract void renderBlockEntities(PonderLevel world, PoseStack ms, MultiBufferSource buffer, float pt);
 
-    @Shadow
+    @Shadow(remap = false)
     public abstract void transformMS(PoseStack ms, float pt);
 
-    @Inject(method = "renderLast", at = @At("HEAD"))
+    @Inject(method = "renderLast", at = @At("HEAD"), remap = false)
     private void cem$renderLayer(
             PonderLevel world,
             MultiBufferSource buffer,

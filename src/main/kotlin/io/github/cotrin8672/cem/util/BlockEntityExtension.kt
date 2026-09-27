@@ -5,8 +5,8 @@ import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.infrastructure.config.AllConfigs
-import io.github.cotrin8672.cem.mixin.KineticBlockEntityMixin
-import io.github.cotrin8672.cem.mixin.SmartBlockEntityMixin
+import io.github.cotrin8672.cem.mixin.KineticBlockEntityAccessor
+import io.github.cotrin8672.cem.mixin.SmartBlockEntityAccessor
 import net.createmod.catnip.platform.CatnipServices
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.Registry
@@ -22,7 +22,7 @@ fun <T> BlockEntity.holderLookup(registryKey: ResourceKey<out Registry<out T>>):
     checkNotNull(level).holderLookup(registryKey)
 
 fun SmartBlockEntity.smartBlockEntityTick() {
-    if (!(this as SmartBlockEntityMixin).initialized && hasLevel()) {
+    if (!(this as SmartBlockEntityAccessor).initialized && hasLevel()) {
         initialize()
         initialized = true
     }
@@ -37,7 +37,7 @@ fun SmartBlockEntity.smartBlockEntityTick() {
 fun KineticBlockEntity.kineticBlockEntityTick() {
     if (!nonNullLevel.isClientSide && needsSpeedUpdate()) attachKinetics()
     smartBlockEntityTick()
-    (this as KineticBlockEntityMixin).effects.tick()
+    (this as KineticBlockEntityAccessor).effects.tick()
 
     preventSpeedUpdate = 0
     if (nonNullLevel.isClientSide) {
@@ -47,7 +47,7 @@ fun KineticBlockEntity.kineticBlockEntityTick() {
 
     if (this.validationCountdown-- <= 0) {
         validationCountdown = AllConfigs.server().kinetics.kineticValidationFrequency.get()
-        (this as KineticBlockEntityMixin).invokeValidateKinetics()
+        (this as KineticBlockEntityAccessor).invokeValidateKinetics()
     }
 
     if (flickerScore > 0) {

@@ -5,26 +5,26 @@ import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTank
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(SpoutBlockEntity.class)
+@Mixin(value = SpoutBlockEntity.class, remap = false)
 public interface SpoutBlockEntityMixin {
-    @Accessor("tank")
+    @Accessor(value = "tank", remap = false)
     SmartFluidTankBehaviour getTank();
 
-    @Accessor("createdSweetRoll")
+    @Accessor(value = "createdSweetRoll", remap = false)
     boolean getCreatedSweetRoll();
 
-    @Accessor("createdSweetRoll")
+    @Accessor(value = "createdSweetRoll", remap = false)
     void setCreatedSweetRoll(boolean value);
 
-    @Accessor("createdHoneyApple")
+    @Accessor(value = "createdHoneyApple", remap = false)
     boolean getCreatedHoneyApple();
 
-    @Accessor("createdHoneyApple")
+    @Accessor(value = "createdHoneyApple", remap = false)
     void setCreatedHoneyApple(boolean value);
 
-    @Accessor("createdChocolateBerries")
+    @Accessor(value = "createdChocolateBerries", remap = false)
     boolean getCreatedChocolateBerries();
 
-    @Accessor("createdChocolateBerries")
+    @Accessor(value = "createdChocolateBerries", remap = false)
     void setCreatedChocolateBerries(boolean value);
 }

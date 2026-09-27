@@ -1,28 +1,28 @@
 package io.github.cotrin8672.cem.mixin;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.content.kinetics.base.KineticEffectHandler;
+import io.github.cotrin8672.cem.mixinimpl.KineticBlockEntityMixinImpl;
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.List;
 
 @Mixin(value = KineticBlockEntity.class, remap = false)
-public interface KineticBlockEntityMixin {
-    @Accessor("validationCountdown")
-    int getValidationCountdown();
-
-    @Accessor("validationCountdown")
-    void setValidationCountdown(int value);
-
-    @Accessor("flickerTally")
-    int getFlickerTally();
-
-    @Accessor("flickerTally")
-    void setFlickerTally(int value);
-
-    @Accessor("effects")
-    KineticEffectHandler getEffects();
-
-    @Invoker("validateKinetics")
-    void invokeValidateKinetics();
+public abstract class KineticBlockEntityMixin {
+    @Inject(method = "addToGoggleTooltip", at = @At("TAIL"), remap = false)
+    private void cem$addToGoogleTooltip(
+            List<Component> tooltip,
+            boolean isPlayerSneaking,
+            CallbackInfoReturnable<Boolean> cir
+    ) {
+        KineticBlockEntityMixinImpl.addToGoogleTooltip(
+                (KineticBlockEntity) (Object) this,
+                tooltip,
+                isPlayerSneaking,
+                cir
+        );
+    }
 }

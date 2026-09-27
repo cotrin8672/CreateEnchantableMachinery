@@ -5,7 +5,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.filtering.FilteringB
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(SawBlockEntity.class)
+@Mixin(value = SawBlockEntity.class, remap = false)
 public interface SawBlockEntityMixin {
     @Accessor(value = "filtering", remap = false)
     FilteringBehaviour getFiltering();

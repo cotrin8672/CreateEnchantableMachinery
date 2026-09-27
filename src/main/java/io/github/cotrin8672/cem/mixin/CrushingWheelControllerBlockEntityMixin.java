@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.UUID;
 
-@Mixin(CrushingWheelControllerBlockEntity.class)
+@Mixin(value = CrushingWheelControllerBlockEntity.class, remap = false)
 public interface CrushingWheelControllerBlockEntityMixin {
     @Accessor(value = "entityUUID", remap = false)
     UUID getEntityUUID();

@@ -13,18 +13,26 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ContraptionVisual.class)
+@Mixin(value = ContraptionVisual.class, remap = false)
 public class ContraptionVisualMixin {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     protected VisualEmbedding embedding;
 
     @Unique
     protected TransformedInstance cem$enchantedStructure;
 
-    @Inject(method = "setupStructure", at = @At("TAIL"))
+    @Inject(method = "setupStructure", at = @At("TAIL"), remap = false)
     private void cem$setupStructure(ClientContraption clientContraption, CallbackInfo ci) {
         var enchantedInstancer = ContraptionVisualMixinImpl.setupStructure(clientContraption, clientContraption.getRenderLevel(), embedding);
+
+        if (enchantedInstancer == null) {
+            if (cem$enchantedStructure != null) {
+                cem$enchantedStructure.delete();
+                cem$enchantedStructure = null;
+            }
+            return;
+        }
 
         if (cem$enchantedStructure == null) {
             cem$enchantedStructure = enchantedInstancer.createInstance();
@@ -35,10 +43,11 @@ public class ContraptionVisualMixin {
         cem$enchantedStructure.setChanged();
     }
 
-    @Inject(method = "_delete", at = @At("TAIL"))
+    @Inject(method = "_delete", at = @At("TAIL"), remap = false)
     private void cem$_delete(CallbackInfo ci) {
         if (cem$enchantedStructure != null) {
             cem$enchantedStructure.delete();
+            cem$enchantedStructure = null;
         }
     }
 }
