@@ -1,46 +1,52 @@
 package io.github.cotrin8672.cem.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.simibubi.create.content.kinetics.base.BlockBreakingKineticBlockEntity;
-import com.simibubi.create.foundation.utility.BlockHelper;
-import io.github.cotrin8672.cem.util.EnchantedItemFactory;
+import com.zurrtum.create.content.kinetics.base.BlockBreakingKineticBlockEntity;
+import com.zurrtum.create.foundation.utility.BlockHelper;
+import io.github.cotrin8672.cem.util.CemEnchantments;
+import io.github.cotrin8672.cem.util.CemSpeeds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 import java.util.function.Consumer;
 
-@Mixin(value = BlockBreakingKineticBlockEntity.class, remap = false)
-public class BlockBreakingKineticBlockEntityMixin {
+/**
+ * Stationary drills and saws: Efficiency speeds up breaking, and blocks are broken with a tool carrying the
+ * machine's enchantments.
+ */
+@Mixin(BlockBreakingKineticBlockEntity.class)
+public abstract class BlockBreakingKineticBlockEntityMixin {
+    @ModifyReturnValue(method = "getBreakSpeed", at = @At("RETURN"))
+    private float cem$applyEfficiency(float speed) {
+        return CemSpeeds.breakSpeed(speed, CemEnchantments.efficiency((BlockEntity) (Object) this));
+    }
+
     @WrapOperation(
-            method = "onBlockBroken",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lcom/simibubi/create/foundation/utility/BlockHelper;destroyBlock("
-                            + "Lnet/minecraft/world/level/Level;"
-                            + "Lnet/minecraft/core/BlockPos;"
-                            + "FLjava/util/function/Consumer;)V",
-                    remap = false
-            ),
-            remap = false
+        method = "onBlockBroken",
+        at = @At(
+            value = "INVOKE",
+            target = "Lcom/zurrtum/create/foundation/utility/BlockHelper;destroyBlock(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;FLjava/util/function/Consumer;)V"
+        )
     )
-    private void cem$destroyWithEnchantments(Level world, BlockPos pos, float effectChance, Consumer<ItemStack> droppedItemCallback, Operation<Void> original) {
-        var be = (BlockBreakingKineticBlockEntity) (Object) this;
-
-        ItemEnchantments enchantments = be.components().getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
-
+    private void cem$destroyWithEnchantedTool(
+        Level level,
+        BlockPos pos,
+        float effectChance,
+        Consumer<ItemStack> droppedItemCallback,
+        Operation<Void> original
+    ) {
+        ItemEnchantments enchantments = CemEnchantments.of((BlockEntity) (Object) this);
         if (enchantments.isEmpty()) {
-            original.call(world, pos, effectChance, droppedItemCallback);
+            original.call(level, pos, effectChance, droppedItemCallback);
+            return;
         }
-
-        ItemStack tool = EnchantedItemFactory.INSTANCE.getToolItemStack(Items.NETHERITE_PICKAXE, enchantments);
-
-        BlockHelper.destroyBlockAs(world, pos, null, tool, effectChance, droppedItemCallback);
+        BlockHelper.destroyBlockAs(level, pos, null, CemEnchantments.createTool(enchantments), effectChance, droppedItemCallback);
     }
 }

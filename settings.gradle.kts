@@ -1,7 +1,8 @@
 pluginManagement {
     repositories {
-        maven("https://maven.minecraftforge.net/")
+        maven("https://maven.fabricmc.net/")
         maven("https://maven.firstdark.dev/releases")
+        mavenCentral()
         gradlePluginPortal()
     }
 }
@@ -9,4 +10,3 @@ pluginManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "CreateEnchantableMachinery"
-
