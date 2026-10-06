@@ -1,89 +1,28 @@
 package io.github.cotrin8672.cem
 
-import com.simibubi.create.AllBlocks
-import com.simibubi.create.foundation.data.CreateRegistrate
-import io.github.cotrin8672.cem.config.CemConfig
-import io.github.cotrin8672.cem.config.ModConfigs
-import io.github.cotrin8672.cem.content.block.crusher.EnchantableCrushingWheelControllerBlockEntity
-import io.github.cotrin8672.cem.content.block.millstone.EnchantableMillstoneBlockEntity
-import io.github.cotrin8672.cem.content.block.saw.EnchantableSawBlockEntity
-import io.github.cotrin8672.cem.content.block.spout.EnchantableSpoutBlockEntity
-import io.github.cotrin8672.cem.registry.BlockEntityRegistration
-import io.github.cotrin8672.cem.registry.BlockRegistration
-import io.github.cotrin8672.cem.registry.CemEnchantmentEffectComponents
-import io.github.cotrin8672.cem.util.EnchantableBlockMapping
-import net.minecraft.resources.ResourceLocation
-import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.ModContainer
-import net.neoforged.fml.ModLoadingContext
-import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.fml.common.Mod
-import net.neoforged.fml.config.ModConfig
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
+import io.github.cotrin8672.cem.registry.CemBlockEntityTypes
+import io.github.cotrin8672.cem.registry.CemItemComponents
+import io.github.cotrin8672.cem.registry.CemLootTables
+import net.fabricmc.api.ModInitializer
+import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.resources.Identifier
+import org.slf4j.LoggerFactory
+import org.spongepowered.asm.mixin.MixinEnvironment
 
-@EventBusSubscriber(modid = Cem.MOD_ID)
-@Mod(Cem.MOD_ID)
-class Cem(
-    container: ModContainer,
-) {
-    companion object {
-        const val MOD_ID = "createenchantablemachinery"
-        val REGISTRATE: CreateRegistrate = CreateRegistrate.create(MOD_ID)
+object Cem : ModInitializer {
+    const val MOD_ID = "createenchantablemachinery"
+    val LOGGER = LoggerFactory.getLogger(MOD_ID)
 
-        fun asResource(path: String): ResourceLocation = ResourceLocation.fromNamespaceAndPath(MOD_ID, path)
+    fun asResource(path: String): Identifier = Identifier.fromNamespaceAndPath(MOD_ID, path)
 
-        @JvmStatic
-        @SubscribeEvent
-        fun registerCapabilities(event: RegisterCapabilitiesEvent) {
-            EnchantableSawBlockEntity.registerCapabilities(event)
-            EnchantableCrushingWheelControllerBlockEntity.registerCapabilities(event)
-            EnchantableMillstoneBlockEntity.registerCapabilities(event)
-            EnchantableSpoutBlockEntity.registerCapabilities(event)
+    override fun onInitialize() {
+        CemBlockEntityTypes.register()
+        CemItemComponents.register()
+        CemLootTables.register()
+
+        // Dev only: apply every mixin at startup so a broken injection target fails fast instead of on first use.
+        if (FabricLoader.getInstance().isDevelopmentEnvironment && System.getProperty("cem.auditMixins") != null) {
+            MixinEnvironment.getCurrentEnvironment().audit()
         }
-    }
-
-    init {
-        MOD_BUS.addListener(this::registerEnchantableBlockMapping)
-        MOD_BUS.register(this::class.java)
-        REGISTRATE.registerEventListeners(MOD_BUS)
-        CemEnchantmentEffectComponents.REGISTER.register(MOD_BUS)
-        BlockRegistration.register()
-        BlockEntityRegistration.register()
-        container.registerConfig(ModConfig.Type.CLIENT, CemConfig.CONFIG_SPEC)
-        ModConfigs.register(ModLoadingContext.get(), container)
-    }
-
-    private fun registerEnchantableBlockMapping(event: FMLCommonSetupEvent) {
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_DRILL to BlockRegistration.ENCHANTABLE_MECHANICAL_DRILL,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_SAW to BlockRegistration.ENCHANTABLE_MECHANICAL_SAW,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_HARVESTER to BlockRegistration.ENCHANTABLE_MECHANICAL_HARVESTER,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.ENCASED_FAN to BlockRegistration.ENCHANTABLE_ENCASED_FAN,
-        )
-        EnchantableBlockMapping.register(AllBlocks.MILLSTONE to BlockRegistration.ENCHANTABLE_MILLSTONE)
-        EnchantableBlockMapping.register(
-            AllBlocks.CRUSHING_WHEEL to BlockRegistration.ENCHANTABLE_CRUSHING_WHEEL,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_PLOUGH to BlockRegistration.ENCHANTABLE_MECHANICAL_PLOUGH,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_MIXER to BlockRegistration.ENCHANTABLE_MECHANICAL_MIXER,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_PRESS to BlockRegistration.ENCHANTABLE_MECHANICAL_PRESS,
-        )
-        EnchantableBlockMapping.register(
-            AllBlocks.MECHANICAL_ROLLER to BlockRegistration.ENCHANTABLE_MECHANICAL_ROLLER,
-        )
-        EnchantableBlockMapping.register(AllBlocks.SPOUT to BlockRegistration.ENCHANTABLE_SPOUT)
     }
 }

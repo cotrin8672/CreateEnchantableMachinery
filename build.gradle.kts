@@ -1,9 +1,10 @@
 import com.hypherionmc.modpublisher.properties.CurseEnvironment
 import com.hypherionmc.modpublisher.properties.ModLoader
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.modDevGradle)
+    alias(libs.plugins.loom)
     alias(libs.plugins.modPublisher)
 }
 
@@ -13,106 +14,71 @@ val modVersion: String by project
 val modGroupId: String by project
 
 group = modGroupId
-version = "${modVersion}+mc${libs.versions.minecraft.get()}-neoforge"
+version = "${modVersion}+mc${libs.versions.minecraft.get()}-fabric"
 
 base {
     archivesName = modId
 }
 
-kotlin {
-    jvmToolchain(21)
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
 }
 
-neoForge {
-    version = libs.versions.neoforge.get()
+kotlin {
+    jvmToolchain(25)
+    compilerOptions.jvmTarget = JvmTarget.JVM_25
+}
 
-    parchment {
-        mappingsVersion = libs.versions.parchment.get()
-        minecraftVersion = libs.versions.minecraft.get()
-    }
-
-    runs {
-        create("client") {
-            client()
-            systemProperty("neoforge.enabledGameTestNamespaces", modId)
-        }
-
-        create("server") {
-            server()
-            programArgument("--nogui")
-            systemProperty("neoforge.enabledGameTestNamespaces", modId)
-        }
-
-        create("data") {
-            data()
-
-            programArguments.addAll(
-                "--mod",
-                modId,
-                "--all",
-                "--output",
-                file("src/generated/resources/").absolutePath,
-                "--existing",
-                file("src/main/resources/").absolutePath
-            )
-        }
-
-        configureEach {
-            systemProperty("forge.logging.markers", "REGISTRIES")
-            logLevel = org.slf4j.event.Level.DEBUG
-        }
-    }
+loom {
+    splitEnvironmentSourceSets()
+    accessWidenerPath = file("src/main/resources/$modId.classtweaker")
 
     mods {
         create(modId) {
             sourceSet(sourceSets.main.get())
+            sourceSet(sourceSets.getByName("client"))
         }
     }
-}
 
-configurations {
-    val localRuntime by configurations.creating
-
-    configurations.named("runtimeClasspath") {
-        extendsFrom(localRuntime)
+    runs {
+        named("server") {
+            // Applies every mixin at startup, see Cem.onInitialize
+            vmArg("-Dcem.auditMixins=true")
+        }
     }
 }
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://thedarkcolour.github.io/KotlinForForge/")
-        content { includeGroup("thedarkcolour") }
-    }
-    maven("https://maven.blamejared.com/") // JEI
-    maven("https://maven.createmod.net") // Create, Ponder, Flywheel
-    maven("https://mvn.devos.one/snapshots") // Registrate
-    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
-    maven("https://api.modrinth.com/maven") // Modrinth Maven
-    maven("https://maven.theillusivec4.top/") // Curios API
-
+    maven("https://maven.fabricmc.net/")
     exclusiveContent {
         forRepository {
-            maven("https://cursemaven.com")
+            maven("https://api.modrinth.com/maven")
         }
         filter {
-            includeGroup("curse.maven")
+            includeGroup("maven.modrinth")
         }
     }
 }
 
 dependencies {
-    implementation(libs.kotlinforforge)
-    implementation(libs.create) {
-        isTransitive = false
-    }
-    compileOnly(libs.flywheel.api)
-    runtimeOnly(libs.flywheel)
-    implementation(libs.ponder)
-    implementation(libs.registrate)
+    minecraft(libs.minecraft)
+    implementation(libs.fabric.loader)
+    implementation(libs.fabric.kotlin)
 
-    runtimeOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1")
-    compileOnly("top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api")
+    // The fabric-api artifact only nests the module jars, so each module used at compile time is named here.
+    val fabricApiVersion = libs.versions.fabricApi.get()
+    listOf(
+        "fabric-api-base",
+        "fabric-item-api-v1",
+        "fabric-lifecycle-events-v1",
+        "fabric-loot-api-v3",
+        "fabric-networking-api-v1",
+    ).forEach { implementation(fabricApi.module(it, fabricApiVersion)) }
+    runtimeOnly(libs.fabric.api)
+
+    // Create Fly embeds Create, Flywheel, Ponder and Catnip.
+    implementation(libs.createFly)
 }
 
 publisher {
@@ -126,32 +92,29 @@ publisher {
     versionType.set("release")
     changelog.set(file("changelog.md"))
     version.set(project.version.toString())
-    displayName.set("$modName $modVersion NeoForge")
+    displayName.set("$modName $modVersion Fabric")
     setGameVersions(libs.versions.minecraft.get())
-    setLoaders(ModLoader.NEOFORGE)
+    setLoaders(ModLoader.FABRIC)
     setCurseEnvironment(CurseEnvironment.BOTH)
     artifact.set("build/libs/${base.archivesName.get()}-${project.version}.jar")
 
     curseDepends {
-        required("create", "kotlin-for-forge")
+        required("create-fly", "fabric-language-kotlin", "fabric-api")
     }
     modrinthDepends {
-        required("create", "kotlin-for-forge")
+        required("create-fly", "fabric-language-kotlin", "fabric-api")
     }
 }
 
-val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
+tasks.processResources {
     val modLicense: String by project
     val modAuthors: String by project
     val modDescription: String by project
 
     val replaceProperties = mapOf(
         "minecraftVersion" to libs.versions.minecraft.get(),
-        "minecraftVersionRage" to "[${libs.versions.minecraft.get()},)",
-        "neoforgeVersion" to libs.versions.neoforge.get(),
-        "neoforgeVersionRange" to "[21.1.186,)",
-        "loaderVersionRange" to "[5.9,)",
-        "createVersionRange" to "[6.0.6,)",
+        "loaderVersion" to libs.versions.fabricLoader.get(),
+        "fabricKotlinVersion" to libs.versions.fabricKotlin.get(),
         "modId" to modId,
         "modName" to modName,
         "modLicense" to modLicense,
@@ -161,22 +124,16 @@ val generateModMetadata = tasks.withType<ProcessResources>().configureEach {
     )
 
     inputs.properties(replaceProperties)
-    filesMatching(listOf("META-INF/neoforge.mods.toml")) {
+    filesMatching("fabric.mod.json") {
         expand(replaceProperties)
     }
 }
 
-tasks.processResources {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+    options.release = 25
 }
-
-sourceSets.main.get().resources.srcDir("src/generated/resources")
-neoForge.ideSyncTask(tasks.processResources)
 
 tasks.named<Wrapper>("wrapper").configure {
     distributionType = Wrapper.DistributionType.BIN
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
 }
